@@ -11,7 +11,7 @@
 ###############################################################################
 set -euo pipefail
 
-REPO_NAME="rachel-tzadok-research"   # אפשר לשנות לשם אחר
+REPO_NAME="rachel-zadok-research"    # שם הריפו
 VISIBILITY="public"                  # public = נדרש לאתר Pages חינמי
 
 cd "$(dirname "$0")"
