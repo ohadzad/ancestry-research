@@ -1,0 +1,13 @@
+# קבצי אודיו כבדים (חורגים ממגבלת 100MB של GitHub)
+*.mp3
+*.wav
+*.m4a
+testimony*
+transcript_raw.txt
+# עבודה / זמניים
+chunks/
+ארכיון_עבודה/
+site/
+__pycache__/
+*.pyc
+.DS_Store
