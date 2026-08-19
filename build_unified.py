@@ -334,7 +334,7 @@ shutil.copy('index.html', os.path.join(SITE, 'index.html'))
 shutil.copy('רחל_צדוק_המחקר_המלא.html', os.path.join(SITE, 'רחל_צדוק_המחקר_המלא.html'))
 shutil.copytree('docs', os.path.join(SITE, 'docs'))
 # root files referenced by relative links
-for f in ['תמליל_העדות_המלא.txt', 'ניתוח_העדות.md', 'עץ_משפחה_גרפי.html', 'עץ_משפחה_מורחב.html']:
+for f in ['תמליל_העדות_המלא.txt', 'ניתוח_העדות.md', 'אינדקס_מקורות.md', 'רחל_צדוק_מחקר_מקיף.md', 'עץ_משפחה_גרפי.html', 'עץ_משפחה_מורחב.html']:
     if os.path.exists(f): shutil.copy(f, SITE)
 # drop the huge unreferenced wav/chunks if copied inside docs (they are not in docs) — nothing to do
 site_html = open(os.path.join(SITE,'רחל_צדוק_המחקר_המלא.html'), encoding='utf-8').read()

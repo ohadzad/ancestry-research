@@ -24,7 +24,8 @@ cat > .gitignore <<'EOF'
 *.mp3
 *.wav
 *.m4a
-testimony*
+/testimony.mp3
+/testimony_16k.wav
 transcript_raw.txt
 # עבודה / זמניים
 chunks/

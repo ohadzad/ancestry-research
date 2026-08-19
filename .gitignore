@@ -2,7 +2,8 @@
 *.mp3
 *.wav
 *.m4a
-testimony*
+/testimony.mp3
+/testimony_16k.wav
 transcript_raw.txt
 # עבודה / זמניים
 chunks/
@@ -11,3 +12,5 @@ site/
 __pycache__/
 *.pyc
 .DS_Store
+gitignore_fixed.txt
+publish_to_github.sh
