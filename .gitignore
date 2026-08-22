@@ -2,15 +2,17 @@
 *.mp3
 *.wav
 *.m4a
-/testimony.mp3
-/testimony_16k.wav
 transcript_raw.txt
-# עבודה / זמניים
+
+# עבודה / זמניים — בכל תיקיית מחקר
 chunks/
 ארכיון_עבודה/
 site/
 __pycache__/
 *.pyc
 .DS_Store
+.venv/
+venv/
 gitignore_fixed.txt
 publish_to_github.sh
+restructure_to_portal.sh

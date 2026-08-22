@@ -2,7 +2,8 @@
 """Build the unified document: report + evidence figures + family tree + sources index, one HTML file."""
 import base64, re, os
 
-os.chdir('/home/claude/rachel_tzadok')
+# always build relative to this script's own directory
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 INDEX_STUB = '<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="UTF-8">\n<meta http-equiv="refresh" content="0; url=%D7%A8%D7%97%D7%9C_%D7%A6%D7%93%D7%95%D7%A7_%D7%94%D7%9E%D7%97%D7%A7%D7%A8_%D7%94%D7%9E%D7%9C%D7%90.html">\n<title>רחל צדוק — המחקר המלא</title>\n</head>\n<body style="font-family:Georgia,serif; background:#faf7f2; color:#2b2620; text-align:center; padding-top:80px;">\n<p>מעביר אל <a href="%D7%A8%D7%97%D7%9C_%D7%A6%D7%93%D7%95%D7%A7_%D7%94%D7%9E%D7%97%D7%A7%D7%A8_%D7%94%D7%9E%D7%9C%D7%90.html">רחל_צדוק_המחקר_המלא.html</a>…</p>\n<script>location.replace(\'%D7%A8%D7%97%D7%9C_%D7%A6%D7%93%D7%95%D7%A7_%D7%94%D7%9E%D7%97%D7%A7%D7%A8_%D7%94%D7%9E%D7%9C%D7%90.html\');</script>\n</body>\n</html>\n'
 
@@ -254,6 +255,7 @@ out = f"""<!DOCTYPE html>
 <title>רחל צדוק לבית סטרולוביץ-רפפורט — המחקר המלא</title>
 <style>{css}</style></head>
 <body><div class="page">
+<p style="font-size:.85rem; color:#8a8177; margin:0 0 14px;"><a href="../index.html" style="color:#7a4a2b; text-decoration:none;">&#8594; ארכיון מחקר המשפחה</a> · רחל צדוק</p>
 <p style="background:#efe9df; border:1px solid #d8d0c2; border-radius:8px; padding:8px 14px; font-size:.85rem; color:#5a5142;">מסמך זה הוא חלק מתיקיית המחקר: תצלומי הראיות שבו נטענים ישירות מקובצי המקור שבתיקיות docs/‏ (לחיצה על כל תצלום פותחת את הקובץ המקורי המלא), ולכן יש לפתוח אותו מתוך התיקייה "רחל צדוק" — או מהאתר הסטטי שאליו הועלתה. קישורי המקור הם משני סוגים: קישורים חיצוניים (יוטיוב, יד ושם, ארולסן, JewishGen ועוד) וקישורים יחסיים לעותקי המקור שבתיקייה. חותמות הזמן בפרק העדות הן קישורים לרגע המדויק בעדות המצולמת.</p>
 {report_html}
 <hr>
