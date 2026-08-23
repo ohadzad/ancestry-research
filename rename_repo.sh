@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------------------------------
-#  שינוי שם הריפו:  zadok-ancestry-research  ->  ancestry-research
+#  שינוי שם הריפו:  ancestry-research  ->  ancestry-research
 #  מעדכן גם את כל האזכורים בטקסט, את ה-venv, ודוחף.
 #
 #  הרצה:  cd אל תיקיית הריפו, ואז   bash rename_repo.sh
@@ -8,7 +8,7 @@
 # ---------------------------------------------------------------------------
 set -euo pipefail
 
-OLD="zadok-ancestry-research"
+OLD="ancestry-research"
 NEW="ancestry-research"
 
 TARGET="${1:-$PWD}"

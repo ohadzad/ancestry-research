@@ -3,7 +3,7 @@
 צדוק · סטרולוביץ · רפפורט · פרקש · שטיינר
 
 ארכיון מחקר גנאלוגי מתועד־מקורות. האתר החי:
-**https://ohadzad.github.io/zadok-ancestry-research/**
+**https://ohadzad.github.io/ancestry-research/**
 
 ## מבנה
 
@@ -31,9 +31,9 @@ rachel-zadok/            ← מחקר: רחל צדוק לבית סטרולובי
 לתיקייה (כדי שדרופבוקס לא יסנכרן אותה):
 
 ```bash
-PY=~/.venvs/zadok-ancestry-research/bin/python
+PY=~/.venvs/ancestry-research/bin/python
 # פעם אחת:
-python3 -m venv ~/.venvs/zadok-ancestry-research && $PY -m pip install markdown pillow
+python3 -m venv ~/.venvs/ancestry-research && $PY -m pip install markdown pillow
 ```
 
 ## בנייה מחדש

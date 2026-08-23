@@ -16,3 +16,4 @@ venv/
 gitignore_fixed.txt
 publish_to_github.sh
 restructure_to_portal.sh
+rename_repo.sh

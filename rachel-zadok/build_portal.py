@@ -4,7 +4,7 @@
 
 Adding a research = adding an entry to research_registry.json and re-running this.
 Run from the repository root, with the project venv:
-  ~/.venvs/zadok-ancestry-research/bin/python build_portal.py
+  ~/.venvs/ancestry-research/bin/python build_portal.py
 """
 import json, os, sys, html, re, urllib.parse
 

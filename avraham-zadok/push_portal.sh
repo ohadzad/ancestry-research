@@ -33,7 +33,7 @@ echo "קוד יציאה של git push: $RC"
 
 echo ""
 echo "===== 6. מקור GitHub Pages ====="
-gh api "repos/ohadzad/zadok-ancestry-research/pages" 2>/dev/null \
+gh api "repos/ohadzad/ancestry-research/pages" 2>/dev/null \
   | python3 -c "import json,sys; d=json.load(sys.stdin); print('branch:', d['source']['branch'], '| path:', d['source']['path'], '| status:', d.get('status'))" \
   2>/dev/null || echo "(gh לא זמין או לא מחובר — דלג)"
 
