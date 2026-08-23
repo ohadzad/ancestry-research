@@ -17,6 +17,14 @@ def md2html(text):
     return markdown.markdown(text, extensions=['extra','sane_lists','nl2br'])
 
 report_md  = open('report.md', encoding='utf-8').read()
+import datetime as _dt, os as _os
+_os.environ.setdefault("TZ","Asia/Jerusalem")
+try:
+    import time as _t; _t.tzset()
+except Exception:
+    pass
+BUILD_STAMP = _dt.datetime.now().strftime("%d.%m.%Y, %H:%M")
+
 _ED_HEAD = _edition_from(report_md.split(chr(10))[3], r'מהדורה (\d+)')
 _appendix = report_md.split('נספח ד', 1)[-1]
 _ED_TABLE = max((int(x) for x in re.findall(r'^\| (\d+) \|', _appendix, re.M)), default=None)
@@ -172,6 +180,21 @@ EVID = [
          ext="https://www.archives.gov.il/details/001ri28",
          title="מפקד «משמר העם» ירושלים תש\"ח — משק הבית ארואץ (3.5.1948)",
          cap="טופס האוכלוסיה מס' 7, «בית מדג'וק» שבמחנה יהודה: «ארואץ · אליהו · ראש המשפחה · 1913 · עדה: יהודי ס' · שנת העליה לא\"י: 1924 · הנתינות: בריטית»; רעייתו «סול», בת בכור, ילידת 1922 בתורקיה, עלתה 1936; בנם «יואל», יליד 1945 בירושלים. הנתינות הבריטית היא סמן אפשרי המבחין בין ענף ארואס הגיברלטרי (נתיני בריטניה ביפו מ-1839) לבין משפחת ארואץ המרוקאית שבחסות צרפת. לחיצה — הטופס המלא. (דירוג: תוכן הטופס — מאומת, נקרא מן הסריקה; שם האב ושם יישוב הלידה — לא פוענחו; שיוך לענף הגיברלטרי — טעון אימות.)"),
+    dict(crop="docs/evidence/igra_1893_eliyahu_arwas_gaza_foil.png",
+         full="docs/igra/igra_britnat_jaffa_gaza1893_p0065.jpg",
+         ext="https://igra-images.genealogy.org.il/1865_1914_BritishNat_Jaffa/1865_1914_BritishNat_Jaffa0065.jpg",
+         title="תעודת רישום נתין בריטי מס' 24 — אליהו ארואס, עזה, 10.4.1893",
+         cap="קונסוליית הוד מלכותה, יפו: «1. Name: Eliyaho Arrwas · 2. Country: Palestine · 3. Village or Town: Gazza · 4. Father's Name and Residence: <strong>Shalom Arrwas (dead)</strong> · 5. Residence of Applicant: Gazza · 6. Occupation: merchant · 7. Age: 40». זהו הפטרונים שסגר את הזיהוי: «Shalom Arrwas» הוא שלמה (Salomo) ארואס מגיברלטר, שנפטר ביפו ב-1868; וגיל 40 ב-1893 גוזר לידה ~1853, בעוד מפקד יפו 1855 רושם בבית שלמה בן בשם אליהו, בן 3. (דירוג: תוכן הטופס — מאומת, נקרא בעיניים על הסריקה; הזיהוי — כמעט ודאי.)"),
+    dict(crop="docs/evidence/igra_1893_arwas_gaza_children.png",
+         full="docs/igra/igra_britnat_jaffa_gaza1893_p0066.jpg",
+         ext="https://igra-images.genealogy.org.il/1865_1914_BritishNat_Jaffa/1865_1914_BritishNat_Jaffa0066.jpg",
+         title="בני ביתו של אליהו ארואס בעזה, 1893",
+         cap="בעמוד הנגדי של התעודה: «Wife <strong>Fro</strong> — Age 36 · Sons: <strong>Moshe 17, Jacob 4, Solomon 2</strong> · Daughters: <strong>Rachel 14, Miriam 12, Sultana 10</strong>». שבעה שמות שנוספו לענף בבת אחת, עם גילאים; הבן שלמה (יליד ~1891) נקרא על שם סבו. אזהרה: מרים ילידת ~1881 שכאן איננה מרים ארואס ילידת 1875, אשתו של יצחק פריינטה. (דירוג: מאומת.)"),
+    dict(crop="docs/evidence/igra_1893_joseph_eliaho_arwas_foil.png",
+         full="docs/igra/igra_britnat_jaffa_gaza1893_p0067.jpg",
+         ext="https://igra-images.genealogy.org.il/1865_1914_BritishNat_Jaffa/1865_1914_BritishNat_Jaffa0067.jpg",
+         title="תעודת רישום מס' 25 — יוסף אליהו ארואס, אותו יום",
+         cap="«1. Name: <strong>Joseph Eliaho Arrwas</strong> · 3. Village or Town: Jaffa · 4. Father's Name: <strong>Eliazar Arrwas (dead)</strong> · 5. Residence of Applicant: Gazza · 6. Occupation: Trader · 7. Age: 37». זהו הענף המקביל, ענף אלעזר — ויוסף אליהו הוא בן-דודו של אליהו שבתעודה הקודמת. שמו חתום על מכתב התלונה נגד אליהו שפורסם ב«השקפה» ב-15.4.1904: הידיעה מתעדת סכסוך בתוך המשפחה עצמה. (דירוג: תוכן הטופס — מאומת; הזיהוי עם החתום במכתב — כמעט ודאי.)"),
     dict(crop="docs/evidence/hashkafa_1904-04-15_arwas_gaza_lead.png",
          full="docs/evidence/hashkafa_1904-04-15_arwas_gaza_zoom.png",
          ext="https://www.nli.org.il/he/newspapers/?a=d&d=hsk19040415-01.2.9",
@@ -496,7 +519,7 @@ PAGE = f'''<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
  <header class="hero">
    <h1>שורשיה של משפחה ממקווה ישראל</h1>
    <div class="sub">אברהם צדוק (1925-2017) — מחקר תיעודי מקושר-מקורות בגנאלוגיה משפחתית</div>
-   <div class="meta">מהדורה {EDITION} · אלול תשפ״ו / אוגוסט 2026</div>
+   <div class="meta">מהדורה {EDITION} · אלול תשפ״ו / אוגוסט 2026 · נבנה {BUILD_STAMP}</div>
  </header>
  <main class="body">
    <nav class="toc" aria-label="תוכן עניינים">
@@ -530,7 +553,7 @@ PAGE = f'''<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8">
    <hr>
    <section id="changelog">{changelog_html}</section>
  </main>
- <footer>מסמך זיכרון משפחתי · נבנה ממקורות מתועדים · מהדורה {EDITION} · אוגוסט 2026</footer>
+ <footer>מסמך זיכרון משפחתי · נבנה ממקורות מתועדים · מהדורה {EDITION} · גרסת בנייה: {BUILD_STAMP}</footer>
 </div>
 <script>
 (function(){{var r=document.documentElement;

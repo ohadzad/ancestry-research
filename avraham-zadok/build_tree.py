@@ -8,6 +8,13 @@ import re as _re
 _line4 = open('report.md', encoding='utf-8').read().split(chr(10))[3]
 _m = _re.findall(r'מהדורה (\d+)', _line4)
 TREE_ED = _m[0] if _m else '?'
+import datetime as _dt, os as _os
+_os.environ.setdefault('TZ','Asia/Jerusalem')
+try:
+    import time as _t; _t.tzset()
+except Exception:
+    pass
+BUILD_STAMP = _dt.datetime.now().strftime('%d.%m.%Y, %H:%M')
 
 W, H = 1648, 1000
 DX = 140  # global left-shift: trims the dead left margin (gen-label column was 256px wide)
@@ -92,16 +99,19 @@ S.append(box(x_avf, yG, "אברהם פריינטה", "אבי יצחק פפו", "
 # dashed origin connector -> Yosef∞Garcia union (family origin, not proven parentage)
 S.append(connect(c_gg, yGG+BH, c_ag, yG, "rootln"))
 # ---- Yosef's brothers (census 1855): Moshe & Eliahu — sibling bus from Shlomo∞Simha union ----
-moshe_c, elia_c = 828, 686
+moshe_c, elia_c = 866, 712
 ar_bus = (yGG+BH+yG)/2
 S.append(hline(elia_c, c_gg, ar_bus, "ln"))
 S.append(vline(moshe_c, ar_bus, yG, "ln")); S.append(vline(elia_c, ar_bus, yG, "ln"))
 S.append(box(moshe_c, yG, "משה ארואץ", "נולד ~1849 (בן 6)|מפקד 1855, יפו", "arwas", w=128))
-S.append(box(elia_c, yG, "אליהו ארואץ", "~1852 · יליד הארץ|חלפן, קונסוליה 1.1.1873|נפ׳ יפו 1906? (גאון)", "arwas", w=128))
+S.append(box(elia_c, yG, "אליהו ארואץ", "~1852 · בן שלמה (1893)|חלפן יפו 1873 → עזה|«השקפה» 1904 · נפ׳ 1906?", "arwas", w=162, h=82))
+gaza_c = 428
+S.append(box(gaza_c, yG, "בית אליהו בעזה — 1893", "תעודת נתין בריטי 24, קונסוליית יפו|«Father’s Name: Shalom Arrwas (dead)»|רעייתו פרו (36)|משה 17 · רחל 14 · מרים 12|סולטנה 10 · יעקב 4 · שלמה 2", "arwas", w=286, h=118))
+S.append(hline(gaza_c+143, elia_c-81, yG+33, "ln"))
 # ---- Elazar & Mesoda's sons (census 1855) ----
 elsons_c = 1670
 S.append(connect(c_el, yGG+BH, elsons_c, yG, "ln"))
-S.append(box(elsons_c, yG, "יוסף · אברהם", "בני אלעזר ומסודה (מפקד 1855)|~1849 · ~1854; אברהם: נפ׳ 1912?", "misc", w=184))
+S.append(box(elsons_c, yG, "יוסף · אברהם", "בני אלעזר ומסודה (מפקד 1855)|~1849 · ~1854; אברהם: נפ׳ 1912?|יוסף אליהו — סוחר בעזה, תעודה 25 (1893)|חתם על מכתב התלונה נגד בן-דודו", "misc", w=230, h=94))
 
 # ---- grandparents (row y0): Yitzhak Pepo ∞ Miriam ; Avraham Tzalach ∞ Saada ----
 c_m = 1252   # maternal grandparents union
@@ -173,6 +183,11 @@ S.append(vline(un3, y3+BH/2, s_bus,"ln")); S.append(hline(min(sc),max(sc),s_bus,
 for nm,c in zip(("עדו","זיו"),sc):
     S.append(vline(c,s_bus,y4,"ln")); S.append(box(c,y4,nm,"","person",w=152,h=56))
 
+# ---- annex (editions 43-46): documented relatives whose exact link is still open ----
+S.append(f'<text class="gen" x="1020" y="754" text-anchor="middle">{esc("שכבות שנוספו במהדורות 43-46 — מתועדים ברשומת מדינה, החוליה לעץ עדיין פתוחה")}</text>')
+S.append(box(1000, 768, "מרקו ארוואס — יליד מצרים 1916", "מפקד «משמר העם» ירושלים תש״ח, צפניה 43|«שם האב: שלמה» · עדה ספרדית · עלה 1931|שני מועמדים לאב: שלמה בן יוסף (1875/6-1933)|או שלמה בן אליהו מעזה (~1891)|בן-דוד של רוזה? — טעון אימות", "unk", w=300, h=112))
+S.append(box(1330, 768, "אברהם פריינטה — ירושלים 1948", "מפקד תש״ח, נחלת שבעה · «בית מכלוף»|בן 58 ⇒ יליד ~1890 · אשתו בוקס (45)|השערה: בן שמואל, אחיו של יצחק פפו|— דור האחיינים · טעון אימות", "unk", w=300, h=112))
+
 # generation labels (far left)
 for y,txt in [(yGG,"דור 6 · המוצא"),(yG,"דור 5"),(y0,"סבים וסבתות"),
               (y1,"ההורים"),(y2,"אברהם ואחיו"),(y3,"נישואין"),(y4,"בנים")]:
@@ -180,7 +195,7 @@ for y,txt in [(yGG,"דור 6 · המוצא"),(yG,"דור 5"),(y0,"סבים וס�
 
 for i,ln in enumerate([
   '* 16.9.1925 — מ-MyHeritage; עץ כהן (2005): 19.9.1925 — פער 3 ימים, טעון אימות (שנת 1925 מאומתת בכרטיס הפלמ״ח) · «נפ׳ ...?» — תאריכי פטירה מועמדים מגאון 1938',
-  'אמה של רוזה — מרים ארואס (מאומת: דף הרישום והמצבה; ראו מקרא)']):
+  'אמה של רוזה — מרים ארואס (מאומת: דף הרישום והמצבה; ראו מקרא) · שימו לב: מרים ארואס ילידת ~1881 שבבית עזה היא אדם אחר']):
     S.append(f'<text class="sb" x="{W/2}" y="{H-26+i*15}" text-anchor="middle">{esc(ln)}</text>')
 S.append('</svg>')
 SVG="\n".join(S)
@@ -238,6 +253,13 @@ html_doc=f'''<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8
  קו מלא — קשר מתועד. קו מקווקו — קשר משוער או מסגרת־מוצא. סימן «?» אחרי תאריך — מועמד שטרם אומת.
  </p>
 
+ <h2>מה נוסף במהדורות 43-46</h2>
+ <ul>
+  <li><b>ענף עזה.</b> תעודת רישום נתין בריטי מס' 24 (קונסוליית יפו, 10.4.1893) נוקבת בשדה «Father's Name»: <b>Shalom Arrwas (dead)</b> — ובכך מזהה את אליהו שבעזה כבנו של שלמה מגיברלטר. אתו נרשמו רעייתו <b>פרו</b> ושישה ילדים. אליהו זה הוא «האדון אליהו ארואץ» שידיעת «השקפה» מ-15.4.1904 מתארת כשולט בעדת עזה.</li>
+  <li><b>הענף המקביל.</b> תעודה 25, מאותו יום: <b>Joseph Eliaho</b> בן <b>אלעזר</b>, סוחר בעזה — בן-דודו של אליהו, והוא החתום על מכתב התלונה נגדו. הידיעה מתעדת אפוא סכסוך בתוך המשפחה.</li>
+  <li><b>נספח בתחתית העץ.</b> שני מתועדים ברשומת מדינה שהחוליה שלהם לעץ עדיין פתוחה: <b>מרקו ארוואס</b> (יליד מצרים 1916, «שם האב: שלמה») ו<b>אברהם פריינטה</b> (ירושלים 1948, בן 58 ⇒ יליד ~1890). שניהם מוצגים במסגרת מקווקוות ובדירוג «טעון אימות».</li>
+ </ul>
+
  <h2>מניין באו הענפים</h2>
  <ul>
   <li><b>צד האם — ארואס/ארואץ:</b> ילידי גיברלטר שעלו ב-1833; מתועדים ביפו לכל המאוחר מ-1855 (יעד ההתיישבות ב-1833 עצמו אינו מתועד). במפקד מונטיפיורי 1855 מופיעה המשפחה במלואה: שלמה (32, "סוחר ובאנקיר") ואשתו שמחה, ובניהם יוסף (12), משה (6) ואליהו (3); לצדם ענף אלעזר ומסודה — ככל הנראה אחיו של שלמה, שעלה באותה שנה.</li>
@@ -267,7 +289,7 @@ html_doc=f'''<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8
   <li>פרטי בני הדור החי מובאים במידה מזערית, מטעמי פרטיות.</li>
  </ul>
 </div>
-<footer>מסמך מחקר משפחתי · מהדורה {TREE_ED} · אוגוסט 2026</footer>
+<footer>מסמך מחקר משפחתי · מהדורה {TREE_ED} · גרסת בנייה: {BUILD_STAMP}</footer>
 </body></html>'''
 open('tree.html','w',encoding='utf-8').write(html_doc)
 open('tree_svg.svg','w',encoding='utf-8').write(SVG)
