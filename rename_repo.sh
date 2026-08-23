@@ -11,7 +11,14 @@ set -euo pipefail
 OLD="zadok-ancestry-research"
 NEW="ancestry-research"
 
-cd "${1:-$PWD}"
+TARGET="${1:-$PWD}"
+if [ ! -d "$TARGET" ]; then
+  echo "✗ '$TARGET' אינה תיקייה."
+  echo "  הרץ בלי ארגומנטים מתוך תיקיית הריפו, או תן נתיב תקין."
+  echo "  (ב-zsh אינטראקטיבי הערה אחרי # נשלחת כארגומנט — אל תוסיף הערה בסוף השורה.)"
+  exit 1
+fi
+cd "$TARGET"
 git rev-parse --git-dir >/dev/null 2>&1 || { echo "✗ $PWD אינו ריפו git"; exit 1; }
 command -v gh >/dev/null || { echo "✗ חסר: gh"; exit 1; }
 
