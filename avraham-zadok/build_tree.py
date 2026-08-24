@@ -111,7 +111,7 @@ S.append(hline(gaza_c+143, elia_c-81, yG+33, "ln"))
 # ---- Elazar & Mesoda's sons (census 1855) ----
 elsons_c = 1662
 S.append(connect(c_el, yGG+BH, elsons_c, yG, "ln"))
-S.append(box(elsons_c, yG, "בני אלעזר", "יוסף אליהו (~1850/56) · אברהם · יעקב?|תעודה 12, יפו 12.1.1904: «בן Eliazar»|ובהערות הפקיד: «Orig. from Gibraltar»|בנו אזר (21) נרשם בעזה חודש אחר כך|יעקב — יצרן מזרנים ביפו 1896, כמקצוע אלעזר", "misc", w=244, h=112))
+S.append(box(elsons_c, yG, "בני אלעזר", "יוסף אליהו (~1850/56) · יעקב (~1865) · אברהם?|תעודה 12, יפו 12.1.1904: «בן Eliazar»|ובהערות הפקיד: «Orig. from Gibraltar»|בנו אזר (21) נרשם בעזה חודש אחר כך|יעקב — «בן Azor/Azar» בטפסי 1896 ו-1902", "misc", w=244, h=112))
 
 # ---- grandparents (row y0): Yitzhak Pepo ∞ Miriam ; Avraham Tzalach ∞ Saada ----
 c_m = 1252   # maternal grandparents union
