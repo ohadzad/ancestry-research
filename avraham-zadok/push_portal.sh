@@ -1,7 +1,7 @@
 #!/bin/bash
 # ===== אבחון ודחיפה של הפורטל =====
-# הרצה: bash "/Users/ohadz/Claude/אברהם צדוק/push_portal.sh"
-PORTAL="/Users/ohadz/Library/CloudStorage/Dropbox/רחל צדוק"
+# הרצה: bash "<תיקיית המחקר>/push_portal.sh"
+PORTAL="$HOME/Library/CloudStorage/Dropbox/רחל צדוק"
 cd "$PORTAL" || exit 1
 
 echo "===== 1. איפה אנחנו ====="
