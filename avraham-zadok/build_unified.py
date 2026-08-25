@@ -300,11 +300,16 @@ EVID = [
          ext="https://igra-images.genealogy.org.il/1914_15_USS_Tennessee/USS_Tenn_25.jpg",
          title="אסתר פריינטה בפינוי יפו — פנקסי ה-USS Tennessee (28.12.1914)",
          cap="רשימת המפונים מיפו לאלכסנדריה באניית הצי האמריקני USS Tennessee, בראשית מלחמת העולם הראשונה (ארכיון הלאומי, ארה\"ב; IGRA 1694). שורה 37: «Esther Pariente and one child ......... French, no papers». השם פריינטה ביפו של 1914 בנתינות צרפתית — בהלימה למוצא מגרבי מחוסה-צרפת. (דירוג: תוכן השורה — מאומת; זיהוי אישה זו עם השושלת — טעון אימות.)"),
-    dict(crop="docs/igra/igra_yafo_1918_rows685_zoom.png",
+    dict(crop="docs/evidence/igra_yafo_1918_rows685_wide_zoom.png",
          full="docs/igra/igra_yafo_residents_1918_aharon_tzalah.jpg",
          ext="https://igra-images.genealogy.org.il/1918_19_Tel_Aviv_Register/1917_TLV_08-1178a_144.jpg",
-         title="פנקס תושבי ועד העיר ליהודי יפו, 1918-1919 — «אהרן צאלח», בן 23",
-         cap="דף 144, שתי השורות התחתונות: משק בית 685 (גיל 35) ומשק בית 685/2 (גיל 23, בעמודת היחס «רוק» = רווק). ארכיון תל אביב-יפו, מספר מערכת 08-1178; IGRA 4307. אם הזיהוי נכון, זו הרשומה החיצונית המוקדמת ביותר של אהרון צדוק — ארבע-חמש שנים אחרי נחיתתו בחוף יפו, בשם המשפחה המקורי צאלח, ולפני נישואיו. (דירוג: ככל הנראה — הגיל גוזר לידה ב-1895/96 מול 1898 שבפנקס תש\"ט, ואילו רשומת אהרן צאלח השנייה (ירושלים 1926, גיל 28) גוזרת בדיוק 1898; והשם על הסריקה טרם אושר בעיניים.)"),
+         title="פנקס תושבי ועד העיר ליהודי יפו, 1918-1919 — «צאלח · אהרן · רוק · 23 · תימני · פועל»",
+         cap="דף 144, שתי השורות התחתונות, בכל עמודותיהן. משק בית 685/2 (מימין לשמאל): שם המשפחה «צאלח», השם הפרטי «אהרן», עמודת היחס «רוק» (= רווק), הגיל «23», עמודת העדה «תימני» ועמודת המקצוע «פועל». השורה שמעליה, משק בית 685, היא של בעל הבית — «שלמה», בן 35, «נגר», עדה «ספרדי» — ובעמודת ההערות משפט שנקרא חלקית, «אשתו ... בכפר סבא», ככל הנראה בעקבות גירוש תל אביב-יפו של 1917. ארכיון תל אביב-יפו, מספר מערכת 08-1178; IGRA 4307. זו הרשומה החיצונית המוקדמת ביותר של אהרון צדוק — ארבע-חמש שנים אחרי נחיתתו בחוף יפו, בשם המשפחה המקורי צאלח, ולפני נישואיו. (דירוג: קריאת ארבע העמודות הראשונות — מאומת, אושרו אות-אות בהגדלה במהדורה 59; «תימני» — כמעט ודאי; זיהוי הנרשם עם אהרון — כמעט ודאי, שכן הרשומה אינה נוקבת שם אב; הגיל 23 גוזר לידה ב-1895/96 מול 1898 שבפנקס תש\"ט, ואילו גיל הקבורה וספר המשפחה גוזרים ~1895.)"),
+    dict(crop="docs/evidence/igra_1945_farmers_council_tzadok_aharon.png",
+         full="docs/igra/igra_1945_farmers_council_p277.jpg",
+         ext="https://igra-images.genealogy.org.il/1945_FramersCouncil/1945_FarmersCouncil277.jpg",
+         title="«סגנים · 46. צדוק אהרן» — מועמדי הוועידה השישית של הסתדרות הפועלים החקלאים, 1945",
+         cap="עמוד 277 מרשימות המועמדים לוועידה השישית של הסתדרות הפועלים החקלאים (ארכיון המדינה, פ-4932/3; IGRA 124). בטור ה\"סגנים\" של רשימת מפא\"י, שורה 46: «צדוק אהרן». הרשומה מקדימה בעשור את מועצת החקלאים ה-8 (1955) ואת רשימות «דבר» מ-1959, ומחברת אותן אחורה אל המועצה הארצית של העובדים התימנים (1934) — קו ציבורי רצוף של עשרים וחמש שנה לפחות. באותה שנה עצמה יצא לאור «שבות תימן» בעריכתו המשותפת. (דירוג: תוכן השורה — מאומת, נקרא בעיניים; זיהויה עם אהרון — כמעט ודאי; בעמוד לא נדפס יישוב לצד השמות.)"),
     dict(crop="docs/igra/igra_britconsul_jerusalem_1839_aruas_zoom.png",
          full="docs/igra/igra_britconsul_jerusalem_1838_1908_p173.jpg",
          ext="https://genealogy.org.il/AID/index.php",
@@ -431,22 +436,22 @@ EVID = [
          title="«השקפה», 6.6.1906 — «הרב מהר\"י ארואץ, ממלא מקום החכם באשי ביפו», באלכסנדריה",
          cap="«אלכסנדריה כ\"ב אייר אתתל\"ו. <strong>שליח מארה\"ק</strong>. בא הנה הרב המופלא <strong>מהר\"י ארואץ, ממלא מקום החכם באשי ביפו</strong>, לקבץ נדבות לבית החולים „משגב לדך\" בירושלם». המשך הידיעה מתאר שאסף בבורסה של אלכסנדריה 160 לי\"ש ובקהיר וכפריה כשלוש מאות. זהו <strong>הרב יוסף בן משה ארואץ ממוגדור — המשפחה המרוקאית האחרת</strong>, שפרק 8 מזהיר מפניה; הידיעה מתארכת את מעורבותו בהנהגת יפו ל-1906, שבע שנים לפני 1913 שבספרות. האיור נכלל כאן <strong>כדי לתחום את הזהירות</strong>: בשנים ובעיר האלה אין לייחס שם ארואץ לענף הגיברלטרי בלא ראיה נוספת. (דירוג: תוכן הידיעה — מאומת; זיהוי «מהר\"י ארואץ» עם הרב יוסף ממוגדור — ככל הנראה.)"),
     dict(crop="docs/family_docs/pariente_birthregister_leaf.png",
-         full="docs/family_docs/pariente-family-book-2021.pdf",
+         full="docs/family_docs/pariente_birthregister_leaf.png",
          ext="https://www.nli.org.il/he/books/NNL_ALEPH997010400325605171/NLI",
          title="דף רישום הלידות מעיזבון יצחק פריינטה — «31 Decembre 1902 · Rosa Parente»",
-         cap="דף שנמצא בעיזבון יצחק פריינטה ובו רשם, בצרפתית, את לידות ילדיו — ובהם אברהם-אברמינו «fils de Isaac Pariente et de Miriam Arwas, 14 Mars 1891», ויקטורין (לאה) 13.3.1901, רוזה 31.12.1902, משה 20.4.1905, גרציה ספטמבר 1894 — ובשורה האחרונה: «mariage 1922 Juillet». צולם בספר המשפחה (2021), עמ' 18; העותק המקומי המלא — הספר כולו. (דירוג: תוכן הדף — מאומת, נקרא בעיניים; ייחוסו ליד יצחק — כמעט ודאי; זהות «mariage 1922» כחתונת רוזה ואהרון — ככל הנראה.)"),
+         cap="דף שנמצא בעיזבון יצחק פריינטה ובו רשם, בצרפתית, את לידות ילדיו — ובהם אברהם-אברמינו «fils de Isaac Pariente et de Miriam Arwas, 14 Mars 1891», ויקטורין (לאה) 13.3.1901, רוזה 31.12.1902, משה 20.4.1905, גרציה ספטמבר 1894 — ובשורה האחרונה: «mariage 1922 Juillet». צולם בספר המשפחה (2021), עמ' 18; הספר המלא אינו נשמר בריפו (צמצום מידע על אנשים חיים); ראו את ממצאי הקריאה לפי עמודים ואת רשומת הקטלוג. (דירוג: תוכן הדף — מאומת, נקרא בעיניים; ייחוסו ליד יצחק — כמעט ודאי; זהות «mariage 1922» כחתונת רוזה ואהרון — ככל הנראה.)"),
     dict(crop="docs/family_docs/ketubah_aharon_roza_5683.png",
          full="docs/family_docs/ketubah_textzoom.png",
          ext="https://www.nli.org.il/he/books/NNL_ALEPH997010400325605171/NLI",
          title="כתובת אהרן ורוזה — «אהרן... אברהם צדוק» · «רוזא... יצחק פאריינטי»",
          cap="הכתובה, המצולמת בספר המשפחה (עמ' 124) ומתויגת שם «תרפ\"ג». בגוש הטקסט קריאים בבירור, בכתב מודגש: החתן אהרן בן אברהם צדוק, הכלה רוזא בת יצחק פאריינטי, והסכום «שלוש מאות לי\"ם». זהו המסמך הראשוני בן-הזמן הראשון הנוקב בשם אביו של אהרון — אברהם. הערת תיארוך: גוף הספר נוקב «נישאו במקוה ישראל ב-1922», דף הרישום — «mariage 1922 Juillet» (תמוז תרפ\"ב), והכיתוב — תרפ\"ג; שורת התאריך בכתובה עצמה אינה קריאה בצילום — טעון דיוק. הגדלת גוש הטקסט — בקישור העותק המקומי. (דירוג: שמות החתן, הכלה והאבות — מאומת; שנת החתונה 1922/תרפ\"ג — טעון דיוק.)"),
     dict(crop="docs/family_docs/miriam_arwas_grave_trumpeldor.png",
-         full="docs/family_docs/pariente-family-book-2021.pdf",
+         full="docs/family_docs/miriam_arwas_grave_trumpeldor.png",
          ext="https://www.nli.org.il/he/books/NNL_ALEPH997010400325605171/NLI",
          title="מצבת מרים ארואס-פריינטה, בית העלמין טרומפלדור — ז' בתמוז התרע\"ו",
          cap="«מ\"ק ... הנפטרת בקצ\"י מ' מרים די פאריינטי, נע' ביום שב\"ק ז' לח' תמוז התרע\"ו, תנצב\"ה» (קיצורי שורות הפתיחה אינם חדים בצילום) — 8 ביולי 1916, במגפת הכולירה. המצבה: לוח שיש סדוק שנטל יצחק ממטבח בית הספר של מקווה ישראל, והיא ניצבת בטרומפלדור עד היום, «בחלקה השמאלי התחתון» כלשון כיתוב הספר (עמ' 23). תאריך הפטירה הראשוני הראשון של סבתא-רבתא של אברהם. (דירוג: תאריך הפטירה ומקום הקבורה — מאומת, המצבה נקראה בעיניים; הנסיבות — ככל הנראה, פרוזת הספר.)"),
     dict(crop="docs/family_docs/yosef_arwas_1892_mikveh.png",
-         full="docs/family_docs/pariente-family-book-2021.pdf",
+         full="docs/family_docs/yosef_arwas_1892_mikveh.png",
          ext="https://www.nli.org.il/he/books/NNL_ALEPH997010400325605171/NLI",
          title="יוסף ארואס בתצלום סגל מקווה ישראל, 1892 — הדור השישי, פנים אל פנים",
          cap="כיתוב הספר (עמ' 56): «מקוה ישראל, 1892. עומדים בשורה העליונה מימין יצחק פריינטה, לידו עומד יוסף ארוואץ (אבי מרים ארוואץ-פריינטה), במרכז מנהל בית-הספר החקלאי מקוה ישראל, יוסף נייגו וצוות העובדים». יוסף ארואס — «סוחר מיפו» וסוכן הקניות של מקווה ישראל לפי הספר, הצראף של רשומת הקונסוליה מ-1869 לפי הקורפוס — לצד חתנו. (דירוג: זיהוי הדמויות — ככל הנראה, על אחריות כיתוב הספר.)"),
@@ -778,14 +783,25 @@ open(MAIN_HTML,'w',encoding='utf-8').write(PAGE)
 
 # --- site/ copy (self-contained static) ---
 site='site'
-if os.path.exists(site): shutil.rmtree(site)
-os.makedirs(site)
+# NOTE: some mounted filesystems (the desktop bridge) forbid deletion; never hard-fail on it.
+if os.path.exists(site):
+    try: shutil.rmtree(site)
+    except OSError: pass          # fall back to overwrite-in-place
+os.makedirs(site, exist_ok=True)
 shutil.copy(MAIN_HTML, os.path.join(site, MAIN_HTML))
 shutil.copy('tree.html', os.path.join(site,'tree.html'))
-shutil.copytree('docs', os.path.join(site,'docs'))
-# privacy guard: the full Cohn-2005 PDF (living persons' contact data) must not enter the site copy
-_priv=os.path.join(site,'docs','family_docs','israelalbum','cohn2005_pariente_descendant_tree.pdf')
-if os.path.exists(_priv): os.remove(_priv)
+# privacy guard, stage 1: the full Cohn-2005 PDF (living persons' contact data) is never copied in
+_PRIV_NAME='cohn2005_pariente_descendant_tree.pdf'
+shutil.copytree('docs', os.path.join(site,'docs'), dirs_exist_ok=True,
+                ignore=shutil.ignore_patterns(_PRIV_NAME))
+# privacy guard, stage 2: remove any stale copy left by an earlier build
+_priv=os.path.join(site,'docs','family_docs','israelalbum',_PRIV_NAME)
+if os.path.exists(_priv):
+    try:
+        os.remove(_priv)
+    except OSError:
+        open(_priv,'wb').close()                    # zero the bytes first
+        os.rename(_priv, _priv + '.removed')        # then move it out of the linked path
 assert not os.path.exists(_priv), 'PRIVACY GUARD FAILED'
 # copy linked md/txt referenced from sources so their links resolve under site/
 for extra in ['report.md','sources-index.md','CHANGELOG.md']:
