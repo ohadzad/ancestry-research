@@ -1,0 +1,136 @@
+{
+  "doc_id": 4653467,
+  "url": "https://collections.arolsen-archives.org/en/document/4653467",
+  "desc_id": 2535207,
+  "title": "Personal file of STRULOWITS, RUCI, born on 16-Apr-1927, born in Ökörmezö",
+  "collection_path": [
+    "1 Incarceration Documents",
+    "1.1 Camps and Ghettos",
+    "1.1.41 Stutthof Concentration Camp",
+    "1.1.41.2 Individual Documents Stutthof",
+    "Personal Files - Stutthof Concentration Camp",
+    "Files with names from STRAUS",
+    "Personal file of STRULOWITS, RUCI, born on 16-Apr-1927, born in Ökörmezö"
+  ],
+  "reference_code": "01014102 129.172",
+  "document_count": 3,
+  "header_items": {
+    "referenceCode": "01014102 129.172",
+    "documentNum": "3"
+  },
+  "persons": [
+    {
+      "doc_id": 4653467,
+      "last_name": "STRULOWITS",
+      "first_name": "RUCI",
+      "maiden_name": "",
+      "place_of_birth": "Ökörmezö",
+      "dob": {
+        "raw": "04/16/1927",
+        "precision": "day",
+        "year": 1927,
+        "month": 4,
+        "day": 16,
+        "iso": "1927-04-16",
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "38444",
+      "desc_id": 2535207,
+      "signature": "1.1.41.2 - Files with names from STRAUS",
+      "father": "",
+      "mother": "",
+      "religion": "Jewish",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 4653467,
+        "url": "https://collections.arolsen-archives.org/en/document/4653467",
+        "signature": "1.1.41.2 - Files with names from STRAUS",
+        "desc_id": 2535207,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    }
+  ],
+  "pages": [],
+  "file_pages": [
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591042/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591042/001.jpg?width=700",
+      "doc_id": 4653468,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653468",
+      "scan_folder_id": "105591042",
+      "label": "RUCI STRULOWITS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591042/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591042/002.jpg?width=700",
+      "doc_id": 4653468,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653468",
+      "scan_folder_id": "105591042",
+      "label": "RUCI STRULOWITS"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591047/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591047/001.jpg?width=700",
+      "doc_id": 4653469,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653469",
+      "scan_folder_id": "105591047",
+      "label": "RUCI STRULOWITS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591047/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591047/002.jpg?width=700",
+      "doc_id": 4653469,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653469",
+      "scan_folder_id": "105591047",
+      "label": "RUCI STRULOWITS"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591037/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591037/001.jpg?width=700",
+      "doc_id": 4653470,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653470",
+      "scan_folder_id": "105591037",
+      "label": "RUCI STRULOWITS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591037/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591037/002.jpg?width=700",
+      "doc_id": 4653470,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653470",
+      "scan_folder_id": "105591037",
+      "label": "RUCI STRULOWITS"
+    }
+  ],
+  "citation": {
+    "doc_id": 4653467,
+    "url": "https://collections.arolsen-archives.org/en/document/4653467",
+    "signature": "1.1.41.2 - Files with names from STRAUS",
+    "desc_id": 2535207,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+  },
+  "notes": [
+    "id 4653467 is a person-entry id; its scans are filed under sibling document ids [4653468, 4653469, 4653470]. See file_pages."
+  ]
+}

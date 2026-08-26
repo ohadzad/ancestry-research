@@ -343,7 +343,7 @@ EVID = [
     dict(crop="docs/evidence/igra_1947_jerusalem_arwas_rows_zoom.png",
          full="docs/igra/igra_jerusalem_census_1947_arwas_machane_yehuda.jpg",
          ext="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ3LUplcnVzYWxlbS1DZW5zdXMtNDgwNDI=",
-         title="מפקד ירושלים תש\"ז, 9.3.1947 — «ארווס · אליהו · <strong>שם האב: שלמה</strong>»",
+         title="מפקד ירושלים תש\"ז, 9.3.1947 — «ארווס · אליהו · שם האב: שלמה»",
          cap="טופס 9079 של «כנסת ישראל — ועד הקהילה העברית ירושלים», שכונת מחנה יהודה, בית מדג'וק, «דירת אליהו ארווס». בניגוד לטופס «משמר העם» מ-1948, יש בטופס הזה <strong>עמודת «שם האב»</strong>: שורה 1 — ארווס · אליהו · <strong>שלמה</strong> · ראש המשפחה · 31 · נשוי · ארץ הלידה <strong>ארץ ישראל</strong> · חמש שנים בירושלים; שורה 2 — ארווס · סול · <strong>בכור</strong> · אשתו · 24 · תורכיה · עשר שנים; שורה 3 — ארווס · יואל · אליהו · בן · 2. זהו אותו משק בית שבטופס תש\"ח, ושם האב עולה כאן בעצמאות מלאה מתעודת הנישואין מ-1944. ארכיון המדינה, מסמך 9079; IGRA 48042-48044. (דירוג: תוכן השורות — מאומת; קריאת «שלמה» מטופס זה לבדו — כמעט ודאי, ובצירוף תעודת 1944 — מאומת; שיוך משק הבית לענף הגיברלטרי — טעון אימות, ולא השתנה.)"),
     dict(crop="docs/evidence/igra_1944_elie_arwas_marriage_zoom.png",
          full="docs/igra/igra_marriage_1944_elie_arwas_jerusalem.jpg",
@@ -389,7 +389,7 @@ EVID = [
          full="docs/igra/igra_1950_joseph_arwas_cairo_questionnaire.jpg",
          ext="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTUwLUltbWlncmFudC1RdWVzdGlvbm5haXJlLTY3ODY=",
          title="שאלון רישום לעולה, חיפה 1.5.1950 — «ARWAS · JOSEPH · שם האב: RAPHAËL · CAIRO»",
-         cap="<strong>הקצה המצרי שיעד T18 חיפש.</strong> שאלון רישום לעולה של מדינת ישראל, חותמת כניסה «חיפה, 1 במאי 1950»: שם המשפחה <strong>ארואס · ARWAS</strong>, השם הפרטי <strong>JOSEPH</strong>, <strong>שם האב: RAPHAËL</strong>, מקום הלידה <strong>CAIRO</strong>, תאריך הלידה <strong>17.7.1935</strong>, אזרחות <strong>מצרית</strong>, משלח יד תלמיד. אחיו <strong>שמעון</strong> (יליד 31.6.1934, אותו אב) נכנס בחיפה שבעה שבועות אחר כך. ולנו יש <strong>רפאל ארואס יליד ~1904 ביפו</strong>, בנו השישי של מיכאל בן שלמה — שהיה כבן עשר בגירוש נתיני בריטניה מיפו ב-1914. ארכיון המדינה, גל-14825/6; IGRA 6786. (דירוג: תוכן השאלון — מאומת; זיהוי «רפאל» עם רפאל בן מיכאל — ככל הנראה: אין רשומה הנוקבת בשם הסב, ורפאל היה שם חוזר בענף.)"),
+         cap="<strong>הקצה המצרי שיעד T18 חיפש.</strong> שאלון רישום לעולה של מדינת ישראל, חותמת כניסה «חיפה, 1 במאי 1950»: שם המשפחה <strong>ארואס · ARWAS</strong>, השם הפרטי <strong>JOSEPH</strong>, <strong>שם האב: RAPHAËL</strong>, מקום הלידה <strong>CAIRO</strong>, תאריך הלידה <strong>17.7.1935</strong>, אזרחות <strong>מצרית</strong>, משלח יד תלמיד. אחיו <strong>שמעון</strong> (יליד 1934, אותו אב; שדה התאריך נכתב «31/6» — תאריך שאינו קיים, ונרשם כפי שהוא) נכנס בחיפה שבעה שבועות אחר כך. ולנו יש <strong>רפאל ארואס יליד ~1904 ביפו</strong>, בנו השישי של מיכאל בן שלמה — שהיה כבן עשר בגירוש נתיני בריטניה מיפו ב-1914. ארכיון המדינה, גל-14825/6; IGRA 6786. (דירוג: תוכן השאלון — מאומת; זיהוי «רפאל» עם רפאל בן מיכאל — ככל הנראה: אין רשומה הנוקבת בשם הסב, ורפאל היה שם חוזר בענף.) <strong>עדכון מהדורה 71:</strong> אותו טופס עצמו נקרא שוב מן המקור הארכיוני — ארכיון המדינה, גל-14825/6, עמוד 181 — ב-300dpi, וכל שדותיו אושרו (ערך 74.)"),
     dict(crop="docs/evidence/igra_1895_michel_arwas_foil_zoom.png",
          full="docs/igra/igra_foil16_1895_michel_arwas_jaffa.jpg",
          ext="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xODY1LTE5MTQtQnJpdGlzaE5hdFJlZ2lzdEphZmZhLTE1MQ==",
@@ -504,7 +504,7 @@ dict(crop="docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg",
          full="docs/isa/isa_sal1544_britreg_1886_1899_1895_1887.pdf",
          ext="https://www.archives.gov.il/details/0013z0q",
          title="10.2.1886 — «Joseph Arowas · 37» ו«Michel Arowas · 20 · Moneychanger»: שנים-עשר שמות ארואס ברצף",
-         cap="המשך אותו רישום המוני, רישומים 53-64: Sultana (5), Samha (50), <strong>Joseph Arowas</strong> (37, Servant), Zahra (25), Samka (18), <strong>Mariam (17)</strong>, Shlomo (13), Bokor (5), Rosa (2), <strong>Michel Arowas</strong> (20, Moneychanger), Rachel (19) ו-Shlomo (1). יוסף בן 37 ב-1886 — יליד ~1849, הצהרת גיל שלישית בין 1869 (בן 24) ל-1893 (בן 41). מיכאל בן 20 — יליד ~1866. וזהו התיעוד הראשון בקורפוס של נשות המשפחה וילדיה בשמותיהן. סתירה שנרשמת: «Mariam Arowas» בת 17 היא ילידת ~1868/9 ואינה מרים ארואס-פריינטה ילידת 1875. (דירוג: השורות — מאומת; זיהוי «Joseph» עם יוסף אבי-מרים — ככל הנראה בלבד, «Servant» אינו מתיישב עם «Saraff»; «Mariam» בת ה-17 — טעון אימות, ולא נטען שהיא מרים של הקורפוס.)"),
+         cap="המשך אותו רישום המוני, רישומים 53-64: Sultana (5), Samha (50), <strong>Joseph Arowas</strong> (37, Servant), Zahra (25), Samka (18), <strong>Mariam (17)</strong>, Shlomo (13), Bokor (5), Rosa (2), <strong>Michel Arowas</strong> (20, Moneychanger), Rachel (19) ו-Shlomo (1). יוסף בן 37 ב-1886 — יליד ~1849, הצהרת גיל שלישית בין 1869 (בן 24) ל-1893 (בן 41). מיכאל בן 20 — יליד ~1866. וזהו התיעוד המוקדם ביותר בקורפוס של נשות המשפחה וילדיה בשמותיהן — שבע שנים לפני משקי הבית של 1893 שכבר היו בקורפוס (ערכים 42, 52, 53). סתירה שנרשמת: «Mariam Arowas» בת 17 היא ילידת ~1868/9 ואינה מרים ארואס-פריינטה ילידת 1875. (דירוג: השורות — מאומת; זיהוי «Joseph» עם יוסף אבי-מרים — ככל הנראה בלבד, «Servant» אינו מתיישב עם «Saraff»; «Mariam» בת ה-17 — טעון אימות, ולא נטען שהיא מרים של הקורפוס.)"),
     dict(crop="docs/evidence/isa_britreg1899_michel_arwas.png",
          full="docs/isa/isa_sal1544_britreg_1886_1899_1895_1887.pdf",
          ext="https://www.archives.gov.il/details/0013z0q",
@@ -520,16 +520,12 @@ dict(crop="docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg",
          ext="https://www.archives.gov.il/details/0013z0q",
          title="ירושלים, 11.5.1895 — «Moïse Rawas» ו«Abraham Rawas», נתינים אנגלים המתגוררים בירושלים",
          cap="הצהרה בפני הקונסול הבריטי, מתוך תיק עיזבונו של מואיז כהן עדד באותו סל: «Par devant Nous John Dickson, Consul de Sa Majesté Britannique à Jérusalem, ont comparu: 1° le Sieur Samuel Karcos, 2° le Sieur <strong>Moïse Rawas</strong>, 3° le Sieur <strong>Abraham Rawas</strong>, 4° le Sieur Haym Lasry — tous les quatre sujets anglais demeurant à Jérusalem…» — «בפנינו, ג'ון דיקסון, קונסול הוד מלכותה הבריטית בירושלים, התייצבו: 1. מר סמואל קרקוס, 2. מר מואיז ראוואס, 3. מר אברהם ראוואס, 4. מר חיים לסרי — ארבעתם נתינים אנגלים המתגוררים בירושלים» — המצהירים כי מואיז כהן עדד נפטר ב-15 ביולי 1894 בירושלים. הכתיב «Rawas» הוא זה שאליו מפנה ההערה «See Raw…» באינדקס, בשורת אברהם 1887/134. (דירוג: המסמך ותוכנו — מאומת; הקישור Arwas↔Rawas — ככל הנראה; זהות «Abraham Rawas» עם אברהם ארואס — טעון אימות, ואינה נטענת.)"),
-    dict(crop="docs/evidence/isa_1950_arwas_joseph_raphael.png",
+    dict(crop="docs/evidence/isa_1950_arwas_shimon.png",
          full="docs/isa/isa_gl14825-6_arwas_forms_1950.pdf",
          ext="https://www.archives.gov.il/details/000d6sv",
-         title="שאלון רישום לעולה, חיפה 1.5.1950 — «ARWAS · JOSEPH · שם האב RAPHAEL · מקום הלידה CAIRO»",
-         cap="ארכיון המדינה, גל-14825/6, עמוד 181: טופס ד' 246661 של משרד העלייה, בחותמת «כניסה — 1.V.1950 — ENTRÉE — HAIFA». השדות כפי שנקראו: שם המשפחה <strong>ארואס / ARWAS</strong> · השם הפרטי <strong>JOSEPH</strong> · שם האב <strong>RAPHAEL</strong> · מקום הלידה <strong>CAIRO</strong> · תאריך הלידה <strong>17/7/1935</strong> · אזרחות <strong>מצרי</strong> · «איפה גר רב ימי חייו» — <strong>מצרים</strong>. זהו התיעוד הראשון בקורפוס, במסמך מדינה בן-הזמן, לשיבת הענף שגורש מיפו למצרים ב-1915 ונשאר שם — יעד T18, שנשען עד כה על טופס קונסולרי מ-1906 ועל ספר המשפחה. (דירוג: תוכן השאלון — מאומת, נקרא בעיניים מקובץ הארכיון ב-300dpi; שיוך רפאל ארואס מקהיר לענף היפואי — טעון אימות, ואינו נטען.)"),
-    dict(crop="docs/evidence/isa_1950_arwas_sibling.png",
-         full="docs/isa/isa_gl14825-6_arwas_forms_1950.pdf",
-         ext="https://www.archives.gov.il/details/000d6sv",
-         title="ולצדו אחותו — חיפה, 26.6.1950, בת אותו «רפאיל»",
-         cap="אותו תיק, עמוד 182: טופס ד' 272550, בחותמת «כניסה — 26 JUN 1950 — ENTRÉE — HAIFA». שם המשפחה <strong>ארואס / ARWAS</strong> · שם האב <strong>רפאיל</strong> · שנת הלידה <strong>1934</strong> · אזרחות <strong>מצרית</strong> · הלאום והדת <strong>יהודיה</strong>, בצורת נקבה · «איפה גר רב ימי חייו» — <strong>מצרים</strong>. שבעה שבועות אחרי אחיה. שתי הסתייגויות נרשמות כפי שהן: השם הפרטי נכתב בכתב יד עברי בשם לועזי <strong>ולא פוענח</strong>, והשדה הלטיני מולא בשם המשפחה בלבד; ותאריך הלידה שבשדה, «31/6», <strong>אינו תאריך קיים</strong>. (דירוג: תוכן השאלון — מאומת; זיהוי הענף — טעון אימות.)"),
+         title="שאלון רישום לעולה, חיפה 26.6.1950 — «ARWAS · שמעון · שם האב רפאיל» (המקור הארכיוני)",
+         cap="ארכיון המדינה, גל-14825/6, עמוד 182: טופס ד' 272550, בחותמת «כניסה — 26 JUN 1950 — ENTRÉE — HAIFA». שם המשפחה <strong>ארואס · ARWAS</strong> · השם הפרטי <strong>שמעון</strong>, בכתב יד עברי · שם האב <strong>רפאיל</strong> · שנת הלידה <strong>1934</strong> · אזרחות מצרית · הלאום והדת <strong>יהודי</strong> · «איפה גר רב ימי חייו» — מצרים. אחיו של יוסף (איור 50), שנכנס שבעה שבועות אחריו. <strong>תיקון שנרשם:</strong> מהדורה 70 קראה את השדה הזה כשם לועזי בלתי־מפוענח ואת «יהודי» כ«יהודיה», ומכאן הסיקה שמדובר באחות; במהדורה 71 נקרא הטופס מן המקור הארכיוני ב-900dpi, והאותיות <strong>ש·מ·ע·ו·ן</strong> ברורות — כלומר קריאת מהדורה 55, מסריקת IGRA, הייתה נכונה. שדה התאריך נכתב «31/6» — <strong>תאריך שאינו קיים</strong>, ונרשם כפי שהוא. (דירוג: תוכן הטופס והשם שמעון — מאומת, נקרא בעיניים מן המקור הארכיוני; ששני הנרשמים אחים — כמעט ודאי, על סמך שם משפחה, שם אב, ארץ וסמיכות תאריכים; שיוך רפאל מקהיר לענף היפואי — ככל הנראה, כדירוג ערך 54.)"),
+
 ]
 
 _fig_n = [0]
@@ -542,6 +538,9 @@ def evid_fig(e):
     ext_link = (f' · <a href="{_html.escape(e["ext"])}" target="_blank" rel="noopener" '
                 f'aria-label="המסמך המקורי באתר המקור — {title}">המסמך המקורי ↗</a>'
                 if e.get('ext') else '')
+    # captions may carry <strong>…</strong>; everything else is escaped
+    _cap = (_html.escape(e['cap'])
+            .replace('&lt;strong&gt;','<strong>').replace('&lt;/strong&gt;','</strong>'))
     cls = ''
     if 'portrait' in e['crop']:
         cls = ' class="portrait"'
@@ -553,7 +552,7 @@ def evid_fig(e):
     return f'''<figure class="evi">
   <a href="{_html.escape(click)}" target="_blank" rel="noopener" aria-label="פתיחת המקור של: {title}">
     <img src="{_html.escape(e['crop'])}"{_img_dims(e['crop'])}{cls} alt="איור {_fig_n[0]}: {alt}" decoding="async"></a>
-  <figcaption><b>איור {_fig_n[0]} — {title}</b><br>{_html.escape(e['cap'])}<br>
+  <figcaption><b>איור {_fig_n[0]} — {title}</b><br>{_cap}<br>
     <a href="{_html.escape(e['full'])}" target="_blank" rel="noopener" aria-label="העותק המקומי — {title}">העותק המקומי</a>{ext_link}</figcaption>
 </figure>'''
 
@@ -837,6 +836,12 @@ _rank_left = len(re.findall(r'<em>\(דירוג', PAGE)) + len(re.findall(r'(?<!c
 if _rank_left: _bad_counts.append(f"{_rank_left} certainty ratings did not get a .rank chip")
 if '</em><em>' in PAGE: _bad_counts.append("nested emphasis collapsed to </em><em> (bold inside italic)")
 assert not _bad_counts, "COUNT/RENDER MISMATCH: " + "; ".join(_bad_counts)
+assert "cohn" not in PAGE.lower(), "PRIVACY: a cohn-2005 file is referenced from the deliverable"
+assert "&lt;strong&gt;" not in PAGE, "ESCAPED MARKUP LEAKED INTO THE PAGE"
+assert not [e for e in EVID if "<" in e["title"]], "MARKUP IN AN EVID title="
+_srcnums = set(re.findall(r"^### (\d+)\.", open("sources-index.md",encoding="utf-8").read(), re.M))
+_cited  = set(re.findall(r"\[\[(\d+)\]\]", report_md))
+assert _cited <= _srcnums, "CITATION WITHOUT A SOURCE ENTRY: " + ",".join(sorted(_cited - _srcnums))
 print(f"count-check: {_src_n} sources, {_fig_ct} figures, all ratings chipped")
 
 open(MAIN_HTML,'w',encoding='utf-8').write(PAGE)
@@ -852,8 +857,9 @@ shutil.copy(MAIN_HTML, os.path.join(site, MAIN_HTML))
 shutil.copy('tree.html', os.path.join(site,'tree.html'))
 # privacy guard, stage 1: the full Cohn-2005 PDF (living persons' contact data) is never copied in
 _PRIV_NAME='cohn2005_pariente_descendant_tree.pdf'
+_PRIV_GLOB='*cohn*'   # סבב ביקורת 12: כלל תת-מחרוזת, לא שם קובץ יחיד
 shutil.copytree('docs', os.path.join(site,'docs'), dirs_exist_ok=True,
-                ignore=shutil.ignore_patterns(_PRIV_NAME))
+                ignore=shutil.ignore_patterns(_PRIV_NAME, _PRIV_GLOB))
 # privacy guard, stage 2: remove any stale copy left by an earlier build
 _priv=os.path.join(site,'docs','family_docs','israelalbum',_PRIV_NAME)
 if os.path.exists(_priv):

@@ -127,6 +127,14 @@ report_html = _re.sub(r'<img alt="([^"]*)" src="(docs/[^"]+)"[^>]*/?>', _inline,
 report_html = _re.sub(r'<span class="imgcap"[^>]*>[^<]*</span>(</a></p>\s*<p><em>)', r'\1', report_html)
 index_html = md2html('אינדקס_מקורות.md')
 
+# ---------- helper: apply a text substitution only OUTSIDE existing tags/anchors ----------
+_TAGSPLIT = re.compile(r'(<a\b[^>]*>.*?</a>|<[^>]+>)', re.S)
+def _apply_text(html, fn):
+    parts = _TAGSPLIT.split(html)
+    for _i in range(0, len(parts), 2):
+        parts[_i] = fn(parts[_i])
+    return ''.join(parts)
+
 # ---------- source-link transforms ----------
 YT = 'https://www.youtube.com/watch?v=GhHKFgl81AU'
 def _ts_link(m):
@@ -136,7 +144,7 @@ def _ts_link(m):
 def _ts_range(m):
     h, mn, sec = int(m.group(1)), int(m.group(2)), int(m.group(3))
     t = h*3600 + mn*60 + sec
-    label = f'[{m.group(1)}:{m.group(2)}:{m.group(3)}–{m.group(4)}:{m.group(5)}:{m.group(6)}]'
+    label = ('[<bdi dir="ltr">' + f'{m.group(1)}:{m.group(2)}:{m.group(3)}–{m.group(4)}:{m.group(5)}:{m.group(6)}' + '</bdi>]')
     return f'<a href="{YT}&t={t}s" target="_blank" title="לצפייה בקטע זה בעדות">{label}</a>'
 report_html = re.sub(r'\[(\d{2}):(\d{2}):(\d{2})[–-](\d{2}):(\d{2}):(\d{2})\]', _ts_range, report_html)
 report_html = re.sub(r'\[(\d{2}):(\d{2}):(\d{2})\]', _ts_link, report_html)
@@ -146,7 +154,7 @@ def _yv_link(m):
     i = m.group(1)
     return (f'<a href="docs/yadvashem_records/name_{i}.json">name_{i}.json</a>'
             f' <a href="https://collections.yadvashem.org/en/names/{i}" target="_blank" title="הרשומה באתר יד ושם">↗</a>')
-index_html = re.sub(r'(?<!/)name_(\d+)\.json', _yv_link, index_html)
+index_html = _apply_text(index_html, lambda _t: re.sub(r'(?<!/)name_(\d+)\.json', _yv_link, _t))
 index_html = index_html.replace('testimony_8424116_he/en.json',
     '<a href="docs/yadvashem_records/testimony_8424116_he.json">testimony_8424116_he</a>/<a href="docs/yadvashem_records/testimony_8424116_en.json">en</a>.json '
     '<a href="https://collections.yadvashem.org/en/documents/8424116" target="_blank" title="הרשומה הקטלוגית ביד ושם">↗</a>')
@@ -161,8 +169,8 @@ def _ar_link(m):
         out += f' <a href="docs/arolsen_stutthof/{n}_001.jpg" title="הסריקה בתיקייה">🗎</a>'
     return out
 for _pat in [r'(?<![\w/."])(10559\d{4})(?![\w/])']:
-    report_html = re.sub(_pat, _ar_link, report_html)
-    index_html  = re.sub(_pat, _ar_link, index_html)
+    report_html = _apply_text(report_html, lambda _t, _p=_pat: re.sub(_p, _ar_link, _t))
+    index_html  = _apply_text(index_html,  lambda _t, _p=_pat: re.sub(_p, _ar_link, _t))
 
 # evidence / docs filenames as plain text in index -> internal links
 _DIRS = ['docs/evidence/', 'docs/', 'docs/stutthof_museum_2026/', 'docs/arolsen_stutthof/', 'docs/arolsen_dp/', 'docs/yadvashem_pot_scans/']
@@ -172,7 +180,52 @@ def _file_link(m):
         if _osx.path.exists(d + name):
             return f'<a href="{d}{name}">{name}</a>'
     return name
-index_html = re.sub(r'(?<![\w/."=-])([\w][\w\-]*\.(?:png|jpg|JPG|pdf))(?![\w/])', _file_link, index_html)
+index_html = _apply_text(index_html, lambda _t: re.sub(r'(?<![\w/."=-])([\w][\w\-]*\.(?:png|jpg|JPG|pdf))(?![\w/])', _file_link, _t))
+
+# ---------- bidi guards: keep numeric runs left-to-right inside RTL text ----------
+def _latin_run(m):
+    t = m.group(1)
+    # never leave an unmatched ')' inside the isolate: it would mirror against an '(' outside
+    while t.count(')') > t.count('(') and t.endswith(')'):
+        t = t[:-1]
+    tail = m.group(1)[len(t):]
+    return '<bdi dir="ltr">' + t + '</bdi>' + tail
+
+_BIDI_RULES = [
+    # long Latin-script runs (quotations) inside RTL paragraphs: keep the whole run left-to-right
+    (re.compile(r'(?<![\w])([A-Za-z\u00C0-\u024F][A-Za-z\u00C0-\u024F0-9 ,.:;\-\u2013()/\u2019\u201C\u201D!?]{28,}[A-Za-z\u00C0-\u024F0-9./)])'),
+     _latin_run),
+    # month/year ranges: 12/1909–02/1911
+    (re.compile(r'(?<![\w֐-׿])(\d{1,2}/\d{4}–\d{1,2}/\d{4})(?![\w֐-׿])'),
+     r'<bdi dir="ltr">\1</bdi>'),
+    # numeric ranges: 1929–2021, 192–201, 802–803, 24–26.08.1944
+    (re.compile(r'(?<![\w֐-׿/])(?<![A-Za-z0-9]-)(\d[\d.,:]*–\d[\d.,:]*)(?![\w֐-׿/])'),
+     r'<bdi dir="ltr">\1</bdi>'),
+    # archive reference codes: 01014102 129.172 / 01010503 001.495.346
+    (re.compile(r'(?<![\w֐-׿])(0\d{7}\s\d{3}\.\d{3}(?:\.\d{3})?)(?![\w֐-׿])'),
+     r'<bdi dir="ltr">\1</bdi>'),
+    # prisoner numbers written with a thousands space, as on the transport list: 38 443
+    (re.compile(r'(?<![\w֐-׿])(\d{2}\s\d{3})(?![\w֐-׿.])'),
+     r'<bdi dir="ltr">\1</bdi>'),
+]
+_TAGONLY = re.compile(r'(<[^>]+>)')
+_BDI_SPAN = re.compile(r'(<bdi\b[^>]*>.*?</bdi>)', re.S)
+def _bidi_fix(html):
+    def _f(t):
+        for _rx, _rep in _BIDI_RULES:
+            t = _rx.sub(_rep, t)
+        return t
+    def _pass(chunk):
+        # apply to every text node, including the inside of <a>…</a>, but never inside a tag
+        parts = _TAGONLY.split(chunk)
+        for _i in range(0, len(parts), 2):
+            parts[_i] = _f(parts[_i])
+        return ''.join(parts)
+    # never touch what is already inside a <bdi>…</bdi>
+    outer = _BDI_SPAN.split(html)
+    for _i in range(0, len(outer), 2):
+        outer[_i] = _pass(outer[_i])
+    return ''.join(outer)
 
 # ---------- extract changelog appendix from report (moved to end of unified doc) ----------
 _clm = re.search(r"<h2>נספח ד' — יומן שינויים \(Changelog\)</h2>.*", report_html, re.S)
@@ -320,6 +373,13 @@ if _missing:
     for _h in _missing: print('  -', _h)
 else:
     print('link check: all local hrefs exist')
+
+# bidi guards, applied once to the finished document and never inside an <svg> (bdi is not valid there)
+_SVG = re.compile(r'(<svg\b.*?</svg>|<style\b.*?</style>|<script\b.*?</script>|<pre\b.*?</pre>)', re.S)
+_svg_parts = _SVG.split(out)
+for _i in range(0, len(_svg_parts), 2):
+    _svg_parts[_i] = _bidi_fix(_svg_parts[_i])
+out = ''.join(_svg_parts)
 
 open('רחל_צדוק_המחקר_המלא.html', 'w', encoding='utf-8').write(out)
 # index.html = tiny redirect stub to the Hebrew-named document (S3 entry point)
