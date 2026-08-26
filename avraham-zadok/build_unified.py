@@ -520,6 +520,16 @@ dict(crop="docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg",
          ext="https://www.archives.gov.il/details/0013z0q",
          title="ירושלים, 11.5.1895 — «Moïse Rawas» ו«Abraham Rawas», נתינים אנגלים המתגוררים בירושלים",
          cap="הצהרה בפני הקונסול הבריטי, מתוך תיק עיזבונו של מואיז כהן עדד באותו סל: «Par devant Nous John Dickson, Consul de Sa Majesté Britannique à Jérusalem, ont comparu: 1° le Sieur Samuel Karcos, 2° le Sieur <strong>Moïse Rawas</strong>, 3° le Sieur <strong>Abraham Rawas</strong>, 4° le Sieur Haym Lasry — tous les quatre sujets anglais demeurant à Jérusalem…» — «בפנינו, ג'ון דיקסון, קונסול הוד מלכותה הבריטית בירושלים, התייצבו: 1. מר סמואל קרקוס, 2. מר מואיז ראוואס, 3. מר אברהם ראוואס, 4. מר חיים לסרי — ארבעתם נתינים אנגלים המתגוררים בירושלים» — המצהירים כי מואיז כהן עדד נפטר ב-15 ביולי 1894 בירושלים. הכתיב «Rawas» הוא זה שאליו מפנה ההערה «See Raw…» באינדקס, בשורת אברהם 1887/134. (דירוג: המסמך ותוכנו — מאומת; הקישור Arwas↔Rawas — ככל הנראה; זהות «Abraham Rawas» עם אברהם ארואס — טעון אימות, ואינה נטענת.)"),
+    dict(crop="docs/evidence/isa_1950_arwas_joseph_raphael.png",
+         full="docs/isa/isa_gl14825-6_arwas_forms_1950.pdf",
+         ext="https://www.archives.gov.il/details/000d6sv",
+         title="שאלון רישום לעולה, חיפה 1.5.1950 — «ARWAS · JOSEPH · שם האב RAPHAEL · מקום הלידה CAIRO»",
+         cap="ארכיון המדינה, גל-14825/6, עמוד 181: טופס ד' 246661 של משרד העלייה, בחותמת «כניסה — 1.V.1950 — ENTRÉE — HAIFA». השדות כפי שנקראו: שם המשפחה <strong>ארואס / ARWAS</strong> · השם הפרטי <strong>JOSEPH</strong> · שם האב <strong>RAPHAEL</strong> · מקום הלידה <strong>CAIRO</strong> · תאריך הלידה <strong>17/7/1935</strong> · אזרחות <strong>מצרי</strong> · «איפה גר רב ימי חייו» — <strong>מצרים</strong>. זהו התיעוד הראשון בקורפוס, במסמך מדינה בן-הזמן, לשיבת הענף שגורש מיפו למצרים ב-1915 ונשאר שם — יעד T18, שנשען עד כה על טופס קונסולרי מ-1906 ועל ספר המשפחה. (דירוג: תוכן השאלון — מאומת, נקרא בעיניים מקובץ הארכיון ב-300dpi; שיוך רפאל ארואס מקהיר לענף היפואי — טעון אימות, ואינו נטען.)"),
+    dict(crop="docs/evidence/isa_1950_arwas_sibling.png",
+         full="docs/isa/isa_gl14825-6_arwas_forms_1950.pdf",
+         ext="https://www.archives.gov.il/details/000d6sv",
+         title="ולצדו אחותו — חיפה, 26.6.1950, בת אותו «רפאיל»",
+         cap="אותו תיק, עמוד 182: טופס ד' 272550, בחותמת «כניסה — 26 JUN 1950 — ENTRÉE — HAIFA». שם המשפחה <strong>ארואס / ARWAS</strong> · שם האב <strong>רפאיל</strong> · שנת הלידה <strong>1934</strong> · אזרחות <strong>מצרית</strong> · הלאום והדת <strong>יהודיה</strong>, בצורת נקבה · «איפה גר רב ימי חייו» — <strong>מצרים</strong>. שבעה שבועות אחרי אחיה. שתי הסתייגויות נרשמות כפי שהן: השם הפרטי נכתב בכתב יד עברי בשם לועזי <strong>ולא פוענח</strong>, והשדה הלטיני מולא בשם המשפחה בלבד; ותאריך הלידה שבשדה, «31/6», <strong>אינו תאריך קיים</strong>. (דירוג: תוכן השאלון — מאומת; זיהוי הענף — טעון אימות.)"),
 ]
 
 _fig_n = [0]
