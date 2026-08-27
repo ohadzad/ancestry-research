@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-"""בונה מסמך HTML עצמאי אחד: דוח + עץ + גלריית ראיות + אינדקס מקורות, עם בדיקת קישורים.
+"""‏⚠ הבנאי הזה הוחלף במהדורה 75 ב-build.py, שנשען על המנוע המשותף
+common/genealogy_site שבארכיון. הוא נשמר לסבב אחד למקרה שיתגלה משהו
+שלא הועבר — ואין להריצו: הוא יכתוב מחדש את אברהם-צדוק.html בשלד הישן,
+בלי ה-hero, בלי הניווט הדביק, בלי החיפוש ובלי אינדקס האנשים.
+
+בונה מסמך HTML עצמאי אחד: דוח + עץ + גלריית ראיות + אינדקס מקורות, עם בדיקת קישורים.
 פלט: אברהם-צדוק.html  (+ עותק site/)  ; נכשל בקול אם קישור מקומי שבור."""
 import re, os, shutil, urllib.parse, markdown, base64, hashlib, html as _html
 
@@ -525,6 +530,16 @@ dict(crop="docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg",
          ext="https://www.archives.gov.il/details/000d6sv",
          title="שאלון רישום לעולה, חיפה 26.6.1950 — «ARWAS · שמעון · שם האב רפאיל» (המקור הארכיוני)",
          cap="ארכיון המדינה, גל-14825/6, עמוד 182: טופס ד' 272550, בחותמת «כניסה — 26 JUN 1950 — ENTRÉE — HAIFA». שם המשפחה <strong>ארואס · ARWAS</strong> · השם הפרטי <strong>שמעון</strong>, בכתב יד עברי · שם האב <strong>רפאיל</strong> · שנת הלידה <strong>1934</strong> · אזרחות מצרית · הלאום והדת <strong>יהודי</strong> · «איפה גר רב ימי חייו» — מצרים. אחיו של יוסף (איור 50), שנכנס שבעה שבועות אחריו. <strong>תיקון שנרשם:</strong> מהדורה 70 קראה את השדה הזה כשם לועזי בלתי־מפוענח ואת «יהודי» כ«יהודיה», ומכאן הסיקה שמדובר באחות; במהדורה 71 נקרא הטופס מן המקור הארכיוני ב-900dpi, והאותיות <strong>ש·מ·ע·ו·ן</strong> ברורות — כלומר קריאת מהדורה 55, מסריקת IGRA, הייתה נכונה. שדה התאריך נכתב «31/6» — <strong>תאריך שאינו קיים</strong>, ונרשם כפי שהוא. (דירוג: תוכן הטופס והשם שמעון — מאומת, נקרא בעיניים מן המקור הארכיוני; ששני הנרשמים אחים — כמעט ודאי, על סמך שם משפחה, שם אב, ארץ וסמיכות תאריכים; שיוך רפאל מקהיר לענף היפואי — ככל הנראה, כדירוג ערך 54.)"),
+    dict(crop="docs/evidence/tna_medal_salomon_arwas_zoom.png",
+         full="docs/tna/medal-cards/tna-WO372-17-149799-salomon-arwas-medal-card.jpg",
+         ext="https://discovery.nationalarchives.gov.uk/details/r/D5008911",
+         title="כרטיס מדליות, מלחמת העולם הראשונה — «SALOMON ARWAS · JEWISH L.C. · GANGER · 14»",
+         cap="הארכיון הלאומי הבריטי, WO 372/17/149799 — הכרטיס העליון-שמאלי בגיליון בן שישה כרטיסים. שדה השם: <strong>SALOMON ARWAS</strong> · Corps <strong>JEWISH L.C.</strong> · Rank <strong>GANGER</strong> · Regtl. No. <strong>14</strong>. בטבלת המדליות מסומנת <strong>BRITISH (Bronze)</strong> בלבד — הגרסה שהונפקה לאנשי גופי העבודה הלא-אירופיים ולא ללוחמים — ואילו <strong>VICTORY</strong> ו-<strong>STAR</strong> ריקות, וכך גם «Theatre of War first served in». הרול: <strong>R/1880, עמוד 2</strong> — אותו רול ואותו עמוד כמו בכרטיסו של רפאל (האיור הבא). שירות בגליפולי ב-1915 היה מזכה ב-1914-15 Star, והשדה ריק. (דירוג: כל השדות — מאומת, נקראו מן הסריקה; קריאת «R/1880» — כמעט ודאי; זיהוי האיש עם בן משפחה שבקורפוס — טעון אימות, ואינו נטען. הסריקה נושאת חותמת מים של הארכיון; הקובץ הנקי מחייב חשבון משתמש.)"),
+    dict(crop="docs/evidence/tna_medal_raphael_arwas_zoom.png",
+         full="docs/tna/medal-cards/tna-WO372-16-150862-raphael-arwas-medal-card.jpg",
+         ext="https://discovery.nationalarchives.gov.uk/details/r/D4786027",
+         title="כרטיס מדליות, מלחמת העולם הראשונה — «RAPHAEL ARWAS · Jew. L.C. · Ganger · 38»",
+         cap="הארכיון הלאומי הבריטי, WO 372/16/150862 — הכרטיס העליון-ימני בגיליון בן שישה. שדה השם: <strong>RAPHAEL ARWAS</strong> · Corps <strong>Jew. L.C.</strong> · Rank <strong>Ganger</strong> · Regtl. No. <strong>38</strong> · <strong>BRITISH (Bronze)</strong> בלבד · הרול <strong>R/1880, עמוד 2</strong> — <strong>זהה לכרטיסו של שלמה</strong>, כלומר השניים רשומים זה לצד זה ברשימת המדליות עצמה. שים לב היכן יושב הכרטיס: בריצה האלפביתית של <strong>RAPHAEL</strong>, בין Walter D. ל-William E. — ולא תחת ARWAS. הפקיד רשם את השם כפי שנאמר לו והתייק לפי המילה הראשונה; מכאן כלל העבודה שנרשם לקורפוס. (דירוג: כל השדות — מאומת; זהות הרול והעמוד — מאומת; שהשניים קרובי משפחה — ככל הנראה; זיהוים עם בני המשפחה שבקורפוס — טעון אימות, ואינו נטען.)"),
 
 ]
 
