@@ -166,7 +166,7 @@ def _ar_link(m):
     n = m.group(1)
     out = f'<a href="https://collections.arolsen-archives.org/en/document/{n}" target="_blank" title="המסמך בארכיון ארולסן">{n}</a>'
     if n in _AR_DOCS and _osx.path.exists(f'docs/arolsen_stutthof/{n}_001.jpg'):
-        out += f' <a href="docs/arolsen_stutthof/{n}_001.jpg" title="הסריקה בתיקייה">🗎</a>'
+        out += f' <a href="docs/arolsen_stutthof/{n}_001.jpg" title="הסריקה בתיקייה">📄</a>'
     return out
 for _pat in [r'(?<![\w/."])(10559\d{4})(?![\w/])']:
     report_html = _apply_text(report_html, lambda _t, _p=_pat: re.sub(_p, _ar_link, _t))

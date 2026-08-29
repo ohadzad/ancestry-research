@@ -195,6 +195,8 @@ def markdown_images_to_figures(html, root=None):
     def sub(m):
         href, alt, src, cap = m.group(1), m.group(2), m.group(3), m.group(4)
         caption = cap if cap else alt
+        if root:
+            src = _F.display_copy(root, src)
         wh = _F.dims(root, src) if root else ''
         # `alt` arrives already escaped by the Markdown renderer; escaping it
         # a second time would publish &amp;quot; where &quot; was meant
@@ -211,8 +213,11 @@ def markdown_images_to_figures(html, root=None):
 
     def sub_bare(m):
         alt, src, cap = m.group(1), m.group(2), m.group(3)
+        full = src
+        if root:
+            src = _F.display_copy(root, src)
         wh = _F.dims(root, src) if root else ''
-        return (f'<figure><a href="{src}"><img src="{src}" alt="{alt}" '
+        return (f'<figure><a href="{full}"><img src="{src}" alt="{alt}" '
                 f'loading="lazy" decoding="async"{wh}></a>'
                 f'<figcaption>{cap if cap else alt}</figcaption></figure>')
 
@@ -220,6 +225,11 @@ def markdown_images_to_figures(html, root=None):
 
 
 _EXT_A = re.compile(r'(<a\b[^>]*\bhref="https?://[^"]*"[^>]*>)((?:(?!</a>).)*)(</a>)', re.S)
+# a link to a source file: a scan, a PDF, a JSON record — not a page of the report
+_FILE_A = re.compile(
+    r'(<a\b[^>]*\bhref="(?!https?://|#)[^"]*\.'
+    r'(?:jpe?g|JPG|png|gif|webp|svg|pdf|json|txt|md|mp3|wav|m4a|csv|xlsx?)"[^>]*>)'
+    r'((?:(?!</a>).)*)(</a>)', re.S)
 
 
 def mark_external(html):
@@ -240,7 +250,18 @@ def mark_external(html):
         return (open_tag + inner
                 + '<span class="ext" aria-hidden="true">↗</span>' + m.group(3))
 
-    return _EXT_A.sub(sub, html)
+    html = _EXT_A.sub(sub, html)
+
+    # An evidence link that replaces the page costs the reader their place in a
+    # very long document; returning reloads several megabytes. Source files open
+    # beside the report instead. No ↗ marker — that one means "leaves the archive".
+    def sub_file(m):
+        open_tag = m.group(1)
+        if 'target=' not in open_tag:
+            open_tag = open_tag[:-1] + ' target="_blank" rel="noopener">'
+        return open_tag + m.group(2) + m.group(3)
+
+    return _FILE_A.sub(sub_file, html)
 
 
 # ---------------------------------------------------------------- helpers ---

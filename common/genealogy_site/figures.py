@@ -26,13 +26,25 @@ def thumb(root, path, width=340, quality=78):
         sig = hashlib.md5(f'{path}:{os.path.getmtime(src_abs)}'.encode()).hexdigest()[:6]
     except OSError:
         sig = hashlib.md5(path.encode()).hexdigest()[:6]
-    rel = f'docs/thumbs/{base}_{width}_{sig}.jpg'
+    # quality is part of the identity, or a re-encode silently returns the
+    # cached heavier copy
+    qtag = '' if quality == 78 else f'q{quality}'
+    rel = f'docs/thumbs/{base}_{width}{qtag}_{sig}.jpg'
     out = os.path.join(root, rel)
     if not os.path.exists(out):
         im = _Image.open(src_abs)
-        r = width / im.width
-        im = im.resize((width, max(1, int(im.height * r))), _Image.LANCZOS).convert('RGB')
-        im.save(out, 'JPEG', quality=quality)
+        if im.width > width:
+            r = width / im.width
+            im = im.resize((width, max(1, int(im.height * r))), _Image.LANCZOS)
+        # flatten transparency onto white rather than onto JPEG's black
+        if im.mode in ('RGBA', 'LA', 'P'):
+            im = im.convert('RGBA')
+            bg = _Image.new('RGB', im.size, (255, 255, 255))
+            bg.paste(im, mask=im.split()[-1])
+            im = bg
+        else:
+            im = im.convert('RGB')
+        im.save(out, 'JPEG', quality=quality, optimize=True)
     return rel
 
 
@@ -47,9 +59,54 @@ def dims(root, path):
         return ''
 
 
+# the reading column is 60rem; 1400px covers it at 2x without shipping a 2,500px scan
+DISPLAY_W = 1400
+
+
+# above this, an image is re-encoded for display whatever its format
+RECODE_OVER = 200_000
+# the page must not serve anything heavier than this; qa.IMAGE_BUDGET matches
+BUDGET = 320_000
+
+
+def display_copy(root, path, width=DISPLAY_W):
+    """A right-sized copy for the page, or the original when it is already light.
+
+    The full-resolution file stays untouched in docs/ and remains the click target —
+    what changes is only what the page downloads in order to show it. Two reasons to
+    make a copy: the image is wider than the reading column can use, or it is a heavy
+    lossless encoding of what is really a photograph of a document.
+    """
+    if _Image is None:
+        return path
+    abs_p = os.path.join(root, path)
+    try:
+        size = os.path.getsize(abs_p)
+        with _Image.open(abs_p) as im:
+            too_wide = im.width > width
+            w = min(im.width, width)
+        # heavy is heavy: a 570KB JPEG crop costs the reader as much as a PNG one
+        heavy = size > RECODE_OVER and not path.lower().endswith('.svg')
+        if not (too_wide or heavy):
+            return path
+    except Exception:
+        return path
+    # a photograph can still exceed the budget at q82; step the quality down
+    # until it fits rather than shipping the archival weight
+    for q in (82, 72, 62):
+        rel = thumb(root, path, width=w, quality=q)
+        try:
+            if os.path.getsize(os.path.join(root, rel)) <= BUDGET:
+                return rel
+        except OSError:
+            return rel
+    return thumb(root, path, width=min(w, 1000), quality=62)
+
+
 def figure(root, src, caption, local=None, online=None, alt=None, max_w=None):
     """One evidence figure: a crop that clicks through to the full original."""
     target = local or online or src
+    src = display_copy(root, src)
     links = []
     if local:
         links.append(f'<a href="{local}">המסמך המלא (בתיקייה)</a>')

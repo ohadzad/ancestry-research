@@ -92,7 +92,7 @@ def build(cfg, verbose=True):
     if gal:
         present.add('gallery')
         body.append(_section(
-            'gallery', 'גלריית המסמכים המרכזיים',
+            'gallery', 'מסמכי מפתח',
             '<p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. '
             'לחיצה פותחת את הסריקה המלאה.</p>' + gal))
     people = shell.people_section(cfg)

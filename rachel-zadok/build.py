@@ -117,7 +117,7 @@ YT = 'https://www.youtube.com/watch?v=GhHKFgl81AU'
 
 def _ts(m):
     h, mn, s = int(m.group(1)), int(m.group(2)), int(m.group(3))
-    return (f'<a href="{YT}&t={h*3600+mn*60+s}s" target="_blank" rel="noopener" '
+    return (f'<a href="{YT}&amp;t={h*3600+mn*60+s}s" target="_blank" rel="noopener" '
             f'title="לצפייה ברגע זה בעדות">[{m.group(1)}:{m.group(2)}:{m.group(3)}]</a>')
 
 
@@ -125,7 +125,7 @@ def _ts_range(m):
     h, mn, s = int(m.group(1)), int(m.group(2)), int(m.group(3))
     lbl = (f'[<bdi dir="ltr">{m.group(1)}:{m.group(2)}:{m.group(3)}–'
            f'{m.group(4)}:{m.group(5)}:{m.group(6)}</bdi>]')
-    return (f'<a href="{YT}&t={h*3600+mn*60+s}s" target="_blank" rel="noopener" '
+    return (f'<a href="{YT}&amp;t={h*3600+mn*60+s}s" target="_blank" rel="noopener" '
             f'title="לצפייה בקטע זה בעדות">{lbl}</a>')
 
 
@@ -142,7 +142,7 @@ def _ar(m):
     out = (f'<a href="https://collections.arolsen-archives.org/en/document/{n}" target="_blank" '
            f'rel="noopener" title="המסמך בארכיון ארולסן">{n}</a>')
     if n in _AR_DOCS and os.path.exists(R(AR + f'{n}_001.jpg')):
-        out += f' <a href="{AR}{n}_001.jpg" title="הסריקה בתיקייה">🗎</a>'
+        out += f' <a class="doclink" href="{AR}{n}_001.jpg" aria-label="הסריקה בתיקייה" title="הסריקה בתיקייה"><span aria-hidden="true">📄</span></a>'
     return out
 
 
@@ -255,12 +255,14 @@ cfg = ProjectConfig(
                     page_href='עץ_משפחה_מורחב.html'),
     palette=PAL,
     md_extensions=('tables',),
+    people_legend=('בתאריכים: <b>?</b> — שנה שלא אותרה; <b>~</b> — שנה משוערת; '
+                   'טווח בלא סימון הוא מתועד במסמך.'),
     thumb_referrers=('../index.html', '../research_registry.json'),
     spine=(
         SpineFact('7', 'דורות מתועדים'),
         SpineFact('244', 'קובצי מקור שמורים'),
         SpineFact('18', 'ארכיונים ומאגרים'),
-        SpineFact('43', 'מהדורות · 19 סבבי ביקורת'),
+        SpineFact('44', 'מהדורות · 21 סבבי ביקורת'),
     ),
     people=PEOPLE,
     figures=figs,

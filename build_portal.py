@@ -55,6 +55,10 @@ h2.sec{font-size:1.02rem; letter-spacing:.14em; color:#8a7f6d; font-weight:norma
 .stats b{display:block; font-size:1.4rem; line-height:1.2; color:#7a4a2b; font-weight:normal}
 .stats span{font-size:.76rem; color:#8a8177}
 .links{display:flex; flex-wrap:wrap; gap:9px; margin:0}
+.skip{position:absolute; inset-inline-start:-9999px; top:0; z-index:99;
+  background:#fdfaf5; color:#5a3a1e; padding:10px 16px; border:1px solid #7a4a2b;
+  border-radius:0 0 8px 0; font-family:system-ui,sans-serif; font-size:14px}
+.skip:focus{inset-inline-start:0}
 .btn{display:inline-block; border:1px solid #cfc4b0; border-radius:8px; padding:7px 15px;
      font-size:.9rem; background:#fbf8f2; color:#5a4632}
 .btn:hover{background:#f2ebdd; text-decoration:none}
@@ -97,7 +101,9 @@ def card(r):
     p.append('<div>')
     aka = (' <span class="aka">%s</span>' % e(r['aka'])) if r.get('aka') else ''
     badge = ('<span class="badge">%s</span>' % e(r['state_label'])) if r.get('state_label') else ''
-    p.append('<h3>%s%s%s</h3>' % (e(r['name']), aka, badge))
+    # the badge sits outside the heading text: a screen reader announcing the
+    # heading should say the person's name, not the project's status label
+    p.append('<h3>%s%s</h3>%s' % (e(r['name']), aka, badge))
     if r.get('life'):    p.append('<p class="life">%s</p>' % e(r['life']))
     if r.get('edition'): p.append('<p class="edition">%s</p>' % e(r['edition']))
     if r.get('summary'): p.append('<p class="summary">%s</p>' % e(r['summary']))
@@ -132,14 +138,15 @@ def people_grid(r):
             % (e(r['name']), items))
 
 body = []
+body.append('<a class="skip" href="#main">דילוג לתוכן</a>')
 body.append('<header class="top"><div class="wrap">')
 body.append('<h1>%s</h1>' % e(site['title']))
 body.append('<p class="surnames">%s</p>' % e(site['surnames']))
 body.append('<p class="intro">%s</p>' % e(site['intro']))
 if site.get('note'): body.append('<p class="note">%s</p>' % e(site['note']))
 body.append('</div></header>')
-body.append('<div class="wrap">')
-body.append('<h2 class="sec">מחקרים</h2>')
+body.append('<main id="main"><div class="wrap">')
+body.append('<h2 class="sec" id="researches">מחקרים</h2>')
 for r in researches:
     body.append(card(r))
 for r in researches:
@@ -155,8 +162,8 @@ body.append("""<div class="method">
 <li><b>גם ממצא שלילי נרשם</b> — היעדר מתועד ברשומה הוא בעצמו מידע.</li>
 </ul>
 </div>""")
+body.append('</div></main>')
 body.append('<footer>ארכיון מחקר משפחתי. המסמכים שמורים לצד הדוחות, כדי שהמחקר יישאר בר־אימות גם בלי חיבור לארכיונים המקוונים.</footer>')
-body.append('</div>')
 
 out = ('<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n'
        '<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'

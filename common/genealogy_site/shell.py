@@ -46,8 +46,7 @@ def nav(present, chapters):
         '<div class="qwrap">'
         '<input id="q" type="search" placeholder="חיפוש בעמוד…" '
         'aria-label="חיפוש בפרקים ובאינדקס האנשים" autocomplete="off" '
-        'role="combobox" aria-autocomplete="list" aria-controls="qres" '
-        'aria-expanded="false" hidden>'
+        'aria-controls="qres" hidden>'
         '<div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div>'
         '</div></div>'
         f'<details class="chapters-wrap" open><summary class="lbl">פרקים</summary>'
@@ -75,9 +74,11 @@ def people_section(cfg):
         r = f'<span class="r">{_h.escape(p.role)}</span>' if p.role else ''
         aka = f'<span hidden>{_h.escape(p.aka)}</span>' if p.aka else ''
         cards.append(f'<div class="person"><b>{name}</b>{d}{r}{aka}</div>')
+    legend = f' {cfg.people_legend}' if cfg.people_legend else ''
     return ('<hr><section id="people"><h2>אינדקס האנשים</h2>'
             '<p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. '
-            'שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p>'
+            'שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.'
+            f'{legend}</p>'
             f'<div class="people">{"".join(cards)}</div></section>')
 
 
@@ -98,7 +99,7 @@ _JS = """
   var IDX = %s;
   var q = document.getElementById('q'), res = document.getElementById('qres');
   function norm(s){ return (s||'').replace(/["'\u05b0-\u05c7]/g,'').toLowerCase(); }
-  function clear(){ res.textContent=''; res.hidden=true; if(q) q.setAttribute('aria-expanded','false'); }
+  function clear(){ res.textContent=''; res.hidden=true; }
   function run(){
     var v = norm(q.value.trim());
     res.textContent = '';
@@ -109,6 +110,10 @@ _JS = """
       if (hay.indexOf(v) !== -1) out.push(it);
     }
     if (out.length){
+      var head = document.createElement('p'); head.className='qcount';
+      head.textContent = out.length === 1 ? 'תוצאה אחת'
+                       : (out.length === 12 ? '12 התוצאות הראשונות' : out.length + ' תוצאות');
+      res.appendChild(head);
       out.forEach(function(o){
         var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
         var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
@@ -119,7 +124,7 @@ _JS = """
       p.textContent='לא נמצאו תוצאות בכותרות ובאינדקס האנשים. לחיפוש בגוף הטקסט: Ctrl+F';
       res.appendChild(p);
     }
-    res.hidden = false; q.setAttribute('aria-expanded','true');
+    res.hidden = false;
   }
   function jump(h){
     // re-applying the hash after the list closes keeps the heading where the
@@ -164,11 +169,22 @@ _JS = """
   // a lazy image that never entered the viewport prints as an empty frame,
   // and a fetch started inside beforeprint is not awaited — so the whole set
   // is promoted once the page has settled, and again as a backstop
+  // A lazy image that never entered the viewport prints as an empty frame. But
+  // promoting all of them on load would download the whole gallery for a reader
+  // who never scrolls. So: promote once the reader has actually started reading,
+  // and again at print time as a backstop.
   function eager(){
     [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),
                     function(i){ i.loading='eager'; });
   }
-  addEventListener('load', function(){ setTimeout(eager, 1200); });
+  var promoted = false;
+  function promoteOnce(){
+    if (promoted) return;
+    promoted = true;
+    var idle = window.requestIdleCallback || function(f){ setTimeout(f, 600); };
+    idle(eager);
+  }
+  addEventListener('scroll', promoteOnce, {passive:true, once:true});
   addEventListener('beforeprint', eager);
   // only a table that actually overflows is a scroll region worth a tab stop
   function scrollables(){
@@ -181,6 +197,20 @@ _JS = """
     });
   }
   scrollables(); addEventListener('resize', scrollables);
+  // the tree is laid out at fixed coordinates; zooming the frame is how a reader
+  // gets its labels to a readable size without the boxes colliding
+  // BASE 2 is the diagram's native size; the frame opens at three quarters of
+  // it, which shows the whole shape; the reader zooms in to read a branch
+  var BASE = 2, zoom = 1.5, zval = document.getElementById('tree-zoom-val');
+  if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%%';
+  [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
+    btn.addEventListener('click', function(){
+      var step = parseInt(btn.getAttribute('data-tree-zoom'), 10) * 0.25;
+      zoom = Math.min(3, Math.max(1, Math.round((zoom + step) * 100) / 100));
+      document.documentElement.style.setProperty('--tree-zoom', zoom);
+      if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%%';
+    });
+  });
   var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
   var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
   if ('IntersectionObserver' in window){
@@ -214,6 +244,7 @@ def page(cfg, edition, stamp, body_sections, chapters, present):
 <style>{theme.css(cfg.palette)}</style>
 </head>
 <body>
+<a class="skip" href="#report">דילוג לתוכן</a>
 <a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
 <span id="top"></span>
 {hero(cfg, edition, stamp)}

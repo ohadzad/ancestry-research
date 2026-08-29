@@ -213,6 +213,79 @@ def search_targets_resolve(html):
     return bad[:8]
 
 
+# codepoints with no glyph in the serif/sans stacks this theme uses: they ship
+# as an empty box. Add to this list, never assume a symbol renders.
+TOFU = {
+    '\U0001F5CE': 'U+1F5CE 🗎 — use U+1F4C4 📄',
+    '\U0001F5CB': 'U+1F5CB — use U+1F4C4 📄',
+    '\U0001F5CF': 'U+1F5CF — use U+1F4C4 📄',
+    '\U0001F5B9': 'U+1F5B9 — use U+1F4C4 📄',
+    '\u2317': 'U+2317 — no glyph in common stacks',
+}
+
+
+def glyph_coverage(html):
+    return [f'תו ללא גליף בגופני העמוד: {why} ({html.count(ch)} מופעים)'
+            for ch, why in TOFU.items() if ch in html]
+
+
+def template_leakage(html):
+    """A %% or {{ that survived into the output.
+
+    The engine mixes %-formatted strings (the inline JS) with f-strings (the
+    CSS). A literal % in the wrong one either crashes the build or, worse,
+    ships a declaration the browser silently drops.
+    """
+    bad = []
+    # a literal quoted inside <code> is documentation, not leakage
+    body = re.sub(r'<code\b.*?</code>', '', _SCRIPT.sub('', html), flags=re.S)
+    n = len(re.findall(r'%%', body))
+    if n:
+        bad.append(f'סימן %% דלף לפלט: {n}')
+    n = len(re.findall(r'(?<![{])\{\{(?![{])|(?<![}])\}\}(?![}])', body))
+    if n:
+        bad.append(f'סוגריים מסולסלים כפולים בפלט: {n}')
+    return bad
+
+
+_HREF_FILE = re.compile(
+    r'<a\b[^>]*\bhref="(?!https?://|#|mailto:)([^"]*\.'
+    r'(?:jpe?g|JPG|png|gif|webp|pdf|json|txt|md|mp3|wav|m4a|csv|xlsx?))"[^>]*>')
+
+
+def source_links_open_out(html):
+    """A source file that replaces the page costs the reader their place.
+
+    The report is tens of thousands of pixels long; returning from a scan
+    reloads the whole document. Source files open beside it.
+    """
+    bad = [m.group(0)[:70] for m in _HREF_FILE.finditer(html)
+           if 'target=' not in m.group(0)]
+    if not bad:
+        return []
+    return [f'קישור לקובץ מקור שאינו נפתח בלשונית נפרדת: {len(bad)}', '   ' + bad[0]]
+
+
+# an archival scan is not a web asset: above this the page must serve a copy
+IMAGE_BUDGET = 320_000
+
+
+def images_are_light(html, root):
+    """The page must not serve the archival original."""
+    bad = []
+    for src in sorted(set(re.findall(r'<img\b[^>]*\bsrc="([^"]+)"', html))):
+        if src.startswith(('http', 'data:')):
+            continue
+        p = os.path.join(root, urllib.parse.unquote(src))
+        try:
+            n = os.path.getsize(p)
+        except OSError:
+            continue
+        if n > IMAGE_BUDGET:
+            bad.append(f'תמונה כבדה מדי לעמוד ({n // 1024}KB): {src}')
+    return bad[:6]
+
+
 def entity_hygiene(html):
     """A double-escaped entity: &amp;quot; where &quot; was meant."""
     n = len(re.findall(r'&amp;(?:quot|amp|lt|gt|#\d+|nbsp);', html))
@@ -223,8 +296,10 @@ def run_all(html, root, patterns=()):
     problems = []
     for fn in (markup_integrity, bidi_hygiene, markdown_leftovers, images_have_alt,
                attribute_hygiene, entity_hygiene, anchors_resolve, duplicate_ids,
-               search_targets_resolve):
+               search_targets_resolve, glyph_coverage, template_leakage,
+               source_links_open_out):
         problems += fn(html)
+    problems += images_are_light(html, root)
     problems += local_links_exist(html, root)
     problems += prose_files_exist(html, root)
     problems += privacy(html, patterns)

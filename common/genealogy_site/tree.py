@@ -46,13 +46,20 @@ def embed(cfg, svg, legend, foot=''):
         return ''
     btn = ''
     if cfg.tree and cfg.tree.page_href:
-        btn = f'<a class="btn" href="{cfg.tree.page_href}">פתיחת העץ בעמוד נפרד ↗</a>'
+        btn = (f'<a class="btn" href="{cfg.tree.page_href}" target="_blank" '
+               f'rel="noopener">פתיחת העץ בעמוד נפרד ↗</a>')
     if '<title' not in svg[:400]:
         svg = re.sub(r'(<svg\b[^>]*>)',
                      r'\1<title>עץ המשפחה — התרשים המלא; פירוט מילולי באינדקס האנשים</title>',
                      svg, count=1)
     svg = re.sub(r'<svg\b(?![^>]*\brole=)', '<svg role="img"', svg, count=1)
+    zoom = ('<div class="tree-zoom">'
+            '<span id="tree-zoom-label">הגדלת העץ</span>'
+            '<button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button>'
+            '<output id="tree-zoom-val">100%</output>'
+            '<button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button>'
+            '</div>')
     return (f'<div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0">{svg}</div>'
-            f'{legend}{foot}'
-            f'<p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו; '
-            f'בהדפסה הוא מקבל עמוד לרוחב משלו.</p>{btn}')
+            f'{zoom}{legend}{foot}'
+            f'<p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, '
+            f'וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p>{btn}')

@@ -89,6 +89,8 @@ class ProjectConfig:
     # extra rows for the in-page search that are not people:
     # (label, anchor, kind, alternative spellings)
     search_extra: tuple = ()
+    # one line under the person index explaining the date notation it uses
+    people_legend: str = ''
 
     # publishing
     site_extra_files: tuple = ()

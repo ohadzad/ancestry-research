@@ -46,7 +46,7 @@ img, svg, video {{ max-width:100%; }}
   border-radius:var(--radius); padding:.5rem .8rem; min-width:7.5rem;
 }}
 .spine b {{ display:block; font-size:1.3rem; line-height:1.2; font-family:var(--sans); font-weight:700; }}
-.spine span {{ font-family:var(--sans); font-size:.72rem; color:#e8dcc2; }}
+.spine span {{ /* floor: no supporting text below 12.5px */ font-family:var(--sans); font-size:.78rem; color:#e8dcc2; }}
 
 /* ---------- sticky navigation ---------- */
 .nav {{
@@ -55,22 +55,38 @@ img, svg, video {{ max-width:100%; }}
   border-block-end:1px solid var(--line); font-family:var(--sans);
 }}
 .nav-in {{ max-width:var(--col); margin-inline:auto; padding:0 1.25rem; }}
-.nav-row {{ display:flex; align-items:center; gap:.4rem; height:var(--nav-h); overflow-x:auto; scrollbar-width:thin; }}
+.nav-row {{ display:flex; align-items:center; gap:.4rem; height:var(--nav-h); }}
+/* only the chapter strip scrolls; the first row must not clip the search panel */
+.nav-row.chapters {{ overflow-x:auto; scrollbar-width:thin; }}
+.nav-row:first-child {{ flex-wrap:wrap; height:auto; padding-block:.4rem; }}
 .chapters-wrap {{ border-block-start:1px dotted var(--line); }}
 .chapters-wrap > summary {{
-  list-style:none; cursor:pointer; padding:.3rem 0; font-size:.72rem; color:var(--muted);
+  list-style:none; cursor:pointer; padding:.3rem 0; font-size:.78rem; color:var(--muted);
 }}
 .chapters-wrap > summary::-webkit-details-marker {{ display:none; }}
 .chapters-wrap > summary::after {{ content:" ▾"; }}
 .chapters-wrap[open] > summary::after {{ content:" ▴"; }}
 .nav-row.chapters {{ height:2.4rem; }}
+/* the row scrolls horizontally; a fade at the overflowing edge is the only cue */
+.chapters-wrap {{ position:relative; }}
+.chapters-wrap::after {{
+  /* at rest the strip is scrolled to its start, so the hidden chips are at the
+     inline-END edge — that is where the cue belongs */
+  content:""; position:absolute; inset-block:auto 0; inset-inline-end:0;
+  block-size:2.4rem; inline-size:2.2rem; pointer-events:none;
+  background:linear-gradient(to left, rgba(250,247,242,0), rgba(250,247,242,.98));
+}}
+[dir="rtl"] .chapters-wrap::after {{
+  background:linear-gradient(to right, rgba(250,247,242,0), rgba(250,247,242,.98));
+}}
+.chapters-wrap:not([open])::after {{ display:none; }}
 .nav a {{
   flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.82rem;
   padding:.3rem .6rem; border-radius:999px; white-space:nowrap;
 }}
 .nav a:hover {{ background:rgba(0,0,0,.05); }}
 .nav a.on {{ background:var(--accent); color:#fff; }}
-.nav .lbl {{ flex:0 0 auto; font-size:.72rem; color:var(--muted); padding-inline-end:.2rem; }}
+.nav .lbl {{ flex:0 0 auto; font-size:.78rem; color:var(--muted); padding-inline-end:.2rem; }}
 .nav-row.chapters a:not(.on) {{ font-size:.78rem; color:var(--muted); }}
 .nav-row.chapters a.on {{ font-size:.78rem; }}
 
@@ -84,7 +100,7 @@ img, svg, video {{ max-width:100%; }}
 /* out of flow: opening the list must not change the nav's height, or every
    anchor below it would shift while the reader is looking at one */
 #qres {{
-  position:absolute; inset-block-start:calc(100%% + .4rem); inset-inline-start:0;
+  position:absolute; inset-block-start:calc(100% + .4rem); inset-inline-end:0;
   min-width:20rem; max-width:min(28rem, 92vw); max-height:60vh; overflow-y:auto;
   background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
   box-shadow:0 6px 20px rgba(0,0,0,.14); padding:.35rem .8rem .5rem;
@@ -96,8 +112,12 @@ img, svg, video {{ max-width:100%; }}
   padding:.35rem 0; color:var(--ink); border-block-end:1px dotted var(--line);
 }}
 #qres a:last-child {{ border-block-end:0; }}
-#qres .k {{ color:var(--muted); font-size:.72rem; margin-inline-start:.4rem; }}
+#qres .k {{ color:var(--muted); font-size:.78rem; margin-inline-start:.4rem; }}
 #qres .nores {{ margin:.3rem 0; color:var(--muted); }}
+#qres .qcount {{
+  margin:.1rem 0 .35rem; color:var(--muted); font-size:.78rem;
+  border-block-end:1px solid var(--line); padding-block-end:.3rem;
+}}
 
 /* ---------- the reading column ---------- */
 main {{ max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 4rem; }}
@@ -141,7 +161,7 @@ code {{
 
 /* ---------- certainty chips ---------- */
 .rank {{
-  display:inline-block; font-family:var(--sans); font-size:.72rem; font-style:normal; font-weight:600;
+  display:inline-block; font-family:var(--sans); font-size:.78rem; font-style:normal; font-weight:600;
   line-height:1.5; padding:.05rem .5rem; border-radius:999px; white-space:nowrap;
   border:1px solid currentColor; vertical-align:.08em;
 }}
@@ -169,13 +189,14 @@ figcaption .fignum {{ font-family:var(--sans); font-weight:700; color:var(--acce
 figcaption .figlinks {{ display:block; margin-block-start:.3rem; font-family:var(--sans); font-size:.78rem; }}
 .imgcap {{ display:block; font-size:.84rem; color:var(--muted); margin-block-start:.4rem; }}
 
-.ext {{ font-size:.78em; color:var(--muted); padding-inline-start:.12em; }}
+.ext {{ font-size:.78rem; color:var(--muted); padding-inline-start:.12em; }}
+.doclink {{ display:inline-block; min-inline-size:1.5rem; min-block-size:1.5rem; padding:.15rem .2rem; }}
 
 /* ---------- gallery ---------- */
 .gallery {{ display:flex; flex-wrap:wrap; gap:.75rem; margin:1.2rem 0 2rem; }}
 .gallery a {{
   flex:0 0 auto; width:11rem; border:0; text-align:center; color:var(--muted);
-  font-family:var(--sans); font-size:.72rem; line-height:1.4;
+  font-family:var(--sans); font-size:.78rem; line-height:1.4;
 }}
 .gallery img {{ width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }}
 /* a crop far wider than the frame is shown whole rather than magnified */
@@ -187,7 +208,20 @@ figcaption .figlinks {{ display:block; margin-block-start:.3rem; font-family:var
   overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
   background:#fff; padding:.5rem;
 }}
-.tree-embed svg {{ min-width:56rem; height:auto; display:block; margin-inline:auto; }}
+.tree-embed svg {{
+  min-width:calc(75rem * var(--tree-zoom, 1.5)); height:auto; display:block; margin-inline:auto;
+}}
+.tree-zoom {{
+  display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.5rem;
+}}
+.tree-zoom button {{
+  font:inherit; line-height:1; min-inline-size:2rem; min-block-size:2rem;
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  color:var(--ink); cursor:pointer;
+}}
+.tree-zoom button:hover {{ background:rgba(0,0,0,.04); }}
+.tree-zoom button:focus-visible {{ outline:2px solid var(--link); outline-offset:1px; }}
 .legend {{
   display:flex; gap:1.1rem; justify-content:center; flex-wrap:wrap;
   padding:.7rem 0 .2rem; font-family:var(--sans); font-size:.8rem; color:var(--muted);
@@ -212,8 +246,16 @@ figcaption .figlinks {{ display:block; margin-block-start:.3rem; font-family:var
   padding:.6rem .75rem; font-size:.9rem;
 }}
 .person b {{ display:block; font-size:.97rem; }}
-.person .d {{ font-family:var(--sans); font-size:.75rem; color:var(--muted); }}
+.person .d {{ font-family:var(--sans); font-size:.78rem; color:var(--muted); }}
 .person .r {{ display:block; color:var(--muted); font-size:.84rem; margin-block-start:.15rem; }}
+
+.skip {{
+  position:absolute; inset-inline-start:-9999px; inset-block-start:0; z-index:99;
+  background:var(--paper); color:var(--link); padding:.6rem 1rem;
+  border:1px solid var(--accent); border-end-end-radius:var(--radius);
+  font-family:var(--sans); font-size:.85rem;
+}}
+.skip:focus {{ inset-inline-start:0; }}
 
 /* ---------- back to top ---------- */
 .top {{
@@ -262,7 +304,7 @@ footer {{
   @page {{ size:A4; margin:16mm 14mm; }}
   @page landscape {{ size:A4 landscape; }}
   body {{ background:#fff; font-size:10.5pt; line-height:1.5; }}
-  .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov {{ display:none !important; }}
+  .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov, .tree-zoom, .skip {{ display:none !important; }}
   .hero {{ background:#fff !important; color:#000; padding:0 0 1rem; border-block-end:2px solid #000; }}
   .hero .meta, .spine span {{ color:#444; }}
   .spine div {{ border:1px solid #bbb; background:#fff; }}
