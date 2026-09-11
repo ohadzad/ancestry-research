@@ -46,6 +46,18 @@ RULES = [
     # long Latin-script runs (quotations) inside RTL paragraphs
     (re.compile(r'(?<![\w])([A-Za-zÀ-ɏ][A-Za-zÀ-ɏ0-9 ,.:;\-–()/’“”!?]{28,}[A-Za-zÀ-ɏ0-9./)])'),
      _latin_run),
+    # a count and its Latin unit: "10 ans", "3 km". The space between a digit
+    # (EN) and a Latin word (L) takes the RTL base direction under rule N2, so
+    # the two runs stack right-to-left and the reader sees "ans 10"
+    (re.compile(r'(?<![\w' + HEB + r'])(\d{1,3}\s+[A-Za-zÀ-ɏ][A-Za-zÀ-ɏ.\']{1,12})'
+                r'(?![\w' + HEB + r'])'),
+     r'<bdi dir="ltr">\1</bdi>'),
+    # a whole archive reference — file/item, with an optional page range:
+    # "15493/3–8". The general range rule below deliberately refuses a range
+    # preceded by '/', so without this one the range flips out of its symbol
+    (re.compile(r'(?<![\w' + HEB + r'.])(\d{3,6}/\d{1,3}(?:–\d{1,3})?)'
+                r'(?![\w' + HEB + r'])'),
+     r'<bdi dir="ltr">\1</bdi>'),
     # month/year ranges: 12/1909–02/1911
     (re.compile(r'(?<![\w' + HEB + r'])(\d{1,2}/\d{4}–\d{1,2}/\d{4})(?![\w' + HEB + r'])'),
      r'<bdi dir="ltr">\1</bdi>'),
@@ -69,8 +81,14 @@ def fix_document(html, extra_rules=()):
     rules = list(RULES) + list(extra_rules)
 
     def _f(t):
+        # each rule sees only what no earlier rule has already isolated: a long
+        # Latin quotation is wrapped whole, and the rules after it neither nest
+        # inside that wrapper nor break it in two
         for rx, rep in rules:
-            t = rx.sub(rep, t)
+            parts = _BDI_SPAN.split(t)
+            for i in range(0, len(parts), 2):
+                parts[i] = rx.sub(rep, parts[i])
+            t = ''.join(parts)
         return t
 
     def _pass(chunk):

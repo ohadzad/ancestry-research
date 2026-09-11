@@ -143,7 +143,10 @@ def gallery(items, root=None):
         # magnify it beyond its own resolution, so it is shown whole instead
         ar = _aspect(root, src)
         cls = ' class="contain"' if ar and ar > 2.4 else ''
-        out.append(f'<a href="{href}"><img{cls} src="{src}" alt="{cap_a}" loading="lazy" '
+        # a line strip (a scan far wider than it is tall) is illegible inside a
+        # square tile: it gets the full width of the row and its own height
+        acls = ' class="wide"' if ar and ar > 6 else ''
+        out.append(f'<a{acls} href="{href}"><img{cls} src="{src}" alt="{cap_a}" loading="lazy" '
                    f'decoding="async"{wh}><span>{cap}</span></a>')
     out.append('</div>')
     return ''.join(out)

@@ -43,9 +43,13 @@ def nav(present, chapters):
     return (
         '<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in">'
         f'<div class="nav-row"><span class="lbl">מקטעים</span>{secs}'
+        # on a phone the whole row scrolls in one line; the field itself opens
+        # from this button, so the search costs no vertical space until it is used
+        '<button type="button" class="qtoggle" aria-expanded="false" '
+        'aria-controls="q">חיפוש</button>'
         '<div class="qwrap">'
-        '<input id="q" type="search" placeholder="חיפוש בעמוד…" '
-        'aria-label="חיפוש בפרקים ובאינדקס האנשים" autocomplete="off" '
+        '<input id="q" type="search" placeholder="חיפוש בפרקים, אנשים ומקורות…" '
+        'aria-label="חיפוש בפרקים, באנשים ובמקורות" autocomplete="off" '
         'aria-controls="qres" hidden>'
         '<div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div>'
         '</div></div>'
@@ -82,7 +86,37 @@ def people_section(cfg):
             f'<div class="people">{"".join(cards)}</div></section>')
 
 
-def search_index(chapters, cfg):
+_SEC_OR_H = re.compile(
+    r'<section id="([^"]+)"|<h([3-5])\b[^>]*\sid="([^"]+)"[^>]*>(.*?)</h\2>', re.S)
+_TAGS = re.compile(r'<[^>]+>')
+
+
+def page_rows(body_html):
+    """Search rows for everything below chapter level: sub-headings and sources.
+
+    The chapter list alone covers nine headings out of some eighty; a reader
+    searching for "ילקוט" or for a year that names a sub-section was told there
+    were no results.
+    """
+    rows, cur = [], ''
+    for m in _SEC_OR_H.finditer(body_html):
+        if m.group(1):
+            cur = m.group(1)
+            continue
+        lvl, hid, inner = m.group(2), m.group(3), m.group(4)
+        text = _h.unescape(_TAGS.sub('', inner)).strip()
+        if not text:
+            continue
+        if cur == 'report' and lvl == '3':
+            rows.append({'t': text, 'h': '#' + hid, 'k': 'תת־פרק'})
+        elif cur == 'index' and lvl in ('3', '4'):
+            rows.append({'t': text, 'h': '#' + hid, 'k': 'מקור'})
+        elif cur == 'changelog' and lvl == '3':
+            rows.append({'t': text, 'h': '#' + hid, 'k': 'מהדורה'})
+    return rows
+
+
+def search_index(chapters, cfg, extra=()):
     items = [{'t': full, 'h': '#' + sid, 'k': 'פרק'} for sid, _s, full in chapters]
     for p in cfg.people:
         if p.anchor:
@@ -91,6 +125,8 @@ def search_index(chapters, cfg):
                           'x': (p.aka + ' ' + p.dates).strip()})
     for label, anchor, kind, aka in cfg.search_extra:
         items.append({'t': label, 'h': anchor, 'k': kind, 'x': aka})
+    have = {it['h'] for it in items}
+    items += [r for r in extra if r['h'] not in have]
     return items
 
 
@@ -117,11 +153,13 @@ _JS = """
       out.forEach(function(o){
         var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
         var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        // a space, or the accessible name reads "…ירושליםאדם"
+        a.appendChild(document.createTextNode(' '));
         a.appendChild(k); res.appendChild(a);
       });
     } else {
       var p = document.createElement('p'); p.className='nores';
-      p.textContent='לא נמצאו תוצאות בכותרות ובאינדקס האנשים. לחיפוש בגוף הטקסט: Ctrl+F';
+      p.textContent='לא נמצאו תוצאות בפרקים, באנשים ובמקורות. לחיפוש בגוף הטקסט: Ctrl+F';
       res.appendChild(p);
     }
     res.hidden = false;
@@ -152,6 +190,18 @@ _JS = """
     });
   }
   var nav = document.querySelector('.nav');
+  // the phone nav is one scrolling row; the search field opens from a button
+  var qt = document.querySelector('.qtoggle');
+  if (qt){
+    qt.hidden = false;
+    qt.addEventListener('click', function(){
+      var on = !nav.classList.contains('qopen');
+      nav.classList.toggle('qopen', on);
+      qt.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on && q) q.focus(); else { if (q) q.value=''; if (res) clear(); }
+      offset();
+    });
+  }
   function offset(){
     if (!nav) return;
     var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
@@ -190,8 +240,10 @@ _JS = """
   function scrollables(){
     [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
       var over = w.scrollWidth - w.clientWidth > 1;
+      var cap = w.querySelector('caption');
+      var name = 'טבלה' + (cap && cap.textContent ? ' — ' + cap.textContent : '');
       if (over){ w.tabIndex = 0; w.setAttribute('role','region');
-                 w.setAttribute('aria-label','טבלה — ניתנת לגלילה אופקית'); }
+                 w.setAttribute('aria-label', name + ' — ניתנת לגלילה אופקית'); }
       else { w.removeAttribute('tabindex'); w.removeAttribute('role');
              w.removeAttribute('aria-label'); }
     });
@@ -199,18 +251,25 @@ _JS = """
   scrollables(); addEventListener('resize', scrollables);
   // the tree is laid out at fixed coordinates; zooming the frame is how a reader
   // gets its labels to a readable size without the boxes colliding
-  // BASE 2 is the diagram's native size; the frame opens at three quarters of
-  // it, which shows the whole shape; the reader zooms in to read a branch
-  var BASE = 2, zoom = 1.5, zval = document.getElementById('tree-zoom-val');
-  if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%%';
+  // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
+  // so the reader always has a state where the whole shape is on the screen,
+  // and every step above it is stated relative to that (×1.5, ×2)
+  var zoom = matchMedia('(max-width:40rem)').matches ? 1 : 1.5;
+  var zval = document.getElementById('tree-zoom-val');
+  function zshow(){
+    document.documentElement.style.setProperty('--tree-zoom', zoom);
+    if (zval) zval.textContent = '\\u00d7' + (Math.round(zoom * 100) / 100);
+  }
   [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
     btn.addEventListener('click', function(){
-      var step = parseInt(btn.getAttribute('data-tree-zoom'), 10) * 0.25;
-      zoom = Math.min(3, Math.max(1, Math.round((zoom + step) * 100) / 100));
-      document.documentElement.style.setProperty('--tree-zoom', zoom);
-      if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%%';
+      var v = btn.getAttribute('data-tree-zoom');
+      if (v === 'fit') zoom = 1;
+      else zoom = Math.min(3, Math.max(1,
+             Math.round((zoom + parseInt(v, 10) * 0.25) * 100) / 100));
+      zshow();
     });
   });
+  if (zval) zshow();
   var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
   var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
   if ('IntersectionObserver' in window){
@@ -229,8 +288,8 @@ _JS = """
 """
 
 
-def page(cfg, edition, stamp, body_sections, chapters, present):
-    idx = json.dumps(search_index(chapters, cfg), ensure_ascii=False)\
+def page(cfg, edition, stamp, body_sections, chapters, present, extra_rows=()):
+    idx = json.dumps(search_index(chapters, cfg, extra_rows), ensure_ascii=False)\
              .replace('</', '<\\/')
     js = _JS % idx
     return f"""<!DOCTYPE html>

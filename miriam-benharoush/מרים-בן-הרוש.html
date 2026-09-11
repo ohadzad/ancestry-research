@@ -135,6 +135,13 @@ h3 { font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }
 h4 { font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }
 p { margin:0 0 1rem; }
 a { color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }
+/* a citation marker after a Latin run would otherwise be laid out on the far
+   side of it, before the very words it cites */
+a.cit { unicode-bidi:isolate; }
+.visually-hidden {
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0;
+}
 a:hover { border-block-end-color:var(--link); }
 a:focus-visible { outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }
 ul, ol { margin:0 0 1rem; padding-inline-start:1.4rem; }
@@ -204,6 +211,10 @@ figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(
 .gallery img { width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
 /* a crop far wider than the frame is shown whole rather than magnified */
 .gallery img.contain { object-fit:contain; padding:.3rem; }
+/* a line strip (wider than 6:1) is a hairline inside a square tile: it takes
+   the whole row and keeps its own proportions, so the writing can be read */
+.gallery a.wide { width:100%; }
+.gallery a.wide img { height:auto; max-block-size:11rem; object-fit:contain; }
 .gallery span { display:block; margin-block-start:.3rem; }
 
 /* ---------- family tree ---------- */
@@ -211,8 +222,14 @@ figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(
   overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
   background:#fff; padding:.5rem;
 }
+/* zoom 1 == fit to width: the diagram is never wider than the frame unless the
+   reader asks for it, on a phone as on a desktop */
 .tree-embed svg {
-  min-width:calc(75rem * var(--tree-zoom, 1.5)); height:auto; display:block; margin-inline:auto;
+  width:calc(100% * var(--tree-zoom, 1.5));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1.5)));
+  /* the global svg max-width would clamp the zoom away */
+  max-width:none;
+  height:auto; display:block; margin-inline:auto;
 }
 .tree-zoom {
   display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
@@ -279,22 +296,47 @@ footer {
 }
 
 /* ---------- mobile ---------- */
+.qtoggle {
+  display:none; font:inherit; font-size:.82rem; line-height:1; cursor:pointer;
+  padding:.35rem .7rem; min-block-size:1.9rem; margin-inline-start:auto;
+  border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink);
+}
+.qtoggle:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+
 @media (max-width:40rem) {
-  :root { --anchor-off: 12rem; }
+  :root { --anchor-off: 7rem; --tree-zoom: 1; }
   body { font-size:1rem; overflow-wrap:anywhere; }
   bdi { overflow-wrap:anywhere; }
   .hero { padding:1.75rem 1rem 1.5rem; }
   main { padding:1.25rem 1rem 3rem; }
   .nav-in { padding:0 1rem; }
-  .nav-row { height:2.9rem; }
-  .qwrap { order:99; margin:0 0 .5rem; width:100%; }
+  .nav-row { height:2.4rem; }
+  /* one scrolling row instead of three wrapped ones: the sticky bar cost a
+     quarter of the screen and no link is lost by scrolling it */
+  .nav-row:first-child {
+    flex-wrap:nowrap; height:2.4rem; padding-block:0;
+    overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
+  }
+  .nav-row:first-child::-webkit-scrollbar { display:none; }
+  .chapters-wrap > summary { padding:.05rem 0; font-size:.72rem; line-height:1.4; }
+  .nav-row.chapters { height:2.2rem; }
+  .qtoggle { display:block; flex:0 0 auto; position:sticky; inset-inline-end:0;
+             box-shadow:-6px 0 8px rgba(250,247,242,.97); }
+  .qwrap { display:none; }
+  /* while searching, the row IS the search: the links step aside for it, and
+     nothing clips the results panel */
+  .nav.qopen .nav-row:first-child { overflow:visible; }
+  .nav.qopen .nav-row:first-child > a,
+  .nav.qopen .nav-row:first-child > .lbl { display:none; }
+  .nav.qopen .qwrap { display:block; flex:1 1 auto; margin:0; min-width:0; }
   #q { width:100%; min-width:0; }
   #qres { min-width:0; max-width:none; inline-size:100%; max-height:50vh; }
   main { padding-block-end:4.5rem; }   /* clearance for the floating button */
   td, th { overflow-wrap:break-word; }
-  .nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.5rem 0; overflow:visible; }
-  .nav-row:first-child > a, .nav-row:first-child > .lbl { margin-block-end:.35rem; }
-  .spine { display:grid; grid-template-columns:1fr 1fr; }
+  .tree-embed { max-block-size:70vh; overflow-y:auto; }
+  .spine { display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); }
+  /* an odd last tile would otherwise sit alone at half width */
+  .spine div:last-child:nth-child(odd) { grid-column:1/-1; }
   .spine div { min-width:0; padding:.45rem .6rem; }
   .spine b { font-size:1.1rem; }
   .gallery a { width:8.5rem; }
@@ -345,12 +387,12 @@ footer {
 <a class="skip" href="#report">דילוג לתוכן</a>
 <a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
 <span id="top"></span>
-<header class="hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><h1>ממכנאס לחולון: מרים בן הרוש לבית דהן</h1><p class="subject">1939, מכנאס — חולון · מחקר גנאלוגי מתועד-מקורות · בתחילתו</p><div class="meta">מהדורה 12 · נבנה 12.09.2026, 00:43</div><div class="spine"><div><b>1</b><span>רשומת עלייה, 15.1.1956</span></div><div><b>3</b><span>רשומות פנקס אליאנס</span></div><div><b>11</b><span>ערכי מקור</span></div><div><b>7</b><span>סריקות מקור שמורות</span></div><div><b>19</b><span>קובצי רשימות עולים שנסרקו</span></div></div></div></header>
-<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><span class="lbl">מקטעים</span><a href="#report">הדוח</a><a href="#tree">עץ המשפחה</a><a href="#gallery">מסמכי מפתח</a><a href="#people">אינדקס אנשים</a><a href="#index">אינדקס מקורות</a><a href="#changelog">יומן מהדורות</a><div class="qwrap"><input id="q" type="search" placeholder="חיפוש בעמוד…" aria-label="חיפוש בפרקים ובאינדקס האנשים" autocomplete="off" aria-controls="qres" hidden><div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div></div></div><details class="chapters-wrap" open><summary class="lbl">פרקים</summary><div class="nav-row chapters"><a href="#1-תמצית" title="1. תמצית">1 · תמצית</a><a href="#2-מה-ידוע-מהמשפחה" title="2. מה ידוע מהמשפחה">2 · מהמשפחה</a><a href="#3-הממצאים-במכנאס-פנקסי-אליאנס" title="3. הממצאים במכנאס — פנקסי אליאנס">3 · פנקסי אליאנס</a><a href="#4-הזיהוי-ושאלת-הגיל" title="4. הזיהוי ושאלת הגיל">4 · הזיהוי</a><a href="#5-רשומת-העלייה-ומה-לא-נמצא" title="5. רשומת העלייה — ומה לא נמצא">5 · מה לא נמצא</a><a href="#6-עץ-המשפחה" title="6. עץ המשפחה">6 · עץ המשפחה</a><a href="#7-פעולות-פתוחות" title="7. פעולות פתוחות">7 · פעולות פתוחות</a><a href="#8-סיכום-המקורות" title="8. סיכום המקורות">8 · המקורות</a><a href="#9-שיטה-ומגבלות" title="9. שיטה ומגבלות">9 · שיטה ומגבלות</a></div></details></div></nav>
+<header class="hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><h1>ממכנאס לחולון: מרים בן הרוש לבית דהן</h1><p class="subject">1939, מכנאס — חולון · מחקר גנאלוגי מתועד-מקורות · בתחילתו</p><div class="meta">מהדורה 13 · נבנה 12.09.2026</div><div class="spine"><div><b>1</b><span>רשומת עלייה, 15.1.1956</span></div><div><b>3</b><span>רשומות פנקס אליאנס</span></div><div><b>9</b><span>אנשים ברשימת 1956</span></div><div><b>7</b><span>סריקות מקור שמורות</span></div></div></div></header>
+<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><span class="lbl">מקטעים</span><a href="#report">הדוח</a><a href="#tree">עץ המשפחה</a><a href="#gallery">מסמכי מפתח</a><a href="#people">אינדקס אנשים</a><a href="#index">אינדקס מקורות</a><a href="#changelog">יומן מהדורות</a><button type="button" class="qtoggle" aria-expanded="false" aria-controls="q">חיפוש</button><div class="qwrap"><input id="q" type="search" placeholder="חיפוש בפרקים, אנשים ומקורות…" aria-label="חיפוש בפרקים, באנשים ובמקורות" autocomplete="off" aria-controls="qres" hidden><div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div></div></div><details class="chapters-wrap" open><summary class="lbl">פרקים</summary><div class="nav-row chapters"><a href="#s1-תמצית" title="1. תמצית">1 · תמצית</a><a href="#s2-מה-ידוע-מהמשפחה" title="2. מה ידוע מהמשפחה">2 · מהמשפחה</a><a href="#s3-הממצאים-במכנאס-פנקסי-אליאנס" title="3. הממצאים במכנאס — פנקסי אליאנס">3 · פנקסי אליאנס</a><a href="#s4-הזיהוי-ושאלת-הגיל" title="4. הזיהוי ושאלת הגיל">4 · הזיהוי</a><a href="#s5-רשומת-העלייה-ומה-לא-נמצא" title="5. רשומת העלייה — ומה לא נמצא">5 · מה לא נמצא</a><a href="#s6-עץ-המשפחה" title="6. עץ המשפחה">6 · עץ המשפחה</a><a href="#s7-פעולות-פתוחות" title="7. פעולות פתוחות">7 · פעולות פתוחות</a><a href="#s8-סיכום-המקורות" title="8. סיכום המקורות">8 · המקורות</a><a href="#s9-שיטה-ומגבלות" title="9. שיטה ומגבלות">9 · שיטה ומגבלות</a></div></details></div></nav>
 <main>
 <section id="report"><p class="note prov">העמוד הזה טוען את התצלומים ואת המסמכים ישירות מתיקיית <code>docs/</code> שלצדו — לחיצה על כל ראיה פותחת את קובץ המקור המלא.</p><div class="lede"><p><strong>מרים בן הרוש, לבית דהן</strong> — בפי המשפחה גם "מרי" — נולדה ב-1939 במכנאס שבמרוקו, בתם של <strong>שלום ויקוט דהן</strong>, ועלתה לישראל עם הוריה ב-1956. היא חיה בחולון. בעלה, <strong>מרדכי בן הרוש</strong> (<bdi dir="ltr">1931–2010</bdi>), הוא נושאו של <a href="../index.html#research-mordechai-benharoush">דף מחקר נלווה</a>.</p>
-<p>המחקר איתר אותה ואת שתי אחיותיה, <strong>רבקה ורחל</strong>, בפנקסי התלמידות של בית הספר לבנות של רשת "כל ישראל חברים" (אליאנס) במכנאס — שלוש רשומות נפרדות מהשנים 1949, 1950 ו-1953, ובשלושתן שמות ההורים <strong>Chalom</strong> ו-<strong>Yacot</strong>. אצל מרי נרשם גם מקצוע האב — ככל הנראה חייט — ומקום המגורים, המלאח הישן. שנת הלידה שבתעודת הזהות, 1939, מתיישבת עם הגיל שנרשם בפנקס.</p>
-<p>רשומת העלייה נמצאה: רשימת העולים של האונייה "ירושלים" מ-15.1.1956 רושמת את שלום (1920), יקוט (1921), מרי (1939), רבקה (1944) ורחל (1947), נשלחו לקריית שמונה. מה שטרם נמצא: תיעוד ההורים בירושלים. <strong>כל מקור מופיע פעמיים: קישור אל הרשומה בארכיון שממנו נלקחה, וקישור אל עותק שמור בתוך התיקייה הזאת.</strong> מה שלא אומת מסומן ככזה, וגם ממצא שלילי נרשם.</p></div>
+<p>המחקר איתר אותה ואת שתי אחיותיה, <strong>רבקה ורחל</strong>, בפנקסי התלמידות של בית הספר לבנות של רשת "כל ישראל חברים" (אליאנס) במכנאס — שלוש רשומות נפרדות מהשנים 1949, 1950 ו-1953, ובשלושתן שמות ההורים <strong>Chalom</strong> ו-<strong>Yacot</strong>. אצל מרי נרשמו גם מקצוע האב ומקום המגורים — בקיצורים שפענוחם, מתוך הפנקסים עצמם, הוא חייט והמלאח הישן. שנת הלידה שבתעודת הזהות, 1939, מתיישבת עם הגיל שנרשם בפנקס.</p>
+<p>רשומת העלייה נמצאה: רשימת העולים של האונייה "ירושלים" מ-15.1.1956 רושמת את שלום (1920), יקוט (1921), מרי (1939), רבקה (1944) ורחל (1947); כולם נשלחו לקריית שמונה. מה שטרם נמצא: תיעוד ההורים בירושלים. <strong>כל מקור מופיע פעמיים: קישור אל הרשומה בארכיון שממנו נלקחה, וקישור אל עותק שמור בתוך התיקייה הזאת.</strong> מה שלא אומת מסומן ככזה, וגם ממצא שלילי נרשם.</p></div>
 <p><strong>מאיפה להתחיל</strong></p>
 <ul>
 <li><a href="#s1">מי היא מרים</a> — התמצית והנתונים שמסרה המשפחה.</li>
@@ -360,11 +402,11 @@ footer {
 <li><a href="#s7">הפעולות הפתוחות</a> — מה יקדם את המחקר, לפי סדר התועלת.</li>
 </ul>
 <hr />
-<span id="s1" class="legacy-anchor"></span><h2 id="1-תמצית">1. תמצית</h2>
-<p>מרים בן הרוש (לבית דהן, בפי המשפחה גם "מרי") נולדה ב-1939 במכנאס שבמרוקו — כך בתעודת הזהות שלה (יום וחודש אינם רשומים), וכך גם עולה מפנקס אליאנס של 1949 — בתם של שלום ויקוט דהן, ועלתה לישראל ב-1956. המחקר איתר אותה ואת שתי אחיותיה, רבקה ורחל, בפנקסי התלמידות של בית הספר לבנות של אליאנס במכנאס, בשלוש רשומות נפרדות מהשנים 1949, 1950 ו-1953.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a><a href="#src-2" class="cit" title="אל ערך המקור">[2]</a><a href="#src-3" class="cit" title="אל ערך המקור">[3]</a> בשלוש הרשומות מופיעים שמות ההורים <strong>Chalom</strong> ו-<strong>Yacot</strong> — צירוף שאינו מופיע אצל אף משפחת דהן אחרת מבין כשבעים רשומות של תלמידות דהן ממכנאס שנבדקו.<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> אצל מרי נרשמו גם קיצורים שפענוחם הסביר הוא מקצוע האב — חייט — ומקום המגורים — המלאח הישן של מכנאס (ראו <a href="#s3-1">סעיף 3.1</a>; הפענוח הוא פרשנות).</p>
-<p>הזיהוי של שלוש הרשומות כמשפחתה של מרים מדורג <span class="rank v2">כמעט ודאי</span>. ליבת שלוש הרשומות — שם, גיל ושמות ההורים — <span class="rank v1">מאומת</span> בקריאה ישירה מהסריקה; שדות משניים (מגורים, מקצוע, תאריכי כניסה ויציאה) מדורגים בנפרד ב<a href="#s3">פרק 3</a>. הגיל בפנקס 1949 ("10 ans", כלומר ילידת 1939 בקירוב) מתיישב עם שנת הלידה שבתעודת הזהות; הזיכרון המשפחתי של 1941 היה קירוב — ראו <a href="#s4">פרק 4</a>.</p>
-<p>רשומת העלייה נמצאה במהדורה 10: רשימת העולים של "ירושלים" מ-15.1.1956 (ארכיון המדינה) רושמת את חמשת בני הבית עם שנות לידה, ואת יעד הקליטה — קריית שמונה; באותו עמוד גם אביו של שלום, חביב, שני אחיו מכלוף ושלומון על משפחותיהם, ודודתו צפורה (<a href="#s5-1">סעיף 5.1</a>).<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a> מה שטרם נמצא: תיעוד ההורים בירושלים. אלה מפורטים ב<a href="#s7">פרק 7</a> יחד עם הצעדים הבאים. על מרדכי בן הרוש, בעלה, ראו את <a href="../index.html#research-mordechai-benharoush">הדף הנלווה</a>.</p>
-<span id="s2" class="legacy-anchor"></span><h2 id="2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</h2>
+<span id="1-תמצית" class="legacy-anchor"></span><span id="s1" class="legacy-anchor"></span><h2 id="s1-תמצית">1. תמצית</h2>
+<p>מרים בן הרוש (לבית דהן, בפי המשפחה גם "מרי") נולדה ב-1939 במכנאס שבמרוקו — כך בתעודת הזהות שלה (יום וחודש אינם רשומים), וכך גם עולה מפנקס אליאנס של 1949 — בתם של שלום ויקוט דהן, ועלתה לישראל ב-1956. המחקר איתר אותה ואת שתי אחיותיה, רבקה ורחל, בפנקסי התלמידות של בית הספר לבנות של אליאנס במכנאס, בשלוש רשומות נפרדות מהשנים 1949, 1950 ו-1953.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a><a href="#src-2" class="cit" title="אל ערך המקור">[2]</a><a href="#src-3" class="cit" title="אל ערך המקור">[3]</a> בשלוש הרשומות מופיעים שמות ההורים <strong>Chalom</strong> ו-<strong>Yacot</strong> — צירוף שאינו חוזר באף אחת משש רשומות דהן ממכנאס שבהן נקראו שמות ההורים מהסריקה; ביתר 63 הרשומות שאותרו באינדקס שמות ההורים אינם מאונדקסים ולא נבדקו (<a href="#s9-4">N-4</a>).<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> אצל מרי נרשמו גם קיצורים שפענוחם — מתוך הפנקסים עצמם — הוא מקצוע האב, חייט, ומקום המגורים, המלאח הישן של מכנאס (ראו <a href="#s3-1">סעיף 3.1</a>).</p>
+<p>הזיהוי של שלוש הרשומות כמשפחתה של מרים מדורג <span class="rank v2">כמעט ודאי</span>. ליבת שלוש הרשומות — שם, גיל ושמות ההורים — <span class="rank v1">מאומת</span> בקריאה ישירה מהסריקה; שדות משניים (מגורים, מקצוע, תאריכי כניסה ויציאה) מדורגים בנפרד ב<a href="#s3">פרק 3</a>. הגיל בפנקס 1949 ("<bdi dir="ltr">10 ans</bdi>", כלומר ילידת 1939 בקירוב) מתיישב עם שנת הלידה שבתעודת הזהות; הזיכרון המשפחתי של 1941 היה קירוב — ראו <a href="#s4">פרק 4</a>.</p>
+<p>רשומת העלייה נמצאה: רשימת העולים של "ירושלים" מ-15.1.1956 (ארכיון המדינה) רושמת את חמשת בני הבית עם שנות לידה, ואת יעד הקליטה — קריית שמונה; באותו עמוד גם אביו של שלום, חביב, שני אחיו מכלוף ושלומון על משפחותיהם, ודודתו צפורה (<a href="#s5-1">סעיף 5.1</a>).<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a> מה שטרם נמצא: תיעוד ההורים בירושלים. אלה מפורטים ב<a href="#s7">פרק 7</a> יחד עם הצעדים הבאים. על מרדכי בן הרוש, בעלה, ראו את <a href="../index.html#research-mordechai-benharoush">הדף הנלווה</a>.</p>
+<span id="2-מה-ידוע-מהמשפחה" class="legacy-anchor"></span><span id="s2" class="legacy-anchor"></span><h2 id="s2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</h2>
 <p>המידע שנמסר בפתח המחקר ובמהלכו, והוא הבסיס לזיהוי — לא ראיה בפני עצמו:</p>
 <ul>
 <li>מרים בן הרוש, לבית דהן, "מרי". נולדה במכנאס, מרוקו. בתחילה נמסר 1941; לאחר בדיקה בתעודת הזהות — 1939 (ללא יום וחודש: "00.00.1939").</li>
@@ -379,11 +421,11 @@ footer {
 <li>יקוט דהן לא שינתה את שמה לנורית, למיטב ידיעת המשפחה.</li>
 <li>מרים בחיים, מתגוררת בחולון.</li>
 </ul>
-<span id="s3" class="legacy-anchor"></span><h2 id="3-הממצאים-במכנאס-פנקסי-אליאנס">3. הממצאים במכנאס — פנקסי אליאנס</h2>
-<p>בית הספר לבנות של אליאנס במכנאס (École Primaire de Filles — "בית ספר יסודי לבנות") ניהל פנקסי רישום תלמידות. הפנקסים שמורים בארכיון המרכזי לתולדות העם היהודי (CAHJP) בירושלים, סימול AIU‑MA‑240, ואונדקסו על ידי העמותה הישראלית לחקר שורשי המשפחה (IGRA). כל שורה בפנקס רושמת: מספר סידורי, שם המשפחה והשם הפרטי, גיל (או תאריך לידה), שמות ההורים, לאום, מקום מגורים ומקצוע ההורים, תאריכי כניסה ויציאה וסיבת היציאה.</p>
-<figure><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_1949_1400q82_8e88bb.jpg" alt="כותרות העמודות בפנקס אליאנס מכנאס, 1949" loading="lazy" decoding="async" width="1400" height="59"></a><figcaption><span class="fignum">איור 1</span> — מפתח העמודות — כותרות הפנקס (1949). משמאל לימין, כסדר הצרפתית: מס' סידורי (Nos d'ordre) · שם ושם פרטי (Nom et prénoms des enfants) · תאריך לידה או גיל משוער (<bdi dir="ltr">Date de la naissance ou, à défaut, âge approximatif</bdi>) · שמות ההורים (Nom des parents) · לאום (Nationalité) · מגורי ההורים (Domicile des parents) · תאריך כניסה (Date de l'entrée) · תאריך יציאה (Date de la sortie) · סיבת היציאה (Motif de la sortie) · הערות (Observations).</figcaption></figure>
-<h3 id="3-1-מרי-דהן-פנקס-1949"><span id="s3-1" class="legacy-anchor"></span>3.1 מרי דהן — פנקס 1949</h3>
-<div class="tablewrap"><table>
+<span id="3-הממצאים-במכנאס-פנקסי-אליאנס" class="legacy-anchor"></span><span id="s3" class="legacy-anchor"></span><h2 id="s3-הממצאים-במכנאס-פנקסי-אליאנס">3. הממצאים במכנאס — פנקסי אליאנס</h2>
+<p>בית הספר לבנות של אליאנס במכנאס (École Primaire de Filles — "בית ספר יסודי לבנות") ניהל פנקסי רישום תלמידות. הפנקסים שמורים בארכיון המרכזי לתולדות העם היהודי (CAHJP) בירושלים, סימול AIU‑MA‑240, ואונדקסו על ידי העמותה הישראלית לחקר שורשי המשפחה (IGRA). כל שורה בפנקס רושמת: מספר סידורי, שם המשפחה והשם הפרטי, גיל (או תאריך לידה), שמות ההורים (או האפוטרופוסים), לאום, מקום מגורים ומקצוע ההורים, תאריכי כניסה ויציאה, סיבת היציאה והערות.</p>
+<figure><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_1949_1400q82_2a617e.jpg" alt="כותרות העמודות בפנקס אליאנס מכנאס, 1949" loading="lazy" decoding="async" width="1400" height="59"></a><figcaption><span class="fignum">איור 1</span> — מפתח העמודות — כותרות הפנקס (1949). משמאל לימין, כסדר הצרפתית: מס' סידורי (Nos d'ordre) · שם ושם פרטי (Nom et prénoms des enfants) · תאריך לידה או גיל משוער (<bdi dir="ltr">Date de la naissance ou, à défaut, âge approximatif</bdi>) · שמות ההורים (Nom des parents) · לאום (Nationalité) · מגורי ההורים (Domicile des parents) · תאריך כניסה (Date de l'entrée) · תאריך יציאה (Date de la sortie) · סיבת היציאה (Motif de la sortie) · הערות (Observations).</figcaption></figure>
+<span id="3-1-מרי-דהן-פנקס-1949" class="legacy-anchor"></span><h3 id="s3-1-מרי-דהן-פנקס-1949"><span id="s3-1" class="legacy-anchor"></span>3.1 מרי דהן — פנקס 1949</h3>
+<div class="tablewrap"><table><caption class="visually-hidden">3.1 מרי דהן — פנקס 1949</caption>
 <thead>
 <tr>
 <th scope="col">שדה</th>
@@ -404,7 +446,7 @@ footer {
 </tr>
 <tr>
 <td>גיל</td>
-<td>10 ans (עשר שנים)</td>
+<td><bdi dir="ltr">10 ans</bdi> (עשר שנים)</td>
 <td><span class="rank v1">מאומת</span> — קריאה ברורה</td>
 </tr>
 <tr>
@@ -420,7 +462,7 @@ footer {
 <tr>
 <td>מגורים ומקצוע</td>
 <td>A.M. · Tail. ind.</td>
-<td><span class="rank v3">ככל הנראה</span> "Ancien Mellah" (המלאח הישן) · "Tailleur indigène" (חייט מקומי) — פענוח הקיצורים הוא פרשנות</td>
+<td><span class="rank v2">כמעט ודאי</span> "Ancien Mellah" (המלאח הישן) · "Tailleur indigène" (חייט מקומי) — הפענוח נסמך על הפנקסים עצמם: באותה עמודה בעמוד 1949 מופיעים A.M. ו-N.M. זה לצד זה ו-"Tailleur" כתוב במלואו בשורה הסמוכה (1616); בפנקס 1953 העמודה, שכותרתה "<bdi dir="ltr">Domicile et profession des parents</bdi>", כותבת "A. Mellah" ו-"N. Mellah" במלואם</td>
 </tr>
 <tr>
 <td>תאריך יציאה</td>
@@ -429,9 +471,9 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_marie_1949_1400q82_9bdad3.jpg" alt="שורת Dahan Marie בפנקס אליאנס מכנאס, 1949" loading="lazy" decoding="async" width="1400" height="77"></a><figcaption><span class="fignum">איור 2</span> — ראיה 1 — מרי דהן, פנקס 1949, מספר סידורי 1617 (שורה 7 בעמוד): «Dahan Marie · 10 ans · Chalom Yacot · M. · A.M. Tail. ind. · 54». השורות שמעל ומתחת נשארו לעיגון. המקור: <a href="#src-1">פנקס אליאנס מכנאס 1949, AIU‑MA‑240.1</a>.</figcaption></figure>
-<h3 id="3-2-רבקה-Rébéca-דהן-פנקס-1950"><span id="s3-2" class="legacy-anchor"></span>3.2 רבקה (Rébéca) דהן — פנקס 1950</h3>
-<div class="tablewrap"><table>
+<figure><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_marie_1949_1400q82_672370.jpg" alt="שורת Dahan Marie בפנקס אליאנס מכנאס, 1949" loading="lazy" decoding="async" width="1400" height="77"></a><figcaption><span class="fignum">איור 2</span> — מרי דהן, פנקס 1949, מספר סידורי 1617 (שורה 7 בעמוד): «Dahan Marie · <bdi dir="ltr">10 ans</bdi> · Chalom Yacot · M. · A.M. Tail. ind. · 54» — דהן מרי · בת 10 · שלום, יקוט · מרוקאית · המלאח הישן, חייט · [יציאה] 54. השורות שמעל ומתחת נשארו לעיגון. המקור: <a href="#src-1">פנקס אליאנס מכנאס 1949, AIU‑MA‑240.1</a>.</figcaption></figure>
+<span id="3-2-רבקה-Rébéca-דהן-פנקס-1950" class="legacy-anchor"></span><h3 id="s3-2-רבקה-Rébéca-דהן-פנקס-1950"><span id="s3-2" class="legacy-anchor"></span>3.2 רבקה (Rébéca) דהן — פנקס 1950</h3>
+<div class="tablewrap"><table><caption class="visually-hidden">3.2 רבקה (Rébéca) דהן — פנקס 1950</caption>
 <thead>
 <tr>
 <th scope="col">שדה</th>
@@ -452,7 +494,7 @@ footer {
 </tr>
 <tr>
 <td>גיל</td>
-<td>7 ans (שבע שנים)</td>
+<td><bdi dir="ltr">7 ans</bdi> (שבע שנים)</td>
 <td><span class="rank v1">מאומת</span></td>
 </tr>
 <tr>
@@ -462,8 +504,8 @@ footer {
 </tr>
 <tr>
 <td>כניסה</td>
-<td>התא בשורה ריק; בשורה הראשונה בעמוד (מס' 1871) רשום "Février 50" (פברואר 1950) והשורות שאחריה ממשיכות אותו — ולכן תחילת 1950</td>
-<td><span class="rank v3">ככל הנראה</span> — היקש מהשורה הראשונה, לא קריאה מהשורה עצמה</td>
+<td>התא ריק. אין סימני "כנ"ל" בעמודה, ובשורות אחרות באותו עמוד נרשמו תאריכי כניסה עצמאיים ומאוחרים (1873 — "oct 53"; 1888 — "51"). הרישום סמוך לתחילת 1950 נגזר מהמיקום ברצף הסידורי (1871 — "Février 50")</td>
+<td><span class="rank v4">טעון אימות</span> — היקש מסדר הרישום, לא קריאה מהשורה</td>
 </tr>
 <tr>
 <td>יציאה וסיבה</td>
@@ -472,10 +514,10 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_rebeca_1950_1400q82_d8af02.jpg" alt="שורת Dahan Rébéca בפנקס אליאנס מכנאס, 1950" loading="lazy" decoding="async" width="1400" height="71"></a><figcaption><span class="fignum">איור 3</span> — ראיה 2 — רבקה דהן, פנקס 1950, מספר סידורי 1878 (שורה 8 בעמוד): «Dahan Rébéca · 7 ans · Chalom ~ Yacot · … oct 55 · a quitté» — עזבה את בית הספר באוקטובר 1955. המקור: <a href="#src-2">פנקס אליאנס מכנאס 1950</a>.</figcaption></figure>
-<figure><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_1950_1400q82_fdaf63.jpg" alt="כותרת עמוד 1950 בפנקס אליאנס מכנאס ושורה 1871" loading="lazy" decoding="async" width="1400" height="95"></a><figcaption><span class="fignum">איור 4</span> — ראיה 3 — כותרת העמוד ושורה 1871 (Sebbag Fréha), שבעמודת הכניסה שלה רשום "Février 50". בשורות שאחריה, ובהן שורת רבקה, התא ריק — מכאן ההיקש שהרישום נעשה בתחילת 1950.</figcaption></figure>
-<h3 id="3-3-רחל-דהן-פנקס-1953"><span id="s3-3" class="legacy-anchor"></span>3.3 רחל דהן — פנקס 1953</h3>
-<div class="tablewrap"><table>
+<figure><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_rebeca_1950_1400q82_72bc0c.jpg" alt="שורת Dahan Rébéca בפנקס אליאנס מכנאס, 1950" loading="lazy" decoding="async" width="1400" height="71"></a><figcaption><span class="fignum">איור 3</span> — רבקה דהן, פנקס 1950, מספר סידורי 1878 (שורה 8 בעמוד): «Dahan Rébéca · <bdi dir="ltr">7 ans</bdi> · Chalom ~ Yacot · … oct 55 · a quitté» — עזבה את בית הספר באוקטובר 1955. המקור: <a href="#src-2">פנקס אליאנס מכנאס 1950</a>.</figcaption></figure>
+<figure><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_1950_1400q82_a2168d.jpg" alt="כותרת עמוד 1950 בפנקס אליאנס מכנאס ושורה 1871" loading="lazy" decoding="async" width="1400" height="95"></a><figcaption><span class="fignum">איור 4</span> — כותרת העמוד ושורה 1871 (Sebbag Fréha), שבעמודת הכניסה שלה רשום "Février 50". בשורות שאחריה, ובהן שורת רבקה, התא ריק; שורות 1873 ("oct 53") ו-1888 ("51") מראות שתא ריק אינו "כנ"ל" — ולכן ההיקש על תחילת 1950 נשען על הרצף הסידורי בלבד.</figcaption></figure>
+<span id="3-3-רחל-דהן-פנקס-1953" class="legacy-anchor"></span><h3 id="s3-3-רחל-דהן-פנקס-1953"><span id="s3-3" class="legacy-anchor"></span>3.3 רחל דהן — פנקס 1953</h3>
+<div class="tablewrap"><table><caption class="visually-hidden">3.3 רחל דהן — פנקס 1953</caption>
 <thead>
 <tr>
 <th scope="col">שדה</th>
@@ -486,7 +528,7 @@ footer {
 <tbody>
 <tr>
 <td>מספר סידורי</td>
-<td>3054 (שורה 4 בעמוד); בשולי העמוד, בעיפרון, סדרה נוספת (2351, 2352) שאינה חלק מהרישום</td>
+<td>3054 (שורה 4 בעמוד); בשולי העמוד, בעיפרון, סדרת מספור ארכיונית (2351, 2352…) שהיא בסיס מספרי המסמכים באינדקס IGRA (מסמך 2354)</td>
 <td><span class="rank v1">מאומת</span></td>
 </tr>
 <tr>
@@ -496,7 +538,7 @@ footer {
 </tr>
 <tr>
 <td>גיל</td>
-<td>6 ans (שש שנים)</td>
+<td><bdi dir="ltr">6 ans</bdi> (שש שנים)</td>
 <td><span class="rank v1">מאומת</span></td>
 </tr>
 <tr>
@@ -506,8 +548,8 @@ footer {
 </tr>
 <tr>
 <td>מגורים ומקצוע ההורים</td>
-<td>מילה אחת שקריאתה הסבירה היא "absente" (נעדרת)</td>
-<td><span class="rank v4">טעון אימות</span> — כתב היד לא פוענח בוודאות</td>
+<td>"absente" (נעדרת) — אותה מילה, באותה יד, חוזרת בשורות 3061 ו-3064 באותו עמוד</td>
+<td><span class="rank v3">ככל הנראה</span> כקריאה; <span class="rank v4">טעון אימות</span> במשמעות — האם נעדרת האם, המידע או הכתובת</td>
 </tr>
 <tr>
 <td>כניסה</td>
@@ -516,22 +558,22 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_rachel_1953_1400q82_cac00e.jpg" alt="שורת Dahan Rachel בפנקס אליאנס מכנאס, 1953" loading="lazy" decoding="async" width="1400" height="77"></a><figcaption><span class="fignum">איור 5</span> — ראיה 4 — רחל דהן, פנקס 1953, מספר סידורי 3054 (שורה 4 בעמוד): «Dahan Rachel · 6 ans · Chalom Yacot · [absente?] · Oct 53». עמודת הלאום מסומנת בסוגר "כנ"ל" מהשורה הראשונה (Marocaine). המקור: <a href="#src-3">פנקס אליאנס מכנאס 1953, AIU‑MA‑240.2</a>.</figcaption></figure>
-<h3 id="3-4-מועמדות-שנשללו"><span id="s3-4" class="legacy-anchor"></span>3.4 מועמדות שנשללו</h3>
-<p>בפנקסי מכנאס נבדקו כ-70 רשומות של תלמידות בשם דהן מהשנים <bdi dir="ltr">1937–1960</bdi>.<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> שלוש מהן היו מועמדות שדרשו בדיקה בסריקה עצמה, ונשללו לפי שמות ההורים: "Marie Dahan" בפנקס 1950 (מספר סידורי 1807, שורה 17 בעמוד, בת 7) — הוריה Aaron ו-Haciba;<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> "Rachel Dahan" בפנקס 1949 (מספר סידורי 1661, שורה 21 בעמוד, בת 10) — הוריה Maklouf ו-Simha;<a href="#src-9" class="cit" title="אל ערך המקור">[9]</a> ו"Rachel Dahan" ילידת 1948 בפנקס 1953 (מספר סידורי 3289, שורה 7 בעמוד) — הוריה Maklouf ו-Flory.<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> הפירוט המלא ב<a href="#s9-4">סעיף 9.4</a>.</p>
-<span id="s4" class="legacy-anchor"></span><h2 id="4-הזיהוי-ושאלת-הגיל">4. הזיהוי ושאלת הגיל</h2>
+<figure><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_rachel_1953_1400q82_0d88b7.jpg" alt="שורת Dahan Rachel בפנקס אליאנס מכנאס, 1953" loading="lazy" decoding="async" width="1400" height="77"></a><figcaption><span class="fignum">איור 5</span> — רחל דהן, פנקס 1953, מספר סידורי 3054 (שורה 4 בעמוד): «Dahan Rachel · <bdi dir="ltr">6 ans</bdi> · Chalom Yacot · [absente?] · Oct 53». עמודת הלאום מסומנת בסוגר "כנ"ל" מהשורה הראשונה (Marocaine). המקור: <a href="#src-3">פנקס אליאנס מכנאס 1953, AIU‑MA‑240.2</a>.</figcaption></figure>
+<span id="3-4-מועמדות-שנשללו" class="legacy-anchor"></span><h3 id="s3-4-מועמדות-שנשללו"><span id="s3-4" class="legacy-anchor"></span>3.4 מועמדות שנשללו</h3>
+<p>בפנקסי מכנאס אותרו באינדקס 69 רשומות של תלמידות בשם דהן מהשנים <bdi dir="ltr">1937–1960</bdi>.<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> שלוש מהן היו מועמדות שדרשו בדיקה בסריקה עצמה, ונשללו לפי שמות ההורים: "Marie Dahan" בפנקס 1950 (מספר סידורי 1807, שורה 17 בעמוד, בת 7) — הוריה Aaron ו-Haciba;<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> "Rachel Dahan" בפנקס 1949 (מספר סידורי 1661, שורה 21 בעמוד, בת 10) — הוריה Maklouf ו-Simha;<a href="#src-9" class="cit" title="אל ערך המקור">[9]</a> ו"Rachel Dahan" ילידת 1948 בפנקס 1953 (מספר סידורי 3289, שורה 7 בעמוד) — הוריה Maklouf ו-Flory.<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> הפירוט המלא ב<a href="#s9-4">סעיף 9.4</a>.</p>
+<span id="4-הזיהוי-ושאלת-הגיל" class="legacy-anchor"></span><span id="s4" class="legacy-anchor"></span><h2 id="s4-הזיהוי-ושאלת-הגיל">4. הזיהוי ושאלת הגיל</h2>
 <p>שלושת הפנקסים מצביעים על משפחה אחת: שלום ויקוט דהן במכנאס, שלוש בנות — מרי, רבקה ורחל — בהפרשי גיל של כארבע שנים (ילידות 1939, 1943 ו-1947 בקירוב, לפי הגילים הרשומים). צירוף השמות Chalom + Yacot אינו חוזר אצל אף משפחת דהן אחרת בפנקסים שנבדקו, ושמות הבנות זהים לשמות שמסרה המשפחה. הזיהוי מדורג <span class="rank v2">כמעט ודאי</span> על סמך שלוש הרשומות החיוביות המתכנסות יחד עם השמות שמסרה המשפחה; החיפוש השלילי (<a href="#s9-4">סעיף 9.4</a>) בפנקסים חלקיים ומאונדקסים ביד תומך בו אך אינו הבסיס לו.</p>
 <p>בפתח המחקר נמסר שמרים ילידת 1941, ואילו בפנקס 1949 נרשמה כבת עשר. הפער נסגר: בתעודת הזהות רשומה שנת הלידה 1939 (בלי יום וחודש), בהתאמה לפנקס.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> שלוש ההערות הבאות נשמרות כרקע, כי הגיל בפנקס הוא הערכה גם כשהוא מתיישב:</p>
 <ol>
-<li>עמודת הגיל בפנקס נושאת את הכותרת "<bdi dir="ltr">date de la naissance ou, à défaut, âge approximatif</bdi>" — תאריך לידה, ובהיעדרו גיל משוער. ברוב השורות בעמודי <bdi dir="ltr">1949–1950</bdi> שנבדקו נרשם גיל מעוגל (7, 8, 10, 10½), אך בחלק מהשורות באותם פנקסים כן נרשמה שנת לידה מדויקת (למשל 1942 בשורה האחרונה בעמוד 1949; בפנקס 1953 נרשמו תאריכי לידה מלאים). כלומר "10 ans" של מרי הוא הערכה של הרושם, לא נתון ממרשם.</li>
+<li>עמודת הגיל בפנקס נושאת את הכותרת "<bdi dir="ltr">date de la naissance ou, à défaut, âge approximatif</bdi>" — תאריך לידה, ובהיעדרו גיל משוער. ברוב השורות בעמודי <bdi dir="ltr">1949–1950</bdi> שנבדקו נרשם גיל מעוגל (7, 8, 10, 10½), אך בחלק מהשורות באותם פנקסים כן נרשמה שנת לידה מדויקת (למשל 1942 בשורה האחרונה בעמוד 1949; בכרך 1953 נרשמים ברוב העמודים גילים — "<bdi dir="ltr">6 ans</bdi>" — ובעמודים אחרים שנת לידה בלבד: 1948, 1950, 1951; תאריך לידה מלא לא נמצא באף עמוד שנקרא). כלומר "<bdi dir="ltr">10 ans</bdi>" של מרי הוא הערכה של הרושם, לא נתון ממרשם.</li>
 <li>גילים "מעוגלים כלפי מעלה" היו נהוגים ברישום לבתי ספר כדי לעמוד בגיל הקבלה.</li>
 <li>התאריך המשפחתי 1941 היה קירוב; תעודת הזהות הכריעה.</li>
 </ol>
-<p>רישום "00.00.1939" בתעודת הזהות מעיד שבעת הרישום בישראל לא היה בידי המשפחה תאריך לידה מלא — מצב מוכר אצל עולי מרוקו; תאריך מלא, אם קיים, יימצא ברישום האזרחי הצרפתי של מכנאס (<a href="#s7">פרק 7</a>, פעולה 5).</p>
-<span id="s5" class="legacy-anchor"></span><h2 id="5-רשומת-העלייה-ומה-לא-נמצא">5. רשומת העלייה — ומה לא נמצא</h2>
-<h3 id="5-1-רשימת-העולים-של-האונייה-ירושלים-15-1-1956"><span id="s5-1" class="legacy-anchor"></span>5.1 רשימת העולים של האונייה "ירושלים", 15.1.1956</h3>
-<p>ארכיון המדינה מחזיק את רשימות העולים של הסוכנות היהודית (חטיבה גל‑15498 עד גל‑15500).<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a> בקובץ ינואר–פברואר 1956 (גל‑15498/9), בעמוד 8 של הרשימה שכותרתה «"ירושלים" מיום 15.1.56», נמצא בלוק המשפחה במלואו — בדיוק לפי מה שמסרה המשפחה: האונייה, התאריך, וחמשת בני הבית. עמודות הרשימה: המשפחה והשם · הגיל (שנת לידה) · אב/אם (שמות ההורים של ראש המשפחה) · ארץ מוצא · מס' ת.ע. (תעודת עולה) · בוטח לקופ"ח · בנמל נשלח ל-.</p>
-<div class="tablewrap"><table>
+<p>מרישום "00.00.1939" בתעודת הזהות ניתן להסיק — <span class="rank v3">ככל הנראה</span> — שבעת הרישום בישראל לא היה בידי המשפחה תאריך לידה מלא; תאריך מלא, אם קיים, יימצא ברישום האזרחי הצרפתי של מכנאס (<a href="#s7">פרק 7</a>, פעולה 5).</p>
+<span id="5-רשומת-העלייה-ומה-לא-נמצא" class="legacy-anchor"></span><span id="s5" class="legacy-anchor"></span><h2 id="s5-רשומת-העלייה-ומה-לא-נמצא">5. רשומת העלייה — ומה לא נמצא</h2>
+<span id="5-1-רשימת-העולים-של-האונייה-ירושלים-15-1-1956" class="legacy-anchor"></span><h3 id="s5-1-רשימת-העולים-של-האונייה-ירושלים-15-1-1956"><span id="s5-1" class="legacy-anchor"></span>5.1 רשימת העולים של האונייה "ירושלים", 15.1.1956</h3>
+<p>ארכיון המדינה מחזיק את רשימות העולים של הסוכנות היהודית (חטיבה גל‑15498 עד גל‑15500).<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a> בקובץ ינואר–פברואר 1956 (גל‑<bdi dir="ltr">15498/9</bdi>), בעמוד 8 של הרשימה שכותרתה «"ירושלים" מיום 15.1.56», נמצא בלוק המשפחה במלואו — בדיוק לפי מה שמסרה המשפחה: האונייה, התאריך, וחמשת בני הבית. עמודות הרשימה: המשפחה והשם · הגיל (שנת לידה) · אב/אם (שמות ההורים של ראש המשפחה) · ארץ מוצא · מס' ת.ע. (תעודת עולה) · בוטח לקופ"ח · בנמל נשלח ל-.</p>
+<div class="tablewrap"><table><caption class="visually-hidden">5.1 רשימת העולים של האונייה &quot;ירושלים&quot;, 15.1.1956</caption>
 <thead>
 <tr>
 <th scope="col">שדה</th>
@@ -563,43 +605,50 @@ footer {
 <tr>
 <td>בני הבית</td>
 <td>יקוט 1921 · רבקה 1944 · רחל 1947 · מרי 1939</td>
-<td><span class="rank v1">מאומת</span></td>
+<td><span class="rank v1">מאומת</span> — השנים והשמות; הערה: בסריקה השמורה (800px) הגליפים ט/ם/ש אינם נפרדים בבירור (השוו "בוטח" בכותרת), ולכן "יקוט" ו"שלום" נקראים גם בעזרת השמות שמסרה המשפחה — <span class="rank v2">כמעט ודאי</span></td>
 </tr>
 <tr>
 <td>שורה נלווית</td>
-<td>"אם: צפורה 1880" · ב.נ. 104931</td>
+<td>"אם: צפורה 1880"</td>
 <td><span class="rank v1">מאומת</span> כקריאה; זהותה — ראו להלן</td>
+</tr>
+<tr>
+<td>ב.נ.</td>
+<td>104931 — מספר אחד לכל הבית, מודפס בסוף הבלוק (מכלוף — 104930; שלומון — 104929; באותו עמוד נכתב במפורש "למשפחה ב.נ. 104857")</td>
+<td><span class="rank v1">מאומת</span></td>
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img src="docs/ev_shalom_1956.jpg" alt="בלוק משפחת דהן ברשימת העולים של &quot;ירושלים&quot;, 15.1.1956" loading="lazy" decoding="async" width="1400" height="291"></a><figcaption><span class="fignum">איור 6</span> — ראיה 5 — שורות משפחת דהן ברשימת "ירושלים" מיום 15.1.1956, עמוד 8: «דהן שלום · 1920 · חביבי/צפורה · מרוקו · 91506 · כן · קרית שמונה», ומתחת: יקוט 1921, רבקה 1944, רחל 1947, מרי 1939, ו"אם: צפורה 1880". המקור: <a href="#src-6">ארכיון המדינה, גל‑15498/9</a>.</figcaption></figure>
-<figure><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img src="docs/ev_header_1956.jpg" alt="כותרת העמוד: &quot;ירושלים&quot; מיום 15.1.56 וכותרות העמודות" loading="lazy" decoding="async" width="1400" height="291"></a><figcaption><span class="fignum">איור 7</span> — ראיה 6 — כותרת העמוד: «"ירושלים" מיום 15.1.56», מספר העמוד 8, וכותרות העמודות.</figcaption></figure>
-<p><strong>מה הרשומה קובעת.</strong> זו הרשומה הרשמית הראשונה של המשפחה בישראל, והיא סוגרת את השאלה הפתוחה הראשונה של המחקר (T‑1). היא מאמתת ממסמך את שנת הלידה 1939 של מרים — בפעם השנייה, אחרי פנקס 1949 — ואת שנות הלידה של רבקה (1944) ורחל (1947), שעד כה נגזרו רק מגילים בפנקסי אליאנס (~1943, ~1947). היא נותנת לראשונה שנות לידה לשלום (1920) וליקוט (1921), שהמשפחה לא ידעה. והיא מאמתת את יעד הקליטה — קריית שמונה — שנמסר מהמשפחה באותו יום, לפני שהעמוד נקרא.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a></p>
-<p><strong>"צפורה" — דודה שנרשמה כאם.</strong> בעמודת ההורים של שלום נכתב "חביבי/צפורה", ומתחת למשפחה שורת "אם: צפורה 1880" — אישה ילידת 1880 בקירוב שהפליגה איתם ונרשמה כנלווית למשפחתו. לפי המשפחה (11.09.2026, לאחר שהעמוד הוצג לה) צפורה היא <strong>דודתו של שלום</strong>, שלא היו לה ילדים — לא אמו; אמו, מרים, לא עלתה.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> הרישום כ"אם" מתיישב עם זה כרישום מנהלי: קרובה מבוגרת וחשוכת ילדים שנלוותה למשפחת אחיינה נרשמה בעמודת ההורים ובשורת "אם", כדי לצרפה לתעודת העולה של הבית (ת.ע. 91506, ולה ב.נ. נפרד, 104931). כך "חביבי/צפורה" אינו זוג הורים ביולוגי אלא האב האמיתי לצד הקרובה הנלווית. <strong>הפירוש מדורג ככל הנראה</strong>: המסמך אומר "אם", המשפחה אומרת "דודה", והמסמך לא מתקן את המשפחה בשאלה שהיא יודעת מכלי ראשון.</p>
-<p><strong>שני אחים באותו עמוד.</strong> באותו עמוד רשומות עוד שתי משפחות דהן ממרוקו שנשלחו לקריית שמונה, ובשתיהן שמות ההורים "חביב/מרים" — כלומר הוריו של שלום כפי שמסרה המשפחה: <strong>דהן מכלוף</strong>, יליד 1903, עם סמחה 1912, חיים 1926, מרים 1938 וגאולה 1951 (ת.ע. 91498); ו<strong>דהן שלומון</strong>, יליד 1922 (ת.ע. 91497), שאליו נלווה "אב: חביב 1880". המשפחה אישרה: מכלוף ושלומון הם אחיו של שלום.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> כלומר, ב-15.1.1956 ירדו מ"ירושלים" שלושת האחים דהן על משפחותיהם, אביהם חביב (יליד ~1880) ודודתם צפורה (~1880) — שלושה עשר נפשות — וכולם נשלחו לקריית שמונה. הזיהוי של מכלוף ושלומון כאחים מדורג <span class="rank v2">כמעט ודאי</span>: שמות הורים זהים ברשומה, אותה אונייה ואותו יעד, ואישור המשפחה.</p>
-<p><strong>מה שהסריקה הקודמת החמיצה.</strong> הקובץ הזה נסרק גם בסבבים הקודמים, דרך ה-OCR בלבד, ולא נמצא — ה-OCR קרא את "שלום" כ"חלום" ואת "יקוט" כ"יקום". הרשומה אותרה רק כשחיפוש "חביב דהן" (השם שנמסר מהמשפחה) פגע בשורת מכלוף שבאותו עמוד, והעמוד נקרא מהסריקה עצמה. הלקח נרשם ב<a href="#s9-4">סעיף 9.4</a>, N‑1.</p>
-<h3 id="5-2-מרדכי-בן-הרוש"><span id="s5-2" class="legacy-anchor"></span>5.2 מרדכי בן הרוש</h3>
-<p>לפי המשפחה: יליד מכנאס, 1931, בן יונה ויקוט, עלה ב-1947 או 1948. מרדכי עצמו טרם תועד, אבל משפחתו נמצאה בשני מסמכים: אחותו אסתר בפנקס אליאנס מכנאס 1953 — באותו עמוד פנקס שבו רשומה רחל דהן — וההורים יונה ויקוט, עם ארבעה ילדים והאח יעקב, ברשימת העולים של "ארצה" מ-11.6.1956, נשלחו לצפת. שתי המשפחות, דהן ובן הרוש, חיו אפוא באותה עיר ועלו באותה שנה, בהפרש חמישה חודשים. הפירוט, המועמדים והצעדים הבאים ב<a href="../index.html#research-mordechai-benharoush">דף הנלווה</a>.</p>
-<h3 id="5-3-מועמדות-שנשללו-בישראל"><span id="s5-3" class="legacy-anchor"></span>5.3 מועמדות שנשללו בישראל</h3>
+<figure><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img src="docs/ev_shalom_1956.jpg" alt="בלוק משפחת דהן ברשימת העולים של &quot;ירושלים&quot;, 15.1.1956" loading="lazy" decoding="async" width="1400" height="291"></a><figcaption><span class="fignum">איור 6</span> — שורות משפחת דהן ברשימת "ירושלים" מיום 15.1.1956, עמוד 8: «דהן שלום · 1920 · חביבי/צפורה · מרוקו · 91506 · כן · קרית שמונה», ומתחת: יקוט 1921, רבקה 1944, רחל 1947, מרי 1939, ו"אם: צפורה 1880". המקור: <a href="#src-6">ארכיון המדינה, גל‑<bdi dir="ltr">15498/9</bdi></a>.</figcaption></figure>
+<figure><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img src="docs/ev_header_1956.jpg" alt="כותרת העמוד: &quot;ירושלים&quot; מיום 15.1.56 וכותרות העמודות" loading="lazy" decoding="async" width="1400" height="291"></a><figcaption><span class="fignum">איור 7</span> — כותרת העמוד: «"ירושלים" מיום 15.1.56», מספר העמוד 8, וכותרות העמודות.</figcaption></figure>
+<p><strong>מה הרשומה קובעת.</strong> זו הרשומה הרשמית הראשונה של המשפחה בישראל, והיא סוגרת את השאלה הפתוחה הראשונה של המחקר (T‑1). היא קובעת במסמך שנות לידה לראשונה: שלום 1920, יקוט 1921 (שהמשפחה לא ידעה), רבקה 1944, רחל 1947. לגבי מרים היא מתיישבת עם "<bdi dir="ltr">10 ans</bdi>" של 1949 ועם תעודת הזהות; לגבי רבקה היא מתקנת בשנה את הגיל שנרשם בפנקס (בת 7 בתחילת 1950 → ~1943) — פער של שנה, מאותו סוג שתואר ב<a href="#s4">פרק 4</a>; רחל מתיישבת (בת 6 ב-1953). והיא מאמתת את יעד הקליטה — קריית שמונה — שנמסר מהמשפחה באותו יום, לפני שהעמוד נקרא.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a></p>
+<p><strong>"צפורה" — דודה שנרשמה כאם.</strong> בעמודת ההורים של שלום נכתב "חביבי/צפורה", ומתחת למשפחה שורת "אם: צפורה 1880" — אישה ילידת 1880 בקירוב שהפליגה איתם ונרשמה כנלווית למשפחתו. לפי המשפחה (11.09.2026, לאחר שהעמוד הוצג לה) צפורה היא <strong>דודתו של שלום</strong>, שלא היו לה ילדים — לא אמו; אמו, מרים, לא עלתה.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> הרישום כ"אם" מתיישב עם זה כרישום מנהלי: קרובה מבוגרת וחשוכת ילדים שנלוותה למשפחת אחיינה נרשמה בעמודת ההורים ובשורת "אם"; התוצאה בפועל: היא נכללה בבלוק המשפחתי, בתעודת העולה של הבית (ת.ע. 91506) ובמספר ה-ב.נ. שלו (104931). כך "חביבי/צפורה" אינו זוג הורים ביולוגי אלא האב האמיתי לצד הקרובה הנלווית. <strong>הפירוש מדורג ככל הנראה</strong>: המסמך אומר "אם", המשפחה אומרת "דודה", ובשאלה שהמשפחה יודעת מכלי ראשון עדותה גוברת על רישום מנהלי.</p>
+<p><strong>שני אחים באותו עמוד.</strong> באותו עמוד רשומות עוד שתי משפחות דהן ממרוקו שנשלחו לקריית שמונה, ובשתיהן שמות ההורים "חביב/מרים" — כלומר הוריו של שלום כפי שמסרה המשפחה: <strong>דהן מכלוף</strong>, יליד 1903, עם סמחה 1912, חיים 1926, מרים 1938 וגאולה 1951 (ת.ע. 91496); ו<strong>דהן שלומון</strong>, יליד 1922 (ת.ע. 91497), שאליו נלווה "אב: חביב 1880". המשפחה אישרה: מכלוף ושלומון הם אחיו של שלום.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> כלומר, ב-15.1.1956 ירדו מ"ירושלים" שלושת האחים דהן על משפחותיהם, אביהם חביב (יליד ~1880) ודודתם צפורה (~1880) — שלוש-עשרה נפש בבלוקים האלה — וכולם נשלחו לקריית שמונה.</p>
+<figure><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img src="docs/ev_dahan_1956.jpg" alt="שלוש משפחות דהן באותו עמוד — מכלוף, שלום, שלומון" loading="lazy" decoding="async" width="1400" height="776"></a><figcaption><span class="fignum">איור 8</span> — שלוש משפחות דהן ברשימת "ירושלים", עמוד 8: מכלוף (1903, חביב/מרים, ת.ע. 91496), שלום (1920, "חביבי/צפורה", ת.ע. 91506) עם יקוט, רבקה, רחל, מרי ו"אם: צפורה 1880", ושלומון (1922, חביב/מרים, ת.ע. 91497) עם "אב: חביב 1880". בין הבלוקים משפחת דדון — אינה קשורה.</figcaption></figure>
+<p>וגבוה יותר באותו עמוד, כעשרים שורות מעל בלוק מכלוף, שלוש שורות דהן יחידניות: <strong>מסעודי</strong> 1944 (ת.ע. 91530), <strong>רחל</strong> 1941 (91532) ו<strong>לורם(?)</strong> 1942 (91531), שלושתם על שם ההורים "מכלוף/שמחה", מרוקו, לא בוטחו, ונשלחו — לפי סימן "כנ"ל" מהשורה שמעליהם — ל<strong>רמת הדסה</strong>. "מכלוף/שמחה" הם שמות הזוג שבבלוק מכלוף (מכלוף 1903 · סמחה 1912), ולכן <span class="rank v3">ככל הנראה</span> אלה שלושה ילדים נוספים של מכלוף, בני <bdi dir="ltr">12–15</bdi>, שנשלחו לחוד למוסד נוער ולכן נרשמו בנפרד. אם כך, ירדו מהאונייה לפחות שש-עשרה נפשות ממשפחת חביב דהן. הזיהוי טרם אושר במשפחה (<a href="#s7">פרק 7</a>, פעולה 1). הזיהוי של מכלוף ושלומון כאחים מדורג <span class="rank v2">כמעט ודאי</span>: שמות הורים זהים ברשומה, אותה אונייה ואותו יעד, ואישור המשפחה.</p>
+<p><strong>מה שהסריקה הקודמת החמיצה.</strong> הקובץ הזה נסרק גם בסבבים הקודמים, דרך ה-OCR בלבד, ולא נמצא — אי-ההבחנה בין ט/ם/ש בסריקה גררה תעתיק OCR שגוי: "חלום" ו"יקום". הרשומה אותרה רק כשחיפוש "חביב דהן" (השם שנמסר מהמשפחה) פגע בשורת מכלוף שבאותו עמוד, והעמוד נקרא מהסריקה עצמה. הלקח נרשם ב<a href="#s9-4">סעיף 9.4</a>, N‑1.</p>
+<span id="5-2-מרדכי-בן-הרוש" class="legacy-anchor"></span><h3 id="s5-2-מרדכי-בן-הרוש"><span id="s5-2" class="legacy-anchor"></span>5.2 מרדכי בן הרוש</h3>
+<p>לפי המשפחה: יליד מכנאס, 1931, בן יונה ויקוט (בפי המשפחה: פנינה), עלה ב-1947 או 1948 — לבדו, לפני משפחתו. מרדכי עצמו טרם תועד, אבל משפחתו נמצאה בשני מסמכים: אחותו אסתר בפנקס אליאנס מכנאס 1953 — באותו עמוד פנקס שבו רשומה רחל דהן — וההורים יונה ויקוט, עם ארבעה ילדים והאח יעקב, ברשימת העולים של "ארצה" מ-11.6.1956, נשלחו לצפת. שתי המשפחות, דהן ובן הרוש, חיו אפוא באותה עיר ועלו באותה שנה, בהפרש חמישה חודשים. הפירוט, המועמדים והצעדים הבאים ב<a href="../index.html#research-mordechai-benharoush">דף הנלווה</a>.</p>
+<span id="5-3-מועמדות-שנשללו-בישראל" class="legacy-anchor"></span><h3 id="s5-3-מועמדות-שנשללו-בישראל"><span id="s5-3" class="legacy-anchor"></span>5.3 מועמדות שנשללו בישראל</h3>
 <p>רשומת שינוי שם "מרים (מרי) בן-הרוש (הרוש)", חדרה, 21.9.1972<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a> — נראתה בתחילה מבטיחה בגלל הכינוי "מרי", אך היא חלק מקבוצה של תשעה בני משפחה בשם הרוש שהחליפו יחד את שם משפחתם ל"בן-הרוש" בחדרה (רחמה נחמה, אפרת, סגלית, משה, מסעוד, שרה, מרים, מאיר ופנחס). מרים שם היא בת למשפחת הרוש, לא כלה לבית דהן, והמשפחה בחדרה ולא בחולון. <strong>נשלל</strong>.</p>
 <p>רשומת שינוי שם "נורית (יקוט) דהן", ירושלים, 19.5.1970<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> — נבדקה מול המשפחה: יקוט לא שינתה את שמה. <strong>נשלל</strong> — ככל הנראה אישה אחרת.</p>
-<span id="s6" class="legacy-anchor"></span><h2 id="6-עץ-המשפחה">6. עץ המשפחה</h2>
+<span id="6-עץ-המשפחה" class="legacy-anchor"></span><span id="s6" class="legacy-anchor"></span><h2 id="s6-עץ-המשפחה">6. עץ המשפחה</h2>
 <p>העץ מוצג בתרשים ב<a href="#tree">מקטע העץ</a>. בטקסט:</p>
 <ul>
 <li><strong>חביב דהן</strong> — יליד 1880 בקירוב (רשימת 1956); אביו של שלום, מכלוף ושלומון; עלה ב"ירושלים" ב-1956, רשום כ"אב" הנלווה למשפחת שלומון — <span class="rank v2">כמעט ודאי</span>. <strong>מרים דהן</strong> — אשתו, אמם של השלושה ("חביב/מרים" בשורות מכלוף ושלומון); לא עלתה (משפחה).</li>
 <li><strong>צפורה דהן</strong> — דודתו של שלום, ילידת 1880 בקירוב, ללא ילדים; עלתה איתם ונרשמה "אם" ליד משפחת שלום (משפחה; רשימת 1956) — ראו <a href="#s5-1">סעיף 5.1</a>.</li>
-<li><strong>מכלוף דהן</strong> (1903) — אחיו של שלום; אשתו סמחה (1912), ילדיו חיים (1926), מרים (1938), גאולה (1951) — רשימת 1956, אישור המשפחה. <strong>שלומון דהן</strong> (1922) — אחיו של שלום; עלה עם אביו חביב.</li>
+<li><strong>מכלוף דהן</strong> (1903) — אחיו של שלום; אשתו סמחה (1912), ילדיו חיים (1926), מרים (1938), גאולה (1951) — רשימת 1956, אישור המשפחה; וככל הנראה גם מסעודי (1944), רחל (1941) ולורם(?) (1942), שנרשמו בנפרד לרמת הדסה. <strong>שלומון דהן</strong> (1922) — אחיו של שלום; עלה עם אביו חביב.</li>
 <li><strong>יצחק אבוטבול</strong> ו<strong>רבקה אבוטבול</strong> — הוריה של יקוט; לא עלו לארץ (משפחה, 11.09.2026; טרם תועדו במסמך). רבקה הנכדה נושאת, ככל הנראה, את שם סבתה.</li>
 <li><strong>שלום דהן</strong> — יליד 1920 (רשימת העולים 1956); בן חביב ו— לפי הרשימה — צפורה (המשפחה: מרים; ראו <a href="#s5-1">סעיף 5.1</a>); ככל הנראה חייט במלאח הישן של מכנאס (פענוח הקיצורים "Tail. ind." ו-"A.M." בפנקס 1949); נשלח מהנמל לקריית שמונה (רשימה, מאומת), כחצי שנה, ואז ירושלים (משפחה). נפטר ב-15 ביוני, כנראה 1979 (משפחה) — <span class="rank v4">טעון אימות</span>.</li>
 <li><strong>יקוט דהן לבית אבוטבול</strong> — ילידת 1921 (רשימת העולים 1956); בת יצחק ורבקה; אשתו; קריית שמונה וירושלים. נפטרה ב-3 במרץ 1976 (משפחה) — <span class="rank v4">טעון אימות</span>.</li>
-<li><strong>מרים (מרי) בן הרוש לבית דהן</strong> — נולדה 1939 (תעודת זהות; פנקס 1949: "10 ans"; רשימת 1956: "מרי 1939"); עלתה 15.1.1956 עם הוריה באונייה "ירושלים" (רשימת העולים, מאומת); נישאה למרדכי בן הרוש; חולון.</li>
+<li><strong>מרים (מרי) בן הרוש לבית דהן</strong> — נולדה 1939 (תעודת זהות; פנקס 1949: "<bdi dir="ltr">10 ans</bdi>"; רשימת 1956: "מרי 1939"); עלתה 15.1.1956 עם הוריה באונייה "ירושלים" (רשימת העולים, מאומת); נישאה למרדכי בן הרוש; חולון.</li>
 <li><strong>רבקה דהן</strong> — 1944 (רשימת 1956; פנקס 1950: בת 7); עזבה את בית הספר באוקטובר 1955.</li>
 <li><strong>רחל דהן</strong> — 1947 (רשימת 1956; פנקס 1953: בת 6).</li>
-<li><strong>מרדכי בן הרוש</strong> — בעלה של מרים; יליד 1931, בן יונה ויקוט, עלה 1947/48, נפטר 2010 (הכול לפי המשפחה; טרם תועד במסמך) — <a href="../index.html#research-mordechai-benharoush">הדף הנלווה</a>.</li>
+<li><strong>מרדכי בן הרוש</strong> — בעלה של מרים; יליד 1931, בן יונה ויקוט (פנינה), עלה <bdi dir="ltr">1947/48</bdi> לבדו, נפטר 2010 (לפי המשפחה; משפחתו תועדה ברשומות 1953 ו-1956) — <a href="../index.html#research-mordechai-benharoush">הדף הנלווה</a>.</li>
 </ul>
-<span id="s7" class="legacy-anchor"></span><h2 id="7-פעולות-פתוחות">7. פעולות פתוחות</h2>
-<p>לפי מה שממצא ישנה, לא לפי קלות החיפוש:</p>
-<div class="tablewrap"><table>
+<span id="7-פעולות-פתוחות" class="legacy-anchor"></span><span id="s7" class="legacy-anchor"></span><h2 id="s7-פעולות-פתוחות">7. פעולות פתוחות</h2>
+<p>לפי מידת השינוי שהממצא יחולל, לא לפי קלות החיפוש:</p>
+<div class="tablewrap"><table><caption class="visually-hidden">7. פעולות פתוחות</caption>
 <thead>
 <tr>
 <th scope="col">#</th>
@@ -611,7 +660,7 @@ footer {
 <tbody>
 <tr>
 <td>1</td>
-<td><strong>ענפי מכלוף ושלומון דהן</strong> — צאצאיהם בישראל (קריית שמונה ואילך); שמה המלא של צפורה (שם נעורים? אלמנה?) ומה עלה בגורלה</td>
+<td><strong>ענפי מכלוף ושלומון דהן</strong> — לאשר במשפחה שמסעודי, רחל ולורם(?) (רמת הדסה 1956) הם ילדי מכלוף; צאצאיהם בישראל (קריית שמונה ואילך); שמה המלא של צפורה (שם נעורים? אלמנה?) ומה עלה בגורלה</td>
 <td>שני ענפים חדשים של המשפחה שנפתחו מהרשימה; צפורה — קרובה שאין לה צאצאים, ולכן זיכרונה תלוי ברישום הזה</td>
 <td>משפחה, ואז ארכיון</td>
 </tr>
@@ -624,7 +673,7 @@ footer {
 <tr>
 <td>3</td>
 <td><strong>פטירת ההורים</strong> — שלום: 15 ביוני, כנראה 1979; יקוט: 3 במרץ 1976</td>
-<td>לחפש ב-IGRA (קבורות ירושלים, פנקסי הר המנוחות/גבעת שאול) ובמודעות האבל בעיתונות יוני 1979 (JPress); חברה קדישא ירושלים. הרשומה תקבע שנת פטירה ולעיתים גם גיל ושם אב — כלומר אימות עצמאי של "חביב"</td>
+<td>חברה קדישא ירושלים (קהילת ירושלים / פרושים), אתרי מצבות (גלעד, BillionGraves), עיתונות (ל-IGRA אין מסד קבורות ירושלים — <a href="#s9-5">סעיף 9.5</a>). הרשומה תקבע שנת פטירה ולעיתים גם גיל ושם אב — כלומר אימות עצמאי של "חביב"</td>
 <td>ארכיון</td>
 </tr>
 <tr>
@@ -653,17 +702,17 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<span id="s8" class="legacy-anchor"></span><h2 id="8-סיכום-המקורות">8. סיכום המקורות</h2>
-<p>הרשימה המלאה, עם הקישור הכפול לכל ערך, ב<a href="#index">אינדקס המקורות</a>. בקצרה: שלושת פנקסי אליאנס (ערכים <a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-3">3</a>) הם הראיות החיוביות; ערכים <a href="#src-7">7</a>–<a href="#src-9">9</a> הם המועמדות שנשללו בסריקה; ערך <a href="#src-10">10</a> הוא סקר הרשומות; ערכים <a href="#src-4">4</a>–<a href="#src-6">6</a> הם החיפושים בישראל; ערך <a href="#src-11">11</a> הוא מקור עזר על האונייה "ירושלים".</p>
-<span id="s9" class="legacy-anchor"></span><h2 id="9-שיטה-ומגבלות">9. שיטה ומגבלות</h2>
-<h3 id="9-1-בסיס-הראיות"><span id="s9-1" class="legacy-anchor"></span>9.1 בסיס הראיות</h3>
-<p>הדוח נשען על שלושה סוגי מקורות: פנקסי בית ספר של אליאנס (מקור ראשוני, בכתב יד, בצרפתית); מאגרי IGRA (אינדקס — מקור עזר שמוביל אל הסריקה); ורשימות העולים של ארכיון המדינה דרך אוסף Google Pinpoint (מקור ראשוני שנקרא דרך שכבת OCR רועשת). המידע המשפחתי נרשם ב<a href="#s2">פרק 2</a> ומדורג כזיכרון, לא כרשומה.</p>
-<h3 id="9-2-סולם-הוודאות"><span id="s9-2" class="legacy-anchor"></span>9.2 סולם הוודאות</h3>
-<p>ארבע דרגות: <span class="rank v1">מאומת</span> — נקרא ישירות מהמסמך, קריאה ברורה; <span class="rank v2">כמעט ודאי</span> — מסמכים מתכנסים ללא סתירה; <span class="rank v3">ככל הנראה</span> — פרשנות סבירה או קריאה בכתב יד קשה; <span class="rank v4">טעון אימות</span> — לא פוענח או לא נבדק. מסמך מדורג בנפרד מן הזיהוי שנשען עליו: שורת הפנקס "מאומתת", ואילו הזיהוי שהיא שורתה של מרים — "כמעט ודאי".</p>
-<h3 id="9-3-מוסכמות-הכתיב"><span id="s9-3" class="legacy-anchor"></span>9.3 מוסכמות הכתיב</h3>
-<p>בעברית: דהן, בן הרוש, מכנאס. בצרפתית של הפנקסים: <bdi dir="ltr">Dahan, Chalom, Yacot, Marie, Rébéca, Rachel.</bdi> שמות המקומות: מכנאס = Meknès = مكناس. מספרי הפנקסים מצוטטים לפי "מספר סידורי N (שורה K בעמוד)".</p>
-<h3 id="9-4-ממצאים-שליליים"><span id="s9-4" class="legacy-anchor"></span>9.4 ממצאים שליליים</h3>
-<div class="tablewrap"><table>
+<span id="8-סיכום-המקורות" class="legacy-anchor"></span><span id="s8" class="legacy-anchor"></span><h2 id="s8-סיכום-המקורות">8. סיכום המקורות</h2>
+<p>הרשימה המלאה, עם הקישור הכפול לכל ערך, ב<a href="#index">אינדקס המקורות</a>. בקצרה: שלושת פנקסי אליאנס (ערכים <a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-3">3</a>) הם הראיות החיוביות; ערכים <a href="#src-7">7</a>–<a href="#src-9">9</a> הם המועמדות שנשללו בסריקה; ערך <a href="#src-10">10</a> הוא סקר הרשומות; ערך <a href="#src-6">6</a> הוא רשומת העלייה — הראיה התיעודית השנייה בחשיבותה; ערך <a href="#src-4">4</a> הוא המסירות המשפחתיות; ערך <a href="#src-5">5</a> מועמדת שנשללה בישראל; ערך <a href="#src-11">11</a> רקע על האונייה.</p>
+<span id="9-שיטה-ומגבלות" class="legacy-anchor"></span><span id="s9" class="legacy-anchor"></span><h2 id="s9-שיטה-ומגבלות">9. שיטה ומגבלות</h2>
+<span id="9-1-בסיס-הראיות" class="legacy-anchor"></span><h3 id="s9-1-בסיס-הראיות"><span id="s9-1" class="legacy-anchor"></span>9.1 בסיס הראיות</h3>
+<p>הדוח נשען על שלושה סוגי מקורות: פנקסי בית ספר של אליאנס (מקור ראשוני, בכתב יד, בצרפתית); מאגרי IGRA (אינדקס — מקור עזר שמוביל אל הסריקה); ורשימות העולים של ארכיון המדינה דרך אוסף Google Pinpoint (מקור ראשוני שנקרא מהסריקה; שכבת ה-OCR שימשה לאיתור בלבד והתבררה כלא אמינה — ראו <a href="#s5-1">5.1</a> ו-N-1). המידע המשפחתי נרשם ב<a href="#s2">פרק 2</a> ומדורג כזיכרון, לא כרשומה.</p>
+<span id="9-2-סולם-הוודאות" class="legacy-anchor"></span><h3 id="s9-2-סולם-הוודאות"><span id="s9-2" class="legacy-anchor"></span>9.2 סולם הוודאות</h3>
+<p>חמש דרגות: <span class="rank v1">מאומת</span> — נקרא ישירות מהמסמך, קריאה ברורה; <span class="rank v2">כמעט ודאי</span> — מסמכים מתכנסים ללא סתירה; <span class="rank v3">ככל הנראה</span> — פרשנות סבירה או קריאה בכתב יד קשה; <span class="rank v4">טעון אימות</span> — לא פוענח או לא נבדק; <strong>נשלל</strong> — מועמד שהפרטים ברשומה סותרים. ממצא שלילי שהופרך בהמשך מסומן <strong>בוטל</strong>. מסמך מדורג בנפרד מן הזיהוי שנשען עליו: שורת הפנקס "מאומתת", ואילו הזיהוי שהיא שורתה של מרים — "כמעט ודאי".</p>
+<span id="9-3-מוסכמות-הכתיב" class="legacy-anchor"></span><h3 id="s9-3-מוסכמות-הכתיב"><span id="s9-3" class="legacy-anchor"></span>9.3 מוסכמות הכתיב</h3>
+<p>בעברית: דהן, בן הרוש, מכנאס. בצרפתית של הפנקסים: <bdi dir="ltr">Dahan, Chalom, Yacot, Marie, Rébéca, Rachel</bdi> (בפנקס 1950 הכתיב נוטה ל-Jacot; בדוח מאוחד ל-Yacot). שמות המקומות: מכנאס = Meknès = مكناس. מספרי הפנקסים מצוטטים לפי "מספר סידורי N (שורה K בעמוד)".</p>
+<span id="9-4-ממצאים-שליליים" class="legacy-anchor"></span><h3 id="s9-4-ממצאים-שליליים"><span id="s9-4" class="legacy-anchor"></span>9.4 ממצאים שליליים</h3>
+<div class="tablewrap"><table><caption class="visually-hidden">9.4 ממצאים שליליים</caption>
 <thead>
 <tr>
 <th scope="col">#</th>
@@ -677,9 +726,9 @@ footer {
 <tr>
 <td>N-1</td>
 <td>משפחת דהן ברשימות העולים <bdi dir="ltr">1955–1957</bdi></td>
-<td>ארכיון המדינה, 19 קבצים, גל-15498/4 עד גל-15500/5, דרך OCR</td>
-<td><strong>בוטל</strong> — הבלוק נמצא בגל-15498/9 עמ' 8 (<a href="#s5-1">5.1</a>); ה-OCR שיבש "שלום"→"חלום" ו"יקוט"→"יקום", ולכן החיפוש הטקסטואלי החמיץ אותו</td>
-<td><strong>נמצא</strong> — ממצא שלילי שבוטל</td>
+<td>ארכיון המדינה, 19 קבצים, גל-<bdi dir="ltr">15498/4</bdi> עד גל-<bdi dir="ltr">15500/5</bdi>, דרך OCR</td>
+<td><strong>בוטל</strong> — הבלוק נמצא בגל-<bdi dir="ltr">15498/9</bdi> עמ' 8 (<a href="#s5-1">5.1</a>); ה-OCR שיבש "שלום"→"חלום" ו"יקוט"→"יקום", ולכן החיפוש הטקסטואלי החמיץ אותו</td>
+<td><strong>בוטל</strong></td>
 </tr>
 <tr>
 <td>N-2</td>
@@ -712,15 +761,15 @@ footer {
 <tr>
 <td>N-6</td>
 <td>יקוט → נורית (ירושלים 1970)</td>
-<td>IGRA, שינויי שמות<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a></td>
+<td>IGRA, שינויי שמות (<bdi dir="ltr">IGRA-1969-79-nc-NOIMAGES-46514</bdi>)<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a></td>
 <td>המשפחה: לא שינתה את שמה</td>
 <td><strong>נשלל</strong></td>
 </tr>
 </tbody>
 </table></div>
-<h3 id="9-5-חסמים"><span id="s9-5" class="legacy-anchor"></span>9.5 חסמים</h3>
-<p>FamilySearch דורש אסימון גישה (token) שלא הוגדר — חיפוש הטקסט המלא ברשומות מרוקו לא בוצע. בסבבים <bdi dir="ltr">7–9</bdi> לא היה חיבור לכלי הארכיון; במהדורה 10 החיבור חזר ורשימת העולים נקראה. IGRA אינו מכיל מסד קבורות לירושלים, ולכן פטירות ההורים (1976, 1979) עדיין לא אותרו במסמך; JPress לא העלה מודעות אבל בשמות "יקוט דהן" (מרץ 1976) ו"שלום דהן" (יוני–יולי 1979). הרישום האזרחי הצרפתי במרוקו נגיש רק דרך ארכיונים בצרפת ובמרוקו.</p>
-<h3 id="9-6-מה-הדוח-אינו-עושה"><span id="s9-6" class="legacy-anchor"></span>9.6 מה הדוח אינו עושה</h3>
+<span id="9-5-חסמים" class="legacy-anchor"></span><h3 id="s9-5-חסמים"><span id="s9-5" class="legacy-anchor"></span>9.5 חסמים</h3>
+<p>FamilySearch דורש אסימון גישה (token) שלא הוגדר — חיפוש הטקסט המלא ברשומות מרוקו לא בוצע. IGRA אינו מכיל מסד קבורות לירושלים, ולכן פטירות ההורים (1976, 1979) עדיין לא אותרו במסמך; JPress לא העלה מודעות אבל בשמות "יקוט דהן" (מרץ 1976) ו"שלום דהן" (יוני–יולי 1979). הרישום האזרחי הצרפתי במרוקו נגיש רק דרך ארכיונים בצרפת ובמרוקו.</p>
+<span id="9-6-מה-הדוח-אינו-עושה" class="legacy-anchor"></span><h3 id="s9-6-מה-הדוח-אינו-עושה"><span id="s9-6" class="legacy-anchor"></span>9.6 מה הדוח אינו עושה</h3>
 <p>אינו מתעד את מקום הקבורה של בני המשפחה; אינו מכיל פרטים מזהים של אנשים חיים מעבר לשמות ולמקום מגורים כללי; אינו מסתמך על עצים משפחתיים מקוונים.</p></section><hr><section id="tree"><h2>עץ המשפחה</h2><div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="-10 0 790 405" width="790" height="405" font-family="'David Libre','Frank Ruhl Libre',Georgia,serif">
  <title>עץ המשפחה — חביב ומרים דהן, יצחק ורבקה אבוטבול; שלום ויקוט דהן, בנותיהם מרים, רבקה ורחל, ובעלה של מרים מרדכי בן הרוש</title>
  <g fill="none" stroke="#c5ccc7" stroke-width="1.5">
@@ -750,158 +799,163 @@ footer {
   <text x="80" y="300">מרדכי בן הרוש</text>
  </g>
  <g fill="#5e6b73" font-size="12" text-anchor="middle">
-  <text x="145" y="78">חביב ~1880 עלה 1956; מרים לא · הבנים: מכלוף, שלום, שלומון</text>
-  <text x="385" y="78">הוריה של יקוט · לא עלו לארץ</text>
-  <text x="145" y="183">1920 · חייט? מכנאס · ק. שמונה, ירושלים · נפ׳ 15.6.1979?</text>
-  <text x="385" y="183">1921 · קריית שמונה, ירושלים · נפ׳ 3.3.1976</text>
+  <text x="145" y="78">חביב ~1880 עלה 1956 · מרים לא</text>
+  <text x="385" y="78">הוריה של יקוט · לא עלו</text>
+  <text x="145" y="183">1920 · חייט, מכנאס · ירושלים · נפ׳ 1979?</text>
+  <text x="385" y="183">1921 · ירושלים · נפ׳ 3.3.1976</text>
   <text x="287" y="300">לבית דהן · נולדה 1939 (ת"ז; פנקס 1949)</text>
-  <text x="287" y="316">מכנאס · "ירושלים", 15.1.1956 (רשימה) · חולון</text>
+  <text x="287" y="316">מכנאס · עלתה 15.1.1956 · חולון</text>
   <text x="467" y="300">1944 (רשימת 1956; פנקס 1950)</text>
   <text x="467" y="316">עזבה את ביה"ס באוקטובר 1955</text>
   <text x="647" y="300">1947 (רשימת 1956; פנקס 1953)</text>
   <text x="80" y="321">בעלה · 1931 עד 2010 · בן יונה ויקוט</text>
  </g>
-</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלת העץ</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val">100%</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button></div><div class="legend"><span><i class="sw focus"></i> נושאת המחקר</span><span><i class="sw"></i> בן משפחה</span><span><i class="sw marr"></i> נישואין</span><span>~ — שנה שנגזרה מגיל בפנקס</span></div><p class="tree-foot">שנות הלידה של שלום, יקוט, רבקה ורחל — מרשימת העולים של 15.1.1956; של מרים — מתעודת הזהות ומהרשימה. תאריכי הפטירה של שלום ויקוט — לפי המשפחה. פרטי מרדכי והוריו, וכן הדור של חביב ומרים ושל יצחק ורבקה אבוטבול (מסגרת מקווקוות) — לפי המשפחה, טרם תועדו במסמך.</p><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="gallery"><h2>מסמכי מפתח</h2><p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. לחיצה פותחת את הסריקה המלאה.</p><div class="gallery"><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_marie_1949_440_9bdad3.jpg" alt="מרי דהן — פנקס אליאנס מכנאס 1949, מס׳ 1617" loading="lazy" decoding="async" width="440" height="24"><span>מרי דהן — פנקס אליאנס מכנאס 1949, מס׳ 1617</span></a><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_rebeca_1950_440_d8af02.jpg" alt="רבקה דהן — פנקס 1950, מס׳ 1878" loading="lazy" decoding="async" width="440" height="22"><span>רבקה דהן — פנקס 1950, מס׳ 1878</span></a><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_rachel_1953_440_cac00e.jpg" alt="רחל דהן — פנקס 1953, מס׳ 3054" loading="lazy" decoding="async" width="440" height="24"><span>רחל דהן — פנקס 1953, מס׳ 3054</span></a><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_shalom_1956_440_7acf12.jpg" alt="משפחת דהן — רשימת העולים של &quot;ירושלים&quot;, 15.1.1956" loading="lazy" decoding="async" width="440" height="91"><span>משפחת דהן — רשימת העולים של "ירושלים", 15.1.1956</span></a><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_dahan_1956_440_cd3068.jpg" alt="שלוש משפחות דהן באותו עמוד — מכלוף, שלום, שלומון" loading="lazy" decoding="async" width="440" height="243"><span>שלוש משפחות דהן באותו עמוד — מכלוף, שלום, שלומון</span></a><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_header_1949_440_8e88bb.jpg" alt="כותרות העמודות של הפנקס" loading="lazy" decoding="async" width="440" height="18"><span>כותרות העמודות של הפנקס</span></a></div></section><hr><section id="people"><h2>אינדקס האנשים</h2><p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p><div class="people"><div class="person"><b><a href="#s1">מרים (מרי) בן הרוש לבית דהן</a></b><span class="d">נ׳ 1939, מכנאס</span><span class="r">נושאת המחקר; פנקס אליאנס מכנאס 1949; עלתה 1956; חולון</span><span hidden><bdi dir="ltr">Miriam Mary Marie Mari Dahan Ben Harush Benharoush Benharoch</bdi> דהאן בנהרוש בן-הרוש מכנאס Meknes</span></div><div class="person"><b><a href="#s6">שלום דהן</a></b><span class="r">אביה; ככל הנראה חייט במלאח הישן של מכנאס; לימים ירושלים</span><span hidden>Shalom Chalom Dahan דהאן חייט Tailleur Mellah</span></div><div class="person"><b><a href="#s6">יקוט דהן</a></b><span class="r">אמה; לימים ירושלים</span><span hidden>Yakut Yacot Yacout Yakot יאקוט יקות Dahan</span></div><div class="person"><b><a href="#s3-2">רבקה דהן</a></b><span class="d">נ׳ ~1943</span><span class="r">אחותה; פנקס אליאנס 1950, עזבה אוקטובר 1955</span><span hidden><bdi dir="ltr">Rivka Rebecca Rébéca Rebeca Dahan</bdi></span></div><div class="person"><b><a href="#s3-3">רחל דהן</a></b><span class="d">נ׳ ~1947</span><span class="r">אחותה; פנקס אליאנס 1953</span><span hidden>Rachel Dahan</span></div><div class="person"><b><a href="#s5-2">מרדכי בן הרוש</a></b><span class="d"><bdi dir="ltr">1931 – 2010</bdi></span><span class="r">בעלה; בן יונה ויקוט, עלה 1947/48 — דף מחקר נלווה</span><span hidden><bdi dir="ltr">Mordechai Mordekhai Mardochée Ben Harush Benharoush</bdi> מרדושי</span></div></div></section><hr><section id="index"><h2>אינדקס המקורות</h2><h3>רשימת מקורות</h3>
+</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלה</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val" aria-labelledby="tree-zoom-label">×1</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button><button type="button" data-tree-zoom="fit">התאמה לרוחב</button></div><div class="legend"><span><i class="sw focus"></i> נושאת המחקר</span><span><i class="sw"></i> בן משפחה</span><span><i class="sw marr"></i> נישואין</span><span>~ — שנה מקורבת (רשימת 1956)</span></div><p class="tree-foot">שנות הלידה של שלום, יקוט, רבקה ורחל — מרשימת העולים של 15.1.1956; של מרים — מתעודת הזהות ומהרשימה. תאריכי הפטירה של שלום ויקוט — לפי המשפחה. חביב (~1880) — מרשימת העולים; מרים דהן ויצחק ורבקה אבוטבול (מסגרת מקווקוות) — לפי המשפחה בלבד. פרטי מרדכי — לפי המשפחה. צפורה, דודתו של שלום, עלתה איתם (רשימת 1956).</p><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree-view.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="gallery"><h2>מסמכי מפתח</h2><p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. לחיצה פותחת את הסריקה המלאה.</p><div class="gallery"><a class="wide" href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_marie_1949_440_672370.jpg" alt="מרי דהן — פנקס אליאנס מכנאס 1949, מס׳ 1617" loading="lazy" decoding="async" width="440" height="24"><span>מרי דהן — פנקס אליאנס מכנאס 1949, מס׳ 1617</span></a><a class="wide" href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_rebeca_1950_440_72bc0c.jpg" alt="רבקה דהן — פנקס 1950, מס׳ 1878" loading="lazy" decoding="async" width="440" height="22"><span>רבקה דהן — פנקס 1950, מס׳ 1878</span></a><a class="wide" href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_rachel_1953_440_0d88b7.jpg" alt="רחל דהן — פנקס 1953, מס׳ 3054" loading="lazy" decoding="async" width="440" height="24"><span>רחל דהן — פנקס 1953, מס׳ 3054</span></a><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_shalom_1956_440_d18888.jpg" alt="משפחת דהן — רשימת העולים של &quot;ירושלים&quot;, 15.1.1956" loading="lazy" decoding="async" width="440" height="91"><span>משפחת דהן — רשימת העולים של "ירושלים", 15.1.1956</span></a><a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_dahan_1956_440_90859d.jpg" alt="שלוש משפחות דהן באותו עמוד — מכלוף, שלום, שלומון" loading="lazy" decoding="async" width="440" height="243"><span>שלוש משפחות דהן באותו עמוד — מכלוף, שלום, שלומון</span></a><a class="wide" href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_header_1949_440_2a617e.jpg" alt="כותרות העמודות של הפנקס" loading="lazy" decoding="async" width="440" height="18"><span>כותרות העמודות של הפנקס</span></a></div></section><hr><section id="people"><h2>אינדקס האנשים</h2><p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p><div class="people"><div class="person"><b><a href="#s1">מרים (מרי) בן הרוש לבית דהן</a></b><span class="d">נ׳ 1939, מכנאס</span><span class="r">נושאת המחקר; פנקס אליאנס מכנאס 1949; עלתה 1956; חולון</span><span hidden><bdi dir="ltr">Miriam Mary Marie Mari Dahan Ben Harush Benharoush Benharoch</bdi> דהאן בנהרוש בן-הרוש מכנאס Meknes</span></div><div class="person"><b><a href="#s6">שלום דהן</a></b><span class="d">נ׳ 1920</span><span class="r">אביה; חייט במלאח הישן של מכנאס (פנקס 1949); &quot;ירושלים&quot; 1956 → קריית שמונה; ירושלים; נפטר 15.6.1979? (משפחה)</span><span hidden>Shalom Chalom Dahan דהאן חייט Tailleur Mellah</span></div><div class="person"><b><a href="#s6">יקוט דהן לבית אבוטבול</a></b><span class="d">נ׳ 1921</span><span class="r">אמה; בת יצחק ורבקה אבוטבול; &quot;ירושלים&quot; 1956; ירושלים; נפטרה 3.3.1976 (משפחה)</span><span hidden><bdi dir="ltr">Yakut Yacot Yacout Yakot Jacot</bdi> יאקוט יקות אבוטבול Abitbol Dahan</span></div><div class="person"><b><a href="#s5-1">חביב דהן</a></b><span class="d">נ׳ ~1880</span><span class="r">סבה; אבי שלום, מכלוף ושלומון; עלה ב&quot;ירושלים&quot; 1956</span><span hidden>Habib Dahan חביב</span></div><div class="person"><b><a href="#s5-1">צפורה דהן</a></b><span class="d">נ׳ ~1880</span><span class="r">דודתו של שלום; נרשמה &quot;אם&quot; ברשימת 1956; עלתה איתם</span><span hidden>Tzipora Zipora צפורה Dahan</span></div><div class="person"><b><a href="#s5-1">מכלוף ושלומון דהן</a></b><span class="d"><bdi dir="ltr">1903 · 1922</bdi></span><span class="r">אחיו של שלום; באותה רשימה, לקריית שמונה</span><span hidden><bdi dir="ltr">Makhlouf Maklouf Salomon Shlomon Dahan</bdi> סמחה שמחה</span></div><div class="person"><b><a href="#s3-2">רבקה דהן</a></b><span class="d">נ׳ 1944</span><span class="r">אחותה; פנקס אליאנס 1950, עזבה אוקטובר 1955</span><span hidden><bdi dir="ltr">Rivka Rebecca Rébéca Rebeca Dahan</bdi></span></div><div class="person"><b><a href="#s3-3">רחל דהן</a></b><span class="d">נ׳ 1947</span><span class="r">אחותה; פנקס אליאנס 1953</span><span hidden>Rachel Dahan</span></div><div class="person"><b><a href="#s5-2">מרדכי בן הרוש</a></b><span class="d"><bdi dir="ltr">1931 – 2010</bdi></span><span class="r">בעלה; בן יונה ויקוט (פנינה), עלה <bdi dir="ltr">1947/48</bdi> לבדו — דף מחקר נלווה</span><span hidden><bdi dir="ltr">Mordechai Mordekhai Mardochée Ben Harush Benharoush</bdi> מרדושי</span></div></div></section><hr><section id="index"><h2>אינדקס המקורות</h2><h3>רשימת מקורות</h3>
 <p>רשימת המקורות שעליהם נשען הדוח. לכל ערך: מהות המקור ומעמדו, ההפניה החיצונית למסמך המקורי, העותק המקומי השמור בתיקיית המחקר, ומה בדיוק הוא מוכיח. "עותק מקומי" פירושו עותק של <strong>המסמך עצמו</strong> — סריקת הרשומה — ולא צילום של דף האינטרנט שמפנה אליו. כל המקורות נצפו בספטמבר 2026.</p>
-<h2 id="מקורות-ראשוניים-פנקסי-אליאנס-מכנאס">מקורות ראשוניים — פנקסי אליאנס, מכנאס</h2>
-<h3 id="1-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1949-מספר-סידורי-1617"><span id="src-1" class="legacy-anchor"></span>1. פנקס בית הספר לבנות של אליאנס במכנאס, 1949 — מספר סידורי 1617 <em>(עוגן המחקר)</em></h3>
+<h3 id="מקורות-ראשוניים-פנקסי-אליאנס-מכנאס">מקורות ראשוניים — פנקסי אליאנס, מכנאס</h3>
+<span id="1-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1949-מספר-סידורי-1617" class="legacy-anchor"></span><h4 id="s1-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1949-מספר-סידורי-1617"><span id="src-1" class="legacy-anchor"></span>1. פנקס בית הספר לבנות של אליאנס במכנאס, 1949 — מספר סידורי 1617 <em>(עוגן המחקר)</em></h4>
 <ul>
 <li><strong>מהות:</strong> פנקס רישום תלמידות, כתב יד בצרפתית. CAHJP, סימול AIU‑MA‑240.1; אונדקס על ידי IGRA (מסמך 1617, שורה 24 באינדקס).</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby00ODE0OQ==" target="_blank" rel="noopener">IGRA-AIU-Morocco-48149<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a> · <a href="docs/ev_marie_1949.jpg" target="_blank" rel="noopener">חיתוך השורה</a> · <a href="docs/ev_header_1949.jpg" target="_blank" rel="noopener">כותרות העמודות</a></li>
-<li><strong>מה הוא מוכיח:</strong> Dahan Marie, בת 10, הורים Chalom ו-Yacot, מרוקאית; ככל הנראה המלאח הישן, אב חייט; יציאה 1954. מאומת: שם, גיל, הורים.</li>
+<li><strong>מה הוא מוכיח:</strong> Dahan Marie, בת 10, הורים Chalom ו-Yacot, מרוקאית; המלאח הישן, אב חייט (כמעט ודאי — פענוח מתוך הפנקסים); יציאה 1954. מאומת: שם, גיל, הורים.</li>
 </ul>
-<h3 id="2-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1950-מספר-סידורי-1878"><span id="src-2" class="legacy-anchor"></span>2. פנקס בית הספר לבנות של אליאנס במכנאס, 1950 — מספר סידורי 1878</h3>
+<span id="2-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1950-מספר-סידורי-1878" class="legacy-anchor"></span><h4 id="s2-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1950-מספר-סידורי-1878"><span id="src-2" class="legacy-anchor"></span>2. פנקס בית הספר לבנות של אליאנס במכנאס, 1950 — מספר סידורי 1878</h4>
 <ul>
 <li><strong>מהות:</strong> אותו פנקס, AIU‑MA‑240.1; IGRA מסמך 1878, שורה 8.</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01MTQyNw==" target="_blank" rel="noopener">IGRA-AIU-Morocco-51427<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a> · <a href="docs/ev_rebeca_1950.jpg" target="_blank" rel="noopener">חיתוך השורה</a> · <a href="docs/ev_header_1950.jpg" target="_blank" rel="noopener">כותרת העמוד ושורה 1871</a></li>
-<li><strong>מה הוא מוכיח:</strong> Dahan Rébéca, בת 7, הורים Chalom ו-Yacot; עזבה באוקטובר 1955 ("a quitté"). כניסה תחילת 1950 — היקש.</li>
+<li><strong>מה הוא מוכיח:</strong> Dahan Rébéca (הכתיב בעמוד נוטה ל-Jacot), בת 7, הורים Chalom ו-Yacot; עזבה באוקטובר 1955 ("a quitté"). כניסה תחילת 1950 — היקש מהרצף הסידורי, טעון אימות.</li>
 </ul>
-<h3 id="3-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-3054"><span id="src-3" class="legacy-anchor"></span>3. פנקס בית הספר לבנות של אליאנס במכנאס, 1953 — מספר סידורי 3054</h3>
+<span id="3-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-3054" class="legacy-anchor"></span><h4 id="s3-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-3054"><span id="src-3" class="legacy-anchor"></span>3. פנקס בית הספר לבנות של אליאנס במכנאס, 1953 — מספר סידורי 3054</h4>
 <ul>
 <li><strong>מהות:</strong> הכרך השני, AIU‑MA‑240.2; IGRA מסמך 2354, שורה 4 (המספר הסידורי בפנקס עצמו: 3054).</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01NDEyNw==" target="_blank" rel="noopener">IGRA-AIU-Morocco-54127<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a> · <a href="docs/ev_rachel_1953.jpg" target="_blank" rel="noopener">חיתוך השורה</a></li>
-<li><strong>מה הוא מוכיח:</strong> Dahan Rachel, בת 6, הורים Chalom ו-Yacot; כניסה אוקטובר 1953. המילה בעמודת המגורים ("absente"?) — טעון אימות.</li>
+<li><strong>מה הוא מוכיח:</strong> Dahan Rachel, בת 6, הורים Chalom ו-Yacot; כניסה אוקטובר 1953. בעמודת המגורים "absente" (ככל הנראה כקריאה; משמעותה טעונה אימות).</li>
 </ul>
-<h2 id="מאגרים-ישראליים">מאגרים ישראליים</h2>
-<h3 id="4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך"><span id="src-4" class="legacy-anchor"></span>4. מסירות משפחתיות (ספטמבר 2026) <em>(מקור משפחתי — ללא מסמך)</em></h3>
+<h3 id="מאגרים-ישראליים">מאגרים ישראליים</h3>
+<span id="4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך" class="legacy-anchor"></span><h4 id="s4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך"><span id="src-4" class="legacy-anchor"></span>4. מסירות משפחתיות (ספטמבר 2026) <em>(מקור משפחתי — ללא מסמך)</em></h4>
 <ul>
 <li><strong>מהות:</strong> פרטים שנמסרו ישירות בידי בני המשפחה: שנת הלידה 1939 מתעודת הזהות ("00.00.1939"); העלייה עם ההורים באונייה "ירושלים", 15.1.1956; שמות ההורים והאחיות; הוריו של שלום — חביב ומרים; הוריה של יקוט — יצחק ורבקה אבוטבול (שם נעוריה של יקוט: אבוטבול); חביב עלה עם המשפחה ב-1956, מרים דהן ויצחק ורבקה אבוטבול לא עלו; שלום נפטר ב-15 ביוני, כנראה 1979; אחרי העלייה — כחצי שנה בקריית שמונה ואז ירושלים; לא היו ילדים נוספים; שלום ויקוט ככל הנראה לא למדו באליאנס; יקוט נפטרה 3.3.1976; מכלוף ושלומון דהן — אחיו של שלום; צפורה — דודתו של שלום, ללא ילדים (שניהם אושרו לאחר הצגת רשימת 1956); פרטי מרדכי; שיקוט לא שינתה את שמה.</li>
 <li><strong>מה הוא מוכיח:</strong> נקודת המוצא לזיהוי — <a href="#s2">פרק 2</a>. מדורג כזיכרון משפחתי, לא כרשומה, למעט שנת הלידה שנקראה מתעודת הזהות.</li>
 <li><strong>הערה:</strong> אין הפניה חיצונית — מסירה בעל-פה; תעודת הזהות עצמה לא צולמה לדוח.</li>
 </ul>
-<h3 id="5-ילקוט-הפרסומים-1859-1972-עמ'-95-שורות-31-39-קבוצת-הרוש-בן-"><span id="src-5" class="legacy-anchor"></span>5. ילקוט הפרסומים 1859 (1972), עמ' 95, שורות <bdi dir="ltr">31–39</bdi> — קבוצת הרוש → בן-הרוש, חדרה <em>(נשלל)</em></h3>
+<span id="5-ילקוט-הפרסומים-1859-1972-עמ'-95-שורות-31-39-קבוצת-הרוש-בן-" class="legacy-anchor"></span><h4 id="s5-ילקוט-הפרסומים-1859-1972-עמ'-95-שורות-31-39-קבוצת-הרוש-בן-"><span id="src-5" class="legacy-anchor"></span>5. ילקוט הפרסומים 1859 (1972), עמ' 95, שורות <bdi dir="ltr">31–39</bdi> — קבוצת הרוש → בן-הרוש, חדרה <em>(נשלל)</em></h4>
 <ul>
 <li><strong>מהות:</strong> הודעה בדבר שינויי שם, משרד הפנים; אונדקס ב-IGRA (שינויי שמות לאחר 1948).</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTY5LTc5LW5jLU5PSU1BR0VTLTQwMjg1" target="_blank" rel="noopener"><bdi dir="ltr">IGRA-1969-79-nc-NOIMAGES-40285</bdi><span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>מה הוא מוכיח:</strong> "מרים (מרי) בן-הרוש (הרוש)" בחדרה היא אחת מתשעה בני משפחת הרוש — לא כלה לבית דהן. מועמדת שנשללה (<a href="#s5-3">סעיף 5.3</a>).</li>
 <li><strong>הערה:</strong> אין עותק מקומי — רשומת אינדקס ללא סריקה ("NOIMAGES").</li>
 </ul>
-<h3 id="6-ארכיון-המדינה-רשימת-העולים-של-האונייה-ירושלים-15-1-1956-עמ"><span id="src-6" class="legacy-anchor"></span>6. ארכיון המדינה — רשימת העולים של האונייה "ירושלים", 15.1.1956, עמוד 8 (גל-15498/9, "רשימת עולים ינואר–פברואר 1956") <em>(רשומת העלייה)</em></h3>
+<span id="6-ארכיון-המדינה-רשימת-העולים-של-האונייה-ירושלים-15-1-1956-עמ" class="legacy-anchor"></span><h4 id="s6-ארכיון-המדינה-רשימת-העולים-של-האונייה-ירושלים-15-1-1956-עמ"><span id="src-6" class="legacy-anchor"></span>6. ארכיון המדינה — רשימת העולים של האונייה "ירושלים", 15.1.1956, עמוד 8 (גל-<bdi dir="ltr">15498/9</bdi>, "רשימת עולים ינואר–פברואר 1956") <em>(רשומת העלייה)</em></h4>
 <ul>
 <li><strong>מהות:</strong> רשימת עולים של הסוכנות היהודית, מכונת כתיבה עברית; העמוד השמיני של הרשימה שכותרתה «"ירושלים" מיום 15.1.56». עמודות: המשפחה והשם · הגיל · אב/אם · ארץ מוצא · מס' ת.ע. · בוטח לקופ"ח · בנמל נשלח ל-. נגיש דרך אוסף ארכיון המדינה ב-Google Pinpoint (עמוד 47 בקובץ ה-PDF, במניין מ-1).</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://journaliststudio.google.com/pinpoint/document-view?collection=585158a3cc8e02af&amp;docid=d642803cdffdfd92_585158a3cc8e02af" target="_blank" rel="noopener">הקובץ ב-Pinpoint<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://journaliststudio.google.com/backlight/serve/image?document_id=d642803cdffdfd92_585158a3cc8e02af&amp;page_number=46&amp;width=800" target="_blank" rel="noopener">סריקת העמוד (800px)<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/1956-01-15_yerushalayim_p8.jpg" target="_blank" rel="noopener">העמוד המלא</a> · <a href="docs/ev_shalom_1956.jpg" target="_blank" rel="noopener">שורות משפחת שלום</a> · <a href="docs/ev_dahan_1956.jpg" target="_blank" rel="noopener">שלוש משפחות דהן</a> · <a href="docs/ev_header_1956.jpg" target="_blank" rel="noopener">כותרת העמוד</a></li>
-<li><strong>מה הוא מוכיח:</strong> דהן שלום (1920), הורים "חביבי/צפורה", מרוקו, ת.ע. 91506, נשלח לקרית שמונה; יקוט 1921, רבקה 1944, רחל 1947, מרי 1939; "אם: צפורה 1880". באותו עמוד: דהן מכלוף (1903, חביב/מרים) ודהן שלומון (1922, חביב/מרים, "אב: חביב 1880") — לקרית שמונה. מאומת: כל הקריאות. מכלוף ושלומון — אחיו של שלום (אישור המשפחה); "צפורה" — דודתו, נרשמה "אם" (<a href="#s5-1">סעיף 5.1</a>).</li>
-<li><strong>הערה:</strong> אותו אוסף (19 קבצים, <bdi dir="ltr">1955–1957</bdi>) נסרק קודם דרך OCR בלבד ולא העלה את הבלוק — ראו N-1.</li>
+<li><strong>מה הוא מוכיח:</strong> דהן שלום (1920), הורים "חביבי/צפורה", מרוקו, ת.ע. 91506, נשלח לקרית שמונה; יקוט 1921, רבקה 1944, רחל 1947, מרי 1939; "אם: צפורה 1880"; ב.נ. 104931 לכל הבית. באותו עמוד: דהן מכלוף (1903, חביב/מרים, ת.ע. 91496) ודהן שלומון (1922, חביב/מרים, ת.ע. 91497, "אב: חביב 1880") — לקרית שמונה; וגבוה יותר מסעודי 1944, רחל 1941, לורם(?) 1942 (מכלוף/שמחה) — לרמת הדסה. השנים והמספרים — מאומת; "יקוט"/"שלום" — כמעט ודאי (ראו הערה). מכלוף ושלומון — אחיו של שלום (אישור המשפחה); "צפורה" — דודתו, נרשמה "אם" (<a href="#s5-1">סעיף 5.1</a>).</li>
+<li><strong>הערה:</strong> הסריקה השמורה היא הנגזרת ברוחב 800px שהשרת מגיש (רוחב גבוה יותר אינו זמין); ברזולוציה זו הגליפים ט/ם/ש אינם נפרדים בבירור. ת.ע. של מכלוף נקרא 91496. אותו אוסף (19 קבצים, <bdi dir="ltr">1955–1957</bdi>) נסרק קודם דרך OCR בלבד ולא העלה את הבלוק — ראו N-1.</li>
 </ul>
-<h2 id="מועמדות-שנשללו-סריקות">מועמדות שנשללו — סריקות</h2>
-<h3 id="7-פנקס-אליאנס-מכנאס-1950-מספר-סידורי-1807-שורה-17-Dahan-Mari"><span id="src-7" class="legacy-anchor"></span>7. פנקס אליאנס מכנאס 1950, מספר סידורי 1807 (שורה 17) — "Dahan Marie", הורים Aaron/Haciba</h3>
+<h3 id="מועמדות-שנשללו-סריקות">מועמדות שנשללו — סריקות</h3>
+<span id="7-פנקס-אליאנס-מכנאס-1950-מספר-סידורי-1807-שורה-17-Dahan-Mari" class="legacy-anchor"></span><h4 id="s7-פנקס-אליאנס-מכנאס-1950-מספר-סידורי-1807-שורה-17-Dahan-Mari"><span id="src-7" class="legacy-anchor"></span>7. פנקס אליאנס מכנאס 1950, מספר סידורי 1807 (שורה 17) — "Dahan Marie", הורים Aaron/Haciba</h4>
 <ul>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01MTM3MQ==" target="_blank" rel="noopener">IGRA-AIU-Morocco-51371<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_49.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_49.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a></li>
 <li><strong>מה הוא מוכיח:</strong> מרי דהן אחרת, בת 7 ב-1950, הורים אחרים — נשלל.</li>
 </ul>
-<h3 id="8-פנקס-אליאנס-מכנאס-1953-מספר-סידורי-3289-שורה-7-Dahan-Rache"><span id="src-8" class="legacy-anchor"></span>8. פנקס אליאנס מכנאס 1953, מספר סידורי 3289 (שורה 7) — "Dahan Rachel", ילידת 1948, הורים Maklouf/Flory</h3>
+<span id="8-פנקס-אליאנס-מכנאס-1953-מספר-סידורי-3289-שורה-7-Dahan-Rache" class="legacy-anchor"></span><h4 id="s8-פנקס-אליאנס-מכנאס-1953-מספר-סידורי-3289-שורה-7-Dahan-Rache"><span id="src-8" class="legacy-anchor"></span>8. פנקס אליאנס מכנאס 1953, מספר סידורי 3289 (שורה 7) — "Dahan Rachel", ילידת 1948, הורים Maklouf/Flory</h4>
 <ul>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01NTExMA==" target="_blank" rel="noopener">IGRA-AIU-Morocco-55110<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.2_00065.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.2_00065.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a></li>
 <li><strong>מה הוא מוכיח:</strong> רחל דהן אחרת — נשלל.</li>
 </ul>
-<h3 id="9-פנקס-אליאנס-מכנאס-1949-מספר-סידורי-1661-שורה-21-Dahan-Rach"><span id="src-9" class="legacy-anchor"></span>9. פנקס אליאנס מכנאס 1949, מספר סידורי 1661 (שורה 21) — "Dahan Rachel", בת 10, הורים Maklouf/Simha</h3>
+<span id="9-פנקס-אליאנס-מכנאס-1949-מספר-סידורי-1661-שורה-21-Dahan-Rach" class="legacy-anchor"></span><h4 id="s9-פנקס-אליאנס-מכנאס-1949-מספר-סידורי-1661-שורה-21-Dahan-Rach"><span id="src-9" class="legacy-anchor"></span>9. פנקס אליאנס מכנאס 1949, מספר סידורי 1661 (שורה 21) — "Dahan Rachel", בת 10, הורים Maklouf/Simha</h4>
 <ul>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby00ODE5NA==" target="_blank" rel="noopener">IGRA-AIU-Morocco-48194<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_41.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_41.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a></li>
 <li><strong>מה הוא מוכיח:</strong> רחל דהן אחרת — נשלל.</li>
 </ul>
-<h2 id="מקורות-עזר">מקורות עזר</h2>
-<h3 id="10-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-סקר-רשומות-Dahan-שעיר"><span id="src-10" class="legacy-anchor"></span>10. IGRA — "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו": סקר רשומות "Dahan" שעירן מכנאס <em>(מקור עזר מקוון)</em></h3>
+<h3 id="מקורות-עזר">מקורות עזר</h3>
+<span id="10-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-סקר-רשומות-Dahan-שעיר" class="legacy-anchor"></span><h4 id="s10-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-סקר-רשומות-Dahan-שעיר"><span id="src-10" class="legacy-anchor"></span>10. IGRA — "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו": סקר רשומות "Dahan" שעירן מכנאס <em>(מקור עזר מקוון)</em></h4>
 <ul>
 <li><strong>מהות:</strong> אינדקס IGRA לפנקסי אליאנס; חיפוש Dahan עם שמות פרטיים <bdi dir="ltr">Marie/Mary/Miriam/Myriam/Meriem/Mimi/Rebecca/Rivka/Rachel</bdi> ועם השנים <bdi dir="ltr">1947–1956</bdi>, כל העמודים; סוננו 69 רשומות ייחודיות שעירן מכנאס (<bdi dir="ltr">1937–1960</bdi>). האינדקס אינו כולל שמות הורים.</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>מה הוא מוכיח:</strong> הבסיס לממצא השלילי N-4 (<a href="#s9-4">סעיף 9.4</a>). אינדקס — לא מסמך; אין לו עותק מקומי.</li>
 </ul>
-<h3 id="11-האונייה-ירושלים-עדויות-עולים-ותולדות-הכלי-מקור-עזר-מקוון-"><span id="src-11" class="legacy-anchor"></span>11. האונייה "ירושלים" — עדויות עולים ותולדות הכלי <em>(מקור עזר מקוון — לא מסמך)</em></h3>
+<span id="11-האונייה-ירושלים-עדויות-עולים-ותולדות-הכלי-רקע-בלבד-אינו-ר" class="legacy-anchor"></span><h4 id="s11-האונייה-ירושלים-עדויות-עולים-ותולדות-הכלי-רקע-בלבד-אינו-ר"><span id="src-11" class="legacy-anchor"></span>11. האונייה "ירושלים" — עדויות עולים ותולדות הכלי <em>(רקע בלבד — אינו ראיה)</em></h4>
 <ul>
 <li><strong>מהות:</strong> (א) דיון באתר עמותת ים — עשרות תגובות של עולים שהפליגו ב"ירושלים" ממרוקו וטוניסיה דרך מרסיי לחיפה, ובהן הגעות ב-15.12.1954, 18.12.1955 ו-1.1.1956; (ב) סקירה על אוניות הנוסעים של צים: "ירושלים" (לשעבר Bergensfjord, אחר כך Argentina של Home Lines) נרכשה באפריל 1953 והוחלפה ב-1957 באונייה חדשה באותו שם.</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://amutayam.org.il/?ArticleID=15753&amp;CategoryID=174" target="_blank" rel="noopener">עמותת ים — "עליה ממרוקו 1954 באוניה ירושלים"<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.cruiselinehistory.com/zim-line-israels-2017/" target="_blank" rel="noopener">Cruising the Past — ZIM Line<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>מה הוא מוכיח:</strong> רק שהפרט המשפחתי — "ירושלים", ינואר 1956 — מתיישב עם מסלולה ולוח זמניה של האונייה באותה תקופה (<a href="#s5-1">סעיף 5.1</a>). אינו מוכיח שהמשפחה הייתה על סיפונה; זאת תוכיח רק רשימת העולים.</li>
 <li><strong>הערה:</strong> אין עותק מקומי — מקור עזר, לא רשומה.</li>
 </ul></section><hr><section id="changelog"><h2>יומן המהדורות</h2>
-<h2 id="מהדורה-1-11-09-2026">מהדורה 1 · 11.09.2026</h2>
+<h3 id="מהדורה-1-11-09-2026">מהדורה 1 · 11.09.2026</h3>
 <ul>
 <li>מחקר ראשון. סריקת IGRA (פנקסי אליאנס מרוקו, שינויי שמות, קבורות), ארכיון המדינה/Pinpoint (רשימות עולים <bdi dir="ltr">1955–1957</bdi>), JPress, חברה קדישא ת"א.</li>
 <li>זוהו שלוש רשומות אליאנס במכנאס להורים Chalom/Yacot: מרי (1949), רבקה (1950), רחל (1953).</li>
 <li>נשללו: קבוצת הרוש→בן-הרוש בחדרה 1972; <bdi dir="ltr">Marie Dahan 1950 (Aaron/Haciba); Rachel Dahan 1949</bdi> ו-1953 (Maklouf).</li>
 <li>נפתחו T-1 עד T-5; חסמים B-1 עד B-3.</li>
 </ul>
-<h2 id="מהדורה-2-11-09-2026">מהדורה 2 · 11.09.2026</h2>
+<h3 id="מהדורה-2-11-09-2026">מהדורה 2 · 11.09.2026</h3>
 <ul>
-<li>סבב ביקורת חיצוני ראשון (21 ממצאים, 9 ראייתיים). תוקנו: המספר הסידורי של רשומת רחל 1953 (3054, לא 2354); תאריך הכניסה 1950 הוגדר כהיקש מהשורה הראשונה בעמוד (ככל הנראה); הסבר הגילים בפרק 4 נוסח מחדש לפי מה שיש בעמודים; "מאומתות" בתמצית צומצם לליבת הרשומות; פענוח הקיצורים (חייט, מלאח ישן) סומן כפרשנות בכל מקום; הוסרה קריאת "M." מכיתוב ראיה 3.</li>
-<li>נוספו: N-6 (סקר 69 רשומות דהן ממכנאס), S9–S10, סריקת AIU_MA_240.1_41, ראיה 4 (כותרת עמוד 1950 עם "Février 50"), T-6 (דורות אחורה); דירוגים ב-NEGATIVES יושרו לסולם; מונחים אוחדו ("מספר סידורי N (שורה K בעמוד)").</li>
+<li>סבב ביקורת חיצוני ראשון (21 ממצאים, 9 ראייתיים). תוקנו: המספר הסידורי של רשומת רחל 1953 (3054, לא 2354); תאריך הכניסה 1950 הוגדר כהיקש מהשורה הראשונה בעמוד (ככל הנראה); הסבר הגילים בפרק 4 נוסח מחדש לפי מה שיש בעמודים; "מאומתות" בתמצית צומצם לליבת הרשומות; פענוח הקיצורים (חייט, מלאח ישן) סומן כפרשנות בכל מקום; הוסרה קריאת "M." מכיתוב ראיה 3 (במספור דאז).</li>
+<li>נוספו: N-6 (סקר 69 רשומות דהן ממכנאס), S9–S10, סריקת AIU_MA_240.1_41, ראיה 4 (במספור דאז — כותרת עמוד 1950 עם "Février 50"), T-6 (דורות אחורה); דירוגים ב-NEGATIVES יושרו לסולם; מונחים אוחדו ("מספר סידורי N (שורה K בעמוד)").</li>
 <li>עמוד: doctype/charset/dir בעותק העצמאי, עץ ללא חפיפות, טקסט דו-כיווני בעץ, TOC ופוטר הושלמו.</li>
 </ul>
-<h2 id="מהדורה-3-11-09-2026">מהדורה 3 · 11.09.2026</h2>
+<h3 id="מהדורה-3-11-09-2026">מהדורה 3 · 11.09.2026</h3>
 <ul>
 <li>לפי המשפחה: מרדכי בן הרוש קבור בבית העלמין ירקון, ומקום הקבורה אינו ממטרות הדוח. הוסרו הפניות לחיפוש קבר בחולון (פרק 5.2, פרק 7 סעיף 4); B-2 נסגר; T-3 עודכן.</li>
 </ul>
-<h2 id="מהדורה-4-11-09-2026">מהדורה 4 · 11.09.2026</h2>
+<h3 id="מהדורה-4-11-09-2026">מהדורה 4 · 11.09.2026</h3>
 <ul>
 <li>מהמשפחה: תעודת הזהות של מרים — 00.00.1939; הפער בגיל נסגר (T-7 סגור; פרק 4 נוסח מחדש). יקוט לא שינתה את שמה לנורית — S4 נשלל, T-2 סגור. מרים עלתה עם הוריה ב-1956 (שם האונייה בהמתנה).</li>
-<li>מרדכי בן הרוש: יליד 1931, בן יונה ויקוט, עלה 1947/48 (משפחה). נסרקו רשימות העולים <bdi dir="ltr">1947–1949</bdi> (N-7, חלקי) ו-IGRA; נשללו "בנארוש 1910" (S11) ו"בן ארוש מכלוף 1931"; רשפים 1927 (S12) ככל הנראה נשלל; מגדים 1954 (S13) פתוח. פרק 5.2 ופרק 7 עודכנו.</li>
+<li>מרדכי בן הרוש: יליד 1931, בן יונה ויקוט, עלה <bdi dir="ltr">1947/48</bdi> (משפחה). נסרקו רשימות העולים <bdi dir="ltr">1947–1949</bdi> (N-7, חלקי) ו-IGRA; נשללו "בנארוש 1910" (S11) ו"בן ארוש מכלוף 1931"; רשפים 1927 (S12) ככל הנראה נשלל; מגדים 1954 (S13) פתוח. פרק 5.2 ופרק 7 עודכנו.</li>
 </ul>
-<h2 id="מהדורה-5-11-09-2026">מהדורה 5 · 11.09.2026</h2>
+<h3 id="מהדורה-5-11-09-2026">מהדורה 5 · 11.09.2026</h3>
 <ul>
 <li>נפתח דף מחקר נלווה למרדכי בן הרוש (mordechai-benharoush/); פרק 5.2 מפנה אליו.</li>
 </ul>
-<h2 id="מהדורה-6-11-09-2026">מהדורה 6 · 11.09.2026</h2>
+<h3 id="מהדורה-6-11-09-2026">מהדורה 6 · 11.09.2026</h3>
 <ul>
 <li>הסבה לשלד המשותף של הארכיון, המנוע genealogy_site לפי המפרט TEMPLATE.md: report.md עם קופסת פתיחה ו"מאיפה להתחיל", sources-index.md עם ערכים ממוספרים וקישור כפול, tree.html, פרק שיטה ומגבלות (9) עם הממצאים השליליים והחסמים, טבלת פעולות פתוחות. הדף: מרים-בן-הרוש.html.</li>
 </ul>
-<h2 id="מהדורה-7-11-09-2026">מהדורה 7 · 11.09.2026</h2>
+<h3 id="מהדורה-7-11-09-2026">מהדורה 7 · 11.09.2026</h3>
 <ul>
 <li>מהמשפחה: העלייה באונייה "ירושלים", 15.1.1956, עם ההורים; הוריו של שלום — חביב ומרים דהן; הוריה של יקוט — יצחק ורבקה. עודכנו פרק 2, סעיף 5.1, פרק 6, פרק 7 (פעולות <bdi dir="ltr">1–2</bdi> הוגדרו מחדש), העץ (דור נוסף במסגרת מקווקוות), S4; נוסף S11 (עדויות על הפלגות "ירושלים" ממרוקו <bdi dir="ltr">1954–1956</bdi>). T-1 ו-T-6 עודכנו.</li>
 <li>לא היה חיבור לכלי הארכיון בסבב הזה — הבדיקה מול רשימת העולים ופנקסי הבנים נדחתה לסבב הבא (סעיף 9.5).</li>
 </ul>
-<h2 id="מהדורה-8-11-09-2026">מהדורה 8 · 11.09.2026</h2>
+<h3 id="מהדורה-8-11-09-2026">מהדורה 8 · 11.09.2026</h3>
 <ul>
 <li>מהמשפחה: שם נעוריה של יקוט — אבוטבול; הוריה יצחק ורבקה אבוטבול. עודכנו פרק 2, פרק 6, פרק 7 (פעולה 2 — חיפוש Abitbol Yacot בפנקסי הבנות), העץ, S4, T-6.</li>
 </ul>
-<h2 id="מהדורה-9-11-09-2026">מהדורה 9 · 11.09.2026</h2>
+<h3 id="מהדורה-9-11-09-2026">מהדורה 9 · 11.09.2026</h3>
 <ul>
 <li>מהמשפחה (רבקה): חביב דהן עלה עם המשפחה ב-1956; מרים דהן ויצחק ורבקה אבוטבול לא עלו; שלום נפטר ב-15 ביוני, כנראה 1979, ושנת לידתו אינה ידועה; שלום ויקוט ככל הנראה לא למדו באליאנס; אחרי ההגעה — כחצי שנה בקריית שמונה ואז ירושלים; לא היו ילדים נוספים. עודכנו פרק 2, פרק 6, פרק 7 (פעולות 1, 3, 3א, 3ב), העץ, S4, T-4, T-6.</li>
 <li>הבדיקה מול הארכיונים (רשימת "ירושלים" עם חביב; קבורת שלום 1979) נדחתה — כלי הארכיון לא היו זמינים בסבב.</li>
 </ul>
-<h2 id="מהדורה-10-11-09-2026">מהדורה 10 · 11.09.2026</h2>
+<h3 id="מהדורה-10-11-09-2026">מהדורה 10 · 11.09.2026</h3>
 <ul>
-<li><strong>נמצאה רשומת העלייה.</strong> ארכיון המדינה, רשימת העולים של "ירושלים" מיום 15.1.1956, עמ' 8 (גל-15498/9): שלום 1920, יקוט 1921, רבקה 1944, רחל 1947, מרי 1939 — נשלחו לקריית שמונה; "אם: צפורה 1880". באותו עמוד מכלוף (1903) ושלומון (1922) דהן, בני חביב/מרים, ו"אב: חביב 1880". סעיף 5.1 נכתב מחדש; ראיות <bdi dir="ltr">5–6</bdi>; S6 הוסב מממצא שלילי לרשומה; N-1 בוטל; T-1 נסגר; T-8 נפתח (צפורה/מרים; האחים). פרק 6, פרק 7 והעץ עודכנו בשנות הלידה מהרשימה.</li>
+<li><strong>נמצאה רשומת העלייה.</strong> ארכיון המדינה, רשימת העולים של "ירושלים" מיום 15.1.1956, עמ' 8 (גל-<bdi dir="ltr">15498/9</bdi>): שלום 1920, יקוט 1921, רבקה 1944, רחל 1947, מרי 1939 — נשלחו לקריית שמונה; "אם: צפורה 1880". באותו עמוד מכלוף (1903) ושלומון (1922) דהן, בני חביב/מרים, ו"אב: חביב 1880". סעיף 5.1 נכתב מחדש; ראיות <bdi dir="ltr">5–6</bdi>; S6 הוסב מממצא שלילי לרשומה; N-1 בוטל; T-1 נסגר; T-8 נפתח (צפורה/מרים; האחים). פרק 6, פרק 7 והעץ עודכנו בשנות הלידה מהרשימה.</li>
 <li>מהמשפחה: יקוט נפטרה ב-3.3.1976. IGRA (אין מסד קבורות ירושלים) ו-JPress (מודעות אבל מרץ 1976, יוני–יולי 1979) — ללא ממצא.</li>
 </ul>
-<h2 id="מהדורה-11-11-09-2026">מהדורה 11 · 11.09.2026</h2>
+<h3 id="מהדורה-11-11-09-2026">מהדורה 11 · 11.09.2026</h3>
 <ul>
 <li>מהמשפחה, לאחר הצגת רשימת 1956: צפורה היא דודתו של שלום (ללא ילדים), לא אמו — הרישום "אם" פורש כרישום מנהלי של קרובה נלווית; מכלוף ושלומון הם אחיו של שלום. סעיף 5.1 נוסח מחדש (שני היקשים → אישור), פרק 2, פרק 6, פרק 7 (פעולה 1), העץ, S4, S6, T-8.</li>
 </ul>
-<h2 id="מהדורה-12-11-09-2026">מהדורה 12 · 11.09.2026</h2>
+<h3 id="מהדורה-12-11-09-2026">מהדורה 12 · 11.09.2026</h3>
 <ul>
-<li>סעיף 5.2 עודכן: משפחתו של מרדכי נמצאה (פנקס אליאנס מכנאס 1953 — אותו עמוד של רחל דהן; רשימת "ארצה" 11.6.1956); ראו הדף הנלווה, מהדורה 4.</li>
+<li>סעיף 5.2 עודכן: משפחתו של מרדכי נמצאה (פנקס אליאנס מכנאס 1953 — אותו עמוד של רחל דהן; רשימת "ארצה" 11.6.1956); ראו הדף הנלווה.</li>
+</ul>
+<h3 id="מהדורה-13-11-09-2026">מהדורה 13 · 11.09.2026</h3>
+<ul>
+<li>סבב ביקורת חיצונית שני (31 ממצאים: 6 קריטיים, 14 בינוניים, 11 קלים). תוקנו: הטענה על תאריכי לידה מלאים בפנקס 1953 (K-2); ה-ב.נ. הוא מספר משפחתי, לא של צפורה (K-3); היקש הכניסה 1950 הורד ל"טעון אימות" ונחשפו שורות 1873/1888 (K-4); נוספו שלוש שורות דהן לרמת הדסה — מסעודי, רחל, לורם(?) — ככל הנראה ילדי מכלוף (K-5); התמצית תוקנה — ההורים נבדקו ב-6 רשומות, לא ב-70 (K-6); מספור N אוחד עם NEGATIVES ופריטי מרדכי הועברו לדף הנלווה (K-1); הסתייגות ט/ם/ש בסריקת 800px (M-1/M-2); ת.ע. מכלוף 91496 (M-3); "מתקנת" ולא "מאמתת" אצל רבקה (M-4); פענוח A.M./Tail. ind. הועלה ל"כמעט ודאי" מתוך הפנקסים (M-5); "absente" הועלה (M-6); סולם בן חמש דרגות + "בוטל" (M-7); פרק 8, 9.1, פעולה 3, T-4, T-6 (M-8–M-11); הוסר המספור הידני "ראיה N" (M-12); אינדקס האנשים והרג'יסטרי עודכנו (M-13, S-1, S-2); פנינה (M-14); העץ: מקרא, הערה, כיתובים קוצרו (S-3); ערך 11 סומן כרקע (S-4); מספור "S" הוחלף ב"מקור N" (S-5); 69 בכל מקום (S-6); תיקוני עברית ומירכאות, תרגום כיתוב ראיה 1, עמודת הערות, סדרת העיפרון (S-10–S-12); Jacot (S-13).</li>
+<li>UX (סבב ביקורת ראשון על העמוד הבנוי, במנוע המשותף): עץ מותאם לנייד וכפתור "התאמה לרוחב"; אריחי גלריה לרצועות; שני כללי bidi (גיל+יחידה, סימולי ארכיון); סמני הפניה מבודדים; כותרות באינדקס וביומן; סרגל ניווט של שורה אחת בנייד; חיפוש שמכסה תתי-פרקים ומקורות; כיתובי טבלאות נגישים; חותמת בנייה בזמן ישראל.</li>
 </ul></section>
 </main>
 <footer>מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.</footer>
 <script>
 (function(){
-  var IDX = [{"t": "1. תמצית", "h": "#1-תמצית", "k": "פרק"}, {"t": "2. מה ידוע מהמשפחה", "h": "#2-מה-ידוע-מהמשפחה", "k": "פרק"}, {"t": "3. הממצאים במכנאס — פנקסי אליאנס", "h": "#3-הממצאים-במכנאס-פנקסי-אליאנס", "k": "פרק"}, {"t": "4. הזיהוי ושאלת הגיל", "h": "#4-הזיהוי-ושאלת-הגיל", "k": "פרק"}, {"t": "5. רשומת העלייה — ומה לא נמצא", "h": "#5-רשומת-העלייה-ומה-לא-נמצא", "k": "פרק"}, {"t": "6. עץ המשפחה", "h": "#6-עץ-המשפחה", "k": "פרק"}, {"t": "7. פעולות פתוחות", "h": "#7-פעולות-פתוחות", "k": "פרק"}, {"t": "8. סיכום המקורות", "h": "#8-סיכום-המקורות", "k": "פרק"}, {"t": "9. שיטה ומגבלות", "h": "#9-שיטה-ומגבלות", "k": "פרק"}, {"t": "מרים (מרי) בן הרוש לבית דהן — נושאת המחקר; פנקס אליאנס מכנאס 1949; עלתה 1956; חולון", "h": "#s1", "k": "אדם", "x": "Miriam Mary Marie Mari Dahan Ben Harush Benharoush Benharoch דהאן בנהרוש בן-הרוש מכנאס Meknes נ׳ 1939, מכנאס"}, {"t": "שלום דהן — אביה; ככל הנראה חייט במלאח הישן של מכנאס; לימים ירושלים", "h": "#s6", "k": "אדם", "x": "Shalom Chalom Dahan דהאן חייט Tailleur Mellah"}, {"t": "יקוט דהן — אמה; לימים ירושלים", "h": "#s6", "k": "אדם", "x": "Yakut Yacot Yacout Yakot יאקוט יקות Dahan"}, {"t": "רבקה דהן — אחותה; פנקס אליאנס 1950, עזבה אוקטובר 1955", "h": "#s3-2", "k": "אדם", "x": "Rivka Rebecca Rébéca Rebeca Dahan נ׳ ~1943"}, {"t": "רחל דהן — אחותה; פנקס אליאנס 1953", "h": "#s3-3", "k": "אדם", "x": "Rachel Dahan נ׳ ~1947"}, {"t": "מרדכי בן הרוש — בעלה; בן יונה ויקוט, עלה 1947/48 — דף מחקר נלווה", "h": "#s5-2", "k": "אדם", "x": "Mordechai Mordekhai Mardochée Ben Harush Benharoush מרדושי 1931 – 2010"}, {"t": "מכנאס — המלאח הישן", "h": "#s3", "k": "מקום", "x": "Meknes Meknès מקנס מכנס Mellah מלאח"}, {"t": "בית הספר לבנות של אליאנס במכנאס", "h": "#s3", "k": "מקור", "x": "Alliance AIU École de Filles כל ישראל חברים CAHJP AIU-MA-240"}, {"t": "רשימות העולים 1955–1957", "h": "#s5-1", "k": "מקור", "x": "רשימת עולים ארכיון המדינה Pinpoint גל-15498 גל-15499 גל-15500"}, {"t": "ממצאים שליליים", "h": "#s9-4", "k": "נושא", "x": "ממצא שלילי negative נשלל"}, {"t": "פעולות פתוחות", "h": "#s7", "k": "נושא", "x": "צעדים הבאים open actions"}];
+  var IDX = [{"t": "1. תמצית", "h": "#s1-תמצית", "k": "פרק"}, {"t": "2. מה ידוע מהמשפחה", "h": "#s2-מה-ידוע-מהמשפחה", "k": "פרק"}, {"t": "3. הממצאים במכנאס — פנקסי אליאנס", "h": "#s3-הממצאים-במכנאס-פנקסי-אליאנס", "k": "פרק"}, {"t": "4. הזיהוי ושאלת הגיל", "h": "#s4-הזיהוי-ושאלת-הגיל", "k": "פרק"}, {"t": "5. רשומת העלייה — ומה לא נמצא", "h": "#s5-רשומת-העלייה-ומה-לא-נמצא", "k": "פרק"}, {"t": "6. עץ המשפחה", "h": "#s6-עץ-המשפחה", "k": "פרק"}, {"t": "7. פעולות פתוחות", "h": "#s7-פעולות-פתוחות", "k": "פרק"}, {"t": "8. סיכום המקורות", "h": "#s8-סיכום-המקורות", "k": "פרק"}, {"t": "9. שיטה ומגבלות", "h": "#s9-שיטה-ומגבלות", "k": "פרק"}, {"t": "מרים (מרי) בן הרוש לבית דהן — נושאת המחקר; פנקס אליאנס מכנאס 1949; עלתה 1956; חולון", "h": "#s1", "k": "אדם", "x": "Miriam Mary Marie Mari Dahan Ben Harush Benharoush Benharoch דהאן בנהרוש בן-הרוש מכנאס Meknes נ׳ 1939, מכנאס"}, {"t": "שלום דהן — אביה; חייט במלאח הישן של מכנאס (פנקס 1949); \"ירושלים\" 1956 → קריית שמונה; ירושלים; נפטר 15.6.1979? (משפחה)", "h": "#s6", "k": "אדם", "x": "Shalom Chalom Dahan דהאן חייט Tailleur Mellah נ׳ 1920"}, {"t": "יקוט דהן לבית אבוטבול — אמה; בת יצחק ורבקה אבוטבול; \"ירושלים\" 1956; ירושלים; נפטרה 3.3.1976 (משפחה)", "h": "#s6", "k": "אדם", "x": "Yakut Yacot Yacout Yakot Jacot יאקוט יקות אבוטבול Abitbol Dahan נ׳ 1921"}, {"t": "חביב דהן — סבה; אבי שלום, מכלוף ושלומון; עלה ב\"ירושלים\" 1956", "h": "#s5-1", "k": "אדם", "x": "Habib Dahan חביב נ׳ ~1880"}, {"t": "צפורה דהן — דודתו של שלום; נרשמה \"אם\" ברשימת 1956; עלתה איתם", "h": "#s5-1", "k": "אדם", "x": "Tzipora Zipora צפורה Dahan נ׳ ~1880"}, {"t": "מכלוף ושלומון דהן — אחיו של שלום; באותה רשימה, לקריית שמונה", "h": "#s5-1", "k": "אדם", "x": "Makhlouf Maklouf Salomon Shlomon Dahan סמחה שמחה 1903 · 1922"}, {"t": "רבקה דהן — אחותה; פנקס אליאנס 1950, עזבה אוקטובר 1955", "h": "#s3-2", "k": "אדם", "x": "Rivka Rebecca Rébéca Rebeca Dahan נ׳ 1944"}, {"t": "רחל דהן — אחותה; פנקס אליאנס 1953", "h": "#s3-3", "k": "אדם", "x": "Rachel Dahan נ׳ 1947"}, {"t": "מרדכי בן הרוש — בעלה; בן יונה ויקוט (פנינה), עלה 1947/48 לבדו — דף מחקר נלווה", "h": "#s5-2", "k": "אדם", "x": "Mordechai Mordekhai Mardochée Ben Harush Benharoush מרדושי 1931 – 2010"}, {"t": "מכנאס — המלאח הישן", "h": "#s3", "k": "מקום", "x": "Meknes Meknès מקנס מכנס Mellah מלאח"}, {"t": "בית הספר לבנות של אליאנס במכנאס", "h": "#s3", "k": "מקור", "x": "Alliance AIU École de Filles כל ישראל חברים CAHJP AIU-MA-240"}, {"t": "רשימות העולים 1955–1957", "h": "#s5-1", "k": "מקור", "x": "רשימת עולים ארכיון המדינה Pinpoint גל-15498 גל-15499 גל-15500"}, {"t": "ממצאים שליליים", "h": "#s9-4", "k": "נושא", "x": "ממצא שלילי negative נשלל"}, {"t": "פעולות פתוחות", "h": "#s7", "k": "נושא", "x": "צעדים הבאים open actions"}, {"t": "3.1 מרי דהן — פנקס 1949", "h": "#s3-1-מרי-דהן-פנקס-1949", "k": "תת־פרק"}, {"t": "3.2 רבקה (Rébéca) דהן — פנקס 1950", "h": "#s3-2-רבקה-Rébéca-דהן-פנקס-1950", "k": "תת־פרק"}, {"t": "3.3 רחל דהן — פנקס 1953", "h": "#s3-3-רחל-דהן-פנקס-1953", "k": "תת־פרק"}, {"t": "3.4 מועמדות שנשללו", "h": "#s3-4-מועמדות-שנשללו", "k": "תת־פרק"}, {"t": "5.1 רשימת העולים של האונייה \"ירושלים\", 15.1.1956", "h": "#s5-1-רשימת-העולים-של-האונייה-ירושלים-15-1-1956", "k": "תת־פרק"}, {"t": "5.2 מרדכי בן הרוש", "h": "#s5-2-מרדכי-בן-הרוש", "k": "תת־פרק"}, {"t": "5.3 מועמדות שנשללו בישראל", "h": "#s5-3-מועמדות-שנשללו-בישראל", "k": "תת־פרק"}, {"t": "9.1 בסיס הראיות", "h": "#s9-1-בסיס-הראיות", "k": "תת־פרק"}, {"t": "9.2 סולם הוודאות", "h": "#s9-2-סולם-הוודאות", "k": "תת־פרק"}, {"t": "9.3 מוסכמות הכתיב", "h": "#s9-3-מוסכמות-הכתיב", "k": "תת־פרק"}, {"t": "9.4 ממצאים שליליים", "h": "#s9-4-ממצאים-שליליים", "k": "תת־פרק"}, {"t": "9.5 חסמים", "h": "#s9-5-חסמים", "k": "תת־פרק"}, {"t": "9.6 מה הדוח אינו עושה", "h": "#s9-6-מה-הדוח-אינו-עושה", "k": "תת־פרק"}, {"t": "מקורות ראשוניים — פנקסי אליאנס, מכנאס", "h": "#מקורות-ראשוניים-פנקסי-אליאנס-מכנאס", "k": "מקור"}, {"t": "1. פנקס בית הספר לבנות של אליאנס במכנאס, 1949 — מספר סידורי 1617 (עוגן המחקר)", "h": "#s1-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1949-מספר-סידורי-1617", "k": "מקור"}, {"t": "2. פנקס בית הספר לבנות של אליאנס במכנאס, 1950 — מספר סידורי 1878", "h": "#s2-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1950-מספר-סידורי-1878", "k": "מקור"}, {"t": "3. פנקס בית הספר לבנות של אליאנס במכנאס, 1953 — מספר סידורי 3054", "h": "#s3-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-3054", "k": "מקור"}, {"t": "מאגרים ישראליים", "h": "#מאגרים-ישראליים", "k": "מקור"}, {"t": "4. מסירות משפחתיות (ספטמבר 2026) (מקור משפחתי — ללא מסמך)", "h": "#s4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך", "k": "מקור"}, {"t": "5. ילקוט הפרסומים 1859 (1972), עמ' 95, שורות 31–39 — קבוצת הרוש → בן-הרוש, חדרה (נשלל)", "h": "#s5-ילקוט-הפרסומים-1859-1972-עמ'-95-שורות-31-39-קבוצת-הרוש-בן-", "k": "מקור"}, {"t": "6. ארכיון המדינה — רשימת העולים של האונייה \"ירושלים\", 15.1.1956, עמוד 8 (גל-15498/9, \"רשימת עולים ינואר–פברואר 1956\") (רשומת העלייה)", "h": "#s6-ארכיון-המדינה-רשימת-העולים-של-האונייה-ירושלים-15-1-1956-עמ", "k": "מקור"}, {"t": "מועמדות שנשללו — סריקות", "h": "#מועמדות-שנשללו-סריקות", "k": "מקור"}, {"t": "7. פנקס אליאנס מכנאס 1950, מספר סידורי 1807 (שורה 17) — \"Dahan Marie\", הורים Aaron/Haciba", "h": "#s7-פנקס-אליאנס-מכנאס-1950-מספר-סידורי-1807-שורה-17-Dahan-Mari", "k": "מקור"}, {"t": "8. פנקס אליאנס מכנאס 1953, מספר סידורי 3289 (שורה 7) — \"Dahan Rachel\", ילידת 1948, הורים Maklouf/Flory", "h": "#s8-פנקס-אליאנס-מכנאס-1953-מספר-סידורי-3289-שורה-7-Dahan-Rache", "k": "מקור"}, {"t": "9. פנקס אליאנס מכנאס 1949, מספר סידורי 1661 (שורה 21) — \"Dahan Rachel\", בת 10, הורים Maklouf/Simha", "h": "#s9-פנקס-אליאנס-מכנאס-1949-מספר-סידורי-1661-שורה-21-Dahan-Rach", "k": "מקור"}, {"t": "מקורות עזר", "h": "#מקורות-עזר", "k": "מקור"}, {"t": "10. IGRA — \"תלמידים 1917–1964 אליאנס מרוקו\": סקר רשומות \"Dahan\" שעירן מכנאס (מקור עזר מקוון)", "h": "#s10-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-סקר-רשומות-Dahan-שעיר", "k": "מקור"}, {"t": "11. האונייה \"ירושלים\" — עדויות עולים ותולדות הכלי (רקע בלבד — אינו ראיה)", "h": "#s11-האונייה-ירושלים-עדויות-עולים-ותולדות-הכלי-רקע-בלבד-אינו-ר", "k": "מקור"}, {"t": "מהדורה 1 · 11.09.2026", "h": "#מהדורה-1-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 2 · 11.09.2026", "h": "#מהדורה-2-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 3 · 11.09.2026", "h": "#מהדורה-3-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 4 · 11.09.2026", "h": "#מהדורה-4-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 5 · 11.09.2026", "h": "#מהדורה-5-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 6 · 11.09.2026", "h": "#מהדורה-6-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 7 · 11.09.2026", "h": "#מהדורה-7-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 8 · 11.09.2026", "h": "#מהדורה-8-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 9 · 11.09.2026", "h": "#מהדורה-9-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 10 · 11.09.2026", "h": "#מהדורה-10-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 11 · 11.09.2026", "h": "#מהדורה-11-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 12 · 11.09.2026", "h": "#מהדורה-12-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 13 · 11.09.2026", "h": "#מהדורה-13-11-09-2026", "k": "מהדורה"}];
   var q = document.getElementById('q'), res = document.getElementById('qres');
   function norm(s){ return (s||'').replace(/["'ְ-ׇ]/g,'').toLowerCase(); }
   function clear(){ res.textContent=''; res.hidden=true; }
@@ -922,11 +976,13 @@ footer {
       out.forEach(function(o){
         var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
         var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        // a space, or the accessible name reads "…ירושליםאדם"
+        a.appendChild(document.createTextNode(' '));
         a.appendChild(k); res.appendChild(a);
       });
     } else {
       var p = document.createElement('p'); p.className='nores';
-      p.textContent='לא נמצאו תוצאות בכותרות ובאינדקס האנשים. לחיפוש בגוף הטקסט: Ctrl+F';
+      p.textContent='לא נמצאו תוצאות בפרקים, באנשים ובמקורות. לחיפוש בגוף הטקסט: Ctrl+F';
       res.appendChild(p);
     }
     res.hidden = false;
@@ -957,6 +1013,18 @@ footer {
     });
   }
   var nav = document.querySelector('.nav');
+  // the phone nav is one scrolling row; the search field opens from a button
+  var qt = document.querySelector('.qtoggle');
+  if (qt){
+    qt.hidden = false;
+    qt.addEventListener('click', function(){
+      var on = !nav.classList.contains('qopen');
+      nav.classList.toggle('qopen', on);
+      qt.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on && q) q.focus(); else { if (q) q.value=''; if (res) clear(); }
+      offset();
+    });
+  }
   function offset(){
     if (!nav) return;
     var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
@@ -995,8 +1063,10 @@ footer {
   function scrollables(){
     [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
       var over = w.scrollWidth - w.clientWidth > 1;
+      var cap = w.querySelector('caption');
+      var name = 'טבלה' + (cap && cap.textContent ? ' — ' + cap.textContent : '');
       if (over){ w.tabIndex = 0; w.setAttribute('role','region');
-                 w.setAttribute('aria-label','טבלה — ניתנת לגלילה אופקית'); }
+                 w.setAttribute('aria-label', name + ' — ניתנת לגלילה אופקית'); }
       else { w.removeAttribute('tabindex'); w.removeAttribute('role');
              w.removeAttribute('aria-label'); }
     });
@@ -1004,18 +1074,25 @@ footer {
   scrollables(); addEventListener('resize', scrollables);
   // the tree is laid out at fixed coordinates; zooming the frame is how a reader
   // gets its labels to a readable size without the boxes colliding
-  // BASE 2 is the diagram's native size; the frame opens at three quarters of
-  // it, which shows the whole shape; the reader zooms in to read a branch
-  var BASE = 2, zoom = 1.5, zval = document.getElementById('tree-zoom-val');
-  if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+  // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
+  // so the reader always has a state where the whole shape is on the screen,
+  // and every step above it is stated relative to that (×1.5, ×2)
+  var zoom = matchMedia('(max-width:40rem)').matches ? 1 : 1.5;
+  var zval = document.getElementById('tree-zoom-val');
+  function zshow(){
+    document.documentElement.style.setProperty('--tree-zoom', zoom);
+    if (zval) zval.textContent = '\u00d7' + (Math.round(zoom * 100) / 100);
+  }
   [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
     btn.addEventListener('click', function(){
-      var step = parseInt(btn.getAttribute('data-tree-zoom'), 10) * 0.25;
-      zoom = Math.min(3, Math.max(1, Math.round((zoom + step) * 100) / 100));
-      document.documentElement.style.setProperty('--tree-zoom', zoom);
-      if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+      var v = btn.getAttribute('data-tree-zoom');
+      if (v === 'fit') zoom = 1;
+      else zoom = Math.min(3, Math.max(1,
+             Math.round((zoom + parseInt(v, 10) * 0.25) * 100) / 100));
+      zshow();
     });
   });
+  if (zval) zshow();
   var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
   var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
   if ('IntersectionObserver' in window){

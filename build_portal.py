@@ -17,6 +17,23 @@ researches = reg['researches']
 
 e = lambda s: html.escape(s or '', quote=True)
 
+try:
+    from PIL import Image as _Image
+except Exception:                                    # pragma: no cover
+    _Image = None
+
+
+def dims(path):
+    """Intrinsic width/height, so a cover cannot shift the card while it loads."""
+    if _Image is None:
+        return ''
+    try:
+        with _Image.open(urllib.parse.unquote(path)) as im:
+            return ' width="%d" height="%d"' % (im.width, im.height)
+    except Exception:
+        return ''
+
+
 CSS = """
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -28,32 +45,31 @@ a:hover{text-decoration:underline}
 header.top{border-bottom:1px solid #d8d0c2; background:#f2ede4;}
 header.top .wrap{padding-top:46px; padding-bottom:34px}
 h1{font-size:2.35rem; margin:0 0 6px; letter-spacing:-.01em}
-.surnames{color:#8a7f6d; font-size:1rem; letter-spacing:.06em; margin:0 0 18px}
+.surnames{color:#6f675b; font-size:1rem; letter-spacing:.06em; margin:0 0 18px}
 .intro{max-width:66ch; margin:0; font-size:1.03rem; color:#4a4238}
-.note{max-width:66ch; margin:14px 0 0; font-size:.9rem; color:#8a8177}
-h2.sec{font-size:1.02rem; letter-spacing:.14em; color:#8a7f6d; font-weight:normal;
+.note{max-width:66ch; margin:14px 0 0; font-size:.9rem; color:#6f675b}
+h2.sec{font-size:1.02rem; letter-spacing:.14em; color:#6f675b; font-weight:normal;
        margin:52px 0 18px; padding-bottom:8px; border-bottom:1px solid #e3dbcd}
 
 .card{display:grid; grid-template-columns:150px 1fr; gap:26px; background:#fff;
       border:1px solid #d8d0c2; border-radius:12px; padding:24px 26px;
       box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .card + .card{margin-top:22px}
-.cover{width:150px}
 .cover img{width:100%; display:block; border:1px solid #d8d0c2; border-radius:6px; background:#f7f3ec}
-.cover figcaption{font-size:.72rem; color:#8a8177; line-height:1.5; margin-top:7px}
+.cover figcaption{font-size:.72rem; color:#6f675b; line-height:1.5; margin-top:7px}
 .badge{display:inline-block; font-size:.72rem; letter-spacing:.09em; border-radius:999px;
        padding:3px 11px; border:1px solid #b9a98c; color:#7a6a4c; background:#fbf6ea;
        vertical-align:middle; margin-inline-start:10px}
 .card h3{margin:0 0 2px; font-size:1.5rem}
-.card h3 .aka{color:#8a7f6d; font-weight:normal}
+.card h3 .aka{color:#6f675b; font-weight:normal}
 .life{margin:0 0 4px; color:#5a5142; font-size:.95rem}
-.edition{margin:0 0 14px; color:#8a8177; font-size:.82rem}
+.edition{margin:0 0 14px; color:#6f675b; font-size:.82rem}
 .summary{margin:0 0 18px; color:#3c352c}
 .stats{display:flex; flex-wrap:wrap; gap:26px; margin:0 0 20px; padding:14px 0;
        border-top:1px solid #eee6d8; border-bottom:1px solid #eee6d8}
 .stats div{min-width:78px}
 .stats b{display:block; font-size:1.4rem; line-height:1.2; color:#7a4a2b; font-weight:normal}
-.stats span{font-size:.76rem; color:#8a8177}
+.stats span{font-size:.76rem; color:#6f675b}
 .links{display:flex; flex-wrap:wrap; gap:9px; margin:0}
 .skip{position:absolute; inset-inline-start:-9999px; top:0; z-index:99;
   background:#fdfaf5; color:#5a3a1e; padding:10px 16px; border:1px solid #7a4a2b;
@@ -70,7 +86,7 @@ h2.sec{font-size:1.02rem; letter-spacing:.14em; color:#8a7f6d; font-weight:norma
         padding:13px 16px; color:inherit}
 .person:hover{border-color:#b9a98c; background:#fffdf8; text-decoration:none}
 .person .pn{font-size:1.02rem; color:#2b2620}
-.person .pd{font-size:.8rem; color:#8a7f6d; margin-top:1px}
+.person .pd{font-size:.8rem; color:#6f675b; margin-top:1px}
 .person .pd bdi{unicode-bidi:isolate}
 .person .ps{font-size:.86rem; color:#5a5142; margin-top:5px; line-height:1.55}
 
@@ -79,10 +95,14 @@ h2.sec{font-size:1.02rem; letter-spacing:.14em; color:#8a7f6d; font-weight:norma
 .method ul{margin:10px 0 0; padding-inline-start:20px}
 .method li{margin:5px 0}
 footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
-       font-size:.83rem; color:#8a8177}
+       font-size:.83rem; color:#6f675b}
+nav.toc{margin:26px 0 0; font-size:.9rem}
+nav.toc ul{list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px 14px}
+nav.toc a{border-bottom:1px solid #e3dbcd; padding-bottom:2px}
 @media (max-width:640px){
   .card{grid-template-columns:1fr; gap:18px}
-  .cover{width:132px}
+  /* a 132px frame inside a 350px card left the cover a strip in a white field */
+  .cover{width:100%}
   h1{font-size:1.85rem}
 }
 """
@@ -91,7 +111,8 @@ def card(r):
     p = []
     p.append('<article class="card" id="research-%s">' % e(r['slug']))
     if r.get('cover'):
-        img = ('<img src="%s" alt="%s" loading="lazy">' % (e(r['cover']), e(r.get('cover_alt',''))))
+        img = ('<img src="%s" alt="%s" loading="lazy"%s>'
+               % (e(r['cover']), e(r.get('cover_alt','')), dims(r['cover'])))
         if r.get('cover_href'):
             img = '<a href="%s" target="_blank" rel="noopener">%s</a>' % (e(r['cover_href']), img)
         p.append('<figure class="cover" style="margin:0">%s<figcaption>%s</figcaption></figure>'
@@ -134,8 +155,21 @@ def people_grid(r):
         '<div class="pd">%s</div><div class="ps">%s</div></a>'
         % (e(q['h']), e(q['n']), dates(q.get('d','')), e(q.get('s','')))
         for q in r['people'])
-    return ('<h2 class="sec">אנשים בארכיון — %s</h2>\n<div class="people">%s</div>'
-            % (e(r['name']), items))
+    return ('<h2 class="sec" id="people-%s">אנשים בארכיון — %s</h2>\n<div class="people">%s</div>'
+            % (e(r['slug']), e(r['name']), items))
+
+
+def toc(researches):
+    """The portal is 4,600px tall; without this the only way down is scrolling."""
+    li = []
+    for r in researches:
+        li.append('<li><a href="#research-%s">%s</a></li>' % (e(r['slug']), e(r['name'])))
+    for r in researches:
+        if r.get('people'):
+            li.append('<li><a href="#people-%s">אנשים — %s</a></li>'
+                      % (e(r['slug']), e(r['name'])))
+    li.append('<li><a href="#method">איך הארכיון הזה בנוי</a></li>')
+    return ('<nav class="toc" aria-label="מחקרים"><ul>%s</ul></nav>' % ''.join(li))
 
 body = []
 body.append('<a class="skip" href="#main">דילוג לתוכן</a>')
@@ -144,6 +178,7 @@ body.append('<h1>%s</h1>' % e(site['title']))
 body.append('<p class="surnames">%s</p>' % e(site['surnames']))
 body.append('<p class="intro">%s</p>' % e(site['intro']))
 if site.get('note'): body.append('<p class="note">%s</p>' % e(site['note']))
+body.append(toc(researches))
 body.append('</div></header>')
 body.append('<main id="main"><div class="wrap">')
 body.append('<h2 class="sec" id="researches">מחקרים</h2>')
@@ -151,7 +186,7 @@ for r in researches:
     body.append(card(r))
 for r in researches:
     body.append(people_grid(r))
-body.append('<h2 class="sec">איך הארכיון הזה בנוי</h2>')
+body.append('<h2 class="sec" id="method">איך הארכיון הזה בנוי</h2>')
 body.append("""<div class="method">
 כל מחקר כאן נבנה לפי אותה שיטה, וכל קביעה שבו ניתנת לבדיקה עצמאית:
 <ul>

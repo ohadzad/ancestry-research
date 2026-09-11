@@ -8,12 +8,16 @@ from . import bidi, figures, mdpipe, qa, shell, site, tree
 
 
 def _stamp(tz='Asia/Jerusalem'):
-    """The build time in the project's own zone, without touching the process."""
+    """The build date in the project's own zone, without touching the process.
+
+    The date alone: a clock stamp from another zone crosses midnight and then
+    contradicts the changelog entry written the same evening.
+    """
     try:
         from zoneinfo import ZoneInfo
-        return datetime.datetime.now(ZoneInfo(tz)).strftime('%d.%m.%Y, %H:%M')
+        return datetime.datetime.now(ZoneInfo(tz)).strftime('%d.%m.%Y')
     except Exception:                               # pragma: no cover
-        return datetime.datetime.now().strftime('%d.%m.%Y, %H:%M')
+        return datetime.datetime.now().strftime('%d.%m.%Y')
 
 
 _ED = re.compile(r'מהדורה\s+(\d+)')
@@ -69,6 +73,8 @@ def build(cfg, verbose=True):
     src = mdpipe.to_html(sources_md, cfg.md_extensions)
     src = mdpipe.apply_transforms(src, tuple(cfg.text_transforms) + tuple(cfg.sources_transforms))
     src, _, _ = mdpipe.anchor_headings(src, seen=ids)
+    # the engine wraps the index in its own <h2>; its headings live under it
+    src = mdpipe.demote_headings(src, by=1)
     src = re.sub(r'<h1>(.*?)</h1>', r'<h3>\1</h3>', src, flags=re.S)
 
     # ---- changelog --------------------------------------------------------
@@ -77,10 +83,16 @@ def build(cfg, verbose=True):
         log = mdpipe.to_html(changelog_md, cfg.md_extensions)
         log = re.sub(r'<h1>(.*?)</h1>', '', log, flags=re.S)
         log, _, _ = mdpipe.anchor_headings(log, seen=ids)
+        log = mdpipe.demote_headings(log, by=1)
 
     # ---- tree / gallery / people -----------------------------------------
     svg, legend, foot = tree.load(cfg, warn)
-    tree_html = tree.embed(cfg, svg, legend, foot)
+    # the project's standalone tree page is its own file; what the report links
+    # to is a generated copy of it with the same scroll-and-zoom frame
+    view_html, view_name = tree.standalone(cfg, warn)
+    if view_html:
+        open(cfg.p(view_name), 'w', encoding='utf-8').write(view_html)
+    tree_html = tree.embed(cfg, svg, legend, foot, page_href=view_name or None)
     gal = figures.gallery(cfg.gallery, cfg.root)
 
     present = {'report'}
@@ -114,7 +126,8 @@ def build(cfg, verbose=True):
 
     chapters = [(sid, mdpipe.toc_label(full, overrides=cfg.toc_overrides), full)
                 for sid, full in chapters_raw]
-    out = shell.page(cfg, edition, _stamp(), body_html, chapters, present)
+    out = shell.page(cfg, edition, _stamp(), body_html, chapters, present,
+                     extra_rows=shell.page_rows(body_html))
     out = bidi.fix_document(out, cfg.extra_bidi_rules)
 
     open(cfg.p(cfg.main_html), 'w', encoding='utf-8').write(out)
@@ -127,6 +140,8 @@ def build(cfg, verbose=True):
     if cfg.changelog_md:
         files.append(cfg.changelog_md)
     files += list(cfg.site_extra_files)
+    if view_name:
+        files.append(view_name)
     swept = site.sweep_thumbs(cfg, out)
     site.mirror(cfg, files)
     problems += qa.local_links_exist(out, cfg.p('site'), 'ב-site/: ')

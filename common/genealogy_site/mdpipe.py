@@ -50,6 +50,11 @@ def _slug(text, seen):
     plain = _TAGS.sub('', text).strip()
     s = re.sub(r"[^\w֐-׿'׳״-]+", '-', plain, flags=re.U).strip('-')
     s = re.sub(r'-{2,}', '-', s)[:60] or 'h'
+    # '5-1-…' is a legal HTML id but an illegal CSS selector, so
+    # querySelector('#5-1-…') throws. The published anchor is kept alive as an
+    # alias by anchor_headings(), which emits it beside the prefixed id.
+    if s[0].isdigit():
+        s = 's' + s
     if s in seen:
         stem, i = s, 2
         while s in seen:
@@ -76,6 +81,10 @@ def anchor_headings(html, legacy_aliases=None, seen=None):
         sid = _slug(inner, seen)
         plain = _TAGS.sub('', inner).strip()
         prefix = ''
+        # ids published before the 's' prefix existed stay reachable
+        if sid.startswith('s') and sid[1:2].isdigit() and sid[1:] not in seen:
+            seen.add(sid[1:])
+            prefix += f'<span id="{sid[1:]}" class="legacy-anchor"></span>'
         if lvl == '2':
             toc.append((sid, plain))
             for old, pat in list(aliases.items()):
@@ -88,6 +97,21 @@ def anchor_headings(html, legacy_aliases=None, seen=None):
     # whatever is left in `aliases` matched no heading: a published link that
     # now points nowhere, which the caller reports
     return out, toc, sorted(aliases)
+
+
+def demote_headings(html, by=1):
+    """Push every heading down ``by`` levels, ids and all.
+
+    A section the engine introduces with its own <h2> must not contain
+    headings of the same rank: the sources index and the changelog are read as
+    children of that <h2>, so their own hierarchy starts one level lower.
+    """
+    for lvl in range(6 - by, 1, -1):                # deepest first, no double shift
+        new = min(lvl + by, 6)
+        html = re.sub(rf'<h{lvl}(\s[^>]*)?>',
+                      lambda m, n=new: f'<h{n}{m.group(1) or ""}>', html)
+        html = re.sub(rf'</h{lvl}>', f'</h{new}>', html)
+    return html
 
 
 def toc_label(text, limit=26, overrides=None):
@@ -148,11 +172,30 @@ def rank_chips(html):
 
 
 # ------------------------------------------------------------------ tables --
+_HEAD_ANY = re.compile(r'<h([1-6])\b[^>]*>(.*?)</h\1>', re.S)
+
+
+def _nearest_heading(html, pos):
+    """The text of the last heading that opened before ``pos``."""
+    last = ''
+    for m in _HEAD_ANY.finditer(html, 0, pos):
+        last = _h.unescape(_TAGS.sub('', m.group(2))).strip()
+    return last
+
+
 def wrap_tables(html):
     html = re.sub(r'<th(?![\w-])', '<th scope="col"', html)
-    # the wrapper scrolls, so it must be reachable from the keyboard (WCAG 2.1.1)
-    html = re.sub(r'<table\b[^>]*>',
-                  lambda m: '<div class="tablewrap">' + m.group(0), html)
+
+    # every table needs a name of its own: a reader tabbing between scroll
+    # regions otherwise hears the same generic label four times over
+    def cap(m):
+        title = _nearest_heading(html, m.start())
+        c = (f'<caption class="visually-hidden">{_h.escape(title)}</caption>'
+             if title and '<caption' not in html[m.end():m.end() + 200] else '')
+        # the wrapper scrolls, so it must be reachable from the keyboard (WCAG 2.1.1)
+        return '<div class="tablewrap">' + m.group(0) + c
+
+    html = re.sub(r'<table\b[^>]*>', cap, html)
     return html.replace('</table>', '</table></div>')
 
 

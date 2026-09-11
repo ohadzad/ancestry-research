@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>מרדכי בן הרוש</title>
-<meta name="description" content="דף מחקר על מרדכי בן הרוש, בן יונה ויקוט, יליד מרוקו 1931 שעלה ב-1947/48 — המועמד הפתוח ממושב מגדים 1954, המועמדים שנשללו, ומה נסרק.">
+<meta name="description" content="דף מחקר על מרדכי בן הרוש, בן יונה ויקוט (פנינה), יליד מכנאס 1931 שעלה לבדו ב-1947/48 — משפחתו בפנקס אליאנס 1953 וברשימת &quot;ארצה&quot; 1956, המועמד ממושב מגדים 1954, ומה נשלל.">
 <meta name="color-scheme" content="light">
 <style>
 :root {
@@ -135,6 +135,13 @@ h3 { font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }
 h4 { font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }
 p { margin:0 0 1rem; }
 a { color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }
+/* a citation marker after a Latin run would otherwise be laid out on the far
+   side of it, before the very words it cites */
+a.cit { unicode-bidi:isolate; }
+.visually-hidden {
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0;
+}
 a:hover { border-block-end-color:var(--link); }
 a:focus-visible { outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }
 ul, ol { margin:0 0 1rem; padding-inline-start:1.4rem; }
@@ -204,6 +211,10 @@ figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(
 .gallery img { width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
 /* a crop far wider than the frame is shown whole rather than magnified */
 .gallery img.contain { object-fit:contain; padding:.3rem; }
+/* a line strip (wider than 6:1) is a hairline inside a square tile: it takes
+   the whole row and keeps its own proportions, so the writing can be read */
+.gallery a.wide { width:100%; }
+.gallery a.wide img { height:auto; max-block-size:11rem; object-fit:contain; }
 .gallery span { display:block; margin-block-start:.3rem; }
 
 /* ---------- family tree ---------- */
@@ -211,8 +222,14 @@ figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(
   overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
   background:#fff; padding:.5rem;
 }
+/* zoom 1 == fit to width: the diagram is never wider than the frame unless the
+   reader asks for it, on a phone as on a desktop */
 .tree-embed svg {
-  min-width:calc(75rem * var(--tree-zoom, 1.5)); height:auto; display:block; margin-inline:auto;
+  width:calc(100% * var(--tree-zoom, 1.5));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1.5)));
+  /* the global svg max-width would clamp the zoom away */
+  max-width:none;
+  height:auto; display:block; margin-inline:auto;
 }
 .tree-zoom {
   display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
@@ -279,22 +296,47 @@ footer {
 }
 
 /* ---------- mobile ---------- */
+.qtoggle {
+  display:none; font:inherit; font-size:.82rem; line-height:1; cursor:pointer;
+  padding:.35rem .7rem; min-block-size:1.9rem; margin-inline-start:auto;
+  border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink);
+}
+.qtoggle:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+
 @media (max-width:40rem) {
-  :root { --anchor-off: 12rem; }
+  :root { --anchor-off: 7rem; --tree-zoom: 1; }
   body { font-size:1rem; overflow-wrap:anywhere; }
   bdi { overflow-wrap:anywhere; }
   .hero { padding:1.75rem 1rem 1.5rem; }
   main { padding:1.25rem 1rem 3rem; }
   .nav-in { padding:0 1rem; }
-  .nav-row { height:2.9rem; }
-  .qwrap { order:99; margin:0 0 .5rem; width:100%; }
+  .nav-row { height:2.4rem; }
+  /* one scrolling row instead of three wrapped ones: the sticky bar cost a
+     quarter of the screen and no link is lost by scrolling it */
+  .nav-row:first-child {
+    flex-wrap:nowrap; height:2.4rem; padding-block:0;
+    overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
+  }
+  .nav-row:first-child::-webkit-scrollbar { display:none; }
+  .chapters-wrap > summary { padding:.05rem 0; font-size:.72rem; line-height:1.4; }
+  .nav-row.chapters { height:2.2rem; }
+  .qtoggle { display:block; flex:0 0 auto; position:sticky; inset-inline-end:0;
+             box-shadow:-6px 0 8px rgba(250,247,242,.97); }
+  .qwrap { display:none; }
+  /* while searching, the row IS the search: the links step aside for it, and
+     nothing clips the results panel */
+  .nav.qopen .nav-row:first-child { overflow:visible; }
+  .nav.qopen .nav-row:first-child > a,
+  .nav.qopen .nav-row:first-child > .lbl { display:none; }
+  .nav.qopen .qwrap { display:block; flex:1 1 auto; margin:0; min-width:0; }
   #q { width:100%; min-width:0; }
   #qres { min-width:0; max-width:none; inline-size:100%; max-height:50vh; }
   main { padding-block-end:4.5rem; }   /* clearance for the floating button */
   td, th { overflow-wrap:break-word; }
-  .nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.5rem 0; overflow:visible; }
-  .nav-row:first-child > a, .nav-row:first-child > .lbl { margin-block-end:.35rem; }
-  .spine { display:grid; grid-template-columns:1fr 1fr; }
+  .tree-embed { max-block-size:70vh; overflow-y:auto; }
+  .spine { display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); }
+  /* an odd last tile would otherwise sit alone at half width */
+  .spine div:last-child:nth-child(odd) { grid-column:1/-1; }
   .spine div { min-width:0; padding:.45rem .6rem; }
   .spine b { font-size:1.1rem; }
   .gallery a { width:8.5rem; }
@@ -345,11 +387,11 @@ footer {
 <a class="skip" href="#report">דילוג לתוכן</a>
 <a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
 <span id="top"></span>
-<header class="hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><h1>מרדכי בן הרוש</h1><p class="subject">1931, מרוקו — 2010 · דף נלווה למחקר על מרים בן הרוש · בתחילתו</p><div class="meta">מהדורה 5 · נבנה 12.09.2026, 00:49</div><div class="spine"><div><b>2</b><span>רשומות של משפחתו</span></div><div><b>1</b><span>מועמד פתוח</span></div><div><b>6</b><span>רשומות שנשללו</span></div><div><b>16/29</b><span>קובצי עולים <bdi dir="ltr">1947–49</bdi> שנקראו</span></div><div><b>11</b><span>ערכי מקור</span></div></div></div></header>
-<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><span class="lbl">מקטעים</span><a href="#report">הדוח</a><a href="#tree">עץ המשפחה</a><a href="#gallery">מסמכי מפתח</a><a href="#people">אינדקס אנשים</a><a href="#index">אינדקס מקורות</a><a href="#changelog">יומן מהדורות</a><div class="qwrap"><input id="q" type="search" placeholder="חיפוש בעמוד…" aria-label="חיפוש בפרקים ובאינדקס האנשים" autocomplete="off" aria-controls="qres" hidden><div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div></div></div><details class="chapters-wrap" open><summary class="lbl">פרקים</summary><div class="nav-row chapters"><a href="#1-תמצית" title="1. תמצית">1 · תמצית</a><a href="#2-מה-ידוע-מהמשפחה" title="2. מה ידוע מהמשפחה">2 · מהמשפחה</a><a href="#3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954" title="3. המועמד הפתוח — &quot;בנערוש מרדושי&quot;, מגדים, 1954">3 · המועמד הפתוח</a><a href="#4-מועמדים-שנשללו" title="4. מועמדים שנשללו">4 · נשללו</a><a href="#5-המשפחה-במסמכים-ומה-לא-נמצא" title="5. המשפחה במסמכים — ומה לא נמצא">5 · מה לא נמצא</a><a href="#6-עץ-המשפחה" title="6. עץ המשפחה">6 · עץ המשפחה</a><a href="#7-פעולות-פתוחות" title="7. פעולות פתוחות">7 · פעולות פתוחות</a><a href="#8-סיכום-המקורות" title="8. סיכום המקורות">8 · המקורות</a><a href="#9-שיטה-ומגבלות" title="9. שיטה ומגבלות">9 · שיטה ומגבלות</a></div></details></div></nav>
+<header class="hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><h1>מרדכי בן הרוש</h1><p class="subject">1931, מכנאס — 2010 · דף נלווה למחקר על מרים בן הרוש · שתי רשומות של משפחתו</p><div class="meta">מהדורה 6 · נבנה 12.09.2026</div><div class="spine"><div><b>2</b><span>רשומות של משפחתו</span></div><div><b>1</b><span>מועמד לשינוי השם</span></div><div><b>6</b><span>רשומות שנשללו</span></div><div><b>16/29</b><span>קובצי עולים <bdi dir="ltr">1947–49</bdi> שנקראו</span></div><div><b>12</b><span>ערכי מקור</span></div></div></div></header>
+<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><span class="lbl">מקטעים</span><a href="#report">הדוח</a><a href="#tree">עץ המשפחה</a><a href="#gallery">מסמכי מפתח</a><a href="#people">אינדקס אנשים</a><a href="#index">אינדקס מקורות</a><a href="#changelog">יומן מהדורות</a><button type="button" class="qtoggle" aria-expanded="false" aria-controls="q">חיפוש</button><div class="qwrap"><input id="q" type="search" placeholder="חיפוש בפרקים, אנשים ומקורות…" aria-label="חיפוש בפרקים, באנשים ובמקורות" autocomplete="off" aria-controls="qres" hidden><div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div></div></div><details class="chapters-wrap" open><summary class="lbl">פרקים</summary><div class="nav-row chapters"><a href="#s1-תמצית" title="1. תמצית">1 · תמצית</a><a href="#s2-מה-ידוע-מהמשפחה" title="2. מה ידוע מהמשפחה">2 · מהמשפחה</a><a href="#s3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954" title="3. המועמד הפתוח — &quot;בנערוש מרדושי&quot;, מגדים, 1954">3 · המועמד הפתוח</a><a href="#s4-מועמדים-שנשללו" title="4. מועמדים שנשללו">4 · נשללו</a><a href="#s5-המשפחה-במסמכים-ומה-לא-נמצא" title="5. המשפחה במסמכים — ומה לא נמצא">5 · המשפחה במסמכים</a><a href="#s6-עץ-המשפחה" title="6. עץ המשפחה">6 · עץ המשפחה</a><a href="#s7-פעולות-פתוחות" title="7. פעולות פתוחות">7 · פעולות פתוחות</a><a href="#s8-סיכום-המקורות" title="8. סיכום המקורות">8 · המקורות</a><a href="#s9-שיטה-ומגבלות" title="9. שיטה ומגבלות">9 · שיטה ומגבלות</a></div></details></div></nav>
 <main>
 <section id="report"><p class="note prov">העמוד הזה טוען את התצלומים ואת המסמכים ישירות מתיקיית <code>docs/</code> שלצדו — לחיצה על כל ראיה פותחת את קובץ המקור המלא.</p><div class="lede"><p><strong>מרדכי בן הרוש</strong> — בעלה של <a href="../index.html#research-miriam-benharoush">מרים לבית דהן</a> — נולד לפי המשפחה ב-1931 במכנאס שבמרוקו, בנם של <strong>יונה ויקוט</strong>, עלה לישראל ב-1947 או ב-1948, ונפטר ב-2010.</p>
-<p>מרדכי עצמו עדיין לא נמצא במסמך — אבל <strong>משפחתו נמצאה, בשני מסמכים</strong>. פנקס בית הספר לבנות של אליאנס במכנאס רושם ב-1953 את אחותו <strong>אסתר בנארוש</strong>, בת 5, על שם ההורים <strong>Yona · Yacot</strong>, אב סוחר בעיר החדשה. ורשימת העולים של האונייה <strong>"ארצה" מ-11.6.1956</strong> רושמת את ההורים <strong>יונה (1918) ויקוט (1918) בן-הרוש</strong> עם ארבעה ילדים — גבריאל, ז'ולייט, סלומון ואסתר — ולצדם את האח <strong>יעקב (1933)</strong> ואשתו מרי, כולם נשלחו לצפת. שמות הוריו של יונה ברשימה: <strong>מרדכי ומרים</strong> — מרדכי, אם כן, נקרא על שם סבו. המועמד הפתוח לרישום שלו עצמו נשאר רישום שינוי השם "בנערוש מרדושי" ממושב <strong>מגדים</strong>, 12.12.1954 — <span class="rank v4">טעון אימות</span>.</p>
+<p>מרדכי עצמו עדיין לא נמצא במסמך — אבל <strong>משפחתו נמצאה, בשני מסמכים</strong>, והזיהוי מדורג <span class="rank v2">כמעט ודאי</span>. פנקס בית הספר לבנות של אליאנס במכנאס רושם ב-1953 את אחותו <strong>אסתר בנארוש</strong>, בת 5, על שם ההורים <strong>Yona · Yacot</strong>, הורים סוחרים בעיר החדשה. ורשימת העולים שכותרתה <strong>"ארצה", 11.6.1956</strong> — ככל הנראה שם האונייה — רושמת את ההורים <strong>יונה (1912 או 1918) ויקוט (1918) בן-הרוש</strong> עם ארבעה ילדים — גבריאל, ז'וליט, סלומון ואסתר — ולצדם את האח <strong>יעקב (1933)</strong> ואשתו מרי; כולם נשלחו לצפת. המשפחה אישרה את האחים. בעמודת ההורים של יונה: <strong>מרדכי ומרים</strong> — ייתכן שמרדכי נקרא על שם סבו. מכאן, ובהתאם למה שמסרה המשפחה, מרדכי עלה <strong>לבדו, לפני משפחתו</strong>, נער בן <bdi dir="ltr">16–17</bdi>. המועמד הפתוח לרישום שלו עצמו נשאר רישום שינוי השם "בנערוש מרדושי" ממושב <strong>מגדים</strong>, 12.12.1954 — <span class="rank v4">טעון אימות</span>.</p>
 <p>שש רשומות אחרות בשם דומה נשללו לפי שנת לידה, הורים או מוצא. <strong>כל מקור מופיע פעמיים: קישור אל הרשומה בארכיון וקישור אל עותק שמור.</strong> גם ממצא שלילי נרשם, עם הכיסוי המדויק שלו.</p></div>
 <p><strong>מאיפה להתחיל</strong></p>
 <ul>
@@ -360,23 +402,24 @@ footer {
 <li><a href="#s7">הפעולות הפתוחות</a> — השאלה שמכריעה, ומה אחריה.</li>
 </ul>
 <hr />
-<span id="s1" class="legacy-anchor"></span><h2 id="1-תמצית">1. תמצית</h2>
+<span id="1-תמצית" class="legacy-anchor"></span><span id="s1" class="legacy-anchor"></span><h2 id="s1-תמצית">1. תמצית</h2>
 <p>מרדכי בן הרוש, בעלה של מרים לבית דהן, נולד לפי המשפחה ב-1931 במכנאס שבמרוקו, בנם של יונה ויקוט, עלה לישראל ב-1947 או ב-1948, ונפטר ב-2010.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> דף זה מרכז את מה שנבדק עד כה בארכיונים הישראליים ובפנקסי אליאנס במרוקו, את המועמדים שנמצאו ואת מה שנשלל.</p>
-<p>התמונה נכון להיום: מרדכי עצמו עדיין ללא מסמך, אבל <strong>הוריו, אחיו ואחותו תועדו בשני מסמכים</strong> — פנקס אליאנס מכנאס 1953 (אחותו אסתר, הורים Yona/Yacot)<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> ורשימת העולים של "ארצה", 11.6.1956 (יונה ויקוט עם ארבעה ילדים, והאח יעקב עם אשתו — לצפת)<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a> — ראו <a href="#s5-2">סעיפים <bdi dir="ltr">5.2–5.3</bdi></a>. מהרשימה עולה גם ששמות הוריו של יונה היו מרדכי ומרים, ולכן מרדכי נקרא על שם סבו. הרשומות מלמדות שהמשפחה נשארה במכנאס עד 1956, כלומר מרדכי — שעלה לפי המשפחה ב-1947/48 — עלה לבדו, נער בן <bdi dir="ltr">16–17</bdi>. המועמד היחיד שנשאר פתוח הוא רישום שינוי שם בילקוט הפרסומים מ-1955: "בנערוש מרדושי" ממושב מגדים, שקיבל את השם "בן הרוש מרדכי" ב-12.12.1954.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> הרישום עצמו <span class="rank v1">מאומת</span>; הזיהוי שלו כמרדכי בעלה של מרים מדורג <span class="rank v4">טעון אימות</span>, ו<a href="#s3">פרק 3</a> מסביר למה הוא סביר ולמה הוא לא מוכרע.</p>
+<p>התמונה נכון להיום: מרדכי עצמו עדיין ללא מסמך, אבל <strong>הוריו, אחיו ואחותו תועדו בשני מסמכים</strong> — פנקס אליאנס מכנאס 1953 (אחותו אסתר, הורים Yona/Yacot)<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> ורשימת העולים של "ארצה", 11.6.1956 (יונה ויקוט עם ארבעה ילדים, והאח יעקב עם אשתו — לצפת)<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a> — ראו <a href="#s5-2">סעיפים <bdi dir="ltr">5.2–5.3</bdi></a>. בהנחת הזיהוי — כמעט ודאי — עולה מהרשימה ששמות הוריו של יונה היו מרדכי ומרים, וייתכן שמרדכי נקרא על שם סבו (<span class="rank v3">ככל הנראה</span>; המסמך אומר רק שאביו של יונה נקרא מרדכי). ההורים היו במכנאס ב-1953 (פנקס אליאנס) ועלו ממרוקו ביוני 1956 — ומכאן, וכך גם מסרה המשפחה, שמרדכי עלה לבדו, לפני משפחתו, נער בן <bdi dir="ltr">16–17</bdi>. המועמד היחיד שנשאר פתוח הוא רישום שינוי שם בילקוט הפרסומים מ-1955: "בנערוש מרדושי" ממושב מגדים, שקיבל את השם "בן הרוש מרדכי" ב-12.12.1954.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> הרישום עצמו <span class="rank v1">מאומת</span>; הזיהוי שלו כמרדכי בעלה של מרים מדורג <span class="rank v4">טעון אימות</span>, ו<a href="#s3">פרק 3</a> מסביר למה הוא סביר ולמה הוא לא מוכרע.</p>
 <p>מה שנשלל: שש רשומות בשם דומה או קרוב ב-IGRA וברשימות העולים, שפרטיהן (שנת לידה, הורים, מוצא) אינם מתיישבים עם הידוע (<a href="#s4">פרק 4</a>).</p>
-<span id="s2" class="legacy-anchor"></span><h2 id="2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</h2>
+<span id="2-מה-ידוע-מהמשפחה" class="legacy-anchor"></span><span id="s2" class="legacy-anchor"></span><h2 id="s2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</h2>
 <p>המידע שנמסר, והוא הבסיס לזיהוי — לא ראיה בפני עצמו:<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a></p>
 <ul>
 <li>מרדכי בן הרוש. שנת לידה 1931 (המשפחה אינה בטוחה שכך רשום בתעודת הזהות). מקום הלידה: <strong>מכנאס</strong> (נמסר 11.09.2026).</li>
 <li>הוריו: יונה ופנינה. (בתחילה נמסר "יונה ויקוט"; בהמשך אותו יום — "יונה היה אבא שלו, פנינה האמא". ברשומות ממרוקו ומהנמל האם רשומה "יקוט"/Yacot; ראו <a href="#s5-3">סעיף 5.3</a> על הזהות בין השמות.)</li>
-<li>עלה ב-1947 או 1948. המשפחה לא ידעה אם לבדו או עם הוריו; מהרשומות (סעיפים <bdi dir="ltr">5.2–5.3</bdi>) עולה שלבדו.</li>
+<li>עלה ב-1947 או 1948, בגיל <bdi dir="ltr">16–17</bdi>, <strong>לבדו ולפני משפחתו</strong> (נמסר 11.09.2026, לאחר שנמצאו רשומות המשפחה); לזכרון המשפחה — במטוס ("אם אני לא טועה"). הוסיף לגילו שנה-שנתיים והתגייס לצבא כשאמר שהוא בן 18 — ולכן ייתכן ששנת הלידה הרשומה בתעודת הזהות מוקדמת משנת לידתו בפועל.</li>
+<li>אחיו ואחיותיו (נמסר 11.09.2026, לאחר הצגת רשימת 1956): גבי (גבריאל), יעקב ואסתר — "כולם שם", וכנראה גם השאר; השמות ייבדקו סופית במשפחה.</li>
 <li>נישא למרים דהן (ילידת מכנאס, 1939; עלתה 1956) — <a href="../index.html#research-miriam-benharoush">המחקר על מרים</a>.</li>
 <li>נפטר ב-2010; קבור בבית העלמין ירקון. מקום הקבורה מחוץ למטרות הדף.</li>
 </ul>
-<span id="s3" class="legacy-anchor"></span><h2 id="3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954">3. המועמד הפתוח — "בנערוש מרדושי", מגדים, 1954</h2>
-<h3 id="3-1-הרישום"><span id="s3-1" class="legacy-anchor"></span>3.1 הרישום</h3>
+<span id="3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954" class="legacy-anchor"></span><span id="s3" class="legacy-anchor"></span><h2 id="s3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954">3. המועמד הפתוח — "בנערוש מרדושי", מגדים, 1954</h2>
+<span id="3-1-הרישום" class="legacy-anchor"></span><h3 id="s3-1-הרישום"><span id="s3-1" class="legacy-anchor"></span>3.1 הרישום</h3>
 <p>ילקוט הפרסומים 407, ח' בניסן תשט"ו (31.3.1955), עמ' 647, "הודעה בדבר שינויי שם", רשימה מס' 10, מחוז חיפה — נפת חדרה.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> השורה:</p>
-<div class="tablewrap"><table>
+<div class="tablewrap"><table><caption class="visually-hidden">3.1 הרישום</caption>
 <thead>
 <tr>
 <th scope="col">שדה</th>
@@ -407,29 +450,29 @@ footer {
 </tr>
 <tr>
 <td>מספר הזהות</td>
-<td>מושחר בסריקה</td>
+<td>העמודה מוסתרת בסריקה, בכל שורות הרשימה</td>
 <td>—</td>
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_row_1400q82_88dd9e.jpg" alt="השורה בילקוט הפרסומים 407: בנערוש מרדושי, בן הרוש מרדכי, מגדים, 12.12.54" loading="lazy" decoding="async" width="1400" height="56"></a><figcaption><span class="fignum">איור 1</span> — ראיה 1 — השורה בילקוט הפרסומים 407, עמ' 647, רשימה 10 (מחוז חיפה, נפת חדרה): «בנערוש · מרדושי → בן הרוש · מרדכי · מגדים · 12.12.54». עמודת מספר הזהות מושחרת בסריקה. המקור: <a href="#src-1">ילקוט הפרסומים 407</a>.</figcaption></figure>
-<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_header_1400q82_1ce059.jpg" alt="כותרת הרשימה: הודעה בדבר שינויי שם" loading="lazy" decoding="async" width="1400" height="151"></a><figcaption><span class="fignum">איור 2</span> — ראיה 2 — כותרת הרשימה: "שינויי שמות האנשים המפורטים להלן נרשמו ביחידות רישום התושבים, האגף למרשם התושבים, משרד הפנים" · רשימה מס' 10 · מחוז חיפה — נפת חדרה · העמודות: השם הקודם, השם החדש, מקום המגורים, מספר הזהות, תאריך אישור השינוי.</figcaption></figure>
-<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_footer_1400q82_3bcab1.jpg" alt="תחתית העמוד: ילקוט הפרסומים 407, ח' בניסן תשט&quot;ו, 31.3.1955" loading="lazy" decoding="async" width="1400" height="71"></a><figcaption><span class="fignum">איור 3</span> — ראיה 3 — תחתית העמוד: «ילקוט הפרסומים 407, ח' בניסן תשט"ו, 31.3.1955» · עמ' 647 — הציטוט הביבליוגרפי של הגיליון.</figcaption></figure>
-<h3 id="3-2-למה-זה-סביר"><span id="s3-2" class="legacy-anchor"></span>3.2 למה זה סביר</h3>
+<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_row_1400q82_f2aa9a.jpg" alt="השורה בילקוט הפרסומים 407: בנערוש מרדושי, בן הרוש מרדכי, מגדים, 12.12.54" loading="lazy" decoding="async" width="1400" height="56"></a><figcaption><span class="fignum">איור 1</span> — השורה בילקוט הפרסומים 407, עמ' 647, רשימה 10 (מחוז חיפה, נפת חדרה): «בנערוש · מרדושי → בן הרוש · מרדכי · מגדים · 12.12.54». עמודת מספר הזהות מוסתרת בסריקה בכל הרשימה. המקור: <a href="#src-1">ילקוט הפרסומים 407</a>.</figcaption></figure>
+<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_header_1400q82_d30cec.jpg" alt="כותרת הרשימה: הודעה בדבר שינויי שם" loading="lazy" decoding="async" width="1400" height="242"></a><figcaption><span class="fignum">איור 2</span> — כותרת הרשימה: «הודעה בדבר שינויי שם — שינויי שמות האנשים המפורטים להלן נרשמו ביחידות רישום התושבים, האגף למרשם התושבים, משרד הפנים» · רשימה מס' 10 · מחוז חיפה — נפת חדרה · העמודות: השם הקודם (שם המשפחה, השם הפרטי), השם החדש, מקום המגורים, מספר הזהות במרשם התושבים, תאריך אישור השינוי.</figcaption></figure>
+<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_footer_1400q82_34a9f5.jpg" alt="תחתית העמוד: ילקוט הפרסומים 407, ח' בניסן תשט&quot;ו, 31.3.1955" loading="lazy" decoding="async" width="1400" height="71"></a><figcaption><span class="fignum">איור 3</span> — תחתית העמוד: «ילקוט הפרסומים 407, ח' בניסן תשט"ו, 31.3.1955» · עמ' 647 — הציטוט הביבליוגרפי של הגיליון.</figcaption></figure>
+<span id="3-2-למה-זה-סביר" class="legacy-anchor"></span><h3 id="s3-2-למה-זה-סביר"><span id="s3-2" class="legacy-anchor"></span>3.2 למה זה סביר</h3>
 <ul>
-<li><strong>מגדים</strong> הוא מושב ליד עתלית, שהוקם ב-1949 על ידי עולים מצפון אפריקה.<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> צעיר שעלה ממרוקו ב-1947/48 ועבר דרך מחנה עתלית הוא בדיוק הפרופיל של מתיישבי המקום.</li>
-<li><strong>"מרדושי"</strong> הוא צורת חיבה מרוקאית של מרדכי; החלפתה ב"מרדכי" ו"בנערוש" ב"בן הרוש" היא בדיוק סוג התקנון של שמות שעולי מרוקו עשו בשנות החמישים.</li>
-<li>בגיל 23 (אם נולד ב-1931) הוא היה בגיל שבו רווקים ממגדים ומעתלית רשמו שינוי שם לקראת גיוס, עבודה או נישואין.</li>
+<li><strong>מגדים</strong> הוא מושב ליד עתלית, שהוקם ב-1949 על ידי עולים מצפון אפריקה.<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> צעיר שעלה ממרוקו ב-<bdi dir="ltr">1947/48</bdi> ועבר דרך מחנה עתלית הוא בדיוק הפרופיל של מתיישבי המקום.</li>
+<li><strong>"מרדושי"</strong> נראה כצורת חיבה של מרדכי (ידע כללי, ללא מקור — אינו ראיה); החלפתה ב"מרדכי" ו"בנערוש" ב"בן הרוש" היא תקנון כתיב, לא שינוי שם של ממש.</li>
+<li>בגיל 23 (אם נולד ב-1931) — גיל סביר לרישום כזה לקראת גיוס, עבודה או נישואין (השערה, ללא מקור סטטיסטי).</li>
 </ul>
-<h3 id="3-3-למה-זה-לא-מוכרע"><span id="s3-3" class="legacy-anchor"></span>3.3 למה זה לא מוכרע</h3>
+<span id="3-3-למה-זה-לא-מוכרע" class="legacy-anchor"></span><h3 id="s3-3-למה-זה-לא-מוכרע"><span id="s3-3" class="legacy-anchor"></span>3.3 למה זה לא מוכרע</h3>
 <ul>
-<li>ההודעה אינה כוללת שנת לידה או שמות הורים; מספר הזהות מושחר בסריקה.</li>
-<li>השם מרדכי בן הרוש נפוץ; ב-IGRA לבדו יש שש רשומות בשם זה מהשנים <bdi dir="ltr">1949–1954</bdi> (<a href="#s4">פרק 4</a>).</li>
-<li>אין עדיין מסמך אחר שמקשר את מרדכי בעלה של מרים למגדים או לעתלית — אם כי העובדה שעלה לבדו כנער ב-1947/48 (<a href="#s5-3">סעיף 5.3</a>) מתאימה לפרופיל של מתיישב במושב עולים שהוקם ב-1949.</li>
+<li>ההודעה אינה כוללת שנת לידה או שמות הורים; עמודת מספר הזהות מוסתרת בסריקה.</li>
+<li>השם מרדכי בן הרוש נפוץ; ב-IGRA לבדו 13 רשומות בשם מרדכי הרוש/ארוש (<bdi dir="ltr">1839–1950</bdi>), ואף אחת מהן אינה מתאימה (<a href="#s4">פרק 4</a>).</li>
+<li>אין עדיין מסמך אחר שמקשר את מרדכי בעלה של מרים למגדים או לעתלית — אם כי העובדה שעלה לבדו כנער ב-<bdi dir="ltr">1947/48</bdi> (<a href="#s5-3">סעיף 5.3</a>) מתאימה לפרופיל של מתיישב במושב עולים שהוקם ב-1949.</li>
 </ul>
 <p><strong>הכרעה:</strong> שאלה למשפחה. אם מרדכי גר במגדים או בסביבת עתלית בשנות החמישים, או אם כונה "מרדושי" — הזיהוי עולה ל"כמעט ודאי". אם לא — הרשומה נשללת.</p>
-<span id="s4" class="legacy-anchor"></span><h2 id="4-מועמדים-שנשללו">4. מועמדים שנשללו</h2>
-<div class="tablewrap"><table>
+<span id="4-מועמדים-שנשללו" class="legacy-anchor"></span><span id="s4" class="legacy-anchor"></span><h2 id="s4-מועמדים-שנשללו">4. מועמדים שנשללו</h2>
+<div class="tablewrap"><table><caption class="visually-hidden">4. מועמדים שנשללו</caption>
 <thead>
 <tr>
 <th scope="col">מקור</th>
@@ -440,7 +483,7 @@ footer {
 </thead>
 <tbody>
 <tr>
-<td>רשימת עולים אפריל 1949, גל-15493/6 מסמך 192 שורה 54 — "מרדכי בנארוש"<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a></td>
+<td>רשימת עולים אפריל 1949, גל-<bdi dir="ltr">15493/6</bdi> מסמך 192 שורה 54 — "מרדכי בנארוש"<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a></td>
 <td>יליד 1910</td>
 <td>פער של 21 שנה משנת הלידה המשפחתית</td>
 <td><strong>נשלל</strong></td>
@@ -452,19 +495,19 @@ footer {
 <td><span class="rank v3">ככל הנראה</span> נשלל</td>
 </tr>
 <tr>
-<td>רשימת עולים אוקטובר 1949, גל-15494/5, עמ' 20 — "בן ארוש מכלוף"<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
+<td>רשימת עולים אוקטובר 1949, גל-<bdi dir="ltr">15494/5</bdi>, עמ' 20 — "בן ארוש מכלוף"<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
 <td>יליד 1931</td>
 <td>שם פרטי אחר; ההורים בעמודה אינם יונה/יקוט</td>
 <td><strong>נשלל</strong></td>
 </tr>
 <tr>
-<td>רשימת עולים מרץ 1949 חלק ב, גל-15493/3, עמ' 45, שורות <bdi dir="ltr">199–202</bdi> — משפחת בן הרוש (אסתר 1889, יוסף 1901, אסתר 1913, אברהם 1947)<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a></td>
-<td>"יקוט" בשורה 198 שייכת למשפחת בן שמעון שמעליהם</td>
-<td>אין מרדכי; ההורים אחרים</td>
+<td>רשימת עולים מרץ 1949 חלק ב, גל-<bdi dir="ltr">15493/3</bdi>, עמ' 45, שורות <bdi dir="ltr">199–202</bdi> — משפחת בן הרוש<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a></td>
+<td>אסתר 1889 (יעקב/שמחה), יוסף 1901 (יצחק/מרי), אסתר 1913, אברהם 1947</td>
+<td>אין מרדכי; ההורים אחרים; "יקוט 1931" בשורה 198 שייכת למשפחת בן שמעון שמעליהם</td>
 <td><strong>נשלל</strong></td>
 </tr>
 <tr>
-<td>רשימת עולים יוני 1949, גל-15493/8, עמ' <bdi dir="ltr">150–151</bdi> — משפחת הרוש (יצחק, עמרם, חנה, רחל, ישראל, אליס, פרחה, רחמה, אסתר)<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
+<td>רשימת עולים יוני 1949, גל-<bdi dir="ltr">15493/8</bdi>, עמ' <bdi dir="ltr">150–151</bdi> — משפחת הרוש (יצחק, עמרם, חנה, רחל, ישראל, אליס, פרחה, רחמה, אסתר)<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
 <td>תשע נפשות ממרוקו</td>
 <td>אין מרדכי; אין יונה/יקוט בעמודת ההורים</td>
 <td><strong>נשלל</strong></td>
@@ -477,13 +520,13 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener"><img src="docs/thumbs/1949-03_list_p45_800q82_20577d.jpg" alt="רשימת העולים מ-24.3.1949, עמ' 45: שורות 197–202, בן שמעון ובן הרוש" loading="lazy" decoding="async" width="800" height="1270"></a><figcaption><span class="fignum">איור 4</span> — ראיה 4 — רשימת העולים "מיום 24 מרץ 1949", עמ' 4 של הרשימה (עמ' 45 בקובץ): שורה 198 "יקוט, 1931" שייכת למשפחת בן שמעון (יחיא, 1923, ימין/רוחמה); שורות <bdi dir="ltr">199–202</bdi> הן משפחת בן הרוש — אסתר 1889 (יעקב/שמחה), יוסף 1901 (יצחק/מרי), אסתר 1913, אברהם 1947. אין מרדכי. המקור: <a href="#src-6">ארכיון המדינה, גל-15493/3</a>.</figcaption></figure>
-<span id="s5" class="legacy-anchor"></span><h2 id="5-המשפחה-במסמכים-ומה-לא-נמצא">5. המשפחה במסמכים — ומה לא נמצא</h2>
-<h3 id="5-1-רשימות-העולים-1947-1949"><span id="s5-1" class="legacy-anchor"></span>5.1 רשימות העולים <bdi dir="ltr">1947–1949</bdi></h3>
-<p>ארכיון המדינה, חטיבות S‑104 (1948) ו-גל‑15492 עד גל‑15494 (<bdi dir="ltr">1947–1949</bdi>), דרך אוסף Google Pinpoint:<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a> 29 קבצים אותרו; ב-16 מהם נקראו כל העמודים שבהם ה-OCR מזהה "הרוש", "ארוש" או "בנארוש"; ב-13 קבצים (ובהם חלקים שניים ושלישיים של קבצי 1948) כלי האיתור לא החזיר עמודים כלל, והם <strong>לא נקראו</strong>. לא נמצא בלוק "בן הרוש מרדכי" עם ההורים יונה/יקוט. הממצא השלילי מדורג <span class="rank v3">ככל הנראה</span> בלבד: ה-OCR של הרשימות עמודתי ומשבש שיוך שורות, חיפוש ביטויים מדויקים אינו עובד בכלי, ושליש מהקבצים לא נקרא. פירוט הכיסוי ב<a href="#s9-4">סעיף 9.4</a>.</p>
-<h3 id="5-2-פנקס-אליאנס-מכנאס-1953-אחותו-אסתר"><span id="s5-2" class="legacy-anchor"></span>5.2 פנקס אליאנס מכנאס 1953 — אחותו אסתר</h3>
+<figure><a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener"><img src="docs/thumbs/1949-03_list_p45_800q82_4adb45.jpg" alt="רשימת העולים ממרץ 1949 (חותמת 21.3.1949), עמ' 45: שורות 197–202, בן שמעון ובן הרוש" loading="lazy" decoding="async" width="800" height="1270"></a><figcaption><span class="fignum">איור 4</span> — רשימת העולים ממרץ 1949 (החותמת בעמוד: "21 מרץ 1949"), עמ' 4 של הרשימה (עמ' 45 בקובץ): שורה 198 "יקוט, 1931" שייכת למשפחת בן שמעון (יחיא, 1923, ימין/רוחמה); שורות <bdi dir="ltr">199–202</bdi> הן משפחת בן הרוש — אסתר 1889 (יעקב/שמחה), יוסף 1901 (יצחק/מרי), אסתר 1913, אברהם 1947. אין מרדכי. המקור: <a href="#src-6">ארכיון המדינה, גל-<bdi dir="ltr">15493/3</bdi></a>.</figcaption></figure>
+<span id="5-המשפחה-במסמכים-ומה-לא-נמצא" class="legacy-anchor"></span><span id="s5" class="legacy-anchor"></span><h2 id="s5-המשפחה-במסמכים-ומה-לא-נמצא">5. המשפחה במסמכים — ומה לא נמצא</h2>
+<span id="5-1-רשימות-העולים-1947-1949" class="legacy-anchor"></span><h3 id="s5-1-רשימות-העולים-1947-1949"><span id="s5-1" class="legacy-anchor"></span>5.1 רשימות העולים <bdi dir="ltr">1947–1949</bdi></h3>
+<p>ארכיון המדינה, חטיבות S‑104 (1948) ו-גל‑15492 עד גל‑15494 (<bdi dir="ltr">1947–1949</bdi>), דרך אוסף Google Pinpoint:<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a> 29 קבצים אותרו (חלקם מפוצלים לכמה חלקי-קובץ באוסף); ב-16 קבצים — 20 חלקי-קובץ — נקראו כל העמודים שבהם ה-OCR מזהה "הרוש", "ארוש" או "בנארוש"; ב-13 קבצים (ובהם חלקים שניים ושלישיים של קבצי 1948) כלי האיתור לא החזיר עמודים כלל, והם <strong>לא נקראו</strong>. לא נמצא בלוק "בן הרוש מרדכי" עם ההורים יונה/יקוט. הממצא השלילי מדורג <span class="rank v3">ככל הנראה</span> בלבד: ה-OCR של הרשימות עמודתי ומשבש שיוך שורות, חיפוש ביטויים מדויקים אינו עובד בכלי, ושליש מהקבצים לא נקראו. פירוט הכיסוי ב<a href="#s9-4">סעיף 9.4</a>.</p>
+<span id="5-2-פנקס-אליאנס-מכנאס-1953-אחותו-אסתר" class="legacy-anchor"></span><h3 id="s5-2-פנקס-אליאנס-מכנאס-1953-אחותו-אסתר"><span id="s5-2" class="legacy-anchor"></span>5.2 פנקס אליאנס מכנאס 1953 — אחותו אסתר</h3>
 <p>משנמסר שמרדכי נולד במכנאס, חיפוש ממוקד באינדקס IGRA לפנקסי אליאנס — שם משפחה מאשכול Benharoch עם שמות ההורים Yona ו-Yacot — העלה רשומה אחת, בפנקס בית הספר לבנות של אליאנס במכנאס לשנת 1953, מספר סידורי 3076 (שורה 26 בעמוד):<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a></p>
-<div class="tablewrap"><table>
+<div class="tablewrap"><table><caption class="visually-hidden">5.2 פנקס אליאנס מכנאס 1953 — אחותו אסתר</caption>
 <thead>
 <tr>
 <th scope="col">שדה</th>
@@ -499,8 +542,8 @@ footer {
 </tr>
 <tr>
 <td>גיל</td>
-<td>5 ans (חמש שנים) — ילידת ~1948</td>
-<td><span class="rank v1">מאומת</span></td>
+<td><bdi dir="ltr">5 ans</bdi> (חמש שנים)</td>
+<td><span class="rank v1">מאומת</span> — הכותרת: "גיל משוער" בהיעדר תאריך; שנת לידה ~1948 נגזרת — <span class="rank v3">ככל הנראה</span></td>
 </tr>
 <tr>
 <td>הורים</td>
@@ -509,7 +552,7 @@ footer {
 </tr>
 <tr>
 <td>מגורים ומקצוע ההורים</td>
-<td>Commerçant V. Nouvelle — סוחר, העיר החדשה (Ville Nouvelle) של מכנאס</td>
+<td>Commerçant V. Nouvelle — סוחר, העיר החדשה (Ville Nouvelle) של מכנאס; העמודה היא של ההורים, לא של האב דווקא</td>
 <td><span class="rank v3">ככל הנראה</span> — קיצור</td>
 </tr>
 <tr>
@@ -524,12 +567,12 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_esther_1953_1400q82_bbcd68.jpg" alt="שורת Benarroch Esther בפנקס אליאנס מכנאס, 1953" loading="lazy" decoding="async" width="1400" height="103"></a><figcaption><span class="fignum">איור 5</span> — ראיה 5 — אסתר בנארוש, פנקס 1953, מספר סידורי 3076 (שורה 26 בעמוד): «Benarroch Esther · 5 ans · Yona Yacot · Commerçant V. Nouvelle · … 55 · a quitté». אותו עמוד פנקס שבו רשומה רחל דהן, אחותה של מרים (שורה 4). המקור: <a href="#src-10">פנקס אליאנס מכנאס 1953, AIU‑MA‑240.2</a>.</figcaption></figure>
-<p>הצירוף Yona + Yacot בשם משפחה בנארוש הוא היחיד מסוגו באינדקס (בין כ-455 רשומות של האשכול), והוא תואם את שמות ההורים שמסרה המשפחה. הזיהוי של אסתר כאחותו של מרדכי מדורג <span class="rank v2">כמעט ודאי</span> — ומתחזק לכדי ודאות מעשית ברשימת העולים שלהלן, שבה אסתר ילידת 1948 רשומה כבתם של יונה ויקוט.</p>
+<figure><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_esther_1953_1400q82_cc8e1b.jpg" alt="שורת Benarroch Esther בפנקס אליאנס מכנאס, 1953" loading="lazy" decoding="async" width="1400" height="103"></a><figcaption><span class="fignum">איור 5</span> — אסתר בנארוש, פנקס 1953, מספר סידורי 3076 (שורה 26 בעמוד): «Benarroch Esther · <bdi dir="ltr">5 ans</bdi> · Yona Yacot · Commerçant V. Nouvelle · … 55 · a quitté». אותו עמוד פנקס שבו רשומה רחל דהן, אחותה של מרים (שורה 4). המקור: <a href="#src-10">פנקס אליאנס מכנאס 1953, AIU‑MA‑240.2</a>.</figcaption></figure>
+<p>הצירוף Yona + Yacot בשם משפחה בנארוש הוא היחיד מסוגו באינדקס (בין כ-455 רשומות של האשכול), והוא תואם את שמות ההורים שמסרה המשפחה. הזיהוי של אסתר כאחותו של מרדכי מדורג <span class="rank v2">כמעט ודאי</span>, ומתחזק ברשימת העולים שלהלן, שבה אסתר ילידת 1948 רשומה כבתם של יונה ויקוט — ובאישור המשפחה.</p>
 <p>הערה על מה שלא נמצא: מרדכי עצמו לא אותר בפנקסי אליאנס. באשכולות Benharoch/Benarroch ו-Haroch/Harroch נבדקו כל הרשומות בשנים <bdi dir="ltr">1937–1946</bdi>, עם השם הפרטי Mardochée ובלעדיו, ולא נמצא נער יליד <bdi dir="ltr">1929–1933</bdi> מהאשכול במכנאס.<a href="#src-9" class="cit" title="אל ערך המקור">[9]</a> ייתכן שלמד בבית ספר אחר (תלמוד תורה, "אם הבנים", או בית ספר צרפתי), או שנרשם בשם אחר. הממצא השלילי מדורג <span class="rank v3">ככל הנראה</span> (N-2).</p>
-<h3 id="5-3-רשימת-העולים-של-ארצה-11-6-1956-ההורים-והאח"><span id="s5-3" class="legacy-anchor"></span>5.3 רשימת העולים של "ארצה", 11.6.1956 — ההורים והאח</h3>
-<p>חיפוש "יונה יקוט" ברשימות העולים של ארכיון המדינה העלה את קובץ מאי–יוני 1956 (גל‑15499/1), ובו הרשימה שכותרתה «"ארצה" מיום 11.6.56», עמוד 4, שורות <bdi dir="ltr">187–201</bdi>:<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a></p>
-<div class="tablewrap"><table>
+<span id="5-3-רשימת-העולים-של-ארצה-11-6-1956-ההורים-והאח" class="legacy-anchor"></span><h3 id="s5-3-רשימת-העולים-של-ארצה-11-6-1956-ההורים-והאח"><span id="s5-3" class="legacy-anchor"></span>5.3 רשימת העולים של "ארצה", 11.6.1956 — ההורים והאח</h3>
+<p>חיפוש "יונה יקוט" ברשימות העולים של ארכיון המדינה העלה את קובץ מאי–יוני 1956 (גל‑<bdi dir="ltr">15499/1</bdi>), ובו הרשימה שכותרתה «"ארצה" מיום 11.6.56» — ככל הנראה שם האונייה — עמוד 4, שורות <bdi dir="ltr">187–201</bdi>:<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a></p>
+<div class="tablewrap"><table><caption class="visually-hidden">5.3 רשימת העולים של &quot;ארצה&quot;, 11.6.1956 — ההורים והאח</caption>
 <thead>
 <tr>
 <th scope="col">#</th>
@@ -542,41 +585,47 @@ footer {
 <tr>
 <td><bdi dir="ltr">187–188</bdi></td>
 <td><strong>בן-הרוש יעקב</strong> · 1933 · יונה/יקוט · מרוקו · ת.ע. 13785 · כן · צפת</td>
-<td><strong>מרי</strong> 1936 (אשתו) · ב.נ. 107492</td>
+<td><strong>מרי</strong> 1936 (אשתו)</td>
 <td><span class="rank v1">מאומת</span></td>
 </tr>
 <tr>
 <td><bdi dir="ltr">196–201</bdi></td>
-<td><strong>בן-הרוש יונה</strong> · 1918 · מרדכי/מרים · מרוקו · ת.ע. 13787 · כן · צפת</td>
-<td><strong>יקוט</strong> 1918 · <strong>גבריאל</strong> 1942 · <strong>ז'ולייט</strong> 1943 · <strong>סלומון</strong> 1945 · <strong>אסתר</strong> 1948</td>
-<td><span class="rank v1">מאומת</span></td>
+<td><strong>בן-הרוש יונה</strong> · 1912 או 1918 · מרדכי/מרים · מרוקו · ת.ע. 13787 · כן · צפת</td>
+<td><strong>יקוט</strong> 1918 · <strong>גבריאל</strong> 1942 · <strong>ז'וליט</strong> 1943 · <strong>סלומון</strong> 1945 · <strong>אסתר</strong> 1948</td>
+<td><span class="rank v1">מאומת</span> — למעט הספרה האחרונה בשנת יונה, שמודפסת בהקשה כפולה: צורתה קרובה ל-2 של "1942" ושונה מה-8 הנקייה של "1918" ביקוט — <strong>ככל הנראה 1912</strong></td>
+</tr>
+<tr>
+<td>ב.נ.</td>
+<td>המספרים <bdi dir="ltr">107492–107495</bdi> מודפסים בעמודה נפרדת ואינם מיושרים לשורות; לא ניתן לשייכם</td>
+<td><span class="rank v4">טעון אימות</span></td>
+<td></td>
 </tr>
 </tbody>
 </table></div>
-<figure><a href="docs/1956-06-11_artza_p4.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_benharoush_1956_1400q82_94b90f.jpg" alt="משפחות בן-הרוש ברשימת העולים של &quot;ארצה&quot;, 11.6.1956" loading="lazy" decoding="async" width="1400" height="544"></a><figcaption><span class="fignum">איור 6</span> — ראיה 6 — רשימת "ארצה" מיום 11.6.1956, עמוד 4: יעקב בן-הרוש (1933, הורים יונה/יקוט) עם מרי; יוסף בן-הרוש (1907, הורים יחיא/חנה — משפחה אחרת) עם בני ביתו; יונה בן-הרוש (1918, הורים מרדכי/מרים) עם יקוט, גבריאל, ז'ולייט, סלומון ואסתר. המקור: <a href="#src-11">ארכיון המדינה, גל‑15499/1</a>.</figcaption></figure>
-<figure><a href="docs/1956-06-11_artza_p4.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_artza_1956_1400q82_9ee229.jpg" alt="כותרת העמוד: &quot;ארצה&quot; מיום 11.6.56" loading="lazy" decoding="async" width="1400" height="278"></a><figcaption><span class="fignum">איור 7</span> — ראיה 7 — כותרת העמוד וכותרות העמודות: המשפחה והשם · הגיל · אב/אם · ארץ מוצא · מס' ת.ע. · בוטח לקופ"ח · בנמל נשלח ל-.</figcaption></figure>
-<p><strong>מה הרשומה קובעת.</strong> שני בלוקים סמוכים, שניהם ממרוקו ושניהם נשלחו לצפת: יעקב (1933), שהוריו יונה ויקוט, ויונה (1918) ויקוט (1918) עצמם עם ארבעה ילדים — ובהם אסתר ילידת 1948, היא אסתר מפנקס אליאנס. הזיהוי של הבלוק כמשפחתו של מרדכי מדורג <span class="rank v2">כמעט ודאי</span>: שמות ההורים שמסרה המשפחה, עיר המוצא (דרך פנקס אליאנס), והתאמת אסתר בין שני מסמכים בלתי תלויים. הרשומה מוסיפה מה שהמשפחה לא ידעה — <strong>חמישה אחים ואחיות של מרדכי</strong>: יעקב (1933, נשוי למרי ילידת 1936), גבריאל (1942), ז'ולייט (1943), סלומון (1945) ואסתר (1948); <strong>שמות הוריו של יונה — מרדכי ומרים</strong> — כלומר מרדכי נקרא על שם סבו, ובהתאם למנהג המרוקאי כנראה הבכור; ותאריך העלייה של ההורים — יוני 1956, חמישה חודשים אחרי משפחת דהן.</p>
+<figure><a href="docs/1956-06-11_artza_p4.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_benharoush_1956_1400q82_96392d.jpg" alt="משפחות בן-הרוש ברשימת העולים של &quot;ארצה&quot;, 11.6.1956" loading="lazy" decoding="async" width="1400" height="544"></a><figcaption><span class="fignum">איור 6</span> — רשימת "ארצה" מיום 11.6.1956, עמוד 4: יעקב בן-הרוש (1933, הורים יונה/יקוט) עם מרי; יוסף בן-הרוש (1907, הורים יחיא/חנה — משפחה אחרת, ובה גם "מרדכי 1936") עם בני ביתו; יונה בן-הרוש (1912/1918, הורים מרדכי/מרים) עם יקוט, גבריאל, ז'וליט, סלומון ואסתר. המקור: <a href="#src-11">ארכיון המדינה, גל‑<bdi dir="ltr">15499/1</bdi></a>.</figcaption></figure>
+<figure><a href="docs/1956-06-11_artza_p4.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_artza_1956_1400q82_1775d8.jpg" alt="כותרת העמוד: &quot;ארצה&quot; מיום 11.6.56" loading="lazy" decoding="async" width="1400" height="278"></a><figcaption><span class="fignum">איור 7</span> — כותרת העמוד וכותרות העמודות: המשפחה והשם · הגיל · אב/אם · ארץ מוצא · מס' ת.ע. · בוטח לקו"ח · בנמל נשלח ל-.</figcaption></figure>
+<p><strong>מה הרשומה קובעת.</strong> שני בלוקים סמוכים, שניהם ממרוקו ושניהם נשלחו לצפת: יעקב (1933), שהוריו יונה ויקוט, ויונה (1912/1918) ויקוט (1918) עצמם עם ארבעה ילדים — ובהם אסתר ילידת 1948, היא אסתר מפנקס אליאנס. הזיהוי של הבלוק כמשפחתו של מרדכי מדורג <span class="rank v2">כמעט ודאי</span>: שמות ההורים שמסרה המשפחה, עיר המוצא (דרך פנקס אליאנס), התאמת אסתר בין שני מסמכים בלתי תלויים — ואישור המשפחה, שזיהתה את גבי (גבריאל), יעקב ואסתר, "וכנראה גם השאר".<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> הרשומה מוסיפה מה שהמשפחה לא ידעה — <strong>חמישה אחים ואחיות של מרדכי</strong>: יעקב (1933, נשוי למרי ילידת 1936), גבריאל (1942), ז'ולייט (1943), סלומון (1945) ואסתר (1948); <strong>שמות הוריו של יונה — מרדכי ומרים</strong> — וייתכן שמרדכי נקרא על שם סבו (ככל הנראה; אם כך, סביר שהיה הבכור — השערה); ותאריך העלייה של ההורים — יוני 1956, חמישה חודשים אחרי משפחת דהן.</p>
 <p><strong>יקוט ופנינה.</strong> המשפחה מסרה תחילה שאמו של מרדכי היא "יקוט", ולאחר מכן "פנינה". בשני המסמכים — פנקס 1953 ורשימת 1956 — האם היא Yacot / יקוט. השם הערבי-יהודי יָקוּת פירושו אבן חן (יאקינת/אודם), והעברוּת המקובל שלו בישראל הוא <strong>פנינה</strong>; שני השמות הם אפוא, <span class="rank v3">ככל הנראה</span>, אותה אישה — יקוט במרוקו ובנמל, פנינה בישראל. המשפחה תוכל לאשר.</p>
-<p><strong>מה היא מעוררת.</strong> שנת הלידה של יונה ברשימה, 1918, אינה מתיישבת בקלות עם בן בכור יליד 1931 (יונה בן 13) ועם יעקב יליד 1933. שנות הלידה ברשימות העולים נרשמו מפי העולים ולעיתים בקירוב גס; ייתכן גם ששנת הלידה של מרדכי (1931 לפי המשפחה, "לא בטוח שכך בתעודת הזהות") מאוחרת יותר, או שיונה נולד לפני 1918. הסתירה פתוחה ונרשמה (T-5). באותו עמוד גם <strong>יוסף בן-הרוש</strong> (1907, הורים יחיא/חנה) עם בני ביתו — משפחה אחרת לפי שמות ההורים, אך אותה אונייה ואותו שם משפחה; ייתכן קרוב רחוק — לא נבדק.</p>
-<p><strong>ומה זה אומר על מרדכי.</strong> אם ההורים היו במכנאס ב-1953 (אסתר בבית הספר) ועלו ביוני 1956, הרי שמרדכי — שעלה לפי המשפחה ב-1947 או ב-1948 — עלה <strong>לבדו</strong>, נער בן <bdi dir="ltr">16–17</bdi>. זה מכוון את החיפוש אחר רשומת העלייה שלו: עליית הנוער, או המחנות בקפריסין (<bdi dir="ltr">1947–48</bdi>), ולא רשימות משפחתיות. וזה גם מחזק את המועמד ממגדים: נער שעלה לבדו ב-1948 והתיישב במושב עולים מצפון אפריקה שהוקם ב-1949 הוא בדיוק הפרופיל של "בנערוש מרדושי" (<a href="#s3">פרק 3</a>).</p>
-<h3 id="5-4-אחר"><span id="s5-4" class="legacy-anchor"></span>5.4 אחר</h3>
-<p>עיתונות (JPress, <bdi dir="ltr">2009–2011</bdi>): אין מודעת אבל. IGRA קבורות: אין. IGRA, מסד המעפילים עתלית (<bdi dir="ltr">1932–49</bdi>): רשומה "מרדכי בן הרוש" (מסמך 39404) ללא שנה וללא פרטים באינדקס — מועמד לרשומת העלייה של נער שעלה לבדו; דורש פנייה לארכיון עתלית (<a href="#s7">פרק 7</a>, פעולה 3). אתר חברה קדישא תל אביב‑יפו: מחזיר נתוני דוגמה בלבד (מקום הקבורה, ירקון, ידוע מהמשפחה ואינו ממטרות הדף).</p>
-<span id="s6" class="legacy-anchor"></span><h2 id="6-עץ-המשפחה">6. עץ המשפחה</h2>
+<p><strong>מה היא מעוררת.</strong> שנת הלידה של יונה: הספרה האחרונה מודפסת בהקשה כפולה ונקראת 1912 (ככל הנראה) או 1918. ב-1912 יונה היה בן 19 בלידת מרדכי (1931) ובן 21 בלידת יעקב — סביר; ב-1918 — בן 13, ואז אחת השנים שגויה. שנות הלידה ברשימות נרשמו מפי העולים; והמשפחה עצמה מסרה שמרדכי הוסיף לגילו שנה-שנתיים כדי להתגייס, כך שגם "1931" עשוי להיות שנת הלידה הרשומה ולא הביולוגית (M-T5). באותו עמוד גם <strong>יוסף בן-הרוש</strong> (1907, הורים יחיא/חנה) עם בני ביתו — ובהם <strong>מרדכי, יליד 1936</strong>: שם זהה לנושא הדף, באותו עמוד ממש. הוא אינו מרדכי שלנו — עלה ב-1956 ולא ב-<bdi dir="ltr">1947/48</bdi>, הוריו יחיא/חנה ולא יונה/יקוט, ובן חמש עשרה בלבד — <strong>נשלל</strong>; משפחת יוסף היא משפחה אחרת לפי שמות ההורים, ייתכן קרובה רחוקה — לא נבדק.</p>
+<p><strong>ומה זה אומר על מרדכי.</strong> אם ההורים היו במכנאס ב-1953 (אסתר בבית הספר) ועלו ממרוקו ביוני 1956, הרי שמרדכי — שעלה לפי המשפחה ב-1947 או ב-1948 — עלה <strong>לבדו</strong>, נער בן <bdi dir="ltr">16–17</bdi>; המשפחה אישרה זאת לאחר שהוצגו לה הרשומות, והוסיפה שלזכרונה עלה במטוס. זה מכוון את החיפוש אחר רשומת העלייה שלו: עליית הנוער, המחנות בקפריסין (<bdi dir="ltr">1947–48</bdi>), או — אם אכן בטיסה — רשימות הנוסעים בנמל התעופה, ולא רשימות משפחתיות בנמל חיפה. וזה גם מחזק את המועמד ממגדים: נער שעלה לבדו ב-1948 והתיישב במושב עולים מצפון אפריקה שהוקם ב-1949 הוא בדיוק הפרופיל של "בנערוש מרדושי" (<a href="#s3">פרק 3</a>).</p>
+<span id="5-4-אחר" class="legacy-anchor"></span><h3 id="s5-4-אחר"><span id="s5-4" class="legacy-anchor"></span>5.4 אחר</h3>
+<p>עיתונות (JPress, <bdi dir="ltr">2009–2011</bdi>): אין מודעת אבל (N-4).<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> IGRA קבורות: אין.<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> IGRA, מסד המעפילים עתלית (<bdi dir="ltr">1932–49</bdi>): רשומה "מרדכי בן הרוש" (מסמך 39404), ללא שנה וללא פרטים באינדקס<a href="#src-12" class="cit" title="אל ערך המקור">[12]</a> — מועמד לרשומת <strong>העלייה</strong> של נער שעלה לבדו (להבדיל ממועמד מגדים, שהוא לרשומת <strong>שינוי השם</strong>); דורש פנייה לארכיון עתלית (<a href="#s7">פרק 7</a>, פעולה 3). אתר חברה קדישא תל אביב‑יפו: מחזיר נתוני דוגמה בלבד (מקום הקבורה, ירקון, ידוע מהמשפחה ואינו ממטרות הדף).</p>
+<span id="6-עץ-המשפחה" class="legacy-anchor"></span><span id="s6" class="legacy-anchor"></span><h2 id="s6-עץ-המשפחה">6. עץ המשפחה</h2>
 <p>העץ מוצג בתרשים ב<a href="#tree">מקטע העץ</a>. בטקסט:</p>
 <ul>
 <li><strong>מרדכי ומרים בן הרוש</strong> — הוריו של יונה (רשימת העולים 1956, עמודת אב/אם) — <span class="rank v2">כמעט ודאי</span>; לא ידוע אם עלו.</li>
-<li><strong>יונה בן הרוש</strong> — אביו; יליד 1918 לפי רשימת 1956 (שנה החשודה כלא מדויקת — <a href="#s5-3">סעיף 5.3</a>); סוחר בעיר החדשה של מכנאס (פנקס 1953); עלה ב"ארצה" ב-11.6.1956, נשלח לצפת. פטירה — <span class="rank v4">טעון אימות</span>.</li>
+<li><strong>יונה בן הרוש</strong> — אביו; יליד 1912 (ככל הנראה; הספרה האחרונה ברשימת 1956 מוכה כפול — <a href="#s5-3">סעיף 5.3</a>); סוחר בעיר החדשה של מכנאס (פנקס 1953); עלה ב"ארצה" ב-11.6.1956, נשלח לצפת. פטירה — <span class="rank v4">טעון אימות</span>.</li>
 <li><strong>יקוט (פנינה) בן הרוש</strong> — אמו; ילידת 1918 (רשימת 1956); "יקוט" במסמכים, "פנינה" בפי המשפחה — ככל הנראה עברוּת של אותו שם; עלתה עם יונה. פטירה — <span class="rank v4">טעון אימות</span>.</li>
-<li><strong>מרדכי בן הרוש</strong> — 1931 (משפחה) – 2010 (משפחה). עלה 1947/48 — לבדו, לפי הרשומות של משפחתו. אפשר שהוא "מרדושי בנערוש" ממגדים (1954) — <span class="rank v4">טעון אימות</span>.<ul>
+<li><strong>מרדכי בן הרוש</strong> — 1931 (משפחה; ייתכן שהשנה הרשומה מוקדמת בשנה-שנתיים מהביולוגית) – 2010 (משפחה). עלה <bdi dir="ltr">1947/48</bdi> לבדו, לפני משפחתו, בגיל <bdi dir="ltr">16–17</bdi> (משפחה; מתיישב עם הרשומות). אפשר שהוא "מרדושי בנערוש" ממגדים (1954) — <span class="rank v4">טעון אימות</span>.<ul>
 <li>נשוי ל<strong>מרים לבית דהן</strong> (1939, מכנאס) — <a href="../index.html#research-miriam-benharoush">המחקר על מרים</a>.</li>
 </ul>
 </li>
 <li><strong>יעקב בן הרוש</strong> — 1933 (רשימת 1956); אשתו מרי (1936); עלו ב"ארצה" 1956 לצפת.</li>
-<li><strong>גבריאל</strong> (1942), <strong>ז'ולייט</strong> (1943), <strong>סלומון</strong> (1945), <strong>אסתר</strong> (1948) — רשימת 1956; אסתר גם בפנקס אליאנס מכנאס 1953.</li>
+<li><strong>גבריאל (גבי)</strong> (1942), <strong>ז'וליט</strong> (1943), <strong>סלומון</strong> (1945), <strong>אסתר</strong> (1948) — רשימת 1956; אסתר גם בפנקס אליאנס מכנאס 1953; המשפחה מזהה את גבי, יעקב ואסתר.</li>
 </ul>
 <div class="note"><p>יקוט הוא גם שם אמה של מרים (יקוט דהן לבית אבוטבול). אלו שתי נשים שונות — חמות וכלה בעלות אותו שם פרטי, שם מרוקאי נפוץ; אמו של מרדכי נודעה בישראל, לפי המשפחה, כפנינה.</p></div>
-<span id="s7" class="legacy-anchor"></span><h2 id="7-פעולות-פתוחות">7. פעולות פתוחות</h2>
-<div class="tablewrap"><table>
+<span id="7-פעולות-פתוחות" class="legacy-anchor"></span><span id="s7" class="legacy-anchor"></span><h2 id="s7-פעולות-פתוחות">7. פעולות פתוחות</h2>
+<div class="tablewrap"><table><caption class="visually-hidden">7. פעולות פתוחות</caption>
 <thead>
 <tr>
 <th scope="col">#</th>
@@ -589,19 +638,19 @@ footer {
 <tr>
 <td>1</td>
 <td><strong>מגדים / "מרדושי"</strong> — לשאול במשפחה</td>
-<td>מכריע את המועמד היחיד הפתוח. אם כן: לבקש מרשות האוכלוסין את תיק שינוי השם (בן משפחה מדרגה ראשונה) — התיק כולל את מספר הזהות ואת פרטי הלידה</td>
+<td>מכריע את המועמד לרשומת שינוי השם. אם כן: לבקש מרשות האוכלוסין את תיק שינוי השם (בן משפחה מדרגה ראשונה) — התיק כולל את מספר הזהות ואת פרטי הלידה</td>
 <td>משפחה</td>
 </tr>
 <tr>
 <td>2</td>
-<td><strong>לשאול במשפחה</strong> — האם מרדכי היה הבכור? האם ידועים האחים יעקב (ואשתו מרי), גבריאל, ז'ולייט, סלומון ואסתר? מה עלה בגורל יונה ויקוט בצפת? שנת הלידה של יונה</td>
-<td>מאמת את הזיהוי של רשימת 1956 מכלי ראשון; פותח את ענפי האחים; מיישב את שאלת 1918/1931</td>
+<td><strong>לשאול במשפחה</strong> — האם מרדכי היה הבכור? שמות האחים סופית (המשפחה מזהה את גבי, יעקב ואסתר; מרי, ז'וליט וסלומון — לאשר); מה עלה בגורל יונה ויקוט (פנינה) בצפת; שנת הלידה של יונה (1912?)</td>
+<td>מאמת את הזיהוי של רשימת 1956 מכלי ראשון; פותח את ענפי האחים; מיישב את שאלת השנים</td>
 <td>משפחה</td>
 </tr>
 <tr>
 <td>3</td>
 <td><strong>רשומת העלייה של מרדכי כנער לבדו, <bdi dir="ltr">1947–48</bdi></strong></td>
-<td>עליית הנוער (הארכיון הציוני המרכזי, S75/L58) ורשימות המעפילים דרך קפריסין; ב-IGRA יש רשומת "מרדכי בן הרוש" במסד עתלית (מסמך 39404) שלא נפתחה — <a href="#s5-4">סעיף 5.4</a></td>
+<td>ארכיון מחנה המעפילים עתלית — רשומה 39404 (<a href="#src-12">מקור 12</a>); עליית הנוער בארכיון הציוני המרכזי (ללא קישור — פנייה ידנית); רשימות קפריסין; ואם אכן טס — רשימות נוסעים בנמל התעופה לוד 1948 (ארכיון המדינה)</td>
 <td>ארכיון</td>
 </tr>
 <tr>
@@ -613,8 +662,14 @@ footer {
 <tr>
 <td>5</td>
 <td><strong>תעודת הזהות / תעודת פטירה של מרדכי</strong></td>
-<td>שנת לידה מדויקת ושמות ההורים כפי שנרשמו בישראל; קובע גם את כתיב השם לחיפושים הבאים</td>
+<td>שנת לידה כפי שנרשמה בישראל (המשפחה: הוסיף לגילו שנה-שנתיים לגיוס) ושמות ההורים; קובע גם את כתיב השם לחיפושים הבאים</td>
 <td>משפחה</td>
+</tr>
+<tr>
+<td>5א</td>
+<td><strong>רישומי הגיוס</strong> — שירת בצה"ל בסוף שנות הארבעים / תחילת החמישים</td>
+<td>ארכיון צה"ל ומערכת הביטחון — תיק אישי לבן משפחה; יקבע את שנת הלידה שהצהיר עליה</td>
+<td>משפחה (בקשה)</td>
 </tr>
 <tr>
 <td>6</td>
@@ -624,18 +679,18 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<span id="s8" class="legacy-anchor"></span><h2 id="8-סיכום-המקורות">8. סיכום המקורות</h2>
-<p>התוספת העיקרית של מהדורה 4: ערכים <a href="#src-10">10</a> ו-<a href="#src-11">11</a> — פנקס אליאנס מכנאס 1953 ורשימת "ארצה" 1956 — הם הרשומות הראשונות של משפחתו של מרדכי.</p>
+<span id="8-סיכום-המקורות" class="legacy-anchor"></span><span id="s8" class="legacy-anchor"></span><h2 id="s8-סיכום-המקורות">8. סיכום המקורות</h2>
+<p>ערכים <a href="#src-10">10</a> ו-<a href="#src-11">11</a> — פנקס אליאנס מכנאס 1953 ורשימת "ארצה" 1956 — הם הרשומות הראשונות של משפחתו של מרדכי; ערך <a href="#src-12">12</a> הוא רשומת עתלית שטרם נפתחה.</p>
 <p>הרשימה המלאה ב<a href="#index">אינדקס המקורות</a>. ערך <a href="#src-1">1</a> הוא המועמד הפתוח; ערכים <a href="#src-2">2</a>, <a href="#src-3">3</a>, <a href="#src-6">6</a> ו-<a href="#src-8">8</a> — המועמדים שנשללו; ערכים <a href="#src-5">5</a> ו-<a href="#src-9">9</a> — הסריקות השליליות; ערך <a href="#src-7">7</a> — מקור העזר על מגדים.</p>
-<span id="s9" class="legacy-anchor"></span><h2 id="9-שיטה-ומגבלות">9. שיטה ומגבלות</h2>
-<h3 id="9-1-בסיס-הראיות"><span id="s9-1" class="legacy-anchor"></span>9.1 בסיס הראיות</h3>
+<span id="9-שיטה-ומגבלות" class="legacy-anchor"></span><span id="s9" class="legacy-anchor"></span><h2 id="s9-שיטה-ומגבלות">9. שיטה ומגבלות</h2>
+<span id="9-1-בסיס-הראיות" class="legacy-anchor"></span><h3 id="s9-1-בסיס-הראיות"><span id="s9-1" class="legacy-anchor"></span>9.1 בסיס הראיות</h3>
 <p>ילקוט הפרסומים (מקור ראשוני מודפס, דרך סריקת IGRA); רשימות העולים של ארכיון המדינה (מקור ראשוני שנקרא דרך OCR רועש); אינדקסים של IGRA (מקור עזר); מידע משפחתי (<a href="#s2">פרק 2</a>).</p>
-<h3 id="9-2-סולם-הוודאות"><span id="s9-2" class="legacy-anchor"></span>9.2 סולם הוודאות</h3>
-<p><span class="rank v1">מאומת</span> — נקרא ישירות מהמסמך; <span class="rank v2">כמעט ודאי</span> — מסמכים מתכנסים; <span class="rank v3">ככל הנראה</span> — פרשנות סבירה; <span class="rank v4">טעון אימות</span> — לא נבדק או לא מוכרע. הרישום במגדים "מאומת" כמסמך; הזיהוי שלו כמרדכי — "טעון אימות".</p>
-<h3 id="9-3-מוסכמות-הכתיב"><span id="s9-3" class="legacy-anchor"></span>9.3 מוסכמות הכתיב</h3>
+<span id="9-2-סולם-הוודאות" class="legacy-anchor"></span><h3 id="s9-2-סולם-הוודאות"><span id="s9-2" class="legacy-anchor"></span>9.2 סולם הוודאות</h3>
+<p>חמש דרגות: <span class="rank v1">מאומת</span> — נקרא ישירות מהמסמך; <span class="rank v2">כמעט ודאי</span> — מסמכים מתכנסים ללא סתירה; <span class="rank v3">ככל הנראה</span> — פרשנות סבירה או קריאה קשה; <span class="rank v4">טעון אימות</span> — לא פוענח או לא נבדק; <strong>נשלל</strong> — הפרטים ברשומה סותרים. "ככל הנראה נשלל" — סתירה חזקה שאינה מוחלטת. מסמך מדורג בנפרד מן הזיהוי שנשען עליו.</p>
+<span id="9-3-מוסכמות-הכתיב" class="legacy-anchor"></span><h3 id="s9-3-מוסכמות-הכתיב"><span id="s9-3" class="legacy-anchor"></span>9.3 מוסכמות הכתיב</h3>
 <p>בן הרוש · בנהרוש · בן-הרוש · בנערוש · בנארוש · הרוש — כולם אותו שם בכתיבים שונים; <bdi dir="ltr">Benharoch / Benharroch / Benarroch</bdi> בצרפתית של הפנקסים. "מרדושי" — כינוי חיבה של מרדכי.</p>
-<h3 id="9-4-ממצאים-שליליים"><span id="s9-4" class="legacy-anchor"></span>9.4 ממצאים שליליים</h3>
-<div class="tablewrap"><table>
+<span id="9-4-ממצאים-שליליים" class="legacy-anchor"></span><h3 id="s9-4-ממצאים-שליליים"><span id="s9-4" class="legacy-anchor"></span>9.4 ממצאים שליליים</h3>
+<div class="tablewrap"><table><caption class="visually-hidden">9.4 ממצאים שליליים</caption>
 <thead>
 <tr>
 <th scope="col">#</th>
@@ -649,7 +704,7 @@ footer {
 <tr>
 <td>N-1</td>
 <td>"בן הרוש מרדכי" (~1931, יונה/יקוט) ברשימות העולים <bdi dir="ltr">1947–1949</bdi></td>
-<td>ארכיון המדינה/Pinpoint, 29 קבצים; נקראו עמודי "הרוש/ארוש/בנארוש" ב-16 קבצים (S-104-607/612/613/614; גל-15492/1; 15492/2 חלק א; 15492/5 חלקים א–ב; 15493/1, 15493/2 חלק א, 15493/3–8; 15494/1, /2, /5, /6, /7); 13 קבצים לא נקראו (15492/2 חלק ב, 15492/3, 15492/4, 15492/5 חלק ג, 15493/2 חלק ב, 15494/3, /4, /8 ועוד)<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
+<td>ארכיון המדינה/Pinpoint, 29 קבצים; נקראו עמודי "הרוש/ארוש/בנארוש" ב-16 קבצים = 20 חלקי-קובץ (S-104-<bdi dir="ltr">607/612</bdi>/<bdi dir="ltr">613/614</bdi>; גל-<bdi dir="ltr">15492/1</bdi>; <bdi dir="ltr">15492/2</bdi> חלק א; <bdi dir="ltr">15492/5</bdi> חלקים א–ב; <bdi dir="ltr">15493/1</bdi>, <bdi dir="ltr">15493/2</bdi> חלק א, <bdi dir="ltr">15493/3–8</bdi>; <bdi dir="ltr">15494/1</bdi>, /2, /5, /6, /7); 13 קבצים לא נקראו (<bdi dir="ltr">15492/2</bdi> חלק ב, <bdi dir="ltr">15492/3</bdi>, <bdi dir="ltr">15492/4</bdi>, <bdi dir="ltr">15492/5</bdi> חלק ג, <bdi dir="ltr">15493/2</bdi> חלק ב, <bdi dir="ltr">15494/3</bdi>, /4, /8, וחמישה קבצי S-104 נוספים של 1948)<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
 <td>אין בלוק תואם</td>
 <td><span class="rank v3">ככל הנראה</span> — סריקה חלקית</td>
 </tr>
@@ -670,15 +725,22 @@ footer {
 <tr>
 <td>N-4</td>
 <td>מודעת אבל 2010</td>
-<td>JPress, כל העיתונים, <bdi dir="ltr">2009–2011</bdi></td>
+<td>JPress, כל העיתונים, <bdi dir="ltr">2009–2011</bdi><a href="#src-8" class="cit" title="אל ערך המקור">[8]</a></td>
 <td>אפס</td>
 <td><span class="rank v3">ככל הנראה</span></td>
 </tr>
+<tr>
+<td>N-5</td>
+<td>"מרדכי בן הרוש" במסד המעפילים עתלית</td>
+<td><bdi dir="ltr">IGRA, Immigration Atlit Database</bdi> — רשומה 39404 קיימת, ללא שנה ופרטים<a href="#src-12" class="cit" title="אל ערך המקור">[12]</a></td>
+<td>לא נפתחה — מועמד לרשומת העלייה</td>
+<td><span class="rank v4">טעון אימות</span></td>
+</tr>
 </tbody>
 </table></div>
-<h3 id="9-5-חסמים"><span id="s9-5" class="legacy-anchor"></span>9.5 חסמים</h3>
+<span id="9-5-חסמים" class="legacy-anchor"></span><h3 id="s9-5-חסמים"><span id="s9-5" class="legacy-anchor"></span>9.5 חסמים</h3>
 <p>תיק שינוי השם ברשות האוכלוסין ניתן לבקשה רק על ידי בן משפחה מדרגה ראשונה. ב-13 מקובצי רשימות העולים <bdi dir="ltr">1947–49</bdi> כלי האיתור לא עבד, והם דורשים קריאה עמוד-עמוד.</p>
-<h3 id="9-6-מה-הדף-אינו-עושה"><span id="s9-6" class="legacy-anchor"></span>9.6 מה הדף אינו עושה</h3>
+<span id="9-6-מה-הדף-אינו-עושה" class="legacy-anchor"></span><h3 id="s9-6-מה-הדף-אינו-עושה"><span id="s9-6" class="legacy-anchor"></span>9.6 מה הדף אינו עושה</h3>
 <p>אינו מתעד את מקום הקבורה; אינו מסתמך על עצים משפחתיים מקוונים; אינו מכריע על סמך שם בלבד.</p></section><hr><section id="tree"><h2>עץ המשפחה</h2><div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="-10 0 1000 420" width="1000" height="420" font-family="'David Libre','Frank Ruhl Libre',Georgia,serif">
  <title>עץ המשפחה — מרדכי ומרים בן הרוש; יונה ויקוט בן הרוש וילדיהם מרדכי, יעקב, גבריאל, ז'ולייט, סלומון ואסתר; אשתו של מרדכי מרים לבית דהן</title>
  <g fill="none" stroke="#cbc1b6" stroke-width="1.5">
@@ -705,18 +767,18 @@ footer {
   <text x="595" y="160">יקוט (פנינה) בן הרוש</text>
   <text x="100" y="284">מרדכי בן הרוש</text>
   <text x="250" y="284">יעקב</text>
-  <text x="400" y="284">גבריאל</text>
-  <text x="540" y="284">ז'ולייט</text>
+  <text x="400" y="284">גבריאל (גבי)</text>
+  <text x="540" y="284">ז'וליט</text>
   <text x="680" y="284">סלומון</text>
   <text x="860" y="284">אסתר</text>
   <text x="100" y="387">מרים לבית דהן</text>
  </g>
  <g fill="#6b5f57" font-size="11.5" text-anchor="middle">
   <text x="480" y="78">הוריו של יונה · רשימת 1956 (אב/אם)</text>
-  <text x="375" y="183">1918? · סוחר, מכנאס · "ארצה" 1956 · צפת</text>
-  <text x="595" y="183">1918 · "ארצה" 1956 · צפת · פנינה בפי המשפחה</text>
+  <text x="375" y="183">1912? · סוחר, מכנאס · צפת 1956</text>
+  <text x="595" y="183">1918 · צפת 1956 · "פנינה" במשפחה</text>
   <text x="100" y="303">מכנאס, 1931 עד 2010 (משפחה)</text>
-  <text x="100" y="318">עלה לבדו 1947/48 · מגדים 1954?</text>
+  <text x="100" y="318">עלה לבדו 1947/48, בן 16–17</text>
   <text x="100" y="333">נושא הדף</text>
   <text x="250" y="303">1933 · אשתו מרי 1936</text>
   <text x="250" y="318">"ארצה" 1956 · צפת</text>
@@ -726,103 +788,115 @@ footer {
   <text x="860" y="303">1948 · אליאנס מכנאס 1953</text>
   <text x="100" y="404">אשתו · 1939, מכנאס · עלתה 1956</text>
  </g>
-</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלת העץ</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val">100%</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button></div><div class="legend"><span><i class="sw focus"></i> נושא הדף</span><span><i class="sw"></i> בן משפחה</span><span><i class="sw marr"></i> נישואין</span></div><p class="tree-foot">שנות הלידה של יונה, יקוט והאחים — מרשימת העולים של "ארצה", 11.6.1956; אסתר גם בפנקס אליאנס מכנאס 1953. פרטי מרדכי — לפי המשפחה; הרישום במגדים הוא מועמד פתוח. מסגרת מקווקוות — דור שידוע רק משמות בעמודת ההורים.</p><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="gallery"><h2>מסמכי מפתח</h2><p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. לחיצה פותחת את הסריקה המלאה.</p><div class="gallery"><a href="docs/1956-06-11_artza_p4.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_benharoush_1956_440_94b90f.jpg" alt="ההורים יונה ויקוט והאח יעקב — רשימת העולים של &quot;ארצה&quot;, 11.6.1956" loading="lazy" decoding="async" width="440" height="171"><span>ההורים יונה ויקוט והאח יעקב — רשימת העולים של "ארצה", 11.6.1956</span></a><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_esther_1953_440_bbcd68.jpg" alt="אסתר בנארוש, בת יונה ויקוט — פנקס אליאנס מכנאס 1953" loading="lazy" decoding="async" width="440" height="32"><span>אסתר בנארוש, בת יונה ויקוט — פנקס אליאנס מכנאס 1953</span></a><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_yalkut_1954_row_440_88dd9e.jpg" alt="ילקוט הפרסומים 407 — בנערוש מרדושי ← בן הרוש מרדכי, מגדים 1954" loading="lazy" decoding="async" width="440" height="17"><span>ילקוט הפרסומים 407 — בנערוש מרדושי ← בן הרוש מרדכי, מגדים 1954</span></a><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_yalkut_1954_header_440_1ce059.jpg" alt="כותרת הרשימה — הודעה בדבר שינויי שם" loading="lazy" decoding="async" width="440" height="47"><span>כותרת הרשימה — הודעה בדבר שינויי שם</span></a><a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener"><img src="docs/thumbs/1949-03_list_p45_440_20577d.jpg" alt="רשימת העולים 24.3.1949 — משפחת בן הרוש שנשללה" loading="lazy" decoding="async" width="440" height="698"><span>רשימת העולים 24.3.1949 — משפחת בן הרוש שנשללה</span></a></div></section><hr><section id="people"><h2>אינדקס האנשים</h2><p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p><div class="people"><div class="person"><b><a href="#s1">מרדכי בן הרוש</a></b><span class="d"><bdi dir="ltr">1931 – 2010</bdi></span><span class="r">נושא הדף; בן יונה ויקוט, עלה 1947/48; המועמד הפתוח — מגדים 1954</span><span hidden><bdi dir="ltr">Mordechai Mordekhai Mardochée Ben Harush Benharoush Benharoch</bdi> בנהרוש בן-הרוש בנערוש בנארוש הרוש מרדושי מגדים Megadim</span></div><div class="person"><b><a href="#s5-3">יונה בן הרוש</a></b><span class="d">1918?, מכנאס</span><span class="r">אביו; סוחר בעיר החדשה (פנקס 1953); עלה ב&quot;ארצה&quot; 11.6.1956 לצפת; בן מרדכי ומרים</span><span hidden>Yona Jonas Ben Harush בנארוש Benarroch ארצה צפת</span></div><div class="person"><b><a href="#s5-3">יקוט (פנינה) בן הרוש</a></b><span class="d"><bdi dir="ltr">1918</bdi></span><span class="r">אמו; &quot;יקוט&quot; במסמכים, &quot;פנינה&quot; בפי המשפחה; עלתה עם יונה ב-1956 לצפת</span><span hidden>Yakut Yacot Yacout יאקוט פנינה Penina Pnina Ben Harush</span></div><div class="person"><b><a href="#s5-3">יעקב בן הרוש</a></b><span class="d"><bdi dir="ltr">1933</bdi></span><span class="r">אחיו; אשתו מרי (1936); עלו ב&quot;ארצה&quot; 1956 לצפת</span><span hidden>Yaakov Jacob Ben Harush מרי</span></div><div class="person"><b><a href="#s5-2">אסתר בן הרוש</a></b><span class="d">1948, מכנאס</span><span class="r">אחותו; פנקס אליאנס מכנאס 1953 (Yona/Yacot); רשימת 1956</span><span hidden>Esther Benarroch בנארוש</span></div><div class="person"><b><a href="#s5-3">גבריאל, ז&#x27;ולייט וסלומון בן הרוש</a></b><span class="d"><bdi dir="ltr">1942 · 1943 · 1945</bdi></span><span class="r">אחיו ואחותו; רשימת &quot;ארצה&quot; 1956</span><span hidden><bdi dir="ltr">Gabriel Juliette Salomon Ben Harush</bdi></span></div><div class="person"><b><a href="#s2">מרים בן הרוש לבית דהן</a></b><span class="d">נ׳ 1939, מכנאס</span><span class="r">אשתו — נושאת המחקר האחר בארכיון הזה</span><span hidden>Miriam Mary Marie Dahan דהן</span></div></div></section><hr><section id="index"><h2>אינדקס המקורות</h2><h3>רשימת מקורות</h3>
+</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלה</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val" aria-labelledby="tree-zoom-label">×1</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button><button type="button" data-tree-zoom="fit">התאמה לרוחב</button></div><div class="legend"><span><i class="sw focus"></i> נושא הדף</span><span><i class="sw"></i> בן משפחה</span><span><i class="sw marr"></i> נישואין</span></div><p class="tree-foot">שנות הלידה של יונה, יקוט והאחים — מרשימת העולים של "ארצה", 11.6.1956; אסתר גם בפנקס אליאנס מכנאס 1953. פרטי מרדכי — לפי המשפחה; הרישום במגדים הוא מועמד פתוח. מסגרת מקווקוות — דור הידוע רק משמות בעמודת ההורים. שנת יונה: הספרה האחרונה ברשימה מוכה כפול (1912/1918).</p><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree-view.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="gallery"><h2>מסמכי מפתח</h2><p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. לחיצה פותחת את הסריקה המלאה.</p><div class="gallery"><a href="docs/1956-06-11_artza_p4.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_benharoush_1956_440_96392d.jpg" alt="ההורים יונה ויקוט והאח יעקב — רשימת העולים של &quot;ארצה&quot;, 11.6.1956" loading="lazy" decoding="async" width="440" height="171"><span>ההורים יונה ויקוט והאח יעקב — רשימת העולים של "ארצה", 11.6.1956</span></a><a class="wide" href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_esther_1953_440_cc8e1b.jpg" alt="אסתר בנארוש, בת יונה ויקוט — פנקס אליאנס מכנאס 1953" loading="lazy" decoding="async" width="440" height="32"><span>אסתר בנארוש, בת יונה ויקוט — פנקס אליאנס מכנאס 1953</span></a><a class="wide" href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_yalkut_1954_row_440_f2aa9a.jpg" alt="ילקוט הפרסומים 407 — בנערוש מרדושי ← בן הרוש מרדכי, מגדים 1954" loading="lazy" decoding="async" width="440" height="17"><span>ילקוט הפרסומים 407 — בנערוש מרדושי ← בן הרוש מרדכי, מגדים 1954</span></a><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_yalkut_1954_header_440_d30cec.jpg" alt="כותרת הרשימה — הודעה בדבר שינויי שם, רשימה 10, מחוז חיפה — נפת חדרה" loading="lazy" decoding="async" width="440" height="76"><span>כותרת הרשימה — הודעה בדבר שינויי שם, רשימה 10, מחוז חיפה — נפת חדרה</span></a><a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener"><img src="docs/thumbs/1949-03_list_p45_440_4adb45.jpg" alt="רשימת העולים 24.3.1949 — משפחת בן הרוש שנשללה" loading="lazy" decoding="async" width="440" height="698"><span>רשימת העולים 24.3.1949 — משפחת בן הרוש שנשללה</span></a></div></section><hr><section id="people"><h2>אינדקס האנשים</h2><p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p><div class="people"><div class="person"><b><a href="#s1">מרדכי בן הרוש</a></b><span class="d"><bdi dir="ltr">1931 – 2010</bdi></span><span class="r">נושא הדף; בן יונה ויקוט (פנינה); עלה לבדו <bdi dir="ltr">1947/48</bdi> בגיל <bdi dir="ltr">16–17</bdi>; המועמד לשינוי השם — מגדים 1954</span><span hidden><bdi dir="ltr">Mordechai Mordekhai Mardochée Ben Harush Benharoush Benharoch</bdi> בנהרוש בן-הרוש בנערוש בנארוש הרוש מרדושי מגדים Megadim</span></div><div class="person"><b><a href="#s5-3">יונה בן הרוש</a></b><span class="d">1912?, מכנאס</span><span class="r">אביו; סוחר בעיר החדשה (פנקס 1953); עלה ב&quot;ארצה&quot; 11.6.1956 לצפת; בן מרדכי ומרים</span><span hidden>Yona Jonas Ben Harush בנארוש Benarroch ארצה צפת</span></div><div class="person"><b><a href="#s5-3">יקוט (פנינה) בן הרוש</a></b><span class="d"><bdi dir="ltr">1918</bdi></span><span class="r">אמו; &quot;יקוט&quot; במסמכים, &quot;פנינה&quot; בפי המשפחה; עלתה עם יונה ב-1956 לצפת</span><span hidden>Yakut Yacot Yacout יאקוט פנינה Penina Pnina Ben Harush</span></div><div class="person"><b><a href="#s5-3">יעקב בן הרוש</a></b><span class="d"><bdi dir="ltr">1933</bdi></span><span class="r">אחיו; אשתו מרי (1936); עלו ב&quot;ארצה&quot; 1956 לצפת</span><span hidden>Yaakov Jacob Ben Harush מרי</span></div><div class="person"><b><a href="#s5-2">אסתר בן הרוש</a></b><span class="d">1948, מכנאס</span><span class="r">אחותו; פנקס אליאנס מכנאס 1953 (Yona/Yacot); רשימת 1956</span><span hidden>Esther Benarroch בנארוש</span></div><div class="person"><b><a href="#s5-3">גבריאל (גבי), ז&#x27;וליט וסלומון בן הרוש</a></b><span class="d"><bdi dir="ltr">1942 · 1943 · 1945</bdi></span><span class="r">אחיו ואחותו; רשימת &quot;ארצה&quot; 1956</span><span hidden><bdi dir="ltr">Gabriel Juliette Salomon Ben Harush</bdi></span></div><div class="person"><b><a href="#s2">מרים בן הרוש לבית דהן</a></b><span class="d">נ׳ 1939, מכנאס</span><span class="r">אשתו — נושאת המחקר האחר בארכיון הזה</span><span hidden>Miriam Mary Marie Dahan דהן</span></div></div></section><hr><section id="index"><h2>אינדקס המקורות</h2><h3>רשימת מקורות</h3>
 <p>לכל ערך: מהות המקור ומעמדו, ההפניה החיצונית למסמך המקורי, העותק המקומי השמור בתיקיית המחקר, ומה בדיוק הוא מוכיח. "עותק מקומי" פירושו עותק של <strong>המסמך עצמו</strong>. כל המקורות נצפו בספטמבר 2026.</p>
-<h2 id="מקורות-ראשוניים">מקורות ראשוניים</h2>
-<h3 id="1-ילקוט-הפרסומים-407-ח'-בניסן-תשט-ו-31-3-1955-עמ'-647-הודעה-"><span id="src-1" class="legacy-anchor"></span>1. ילקוט הפרסומים 407, ח' בניסן תשט"ו (31.3.1955), עמ' 647 — הודעה בדבר שינויי שם, רשימה 10, מחוז חיפה — נפת חדרה <em>(המועמד הפתוח)</em></h3>
+<h3 id="מקורות-ראשוניים">מקורות ראשוניים</h3>
+<span id="1-ילקוט-הפרסומים-407-ח'-בניסן-תשט-ו-31-3-1955-עמ'-647-הודעה-" class="legacy-anchor"></span><h4 id="s1-ילקוט-הפרסומים-407-ח'-בניסן-תשט-ו-31-3-1955-עמ'-647-הודעה-"><span id="src-1" class="legacy-anchor"></span>1. ילקוט הפרסומים 407, ח' בניסן תשט"ו (31.3.1955), עמ' 647 — הודעה בדבר שינויי שם, רשימה 10, מחוז חיפה — נפת חדרה <em>(המועמד הפתוח)</em></h4>
 <ul>
 <li><strong>מהות:</strong> הרשומות הרשמיות של מדינת ישראל; העמוד סרוק בספריית המשפטים ע"ש דוד י. לייט, אוניברסיטת תל אביב, ואונדקס ב-IGRA (שינויי שמות לאחר 1948, כרך 13, גיליון 407, רשימה 10).</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ4LTY4LW5jLTIyMTYz" target="_blank" rel="noopener">IGRA-1948-68-nc-22163<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/1948_68_nc/1955_nc_13_407_1.jpg" target="_blank" rel="noopener">סריקת העמוד בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener">העמוד המלא</a> · <a href="docs/ev_yalkut_1954_row.jpg" target="_blank" rel="noopener">חיתוך השורה</a> · <a href="docs/ev_yalkut_1954_header.jpg" target="_blank" rel="noopener">כותרת הרשימה</a> · <a href="docs/ev_yalkut_1954_footer.jpg" target="_blank" rel="noopener">תחתית העמוד</a></li>
 <li><strong>מה הוא מוכיח:</strong> "בנערוש מרדושי" ממגדים קיבל את השם "בן הרוש מרדכי" ב-12.12.1954 — מאומת. שזה מרדכי בעלה של מרים — טעון אימות.</li>
 </ul>
-<h3 id="2-ארכיון-המדינה-רשימת-עולים-אפריל-1949-גל-15493-6-מסמך-192-ש"><span id="src-2" class="legacy-anchor"></span>2. ארכיון המדינה, רשימת עולים אפריל 1949, גל-15493/6, מסמך 192, שורה 54 — "מרדכי בנארוש" <em>(נשלל)</em></h3>
+<span id="2-ארכיון-המדינה-רשימת-עולים-אפריל-1949-גל-15493-6-מסמך-192-ש" class="legacy-anchor"></span><h4 id="s2-ארכיון-המדינה-רשימת-עולים-אפריל-1949-גל-15493-6-מסמך-192-ש"><span id="src-2" class="legacy-anchor"></span>2. ארכיון המדינה, רשימת עולים אפריל 1949, גל-<bdi dir="ltr">15493/6</bdi>, מסמך 192, שורה 54 — "מרדכי בנארוש" <em>(נשלל)</em></h4>
 <ul>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ5LUltbWlnQXByLTE5Njcz" target="_blank" rel="noopener">IGRA-1949-ImmigApr-19673<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>מה הוא מוכיח:</strong> מרדכי בנארוש יליד 1910 — אדם אחר.</li>
 <li><strong>הערה:</strong> אין עותק מקומי — רשומת אינדקס; הסריקה ב-IGRA לא נשמרה כי הרשומה נשללה.</li>
 </ul>
-<h3 id="3-ארכיון-יד-יערי-רשימות-שמיות-של-עולים-קיבוץ-רשפים-1949-עמ'-"><span id="src-3" class="legacy-anchor"></span>3. ארכיון יד יערי, רשימות שמיות של עולים — קיבוץ רשפים 1949, עמ' 12, שורה 2 — "מרדכי בן-ארוש" <em>(ככל הנראה נשלל)</em></h3>
+<span id="3-ארכיון-יד-יערי-רשימות-שמיות-של-עולים-קיבוץ-רשפים-1949-עמ'-" class="legacy-anchor"></span><h4 id="s3-ארכיון-יד-יערי-רשימות-שמיות-של-עולים-קיבוץ-רשפים-1949-עמ'-"><span id="src-3" class="legacy-anchor"></span>3. ארכיון יד יערי, רשימות שמיות של עולים — קיבוץ רשפים 1949, עמ' 12, שורה 2 — "מרדכי בן-ארוש" <em>(ככל הנראה נשלל)</em></h4>
 <ul>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1JbW1pZ3JhbnRzLUNvbW11bmFsLVNldHRsZW1lbnRzLTI4Mg==" target="_blank" rel="noopener"><bdi dir="ltr">IGRA-Immigrants-Communal-Settlements-282</bdi><span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>מה הוא מוכיח:</strong> מרדכי בן-ארוש יליד 1927 נקלט ברשפים (השומר הצעיר) ב-1949. ארבע שנים מ-1931; אין קשר ידוע לקיבוץ.</li>
 <li><strong>הערה:</strong> אין עותק מקומי — רשומת אינדקס.</li>
 </ul>
-<h3 id="4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך"><span id="src-4" class="legacy-anchor"></span>4. מסירות משפחתיות (ספטמבר 2026) <em>(מקור משפחתי — ללא מסמך)</em></h3>
+<span id="4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך" class="legacy-anchor"></span><h4 id="s4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך"><span id="src-4" class="legacy-anchor"></span>4. מסירות משפחתיות (ספטמבר 2026) <em>(מקור משפחתי — ללא מסמך)</em></h4>
 <ul>
-<li><strong>מהות:</strong> שנת הלידה 1931, ההורים יונה ויקוט (בהמשך: "יונה האבא, פנינה האמא"), עיר הלידה מכנאס, העלייה 1947/48, הפטירה 2010 והקבורה בירקון — נמסרו בעל-פה. המשפחה אינה בטוחה ששנת הלידה זהה לרשום בתעודת הזהות.</li>
+<li><strong>מהות:</strong> שנת הלידה 1931, ההורים יונה ויקוט (בהמשך: "יונה האבא, פנינה האמא"), עיר הלידה מכנאס, העלייה <bdi dir="ltr">1947/48</bdi>, הפטירה 2010 והקבורה בירקון — נמסרו בעל-פה. המשפחה אינה בטוחה ששנת הלידה זהה לרשום בתעודת הזהות.</li>
 <li><strong>מה הוא מוכיח:</strong> נקודת המוצא (<a href="#s2">פרק 2</a>) — זיכרון, לא רשומה.</li>
 </ul>
-<h3 id="5-ארכיון-המדינה-רשימות-עולים-1947-1949-S-104-607-614-גל-1549"><span id="src-5" class="legacy-anchor"></span>5. ארכיון המדינה — רשימות עולים <bdi dir="ltr">1947–1949</bdi> (S‑104‑607…614, גל‑15492/1–5, גל‑15493/1–8, גל‑15494/1–8), אוסף Google Pinpoint</h3>
+<span id="5-ארכיון-המדינה-רשימות-עולים-1947-1949-S-104-607-614-גל-1549" class="legacy-anchor"></span><h4 id="s5-ארכיון-המדינה-רשימות-עולים-1947-1949-S-104-607-614-גל-1549"><span id="src-5" class="legacy-anchor"></span>5. ארכיון המדינה — רשימות עולים <bdi dir="ltr">1947–1949</bdi> (S‑104‑607…614, גל‑<bdi dir="ltr">15492/1–5</bdi>, גל‑<bdi dir="ltr">15493/1–8</bdi>, גל‑<bdi dir="ltr">15494/1–8</bdi>), אוסף Google Pinpoint</h4>
 <ul>
-<li><strong>מהות:</strong> 29 קבצים; נקראו דרך שכבת ה-OCR של Pinpoint. כולל את "בן ארוש מכלוף" (אוקטובר 1949, גל-15494/5, עמ' 20) ואת משפחת הרוש (יוני 1949, גל-15493/8, עמ' <bdi dir="ltr">150–151</bdi>) שנשללו.</li>
+<li><strong>מהות:</strong> 29 קבצים; נקראו דרך שכבת ה-OCR של Pinpoint. כולל את "בן ארוש מכלוף" (אוקטובר 1949, גל-<bdi dir="ltr">15494/5</bdi>, עמ' 20) ואת משפחת הרוש (יוני 1949, גל-<bdi dir="ltr">15493/8</bdi>, עמ' <bdi dir="ltr">150–151</bdi>) שנשללו.</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://journaliststudio.google.com/pinpoint/search?collection=585158a3cc8e02af&amp;q=%D7%91%D7%9F%20%D7%94%D7%A8%D7%95%D7%A9%20%D7%9E%D7%A8%D7%93%D7%9B%D7%99" target="_blank" rel="noopener">האוסף ב-Pinpoint — חיפוש "בן הרוש מרדכי"<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>מה הוא מוכיח:</strong> ממצא שלילי חלקי — <a href="#s5-1">סעיף 5.1</a>, <a href="#s9-4">N-1</a>.</li>
 <li><strong>הערה:</strong> אין עותק מקומי לרשומות שנשללו על פי OCR בלבד.</li>
 </ul>
-<h3 id="6-ארכיון-המדינה-רשימת-עולים-מרץ-1949-חלק-ב-גל-15493-3-עמ'-45"><span id="src-6" class="legacy-anchor"></span>6. ארכיון המדינה, רשימת עולים מרץ 1949 חלק ב, גל-15493/3, עמ' 45 — רשימה מיום 24.3.1949 <em>(נשלל)</em></h3>
+<span id="6-ארכיון-המדינה-רשימת-עולים-מרץ-1949-חלק-ב-גל-15493-3-עמ'-45" class="legacy-anchor"></span><h4 id="s6-ארכיון-המדינה-רשימת-עולים-מרץ-1949-חלק-ב-גל-15493-3-עמ'-45"><span id="src-6" class="legacy-anchor"></span>6. ארכיון המדינה, רשימת עולים מרץ 1949 חלק ב, גל-<bdi dir="ltr">15493/3</bdi>, עמ' 45 — רשימה ממרץ 1949 (החותמת בעמוד: 21.3.1949) <em>(נשלל)</em></h4>
 <ul>
 <li><strong>מקור חיצוני:</strong> <a href="https://journaliststudio.google.com/pinpoint/document-view?collection=585158a3cc8e02af&amp;docid=92c46cf210433047_585158a3cc8e02af" target="_blank" rel="noopener">המסמך ב-Pinpoint<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener">העמוד (סריקה ברוחב 800)</a></li>
 <li><strong>מה הוא מוכיח:</strong> משפחת בן הרוש (שורות <bdi dir="ltr">199–202</bdi>) ללא מרדכי; "יקוט" בשורה 198 שייכת למשפחת בן שמעון.</li>
 </ul>
-<h2 id="מקורות-עזר">מקורות עזר</h2>
-<h3 id="7-אתר-מושב-מגדים-מקור-עזר-מקוון-משני"><span id="src-7" class="legacy-anchor"></span>7. אתר מושב מגדים <em>(מקור עזר מקוון — משני)</em></h3>
+<h3 id="מקורות-עזר">מקורות עזר</h3>
+<span id="7-אתר-מושב-מגדים-מקור-עזר-מקוון-משני" class="legacy-anchor"></span><h4 id="s7-אתר-מושב-מגדים-מקור-עזר-מקוון-משני"><span id="src-7" class="legacy-anchor"></span>7. אתר מושב מגדים <em>(מקור עזר מקוון — משני)</em></h4>
 <ul>
 <li><strong>מקור חיצוני:</strong> <a href="https://www.homee.co.il/%D7%9E%D7%92%D7%93%D7%99%D7%9D/" target="_blank" rel="noopener">homee.co.il — מגדים<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>מה הוא מוכיח:</strong> "מגדים הוקם בשנת 1949 על-ידי קבוצת עולים מצפון אפריקה"; המושב סמוך לעתלית. מקור משני; אין לו עותק מקומי.</li>
 </ul>
-<h3 id="8-IGRA-חיפוש-Harush-Mordekhai-ו-בן-הרוש-יונה-מקור-עזר-מקוון"><span id="src-8" class="legacy-anchor"></span>8. IGRA — חיפוש "Harush" + "Mordekhai" ו-"בן הרוש" + "יונה" <em>(מקור עזר מקוון)</em></h3>
+<span id="8-IGRA-חיפוש-Harush-Mordekhai-ו-בן-הרוש-יונה-מקור-עזר-מקוון" class="legacy-anchor"></span><h4 id="s8-IGRA-חיפוש-Harush-Mordekhai-ו-בן-הרוש-יונה-מקור-עזר-מקוון"><span id="src-8" class="legacy-anchor"></span>8. IGRA — חיפוש "Harush" + "Mordekhai" ו-"בן הרוש" + "יונה" <em>(מקור עזר מקוון)</em></h4>
 <ul>
-<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a> — מסלול החיפוש: כל המאגרים, שם משפחה Harush (התאמה פונטית) + שם פרטי Mordekhai; ובעברית "בן הרוש" + "יונה"; 11.09.2026</li>
 <li><strong>מה הוא מוכיח:</strong> 13 רשומות בשם מרדכי הרוש/חרוש/ארוש (נוטרים 1936 ו-1947, שבויים 1948, שאלון עולה 1950 יליד קהיר, צפת 1839 ועוד) — אף אחת עם 1931 או יונה/יקוט; אין "יונה בן הרוש". ממצא שלילי.</li>
 </ul>
-<h3 id="9-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-אשכולות-Benharoch-Bena"><span id="src-9" class="legacy-anchor"></span>9. IGRA — "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו", אשכולות Benharoch/Benarroch ו-Haroch/Harroch, <bdi dir="ltr">1937–1946</bdi> <em>(מקור עזר מקוון)</em></h3>
+<span id="9-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-אשכולות-Benharoch-Bena" class="legacy-anchor"></span><h4 id="s9-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-אשכולות-Benharoch-Bena"><span id="src-9" class="legacy-anchor"></span>9. IGRA — "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו", אשכולות Benharoch/Benarroch ו-Haroch/Harroch, <bdi dir="ltr">1937–1946</bdi> <em>(מקור עזר מקוון)</em></h4>
 <ul>
-<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
-<li><strong>מה הוא מוכיח:</strong> ממצא שלילי חלקי — <a href="#s5-2">סעיף 5.2</a>, <a href="#s9-4">N-2</a>.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a> — מסלול החיפוש: מאגר "Students <bdi dir="ltr">1917-1964</bdi> Alliance Morocco", שם משפחה Benharoch / Haroch (פונטי), שנים <bdi dir="ltr">1937–1946</bdi> אחת-אחת, ושם פרטי Mardochée; 11.09.2026</li>
+<li><strong>מה הוא מוכיח:</strong> ממצא שלילי חלקי — <a href="#s5-2">סעיף 5.2</a>, <a href="#s9-4">N-2</a>. הרשומה החיובית שעלתה מאותו מאגר (אסתר, 1953) — <a href="#src-10">מקור 10</a>.</li>
 </ul>
-<h2 id="רשומות-משפחתו-מהדורה-4">רשומות משפחתו — מהדורה 4</h2>
-<h3 id="10-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-307"><span id="src-10" class="legacy-anchor"></span>10. פנקס בית הספר לבנות של אליאנס במכנאס, 1953 — מספר סידורי 3076, "Benarroch Esther", הורים Yona/Yacot <em>(אחותו של מרדכי)</em></h3>
+<h3 id="רשומות-משפחתו">רשומות משפחתו</h3>
+<span id="10-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-307" class="legacy-anchor"></span><h4 id="s10-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-307"><span id="src-10" class="legacy-anchor"></span>10. פנקס בית הספר לבנות של אליאנס במכנאס, 1953 — מספר סידורי 3076, "Benarroch Esther", הורים Yona/Yacot <em>(אחותו של מרדכי)</em></h4>
 <ul>
 <li><strong>מהות:</strong> פנקס רישום תלמידות, כתב יד בצרפתית; CAHJP, סימול AIU‑MA‑240.2; IGRA מסמך 2376, שורה 26. אותו עמוד פנקס שבו רשומה רחל דהן, אחותה של מרים.</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01NDE0OQ==" target="_blank" rel="noopener">IGRA-AIU-Morocco-54149<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a> · <a href="docs/ev_esther_1953.jpg" target="_blank" rel="noopener">חיתוך השורה</a></li>
 <li><strong>מה הוא מוכיח:</strong> אסתר בנארוש, בת 5 ב-1953, הורים Yona ו-Yacot, אב סוחר בעיר החדשה של מכנאס; עזבה ב-1955. מאומת: שם, גיל, הורים. הזיהוי כאחותו של מרדכי — כמעט ודאי (<a href="#s5-2">סעיף 5.2</a>).</li>
 </ul>
-<h3 id="11-ארכיון-המדינה-רשימת-העולים-של-האונייה-ארצה-11-6-1956-עמוד"><span id="src-11" class="legacy-anchor"></span>11. ארכיון המדינה — רשימת העולים של האונייה "ארצה", 11.6.1956, עמוד 4, שורות <bdi dir="ltr">187–201</bdi> (גל-15499/1, "רשימת עולים מאי–יוני 1956") <em>(ההורים והאח)</em></h3>
+<span id="11-ארכיון-המדינה-רשימת-העולים-של-האונייה-ארצה-11-6-1956-עמוד" class="legacy-anchor"></span><h4 id="s11-ארכיון-המדינה-רשימת-העולים-של-האונייה-ארצה-11-6-1956-עמוד"><span id="src-11" class="legacy-anchor"></span>11. ארכיון המדינה — רשימת העולים של האונייה "ארצה", 11.6.1956, עמוד 4, שורות <bdi dir="ltr">187–201</bdi> (גל-<bdi dir="ltr">15499/1</bdi>, "רשימת עולים מאי–יוני 1956") <em>(ההורים והאח)</em></h4>
 <ul>
-<li><strong>מהות:</strong> רשימת עולים של הסוכנות היהודית, מכונת כתיבה עברית; עמודות: המשפחה והשם · הגיל · אב/אם · ארץ מוצא · מס' ת.ע. · בוטח לקופ"ח · בנמל נשלח ל-. נגיש דרך אוסף ארכיון המדינה ב-Google Pinpoint (עמוד 144 בקובץ ה-PDF, במניין מ-1).</li>
+<li><strong>מהות:</strong> רשימת עולים של הסוכנות היהודית, מכונת כתיבה עברית; כותרתה «"ארצה" מיום 11.6.56» — ככל הנראה שם האונייה; עמודות: המשפחה והשם · הגיל · אב/אם · ארץ מוצא · מס' ת.ע. · בוטח לקו"ח · בנמל נשלח ל-. נגיש דרך אוסף ארכיון המדינה ב-Google Pinpoint (עמוד 144 בקובץ ה-PDF, במניין מ-1); הסריקה השמורה — הנגזרת ברוחב 800px שהשרת מגיש.</li>
 <li><strong>מקור חיצוני:</strong> <a href="https://journaliststudio.google.com/pinpoint/document-view?collection=585158a3cc8e02af&amp;docid=ff054279c119a3ed_585158a3cc8e02af" target="_blank" rel="noopener">הקובץ ב-Pinpoint<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://journaliststudio.google.com/backlight/serve/image?document_id=ff054279c119a3ed_585158a3cc8e02af&amp;page_number=143&amp;width=800" target="_blank" rel="noopener">סריקת העמוד (800px)<span class="ext" aria-hidden="true">↗</span></a></li>
 <li><strong>עותק מקומי:</strong> <a href="docs/1956-06-11_artza_p4.jpg" target="_blank" rel="noopener">העמוד המלא</a> · <a href="docs/ev_benharoush_1956.jpg" target="_blank" rel="noopener">שורות בן-הרוש</a> · <a href="docs/ev_header_artza_1956.jpg" target="_blank" rel="noopener">כותרת העמוד</a></li>
-<li><strong>מה הוא מוכיח:</strong> בן-הרוש יעקב (1933, הורים יונה/יקוט, ת.ע. 13785) עם מרי (1936); בן-הרוש יונה (1918, הורים מרדכי/מרים, ת.ע. 13787) עם יקוט (1918), גבריאל (1942), ז'ולייט (1943), סלומון (1945), אסתר (1948) — מרוקו, נשלחו לצפת. מאומת: כל הקריאות. הזיהוי כמשפחתו של מרדכי — כמעט ודאי (<a href="#s5-3">סעיף 5.3</a>). באותו עמוד יוסף בן-הרוש (1907, יחיא/חנה) — משפחה אחרת.</li>
-</ul></section><hr><section id="changelog"><h2>יומן המהדורות</h2>
-<h2 id="מהדורה-1-11-09-2026">מהדורה 1 · 11.09.2026</h2>
+<li><strong>מה הוא מוכיח:</strong> בן-הרוש יעקב (1933, הורים יונה/יקוט, ת.ע. 13785) עם מרי (1936); בן-הרוש יונה (1912 או 1918 — הספרה האחרונה מוכה כפול, ככל הנראה 1912; הורים מרדכי/מרים, ת.ע. 13787) עם יקוט (1918), גבריאל (1942), ז'וליט (1943), סלומון (1945), אסתר (1948) — מרוקו, נשלחו לצפת. מאומת: השמות, השנים (למעט ספרת יונה) ומספרי ת.ע.; מספרי ב.נ. בעמוד אינם מיושרים לשורות — טעון אימות. הזיהוי כמשפחתו של מרדכי — כמעט ודאי (<a href="#s5-3">סעיף 5.3</a>), באישור המשפחה. באותו עמוד יוסף בן-הרוש (1907, יחיא/חנה) ובני ביתו, ובהם מרדכי יליד 1936 — משפחה אחרת, נשלל.</li>
+</ul>
+<span id="12-IGRA-מסד-המעפילים-עתלית-Immigration-Atlit-Database-1932-4" class="legacy-anchor"></span><h4 id="s12-IGRA-מסד-המעפילים-עתלית-Immigration-Atlit-Database-1932-4"><span id="src-12" class="legacy-anchor"></span>12. IGRA — מסד המעפילים עתלית (<bdi dir="ltr">Immigration Atlit Database, 1932–49</bdi>), רשומה "מרדכי בן הרוש", מסמך 39404 <em>(טרם נפתח)</em></h4>
 <ul>
-<li>דף ראשון. נתוני המשפחה: יליד 1931, בן יונה ויקוט, עלה 1947/48, נפטר 2010. נסרקו IGRA (שינויי שמות, עולים, קבורות, אליאנס מרוקו), רשימות העולים <bdi dir="ltr">1947–1949</bdi> (חלקית) ו-JPress.</li>
+<li><strong>מהות:</strong> אינדקס של ארכיון מחנה המעפילים עתלית; הרשומה מופיעה בשם בלבד, ללא שנה, גיל או מוצא. פרטים — בפנייה לארכיון עתלית.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a> — מסלול: שם משפחה Ben Harosh / Benharoch (פונטי) + Mordechai, מאגר <bdi dir="ltr">Immigration Atlit Database; IGRA</bdi> מס' 6655, מסמך 39404 (11.09.2026)</li>
+<li><strong>מה הוא מוכיח:</strong> קיומה של רשומה בשם זה במחנה עתלית — מועמד לרשומת העלייה של מרדכי כנער שעלה לבדו (<a href="#s5-4">סעיף 5.4</a>, N-5). אינדקס — לא מסמך; אין עותק מקומי.</li>
+</ul></section><hr><section id="changelog"><h2>יומן המהדורות</h2>
+<h3 id="מהדורה-1-11-09-2026">מהדורה 1 · 11.09.2026</h3>
+<ul>
+<li>דף ראשון. נתוני המשפחה: יליד 1931, בן יונה ויקוט, עלה <bdi dir="ltr">1947/48</bdi>, נפטר 2010. נסרקו IGRA (שינויי שמות, עולים, קבורות, אליאנס מרוקו), רשימות העולים <bdi dir="ltr">1947–1949</bdi> (חלקית) ו-JPress.</li>
 <li>מועמד פתוח: "בנערוש מרדושי → בן הרוש מרדכי", מגדים, 12.12.1954 (ילקוט הפרסומים 407 עמ' 647). נשללו: בנארוש 1910, בן ארוש מכלוף 1931, משפחת בן הרוש 24.3.1949, משפחת הרוש יוני 1949; רשפים 1927 ככל הנראה נשלל.</li>
 </ul>
-<h2 id="מהדורה-2-11-09-2026">מהדורה 2 · 11.09.2026</h2>
+<h3 id="מהדורה-2-11-09-2026">מהדורה 2 · 11.09.2026</h3>
 <ul>
 <li>הסבה לשלד המשותף של הארכיון, המנוע genealogy_site: <bdi dir="ltr">report.md, sources-index.md, tree.html</bdi>, פרק שיטה ומגבלות. נוספה ראיה 4 — עמוד רשימת העולים מ-24.3.1949 עם משפחת בן הרוש שנשללה. הדף: מרדכי-בן-הרוש.html.</li>
 </ul>
-<h2 id="מהדורה-3-11-09-2026">מהדורה 3 · 11.09.2026</h2>
+<h3 id="מהדורה-3-11-09-2026">מהדורה 3 · 11.09.2026</h3>
 <ul>
 <li>מהמשפחה: מרדכי נולד במכנאס. עודכנו פרק 2, סעיף 5.2, פרק 7 (פעולה 2), העץ, M-T3. חיפוש פנקסי הבנים של אליאנס מכנאס נדחה — כלי הארכיון לא היו זמינים.</li>
 </ul>
-<h2 id="מהדורה-4-11-09-2026">מהדורה 4 · 11.09.2026</h2>
+<h3 id="מהדורה-4-11-09-2026">מהדורה 4 · 11.09.2026</h3>
 <ul>
-<li><strong>נמצאה משפחתו של מרדכי בשני מסמכים.</strong> (א) פנקס אליאנס מכנאס 1953, מס' 3076: אסתר בנארוש, בת 5, הורים Yona/Yacot, אב סוחר בעיר החדשה (S10). (ב) ארכיון המדינה, רשימת "ארצה" 11.6.1956 עמ' 4 (גל-15499/1): יעקב בן-הרוש 1933 (יונה/יקוט) עם מרי 1936; יונה בן-הרוש 1918 (מרדכי/מרים) עם יקוט 1918, גבריאל 1942, ז'ולייט 1943, סלומון 1945, אסתר 1948 — לצפת (S11). מסקנות: חמישה אחים ואחיות; סבו של מרדכי — מרדכי; ההורים נשארו במכנאס עד 1956, ולכן מרדכי עלה לבדו כנער. פרק 5 נכתב מחדש (<bdi dir="ltr">5.2–5.4</bdi>), ראיות <bdi dir="ltr">5–7</bdi>, פרק 6 והעץ (שלושה דורות), פרק 7, N-2/N-3, M-T3/M-T4 נסגרו, M-T5 (1918/1931) ו-M-T6 (עלייה לבדו; עתלית 39404) נפתחו.</li>
+<li><strong>נמצאה משפחתו של מרדכי בשני מסמכים.</strong> (א) פנקס אליאנס מכנאס 1953, מס' 3076: אסתר בנארוש, בת 5, הורים Yona/Yacot, אב סוחר בעיר החדשה (S10). (ב) ארכיון המדינה, רשימת "ארצה" 11.6.1956 עמ' 4 (גל-<bdi dir="ltr">15499/1</bdi>): יעקב בן-הרוש 1933 (יונה/יקוט) עם מרי 1936; יונה בן-הרוש 1918 (מרדכי/מרים) עם יקוט 1918, גבריאל 1942, ז'ולייט 1943, סלומון 1945, אסתר 1948 — לצפת (S11). מסקנות: חמישה אחים ואחיות; סבו של מרדכי — מרדכי; ההורים נשארו במכנאס עד 1956, ולכן מרדכי עלה לבדו כנער. פרק 5 נכתב מחדש (<bdi dir="ltr">5.2–5.4</bdi>), ראיות <bdi dir="ltr">5–7</bdi>, פרק 6 והעץ (שלושה דורות), פרק 7, N-2/N-3, M-T3/M-T4 נסגרו, M-T5 (1918/1931) ו-M-T6 (עלייה לבדו; עתלית 39404) נפתחו.</li>
 </ul>
-<h2 id="מהדורה-5-11-09-2026">מהדורה 5 · 11.09.2026</h2>
+<h3 id="מהדורה-5-11-09-2026">מהדורה 5 · 11.09.2026</h3>
 <ul>
 <li>מהמשפחה: האם — פנינה. במסמכים — יקוט/Yacot; פורש כעברוּת של אותו שם (יקות = אבן חן → פנינה), ככל הנראה. פרק 2, סעיף 5.3, פרק 6, העץ, S4.</li>
+</ul>
+<h3 id="מהדורה-6-11-09-2026">מהדורה 6 · 11.09.2026</h3>
+<ul>
+<li>סבב ביקורת חיצונית ראשון (27 ממצאים: 5 קריטיים, 12 בינוניים, 10 קלים). תוקנו: חיתוך כותרת הרשימה (ראיה 2) הוחלף בחיתוך הנכון (1); שנת יונה — 1912 או 1918, הספרה מוכה כפול, ככל הנראה 1912 (2); "שש רשומות" → 13 (3); ב.נ. 107492 הוסר — המספרים אינם מיושרים לשורות (4); "נקרא על שם סבו" ו"עלה לבדו" מנוסחים כהיקש מדורג (5); סעיף 5.4 ממוקר — מקור 12 (עתלית 39404), N-5, והבחנה בין מועמד לשינוי השם למועמד לרשומת העלייה (6); מרדכי 1936 בבלוק יוסף — נשלל במפורש (7); 16 קבצים = 20 חלקי-קובץ (8); NEGATIVES סונכרן (9); M-T3/M-T4 (10); כרטיסי הרג'יסטרי (11); ידע כללי סומן ככזה (12); "מכנאס עד 1956" נוסח כהיקש (13); חותמת 21.3.1949 (14); סולם בן חמש דרגות (15); "מהדורה 4" הוסר (16); גיל/שנת לידה של אסתר פוצלו (17); ומינוריים <bdi dir="ltr">18–27</bdi>.</li>
+<li>מהמשפחה: מרדכי עלה לבדו לפני משפחתו, בן <bdi dir="ltr">16–17</bdi>, לזכרונם במטוס; הוסיף לגילו שנה-שנתיים והתגייס כבן 18; האחים גבי, יעקב ואסתר — "כולם שם", כנראה גם השאר. פרק 2, סעיף 5.3, פרק 6, פרק 7 (פעולות 2, 3, 5, 5א), העץ, M-T5, M-T6, M-T7.</li>
+<li>UX (סבב ביקורת ראשון על העמוד הבנוי — במנוע המשותף; ראו יומן מרים, המהדורה השלוש-עשרה).</li>
 </ul></section>
 </main>
 <footer>מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.</footer>
 <script>
 (function(){
-  var IDX = [{"t": "1. תמצית", "h": "#1-תמצית", "k": "פרק"}, {"t": "2. מה ידוע מהמשפחה", "h": "#2-מה-ידוע-מהמשפחה", "k": "פרק"}, {"t": "3. המועמד הפתוח — \"בנערוש מרדושי\", מגדים, 1954", "h": "#3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954", "k": "פרק"}, {"t": "4. מועמדים שנשללו", "h": "#4-מועמדים-שנשללו", "k": "פרק"}, {"t": "5. המשפחה במסמכים — ומה לא נמצא", "h": "#5-המשפחה-במסמכים-ומה-לא-נמצא", "k": "פרק"}, {"t": "6. עץ המשפחה", "h": "#6-עץ-המשפחה", "k": "פרק"}, {"t": "7. פעולות פתוחות", "h": "#7-פעולות-פתוחות", "k": "פרק"}, {"t": "8. סיכום המקורות", "h": "#8-סיכום-המקורות", "k": "פרק"}, {"t": "9. שיטה ומגבלות", "h": "#9-שיטה-ומגבלות", "k": "פרק"}, {"t": "מרדכי בן הרוש — נושא הדף; בן יונה ויקוט, עלה 1947/48; המועמד הפתוח — מגדים 1954", "h": "#s1", "k": "אדם", "x": "Mordechai Mordekhai Mardochée Ben Harush Benharoush Benharoch בנהרוש בן-הרוש בנערוש בנארוש הרוש מרדושי מגדים Megadim 1931 – 2010"}, {"t": "יונה בן הרוש — אביו; סוחר בעיר החדשה (פנקס 1953); עלה ב\"ארצה\" 11.6.1956 לצפת; בן מרדכי ומרים", "h": "#s5-3", "k": "אדם", "x": "Yona Jonas Ben Harush בנארוש Benarroch ארצה צפת 1918?, מכנאס"}, {"t": "יקוט (פנינה) בן הרוש — אמו; \"יקוט\" במסמכים, \"פנינה\" בפי המשפחה; עלתה עם יונה ב-1956 לצפת", "h": "#s5-3", "k": "אדם", "x": "Yakut Yacot Yacout יאקוט פנינה Penina Pnina Ben Harush 1918"}, {"t": "יעקב בן הרוש — אחיו; אשתו מרי (1936); עלו ב\"ארצה\" 1956 לצפת", "h": "#s5-3", "k": "אדם", "x": "Yaakov Jacob Ben Harush מרי 1933"}, {"t": "אסתר בן הרוש — אחותו; פנקס אליאנס מכנאס 1953 (Yona/Yacot); רשימת 1956", "h": "#s5-2", "k": "אדם", "x": "Esther Benarroch בנארוש 1948, מכנאס"}, {"t": "גבריאל, ז'ולייט וסלומון בן הרוש — אחיו ואחותו; רשימת \"ארצה\" 1956", "h": "#s5-3", "k": "אדם", "x": "Gabriel Juliette Salomon Ben Harush 1942 · 1943 · 1945"}, {"t": "מרים בן הרוש לבית דהן — אשתו — נושאת המחקר האחר בארכיון הזה", "h": "#s2", "k": "אדם", "x": "Miriam Mary Marie Dahan דהן נ׳ 1939, מכנאס"}, {"t": "מושב מגדים", "h": "#s3", "k": "מקום", "x": "Megadim מגדים עתלית Atlit"}, {"t": "ילקוט הפרסומים 407 (1955)", "h": "#s3-1", "k": "מקור", "x": "ילקוט הפרסומים שינוי שם 1954 1955"}, {"t": "רשימות העולים 1947–1949", "h": "#s5-1", "k": "מקור", "x": "רשימת עולים ארכיון המדינה Pinpoint גל-15492 גל-15493 גל-15494 קפריסין"}, {"t": "פנקסי אליאנס מרוקו", "h": "#s5-2", "k": "מקור", "x": "Alliance AIU Benharoch Benarroch Harroch"}, {"t": "ממצאים שליליים", "h": "#s9-4", "k": "נושא", "x": "ממצא שלילי נשלל"}];
+  var IDX = [{"t": "1. תמצית", "h": "#s1-תמצית", "k": "פרק"}, {"t": "2. מה ידוע מהמשפחה", "h": "#s2-מה-ידוע-מהמשפחה", "k": "פרק"}, {"t": "3. המועמד הפתוח — \"בנערוש מרדושי\", מגדים, 1954", "h": "#s3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954", "k": "פרק"}, {"t": "4. מועמדים שנשללו", "h": "#s4-מועמדים-שנשללו", "k": "פרק"}, {"t": "5. המשפחה במסמכים — ומה לא נמצא", "h": "#s5-המשפחה-במסמכים-ומה-לא-נמצא", "k": "פרק"}, {"t": "6. עץ המשפחה", "h": "#s6-עץ-המשפחה", "k": "פרק"}, {"t": "7. פעולות פתוחות", "h": "#s7-פעולות-פתוחות", "k": "פרק"}, {"t": "8. סיכום המקורות", "h": "#s8-סיכום-המקורות", "k": "פרק"}, {"t": "9. שיטה ומגבלות", "h": "#s9-שיטה-ומגבלות", "k": "פרק"}, {"t": "מרדכי בן הרוש — נושא הדף; בן יונה ויקוט (פנינה); עלה לבדו 1947/48 בגיל 16–17; המועמד לשינוי השם — מגדים 1954", "h": "#s1", "k": "אדם", "x": "Mordechai Mordekhai Mardochée Ben Harush Benharoush Benharoch בנהרוש בן-הרוש בנערוש בנארוש הרוש מרדושי מגדים Megadim 1931 – 2010"}, {"t": "יונה בן הרוש — אביו; סוחר בעיר החדשה (פנקס 1953); עלה ב\"ארצה\" 11.6.1956 לצפת; בן מרדכי ומרים", "h": "#s5-3", "k": "אדם", "x": "Yona Jonas Ben Harush בנארוש Benarroch ארצה צפת 1912?, מכנאס"}, {"t": "יקוט (פנינה) בן הרוש — אמו; \"יקוט\" במסמכים, \"פנינה\" בפי המשפחה; עלתה עם יונה ב-1956 לצפת", "h": "#s5-3", "k": "אדם", "x": "Yakut Yacot Yacout יאקוט פנינה Penina Pnina Ben Harush 1918"}, {"t": "יעקב בן הרוש — אחיו; אשתו מרי (1936); עלו ב\"ארצה\" 1956 לצפת", "h": "#s5-3", "k": "אדם", "x": "Yaakov Jacob Ben Harush מרי 1933"}, {"t": "אסתר בן הרוש — אחותו; פנקס אליאנס מכנאס 1953 (Yona/Yacot); רשימת 1956", "h": "#s5-2", "k": "אדם", "x": "Esther Benarroch בנארוש 1948, מכנאס"}, {"t": "גבריאל (גבי), ז'וליט וסלומון בן הרוש — אחיו ואחותו; רשימת \"ארצה\" 1956", "h": "#s5-3", "k": "אדם", "x": "Gabriel Juliette Salomon Ben Harush 1942 · 1943 · 1945"}, {"t": "מרים בן הרוש לבית דהן — אשתו — נושאת המחקר האחר בארכיון הזה", "h": "#s2", "k": "אדם", "x": "Miriam Mary Marie Dahan דהן נ׳ 1939, מכנאס"}, {"t": "מושב מגדים", "h": "#s3", "k": "מקום", "x": "Megadim מגדים עתלית Atlit"}, {"t": "ילקוט הפרסומים 407 (1955)", "h": "#s3-1", "k": "מקור", "x": "ילקוט הפרסומים שינוי שם 1954 1955"}, {"t": "רשימות העולים 1947–1949", "h": "#s5-1", "k": "מקור", "x": "רשימת עולים ארכיון המדינה Pinpoint גל-15492 גל-15493 גל-15494 קפריסין"}, {"t": "פנקסי אליאנס מרוקו", "h": "#s5-2", "k": "מקור", "x": "Alliance AIU Benharoch Benarroch Harroch"}, {"t": "ממצאים שליליים", "h": "#s9-4", "k": "נושא", "x": "ממצא שלילי נשלל"}, {"t": "3.1 הרישום", "h": "#s3-1-הרישום", "k": "תת־פרק"}, {"t": "3.2 למה זה סביר", "h": "#s3-2-למה-זה-סביר", "k": "תת־פרק"}, {"t": "3.3 למה זה לא מוכרע", "h": "#s3-3-למה-זה-לא-מוכרע", "k": "תת־פרק"}, {"t": "5.1 רשימות העולים 1947–1949", "h": "#s5-1-רשימות-העולים-1947-1949", "k": "תת־פרק"}, {"t": "5.2 פנקס אליאנס מכנאס 1953 — אחותו אסתר", "h": "#s5-2-פנקס-אליאנס-מכנאס-1953-אחותו-אסתר", "k": "תת־פרק"}, {"t": "5.3 רשימת העולים של \"ארצה\", 11.6.1956 — ההורים והאח", "h": "#s5-3-רשימת-העולים-של-ארצה-11-6-1956-ההורים-והאח", "k": "תת־פרק"}, {"t": "5.4 אחר", "h": "#s5-4-אחר", "k": "תת־פרק"}, {"t": "9.1 בסיס הראיות", "h": "#s9-1-בסיס-הראיות", "k": "תת־פרק"}, {"t": "9.2 סולם הוודאות", "h": "#s9-2-סולם-הוודאות", "k": "תת־פרק"}, {"t": "9.3 מוסכמות הכתיב", "h": "#s9-3-מוסכמות-הכתיב", "k": "תת־פרק"}, {"t": "9.4 ממצאים שליליים", "h": "#s9-4-ממצאים-שליליים", "k": "תת־פרק"}, {"t": "9.5 חסמים", "h": "#s9-5-חסמים", "k": "תת־פרק"}, {"t": "9.6 מה הדף אינו עושה", "h": "#s9-6-מה-הדף-אינו-עושה", "k": "תת־פרק"}, {"t": "מקורות ראשוניים", "h": "#מקורות-ראשוניים", "k": "מקור"}, {"t": "1. ילקוט הפרסומים 407, ח' בניסן תשט\"ו (31.3.1955), עמ' 647 — הודעה בדבר שינויי שם, רשימה 10, מחוז חיפה — נפת חדרה (המועמד הפתוח)", "h": "#s1-ילקוט-הפרסומים-407-ח'-בניסן-תשט-ו-31-3-1955-עמ'-647-הודעה-", "k": "מקור"}, {"t": "2. ארכיון המדינה, רשימת עולים אפריל 1949, גל-15493/6, מסמך 192, שורה 54 — \"מרדכי בנארוש\" (נשלל)", "h": "#s2-ארכיון-המדינה-רשימת-עולים-אפריל-1949-גל-15493-6-מסמך-192-ש", "k": "מקור"}, {"t": "3. ארכיון יד יערי, רשימות שמיות של עולים — קיבוץ רשפים 1949, עמ' 12, שורה 2 — \"מרדכי בן-ארוש\" (ככל הנראה נשלל)", "h": "#s3-ארכיון-יד-יערי-רשימות-שמיות-של-עולים-קיבוץ-רשפים-1949-עמ'-", "k": "מקור"}, {"t": "4. מסירות משפחתיות (ספטמבר 2026) (מקור משפחתי — ללא מסמך)", "h": "#s4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך", "k": "מקור"}, {"t": "5. ארכיון המדינה — רשימות עולים 1947–1949 (S‑104‑607…614, גל‑15492/1–5, גל‑15493/1–8, גל‑15494/1–8), אוסף Google Pinpoint", "h": "#s5-ארכיון-המדינה-רשימות-עולים-1947-1949-S-104-607-614-גל-1549", "k": "מקור"}, {"t": "6. ארכיון המדינה, רשימת עולים מרץ 1949 חלק ב, גל-15493/3, עמ' 45 — רשימה ממרץ 1949 (החותמת בעמוד: 21.3.1949) (נשלל)", "h": "#s6-ארכיון-המדינה-רשימת-עולים-מרץ-1949-חלק-ב-גל-15493-3-עמ'-45", "k": "מקור"}, {"t": "מקורות עזר", "h": "#מקורות-עזר", "k": "מקור"}, {"t": "7. אתר מושב מגדים (מקור עזר מקוון — משני)", "h": "#s7-אתר-מושב-מגדים-מקור-עזר-מקוון-משני", "k": "מקור"}, {"t": "8. IGRA — חיפוש \"Harush\" + \"Mordekhai\" ו-\"בן הרוש\" + \"יונה\" (מקור עזר מקוון)", "h": "#s8-IGRA-חיפוש-Harush-Mordekhai-ו-בן-הרוש-יונה-מקור-עזר-מקוון", "k": "מקור"}, {"t": "9. IGRA — \"תלמידים 1917–1964 אליאנס מרוקו\", אשכולות Benharoch/Benarroch ו-Haroch/Harroch, 1937–1946 (מקור עזר מקוון)", "h": "#s9-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-אשכולות-Benharoch-Bena", "k": "מקור"}, {"t": "רשומות משפחתו", "h": "#רשומות-משפחתו", "k": "מקור"}, {"t": "10. פנקס בית הספר לבנות של אליאנס במכנאס, 1953 — מספר סידורי 3076, \"Benarroch Esther\", הורים Yona/Yacot (אחותו של מרדכי)", "h": "#s10-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-307", "k": "מקור"}, {"t": "11. ארכיון המדינה — רשימת העולים של האונייה \"ארצה\", 11.6.1956, עמוד 4, שורות 187–201 (גל-15499/1, \"רשימת עולים מאי–יוני 1956\") (ההורים והאח)", "h": "#s11-ארכיון-המדינה-רשימת-העולים-של-האונייה-ארצה-11-6-1956-עמוד", "k": "מקור"}, {"t": "12. IGRA — מסד המעפילים עתלית (Immigration Atlit Database, 1932–49), רשומה \"מרדכי בן הרוש\", מסמך 39404 (טרם נפתח)", "h": "#s12-IGRA-מסד-המעפילים-עתלית-Immigration-Atlit-Database-1932-4", "k": "מקור"}, {"t": "מהדורה 1 · 11.09.2026", "h": "#מהדורה-1-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 2 · 11.09.2026", "h": "#מהדורה-2-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 3 · 11.09.2026", "h": "#מהדורה-3-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 4 · 11.09.2026", "h": "#מהדורה-4-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 5 · 11.09.2026", "h": "#מהדורה-5-11-09-2026", "k": "מהדורה"}, {"t": "מהדורה 6 · 11.09.2026", "h": "#מהדורה-6-11-09-2026", "k": "מהדורה"}];
   var q = document.getElementById('q'), res = document.getElementById('qres');
   function norm(s){ return (s||'').replace(/["'ְ-ׇ]/g,'').toLowerCase(); }
   function clear(){ res.textContent=''; res.hidden=true; }
@@ -843,11 +917,13 @@ footer {
       out.forEach(function(o){
         var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
         var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        // a space, or the accessible name reads "…ירושליםאדם"
+        a.appendChild(document.createTextNode(' '));
         a.appendChild(k); res.appendChild(a);
       });
     } else {
       var p = document.createElement('p'); p.className='nores';
-      p.textContent='לא נמצאו תוצאות בכותרות ובאינדקס האנשים. לחיפוש בגוף הטקסט: Ctrl+F';
+      p.textContent='לא נמצאו תוצאות בפרקים, באנשים ובמקורות. לחיפוש בגוף הטקסט: Ctrl+F';
       res.appendChild(p);
     }
     res.hidden = false;
@@ -878,6 +954,18 @@ footer {
     });
   }
   var nav = document.querySelector('.nav');
+  // the phone nav is one scrolling row; the search field opens from a button
+  var qt = document.querySelector('.qtoggle');
+  if (qt){
+    qt.hidden = false;
+    qt.addEventListener('click', function(){
+      var on = !nav.classList.contains('qopen');
+      nav.classList.toggle('qopen', on);
+      qt.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on && q) q.focus(); else { if (q) q.value=''; if (res) clear(); }
+      offset();
+    });
+  }
   function offset(){
     if (!nav) return;
     var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
@@ -916,8 +1004,10 @@ footer {
   function scrollables(){
     [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
       var over = w.scrollWidth - w.clientWidth > 1;
+      var cap = w.querySelector('caption');
+      var name = 'טבלה' + (cap && cap.textContent ? ' — ' + cap.textContent : '');
       if (over){ w.tabIndex = 0; w.setAttribute('role','region');
-                 w.setAttribute('aria-label','טבלה — ניתנת לגלילה אופקית'); }
+                 w.setAttribute('aria-label', name + ' — ניתנת לגלילה אופקית'); }
       else { w.removeAttribute('tabindex'); w.removeAttribute('role');
              w.removeAttribute('aria-label'); }
     });
@@ -925,18 +1015,25 @@ footer {
   scrollables(); addEventListener('resize', scrollables);
   // the tree is laid out at fixed coordinates; zooming the frame is how a reader
   // gets its labels to a readable size without the boxes colliding
-  // BASE 2 is the diagram's native size; the frame opens at three quarters of
-  // it, which shows the whole shape; the reader zooms in to read a branch
-  var BASE = 2, zoom = 1.5, zval = document.getElementById('tree-zoom-val');
-  if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+  // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
+  // so the reader always has a state where the whole shape is on the screen,
+  // and every step above it is stated relative to that (×1.5, ×2)
+  var zoom = matchMedia('(max-width:40rem)').matches ? 1 : 1.5;
+  var zval = document.getElementById('tree-zoom-val');
+  function zshow(){
+    document.documentElement.style.setProperty('--tree-zoom', zoom);
+    if (zval) zval.textContent = '\u00d7' + (Math.round(zoom * 100) / 100);
+  }
   [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
     btn.addEventListener('click', function(){
-      var step = parseInt(btn.getAttribute('data-tree-zoom'), 10) * 0.25;
-      zoom = Math.min(3, Math.max(1, Math.round((zoom + step) * 100) / 100));
-      document.documentElement.style.setProperty('--tree-zoom', zoom);
-      if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+      var v = btn.getAttribute('data-tree-zoom');
+      if (v === 'fit') zoom = 1;
+      else zoom = Math.min(3, Math.max(1,
+             Math.round((zoom + parseInt(v, 10) * 0.25) * 100) / 100));
+      zshow();
     });
   });
+  if (zval) zshow();
   var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
   var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
   if ('IntersectionObserver' in window){

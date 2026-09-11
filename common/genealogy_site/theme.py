@@ -132,6 +132,13 @@ h3 {{ font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }}
 h4 {{ font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }}
 p {{ margin:0 0 1rem; }}
 a {{ color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }}
+/* a citation marker after a Latin run would otherwise be laid out on the far
+   side of it, before the very words it cites */
+a.cit {{ unicode-bidi:isolate; }}
+.visually-hidden {{
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0;
+}}
 a:hover {{ border-block-end-color:var(--link); }}
 a:focus-visible {{ outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }}
 ul, ol {{ margin:0 0 1rem; padding-inline-start:1.4rem; }}
@@ -201,6 +208,10 @@ figcaption .figlinks {{ display:block; margin-block-start:.3rem; font-family:var
 .gallery img {{ width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }}
 /* a crop far wider than the frame is shown whole rather than magnified */
 .gallery img.contain {{ object-fit:contain; padding:.3rem; }}
+/* a line strip (wider than 6:1) is a hairline inside a square tile: it takes
+   the whole row and keeps its own proportions, so the writing can be read */
+.gallery a.wide {{ width:100%; }}
+.gallery a.wide img {{ height:auto; max-block-size:11rem; object-fit:contain; }}
 .gallery span {{ display:block; margin-block-start:.3rem; }}
 
 /* ---------- family tree ---------- */
@@ -208,8 +219,14 @@ figcaption .figlinks {{ display:block; margin-block-start:.3rem; font-family:var
   overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
   background:#fff; padding:.5rem;
 }}
+/* zoom 1 == fit to width: the diagram is never wider than the frame unless the
+   reader asks for it, on a phone as on a desktop */
 .tree-embed svg {{
-  min-width:calc(75rem * var(--tree-zoom, 1.5)); height:auto; display:block; margin-inline:auto;
+  width:calc(100% * var(--tree-zoom, 1.5));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1.5)));
+  /* the global svg max-width would clamp the zoom away */
+  max-width:none;
+  height:auto; display:block; margin-inline:auto;
 }}
 .tree-zoom {{
   display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
@@ -276,22 +293,47 @@ footer {{
 }}
 
 /* ---------- mobile ---------- */
+.qtoggle {{
+  display:none; font:inherit; font-size:.82rem; line-height:1; cursor:pointer;
+  padding:.35rem .7rem; min-block-size:1.9rem; margin-inline-start:auto;
+  border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink);
+}}
+.qtoggle:focus-visible {{ outline:2px solid var(--link); outline-offset:1px; }}
+
 @media (max-width:40rem) {{
-  :root {{ --anchor-off: 12rem; }}
+  :root {{ --anchor-off: 7rem; --tree-zoom: 1; }}
   body {{ font-size:1rem; overflow-wrap:anywhere; }}
   bdi {{ overflow-wrap:anywhere; }}
   .hero {{ padding:1.75rem 1rem 1.5rem; }}
   main {{ padding:1.25rem 1rem 3rem; }}
   .nav-in {{ padding:0 1rem; }}
-  .nav-row {{ height:2.9rem; }}
-  .qwrap {{ order:99; margin:0 0 .5rem; width:100%; }}
+  .nav-row {{ height:2.4rem; }}
+  /* one scrolling row instead of three wrapped ones: the sticky bar cost a
+     quarter of the screen and no link is lost by scrolling it */
+  .nav-row:first-child {{
+    flex-wrap:nowrap; height:2.4rem; padding-block:0;
+    overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
+  }}
+  .nav-row:first-child::-webkit-scrollbar {{ display:none; }}
+  .chapters-wrap > summary {{ padding:.05rem 0; font-size:.72rem; line-height:1.4; }}
+  .nav-row.chapters {{ height:2.2rem; }}
+  .qtoggle {{ display:block; flex:0 0 auto; position:sticky; inset-inline-end:0;
+             box-shadow:-6px 0 8px rgba(250,247,242,.97); }}
+  .qwrap {{ display:none; }}
+  /* while searching, the row IS the search: the links step aside for it, and
+     nothing clips the results panel */
+  .nav.qopen .nav-row:first-child {{ overflow:visible; }}
+  .nav.qopen .nav-row:first-child > a,
+  .nav.qopen .nav-row:first-child > .lbl {{ display:none; }}
+  .nav.qopen .qwrap {{ display:block; flex:1 1 auto; margin:0; min-width:0; }}
   #q {{ width:100%; min-width:0; }}
   #qres {{ min-width:0; max-width:none; inline-size:100%; max-height:50vh; }}
   main {{ padding-block-end:4.5rem; }}   /* clearance for the floating button */
   td, th {{ overflow-wrap:break-word; }}
-  .nav-row:first-child {{ flex-wrap:wrap; height:auto; padding-block:.5rem 0; overflow:visible; }}
-  .nav-row:first-child > a, .nav-row:first-child > .lbl {{ margin-block-end:.35rem; }}
-  .spine {{ display:grid; grid-template-columns:1fr 1fr; }}
+  .tree-embed {{ max-block-size:70vh; overflow-y:auto; }}
+  .spine {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); }}
+  /* an odd last tile would otherwise sit alone at half width */
+  .spine div:last-child:nth-child(odd) {{ grid-column:1/-1; }}
   .spine div {{ min-width:0; padding:.45rem .6rem; }}
   .spine b {{ font-size:1.1rem; }}
   .gallery a {{ width:8.5rem; }}
