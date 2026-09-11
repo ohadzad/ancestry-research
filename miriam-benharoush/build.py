@@ -49,6 +49,8 @@ GALLERY = (
     (F.thumb(ROOT, 'docs/ev_marie_1949.jpg', 440), 'docs/AIU_MA_240.1_40.jpg', 'מרי דהן — פנקס אליאנס מכנאס 1949, מס׳ 1617'),
     (F.thumb(ROOT, 'docs/ev_rebeca_1950.jpg', 440), 'docs/AIU_MA_240.1_51.jpg', 'רבקה דהן — פנקס 1950, מס׳ 1878'),
     (F.thumb(ROOT, 'docs/ev_rachel_1953.jpg', 440), 'docs/AIU_MA_240.2_00028.jpg', 'רחל דהן — פנקס 1953, מס׳ 3054'),
+    (F.thumb(ROOT, 'docs/ev_shalom_1956.jpg', 440), 'docs/1956-01-15_yerushalayim_p8.jpg', 'משפחת דהן — רשימת העולים של "ירושלים", 15.1.1956'),
+    (F.thumb(ROOT, 'docs/ev_dahan_1956.jpg', 440), 'docs/1956-01-15_yerushalayim_p8.jpg', 'שלוש משפחות דהן באותו עמוד — מכלוף, שלום, שלומון'),
     (F.thumb(ROOT, 'docs/ev_header_1949.jpg', 440), 'docs/AIU_MA_240.1_40.jpg', 'כותרות העמודות של הפנקס'),
 )
 
@@ -83,9 +85,10 @@ cfg = ProjectConfig(
     md_extensions=('tables',),
     thumb_referrers=('../index.html', '../research_registry.json'),
     spine=(
+        SpineFact('1', 'רשומת עלייה, 15.1.1956'),
         SpineFact('3', 'רשומות פנקס אליאנס'),
-        SpineFact('10', 'ערכי מקור'),
-        SpineFact('6', 'סריקות מקור שמורות'),
+        SpineFact('11', 'ערכי מקור'),
+        SpineFact('7', 'סריקות מקור שמורות'),
         SpineFact('19', 'קובצי רשימות עולים שנסרקו'),
     ),
     people=PEOPLE,
