@@ -36,12 +36,17 @@ P = Person
 PEOPLE = (
     P('מרדכי בן הרוש', '1931 – 2010', 'נושא הדף; בן יונה ויקוט, עלה 1947/48; המועמד הפתוח — מגדים 1954',
       '#s1', 'Mordechai Mordekhai Mardochée Ben Harush Benharoush Benharoch בנהרוש בן-הרוש בנערוש בנארוש הרוש מרדושי מגדים Megadim'),
-    P('יונה בן הרוש', '', 'אביו (משפחה) — טרם תועד', '#s6', 'Yona Jonas Ben Harush'),
-    P('יקוט בן הרוש', '', 'אמו (משפחה) — טרם תועד', '#s6', 'Yakut Yacot Yacout יאקוט Ben Harush'),
+    P('יונה בן הרוש', '1918?, מכנאס', 'אביו; סוחר בעיר החדשה (פנקס 1953); עלה ב"ארצה" 11.6.1956 לצפת; בן מרדכי ומרים', '#s5-3', 'Yona Jonas Ben Harush בנארוש Benarroch ארצה צפת'),
+    P('יקוט בן הרוש', '1918', 'אמו; עלתה עם יונה ב-1956 לצפת', '#s5-3', 'Yakut Yacot Yacout יאקוט Ben Harush'),
+    P('יעקב בן הרוש', '1933', 'אחיו; אשתו מרי (1936); עלו ב"ארצה" 1956 לצפת', '#s5-3', 'Yaakov Jacob Ben Harush מרי'),
+    P('אסתר בן הרוש', '1948, מכנאס', 'אחותו; פנקס אליאנס מכנאס 1953 (Yona/Yacot); רשימת 1956', '#s5-2', 'Esther Benarroch בנארוש'),
+    P('גבריאל, ז\'ולייט וסלומון בן הרוש', '1942 · 1943 · 1945', 'אחיו ואחותו; רשימת "ארצה" 1956', '#s5-3', 'Gabriel Juliette Salomon Ben Harush'),
     P('מרים בן הרוש לבית דהן', 'נ׳ 1939, מכנאס', 'אשתו — נושאת המחקר האחר בארכיון הזה', '#s2', 'Miriam Mary Marie Dahan דהן'),
 )
 
 GALLERY = (
+    (F.thumb(ROOT, 'docs/ev_benharoush_1956.jpg', 440), 'docs/1956-06-11_artza_p4.jpg', 'ההורים יונה ויקוט והאח יעקב — רשימת העולים של "ארצה", 11.6.1956'),
+    (F.thumb(ROOT, 'docs/ev_esther_1953.jpg', 440), 'docs/AIU_MA_240.2_00028.jpg', 'אסתר בנארוש, בת יונה ויקוט — פנקס אליאנס מכנאס 1953'),
     (F.thumb(ROOT, 'docs/ev_yalkut_1954_row.jpg', 440), 'docs/yalkut_407_p647.jpg', 'ילקוט הפרסומים 407 — בנערוש מרדושי ← בן הרוש מרדכי, מגדים 1954'),
     (F.thumb(ROOT, 'docs/ev_yalkut_1954_header.jpg', 440), 'docs/yalkut_407_p647.jpg', 'כותרת הרשימה — הודעה בדבר שינויי שם'),
     (F.thumb(ROOT, 'docs/1949-03_list_p45.png', 440), 'docs/1949-03_list_p45.png', 'רשימת העולים 24.3.1949 — משפחת בן הרוש שנשללה'),
@@ -77,10 +82,11 @@ cfg = ProjectConfig(
     md_extensions=('tables',),
     thumb_referrers=('../index.html', '../research_registry.json'),
     spine=(
+        SpineFact('2', 'רשומות של משפחתו'),
         SpineFact('1', 'מועמד פתוח'),
         SpineFact('6', 'רשומות שנשללו'),
         SpineFact('16/29', 'קובצי עולים 1947–49 שנקראו'),
-        SpineFact('9', 'ערכי מקור'),
+        SpineFact('11', 'ערכי מקור'),
     ),
     people=PEOPLE,
     gallery=GALLERY,
