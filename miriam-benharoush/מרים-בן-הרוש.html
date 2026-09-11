@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ממכנאס לחולון: מרים בן הרוש לבית דהן</title>
+<meta name="description" content="מחקר גנאלוגי מתועד-מקורות על מרים בן הרוש לבית דהן, ילידת מכנאס 1939 שעלתה ב-1956 — שלוש רשומות בפנקסי אליאנס במכנאס על שם ההורים שלום ויקוט, עץ משפחה, גלריית ראיות ואינדקס מקורות.">
+<meta name="color-scheme" content="light">
+<style>
+:root {
+  --ink:#1e2a32; --muted:#5e6b73; --line:#dbe0d8;
+  --paper:#f9f8f3; --accent:#1f6f5b; --accent-soft:#2f8a72;
+  --link:#155c4a;
+  --hero-from:#12302a; --hero-to:#1f6f5b;
+  --col: 60rem;               /* the reading column */
+  --nav-h: 3.25rem;
+  --anchor-off: 6.5rem;
+  --radius: 6px;
+  --serif: 'David Libre','Frank Ruhl Libre','Times New Roman',Georgia,serif;
+  --sans: 'Assistant','Segoe UI',Arial,Helvetica,sans-serif;
+  --sbw: 0px;
+}
+*,*::before,*::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+body {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.75;
+  text-rendering:optimizeLegibility; -webkit-text-size-adjust:100%;
+  overflow-wrap:break-word; word-break:normal;
+}
+img, svg, video { max-width:100%; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));
+  color:#f6efe2; padding:2.5rem 1.25rem 2rem;
+}
+.hero-in { max-width:var(--col); margin-inline:auto; }
+.hero .crumb { font-family:var(--sans); font-size:.8rem; opacity:.8; margin-block-end:1rem; }
+.hero .crumb a { color:#f2e5c8; text-decoration:none; border-block-end:1px solid rgba(242,229,200,.4); }
+.hero h1 { font-size:clamp(1.6rem,3.4vw,2.4rem); line-height:1.25; margin:0 0 .5rem; font-weight:700; letter-spacing:-.01em; }
+.hero .subject { font-size:1.05rem; opacity:.94; margin:0 0 .35rem; }
+.hero .meta { font-family:var(--sans); font-size:.8rem; color:#e8dcc2; }
+
+.spine { display:flex; flex-wrap:wrap; gap:.5rem; margin-block-start:1.5rem; }
+.spine div {
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radius); padding:.5rem .8rem; min-width:7.5rem;
+}
+.spine b { display:block; font-size:1.3rem; line-height:1.2; font-family:var(--sans); font-weight:700; }
+.spine span { /* floor: no supporting text below 12.5px */ font-family:var(--sans); font-size:.78rem; color:#e8dcc2; }
+
+/* ---------- sticky navigation ---------- */
+.nav {
+  position:sticky; top:0; z-index:40; background:rgba(250,247,242,.97);
+  backdrop-filter:saturate(150%) blur(6px);
+  border-block-end:1px solid var(--line); font-family:var(--sans);
+}
+.nav-in { max-width:var(--col); margin-inline:auto; padding:0 1.25rem; }
+.nav-row { display:flex; align-items:center; gap:.4rem; height:var(--nav-h); }
+/* only the chapter strip scrolls; the first row must not clip the search panel */
+.nav-row.chapters { overflow-x:auto; scrollbar-width:thin; }
+.nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.4rem; }
+.chapters-wrap { border-block-start:1px dotted var(--line); }
+.chapters-wrap > summary {
+  list-style:none; cursor:pointer; padding:.3rem 0; font-size:.78rem; color:var(--muted);
+}
+.chapters-wrap > summary::-webkit-details-marker { display:none; }
+.chapters-wrap > summary::after { content:" ▾"; }
+.chapters-wrap[open] > summary::after { content:" ▴"; }
+.nav-row.chapters { height:2.4rem; }
+/* the row scrolls horizontally; a fade at the overflowing edge is the only cue */
+.chapters-wrap { position:relative; }
+.chapters-wrap::after {
+  /* at rest the strip is scrolled to its start, so the hidden chips are at the
+     inline-END edge — that is where the cue belongs */
+  content:""; position:absolute; inset-block:auto 0; inset-inline-end:0;
+  block-size:2.4rem; inline-size:2.2rem; pointer-events:none;
+  background:linear-gradient(to left, rgba(250,247,242,0), rgba(250,247,242,.98));
+}
+[dir="rtl"] .chapters-wrap::after {
+  background:linear-gradient(to right, rgba(250,247,242,0), rgba(250,247,242,.98));
+}
+.chapters-wrap:not([open])::after { display:none; }
+.nav a {
+  flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.82rem;
+  padding:.3rem .6rem; border-radius:999px; white-space:nowrap;
+}
+.nav a:hover { background:rgba(0,0,0,.05); }
+.nav a.on { background:var(--accent); color:#fff; }
+.nav .lbl { flex:0 0 auto; font-size:.78rem; color:var(--muted); padding-inline-end:.2rem; }
+.nav-row.chapters a:not(.on) { font-size:.78rem; color:var(--muted); }
+.nav-row.chapters a.on { font-size:.78rem; }
+
+.qwrap { position:relative; flex:0 0 auto; margin-inline-start:auto; }
+#q {
+  font-family:var(--sans); font-size:.8rem;
+  padding:.32rem .7rem; border:1px solid var(--line); border-radius:999px;
+  background:#fff; color:var(--ink); min-width:9rem;
+}
+#q:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+/* out of flow: opening the list must not change the nav's height, or every
+   anchor below it would shift while the reader is looking at one */
+#qres {
+  position:absolute; inset-block-start:calc(100% + .4rem); inset-inline-end:0;
+  min-width:20rem; max-width:min(28rem, 92vw); max-height:60vh; overflow-y:auto;
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(0,0,0,.14); padding:.35rem .8rem .5rem;
+  font-family:var(--sans); font-size:.82rem; z-index:60;
+}
+#qres[hidden] { display:none; }
+#qres a {
+  display:block; white-space:normal; flex:initial; border-radius:0;
+  padding:.35rem 0; color:var(--ink); border-block-end:1px dotted var(--line);
+}
+#qres a:last-child { border-block-end:0; }
+#qres .k { color:var(--muted); font-size:.78rem; margin-inline-start:.4rem; }
+#qres .nores { margin:.3rem 0; color:var(--muted); }
+#qres .qcount {
+  margin:.1rem 0 .35rem; color:var(--muted); font-size:.78rem;
+  border-block-end:1px solid var(--line); padding-block-end:.3rem;
+}
+
+/* ---------- the reading column ---------- */
+main { max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 4rem; }
+section, .legacy-anchor { scroll-margin-top:var(--anchor-off); display:block; }
+.legacy-anchor { height:0; }
+h2, h3, h4 { scroll-margin-top:var(--anchor-off); }
+h2 {
+  font-size:1.45rem; line-height:1.3; margin:2.6rem 0 .9rem; color:var(--accent);
+  border-block-end:2px solid var(--line); padding-block-end:.35rem;
+}
+h3 { font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }
+h4 { font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }
+p { margin:0 0 1rem; }
+a { color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }
+a:hover { border-block-end-color:var(--link); }
+a:focus-visible { outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }
+ul, ol { margin:0 0 1rem; padding-inline-start:1.4rem; }
+li { margin-block-end:.4rem; }
+hr { border:0; border-block-start:1px solid var(--line); margin:2.5rem 0; }
+strong { font-weight:700; }
+blockquote {
+  margin:1.2rem 0; padding:.1rem 1rem; border-inline-start:3px solid var(--line);
+  color:var(--muted);
+}
+code {
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;
+  background:rgba(0,0,0,.045); padding:.1em .35em; border-radius:3px;
+  direction:ltr; unicode-bidi:isolate;
+}
+
+/* ---------- callouts ---------- */
+.lede {
+  background:#fff; border:1px solid var(--line); border-inline-start:4px solid var(--accent);
+  border-radius:var(--radius); padding:1.1rem 1.2rem; margin:0 0 1.6rem;
+  font-size:1.08rem; line-height:1.72;
+}
+.note {
+  background:rgba(0,0,0,.025); border:1px solid var(--line); border-radius:var(--radius);
+  padding:.8rem 1rem; margin:1.2rem 0; font-size:.94rem; color:var(--muted);
+}
+
+/* ---------- certainty chips ---------- */
+.rank {
+  display:inline-block; font-family:var(--sans); font-size:.78rem; font-style:normal; font-weight:600;
+  line-height:1.5; padding:.05rem .5rem; border-radius:999px; white-space:nowrap;
+  border:1px solid currentColor; vertical-align:.08em;
+}
+.rank.v1 { color:#2f6b41; background:rgba(47,107,65,.08); }   /* מאומת */
+.rank.v2 { color:#6b5324; background:rgba(107,83,36,.08); }   /* כמעט ודאי */
+.rank.v3 { color:#8a5a00; background:rgba(138,90,0,.08); }    /* ככל הנראה */
+.rank.v4 { color:#8a3d2e; background:rgba(138,61,46,.08); }   /* טעון אימות */
+
+/* ---------- tables ---------- */
+.tablewrap:focus-visible, .tree-embed:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
+.tablewrap { overflow-x:auto; margin:1.2rem 0; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+table { border-collapse:collapse; width:100%; font-size:.93rem; }
+th, td { padding:.5rem .7rem; border-block-end:1px solid var(--line); text-align:start; vertical-align:top; }
+thead th { background:rgba(0,0,0,.035); font-family:var(--sans); font-size:.82rem; }
+tbody tr:last-child td { border-block-end:0; }
+
+/* ---------- figures ---------- */
+figure { margin:1.6rem auto; text-align:center; max-width:100%; }
+figure img {
+  max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 2px 8px rgba(0,0,0,.07); background:#fff;
+}
+figcaption { font-size:.84rem; color:var(--muted); margin-block-start:.5rem; line-height:1.6; text-align:start; }
+figcaption .fignum { font-family:var(--sans); font-weight:700; color:var(--accent); }
+figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(--sans); font-size:.78rem; }
+.imgcap { display:block; font-size:.84rem; color:var(--muted); margin-block-start:.4rem; }
+
+.ext { font-size:.78rem; color:var(--muted); padding-inline-start:.12em; }
+.doclink { display:inline-block; min-inline-size:1.5rem; min-block-size:1.5rem; padding:.15rem .2rem; }
+
+/* ---------- gallery ---------- */
+.gallery { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.2rem 0 2rem; }
+.gallery a {
+  flex:0 0 auto; width:11rem; border:0; text-align:center; color:var(--muted);
+  font-family:var(--sans); font-size:.78rem; line-height:1.4;
+}
+.gallery img { width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+/* a crop far wider than the frame is shown whole rather than magnified */
+.gallery img.contain { object-fit:contain; padding:.3rem; }
+.gallery span { display:block; margin-block-start:.3rem; }
+
+/* ---------- family tree ---------- */
+.tree-embed {
+  overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+  background:#fff; padding:.5rem;
+}
+.tree-embed svg {
+  min-width:calc(75rem * var(--tree-zoom, 1.5)); height:auto; display:block; margin-inline:auto;
+}
+.tree-zoom {
+  display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.5rem;
+}
+.tree-zoom button {
+  font:inherit; line-height:1; min-inline-size:2rem; min-block-size:2rem;
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  color:var(--ink); cursor:pointer;
+}
+.tree-zoom button:hover { background:rgba(0,0,0,.04); }
+.tree-zoom button:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+.legend {
+  display:flex; gap:1.1rem; justify-content:center; flex-wrap:wrap;
+  padding:.7rem 0 .2rem; font-family:var(--sans); font-size:.8rem; color:var(--muted);
+}
+.legend > span { display:flex; align-items:center; gap:.35rem; }
+.dot { width:.7rem; height:.7rem; border-radius:50%; display:inline-block; flex:0 0 auto; }
+.tree-foot {
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); text-align:center;
+  max-width:52rem; margin:.5rem auto 0; line-height:1.6;
+}
+.tree-hint { font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.4rem; }
+.btn {
+  display:inline-block; font-family:var(--sans); font-size:.82rem; border:1px solid var(--accent);
+  color:var(--accent); border-radius:999px; padding:.32rem .9rem; margin-block-start:.6rem;
+}
+.btn:hover { background:var(--accent); color:#fff; }
+
+/* ---------- person index ---------- */
+.people { display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:.6rem; margin:1.2rem 0; }
+.person {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.6rem .75rem; font-size:.9rem;
+}
+.person b { display:block; font-size:.97rem; }
+.person .d { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.person .r { display:block; color:var(--muted); font-size:.84rem; margin-block-start:.15rem; }
+
+.skip {
+  position:absolute; inset-inline-start:-9999px; inset-block-start:0; z-index:99;
+  background:var(--paper); color:var(--link); padding:.6rem 1rem;
+  border:1px solid var(--accent); border-end-end-radius:var(--radius);
+  font-family:var(--sans); font-size:.85rem;
+}
+.skip:focus { inset-inline-start:0; }
+
+/* ---------- back to top ---------- */
+.top {
+  /* the inline-end edge: in RTL that is the ragged end of the lines, so the
+     button never covers the start of a sentence */
+  position:fixed; inset-block-end:1.1rem; inset-inline-end:1.1rem; z-index:50;
+  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid var(--line);
+  background:#fff; color:var(--accent); display:grid; place-items:center;
+  font-size:1.1rem; box-shadow:0 2px 8px rgba(0,0,0,.12); opacity:0; pointer-events:none;
+  transition:opacity .2s;
+}
+.top.show { opacity:1; pointer-events:auto; }
+
+footer {
+  max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 3rem;
+  border-block-start:1px solid var(--line); color:var(--muted);
+  font-family:var(--sans); font-size:.8rem;
+}
+
+/* ---------- mobile ---------- */
+@media (max-width:40rem) {
+  :root { --anchor-off: 12rem; }
+  body { font-size:1rem; overflow-wrap:anywhere; }
+  bdi { overflow-wrap:anywhere; }
+  .hero { padding:1.75rem 1rem 1.5rem; }
+  main { padding:1.25rem 1rem 3rem; }
+  .nav-in { padding:0 1rem; }
+  .nav-row { height:2.9rem; }
+  .qwrap { order:99; margin:0 0 .5rem; width:100%; }
+  #q { width:100%; min-width:0; }
+  #qres { min-width:0; max-width:none; inline-size:100%; max-height:50vh; }
+  main { padding-block-end:4.5rem; }   /* clearance for the floating button */
+  td, th { overflow-wrap:break-word; }
+  .nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.5rem 0; overflow:visible; }
+  .nav-row:first-child > a, .nav-row:first-child > .lbl { margin-block-end:.35rem; }
+  .spine { display:grid; grid-template-columns:1fr 1fr; }
+  .spine div { min-width:0; padding:.45rem .6rem; }
+  .spine b { font-size:1.1rem; }
+  .gallery a { width:8.5rem; }
+  .gallery img { height:6rem; }
+  .top { width:2.2rem; height:2.2rem; inset-block-end:.7rem; inset-inline-end:.7rem; font-size:.95rem; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  @page { size:A4; margin:16mm 14mm; }
+  @page landscape { size:A4 landscape; }
+  body { background:#fff; font-size:10.5pt; line-height:1.5; }
+  .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov, .tree-zoom, .skip { display:none !important; }
+  .hero { background:#fff !important; color:#000; padding:0 0 1rem; border-block-end:2px solid #000; }
+  .hero .meta, .spine span { color:#444; }
+  .spine div { border:1px solid #bbb; background:#fff; }
+  .spine b { color:#000; }
+  main, footer, .hero-in { max-width:none; }
+  h2 { break-after:avoid; }
+  figure, .tablewrap, .person { break-inside:avoid; }
+  figure img { max-height:150mm; box-shadow:none; }
+  #tree { break-before:page; page:landscape; }
+  #tree .tree-embed { overflow:visible; border:0; break-inside:avoid; }
+  /* the diagram is near-square: fitting the width alone spills it over two
+     pages, so the height of a landscape A4 is the binding constraint */
+  .tree-embed svg {
+    min-width:0; width:auto; height:auto; max-width:100%; max-height:118mm;
+    display:block; margin-inline:auto;
+  }
+  #tree h2 { break-after:avoid; }
+  .tree-foot, .legend { font-size:7pt; line-height:1.35; }
+  /* overflow-x has no meaning on paper: a scrolling table would simply lose
+     its last column */
+  .tablewrap { overflow:visible; }
+  .tablewrap table { table-layout:fixed; width:100%; }
+  .tablewrap td, .tablewrap th { overflow-wrap:anywhere; }
+  a { border-block-end:0; color:#000; }
+  /* the external address is what a paper reader cannot otherwise recover;
+     a relative path would only repeat the file name the link already shows */
+  #index a[href^="http"]::after, #report a[href^="http"]::after,
+  #changelog a[href^="http"]::after {
+    content:" ‹" attr(href) "›"; font-size:8pt; color:#555; word-break:break-all;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#report">דילוג לתוכן</a>
+<a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
+<span id="top"></span>
+<header class="hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><h1>ממכנאס לחולון: מרים בן הרוש לבית דהן</h1><p class="subject">1939, מכנאס — חולון · מחקר גנאלוגי מתועד-מקורות · בתחילתו</p><div class="meta">מהדורה 6 · נבנה 11.09.2026, 18:11</div><div class="spine"><div><b>3</b><span>רשומות פנקס אליאנס</span></div><div><b>10</b><span>ערכי מקור</span></div><div><b>6</b><span>סריקות מקור שמורות</span></div><div><b>19</b><span>קובצי רשימות עולים שנסרקו</span></div></div></div></header>
+<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><span class="lbl">מקטעים</span><a href="#report">הדוח</a><a href="#tree">עץ המשפחה</a><a href="#gallery">מסמכי מפתח</a><a href="#people">אינדקס אנשים</a><a href="#index">אינדקס מקורות</a><a href="#changelog">יומן מהדורות</a><div class="qwrap"><input id="q" type="search" placeholder="חיפוש בעמוד…" aria-label="חיפוש בפרקים ובאינדקס האנשים" autocomplete="off" aria-controls="qres" hidden><div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div></div></div><details class="chapters-wrap" open><summary class="lbl">פרקים</summary><div class="nav-row chapters"><a href="#1-תמצית" title="1. תמצית">1 · תמצית</a><a href="#2-מה-ידוע-מהמשפחה" title="2. מה ידוע מהמשפחה">2 · מהמשפחה</a><a href="#3-הממצאים-במכנאס-פנקסי-אליאנס" title="3. הממצאים במכנאס — פנקסי אליאנס">3 · פנקסי אליאנס</a><a href="#4-הזיהוי-ושאלת-הגיל" title="4. הזיהוי ושאלת הגיל">4 · הזיהוי</a><a href="#5-מה-לא-נמצא-ובאיזה-כיסוי" title="5. מה לא נמצא — ובאיזה כיסוי">5 · מה לא נמצא</a><a href="#6-עץ-המשפחה" title="6. עץ המשפחה">6 · עץ המשפחה</a><a href="#7-פעולות-פתוחות" title="7. פעולות פתוחות">7 · פעולות פתוחות</a><a href="#8-סיכום-המקורות" title="8. סיכום המקורות">8 · המקורות</a><a href="#9-שיטה-ומגבלות" title="9. שיטה ומגבלות">9 · שיטה ומגבלות</a></div></details></div></nav>
+<main>
+<section id="report"><p class="note prov">העמוד הזה טוען את התצלומים ואת המסמכים ישירות מתיקיית <code>docs/</code> שלצדו — לחיצה על כל ראיה פותחת את קובץ המקור המלא.</p><div class="lede"><p><strong>מרים בן הרוש, לבית דהן</strong> — בפי המשפחה גם "מרי" — נולדה ב-1939 במכנאס שבמרוקו, בתם של <strong>שלום ויקוט דהן</strong>, ועלתה לישראל עם הוריה ב-1956. היא חיה בחולון. בעלה, <strong>מרדכי בן הרוש</strong> (<bdi dir="ltr">1931–2010</bdi>), הוא נושאו של <a href="../index.html#research-mordechai-benharoush">דף מחקר נלווה</a>.</p>
+<p>המחקר איתר אותה ואת שתי אחיותיה, <strong>רבקה ורחל</strong>, בפנקסי התלמידות של בית הספר לבנות של רשת "כל ישראל חברים" (אליאנס) במכנאס — שלוש רשומות נפרדות מהשנים 1949, 1950 ו-1953, ובשלושתן שמות ההורים <strong>Chalom</strong> ו-<strong>Yacot</strong>. אצל מרי נרשם גם מקצוע האב — ככל הנראה חייט — ומקום המגורים, המלאח הישן. שנת הלידה שבתעודת הזהות, 1939, מתיישבת עם הגיל שנרשם בפנקס.</p>
+<p>מה שטרם נמצא: רשומת העלייה של המשפחה ב-1956, ותיעוד ההורים בירושלים. <strong>כל מקור מופיע פעמיים: קישור אל הרשומה בארכיון שממנו נלקחה, וקישור אל עותק שמור בתוך התיקייה הזאת.</strong> מה שלא אומת מסומן ככזה, וגם ממצא שלילי נרשם.</p></div>
+<p><strong>מאיפה להתחיל</strong></p>
+<ul>
+<li><a href="#s1">מי היא מרים</a> — התמצית והנתונים שמסרה המשפחה.</li>
+<li><a href="#s3">שלוש הרשומות במכנאס</a> — הפנקסים, שורה-שורה, עם דירוג לכל תא.</li>
+<li><a href="#s4">הזיהוי ושאלת הגיל</a> — למה זו אותה משפחה, ואיך נסגר הפער בין 1941 ל-1939.</li>
+<li><a href="#s5">מה לא נמצא, ובאיזה כיסוי</a> — רשימות העולים, המועמדות שנשללו.</li>
+<li><a href="#s7">הפעולות הפתוחות</a> — מה יקדם את המחקר, לפי סדר התועלת.</li>
+</ul>
+<hr />
+<span id="s1" class="legacy-anchor"></span><h2 id="1-תמצית">1. תמצית</h2>
+<p>מרים בן הרוש (לבית דהן, בפי המשפחה גם "מרי") נולדה ב-1939 במכנאס שבמרוקו — כך בתעודת הזהות שלה (יום וחודש אינם רשומים), וכך גם עולה מפנקס אליאנס של 1949 — בתם של שלום ויקוט דהן, ועלתה לישראל ב-1956. המחקר איתר אותה ואת שתי אחיותיה, רבקה ורחל, בפנקסי התלמידות של בית הספר לבנות של אליאנס במכנאס, בשלוש רשומות נפרדות מהשנים 1949, 1950 ו-1953.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a><a href="#src-2" class="cit" title="אל ערך המקור">[2]</a><a href="#src-3" class="cit" title="אל ערך המקור">[3]</a> בשלוש הרשומות מופיעים שמות ההורים <strong>Chalom</strong> ו-<strong>Yacot</strong> — צירוף שאינו מופיע אצל אף משפחת דהן אחרת מבין כשבעים רשומות של תלמידות דהן ממכנאס שנבדקו.<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> אצל מרי נרשמו גם קיצורים שפענוחם הסביר הוא מקצוע האב — חייט — ומקום המגורים — המלאח הישן של מכנאס (ראו <a href="#s3-1">סעיף 3.1</a>; הפענוח הוא פרשנות).</p>
+<p>הזיהוי של שלוש הרשומות כמשפחתה של מרים מדורג <span class="rank v2">כמעט ודאי</span>. ליבת שלוש הרשומות — שם, גיל ושמות ההורים — <span class="rank v1">מאומת</span> בקריאה ישירה מהסריקה; שדות משניים (מגורים, מקצוע, תאריכי כניסה ויציאה) מדורגים בנפרד ב<a href="#s3">פרק 3</a>. הגיל בפנקס 1949 ("10 ans", כלומר ילידת 1939 בקירוב) מתיישב עם שנת הלידה שבתעודת הזהות; הזיכרון המשפחתי של 1941 היה קירוב — ראו <a href="#s4">פרק 4</a>.</p>
+<p>מה שטרם נמצא: רשומת העלייה של המשפחה ברשימות העולים של ארכיון המדינה (<bdi dir="ltr">1955–1957</bdi>), ותיעוד ההורים בירושלים. אלה מפורטים ב<a href="#s7">פרק 7</a> יחד עם הצעדים הבאים. על מרדכי בן הרוש, בעלה, ראו את <a href="../index.html#research-mordechai-benharoush">הדף הנלווה</a>.</p>
+<span id="s2" class="legacy-anchor"></span><h2 id="2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</h2>
+<p>המידע שנמסר בפתח המחקר ובמהלכו, והוא הבסיס לזיהוי — לא ראיה בפני עצמו:</p>
+<ul>
+<li>מרים בן הרוש, לבית דהן, "מרי". נולדה במכנאס, מרוקו. בתחילה נמסר 1941; לאחר בדיקה בתעודת הזהות — 1939 (ללא יום וחודש: "00.00.1939").</li>
+<li>עלתה לישראל ב-1956 יחד עם הוריה (שם האונייה — מתברר).</li>
+<li>הוריה: שלום ויקוט דהן; גרו בירושלים.</li>
+<li>אחיות: רבקה ורחל.</li>
+<li>בעלה: מרדכי בן הרוש, יליד 1931 לפי המשפחה, הוריו יונה ויקוט, עלה ב-1947 או 1948; נפטר 2010, קבור בבית העלמין ירקון.</li>
+<li>יקוט דהן לא שינתה את שמה לנורית, למיטב ידיעת המשפחה.</li>
+<li>מרים בחיים, מתגוררת בחולון.</li>
+</ul>
+<span id="s3" class="legacy-anchor"></span><h2 id="3-הממצאים-במכנאס-פנקסי-אליאנס">3. הממצאים במכנאס — פנקסי אליאנס</h2>
+<p>בית הספר לבנות של אליאנס במכנאס (École Primaire de Filles — "בית ספר יסודי לבנות") ניהל פנקסי רישום תלמידות. הפנקסים שמורים בארכיון המרכזי לתולדות העם היהודי (CAHJP) בירושלים, סימול AIU‑MA‑240, ואונדקסו על ידי העמותה הישראלית לחקר שורשי המשפחה (IGRA). כל שורה בפנקס רושמת: מספר סידורי, שם המשפחה והשם הפרטי, גיל (או תאריך לידה), שמות ההורים, לאום, מקום מגורים ומקצוע ההורים, תאריכי כניסה ויציאה וסיבת היציאה.</p>
+<figure><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_1949_1400q82_8e88bb.jpg" alt="כותרות העמודות בפנקס אליאנס מכנאס, 1949" loading="lazy" decoding="async" width="1400" height="59"></a><figcaption><span class="fignum">איור 1</span> — מפתח העמודות — כותרות הפנקס (1949). משמאל לימין, כסדר הצרפתית: מס' סידורי (Nos d'ordre) · שם ושם פרטי (Nom et prénoms des enfants) · תאריך לידה או גיל משוער (<bdi dir="ltr">Date de la naissance ou, à défaut, âge approximatif</bdi>) · שמות ההורים (Nom des parents) · לאום (Nationalité) · מגורי ההורים (Domicile des parents) · תאריך כניסה (Date de l'entrée) · תאריך יציאה (Date de la sortie) · סיבת היציאה (Motif de la sortie) · הערות (Observations).</figcaption></figure>
+<h3 id="3-1-מרי-דהן-פנקס-1949"><span id="s3-1" class="legacy-anchor"></span>3.1 מרי דהן — פנקס 1949</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">שדה</th>
+<th scope="col">קריאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>מספר סידורי</td>
+<td>1617 (שורה 7 בעמוד)</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>שם</td>
+<td>Dahan Marie</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>גיל</td>
+<td>10 ans (עשר שנים)</td>
+<td><span class="rank v1">מאומת</span> — קריאה ברורה</td>
+</tr>
+<tr>
+<td>הורים</td>
+<td>Chalom · Yacot</td>
+<td><span class="rank v1">מאומת</span> — קריאה ברורה</td>
+</tr>
+<tr>
+<td>לאום</td>
+<td>M. (Marocaine — מרוקאית)</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>מגורים ומקצוע</td>
+<td>A.M. · Tail. ind.</td>
+<td><span class="rank v3">ככל הנראה</span> "Ancien Mellah" (המלאח הישן) · "Tailleur indigène" (חייט מקומי) — פענוח הקיצורים הוא פרשנות</td>
+</tr>
+<tr>
+<td>תאריך יציאה</td>
+<td>54</td>
+<td><span class="rank v3">ככל הנראה</span> 1954; הספרות קטנות</td>
+</tr>
+</tbody>
+</table></div>
+<figure><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_marie_1949_1400q82_9bdad3.jpg" alt="שורת Dahan Marie בפנקס אליאנס מכנאס, 1949" loading="lazy" decoding="async" width="1400" height="77"></a><figcaption><span class="fignum">איור 2</span> — ראיה 1 — מרי דהן, פנקס 1949, מספר סידורי 1617 (שורה 7 בעמוד): «Dahan Marie · 10 ans · Chalom Yacot · M. · A.M. Tail. ind. · 54». השורות שמעל ומתחת נשארו לעיגון. המקור: <a href="#src-1">פנקס אליאנס מכנאס 1949, AIU‑MA‑240.1</a>.</figcaption></figure>
+<h3 id="3-2-רבקה-Rébéca-דהן-פנקס-1950"><span id="s3-2" class="legacy-anchor"></span>3.2 רבקה (Rébéca) דהן — פנקס 1950</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">שדה</th>
+<th scope="col">קריאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>מספר סידורי</td>
+<td>1878 (שורה 8 בעמוד)</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>שם</td>
+<td>Dahan Rébéca</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>גיל</td>
+<td>7 ans (שבע שנים)</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>הורים</td>
+<td>Chalom · Yacot</td>
+<td><span class="rank v1">מאומת</span> — קריאה ברורה</td>
+</tr>
+<tr>
+<td>כניסה</td>
+<td>התא בשורה ריק; בשורה הראשונה בעמוד (מס' 1871) רשום "Février 50" (פברואר 1950) והשורות שאחריה ממשיכות אותו — ולכן תחילת 1950</td>
+<td><span class="rank v3">ככל הנראה</span> — היקש מהשורה הראשונה, לא קריאה מהשורה עצמה</td>
+</tr>
+<tr>
+<td>יציאה וסיבה</td>
+<td>oct 55 · "a quitté" (עזבה)</td>
+<td><span class="rank v3">ככל הנראה</span> — כתב יד צפוף</td>
+</tr>
+</tbody>
+</table></div>
+<figure><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_rebeca_1950_1400q82_d8af02.jpg" alt="שורת Dahan Rébéca בפנקס אליאנס מכנאס, 1950" loading="lazy" decoding="async" width="1400" height="71"></a><figcaption><span class="fignum">איור 3</span> — ראיה 2 — רבקה דהן, פנקס 1950, מספר סידורי 1878 (שורה 8 בעמוד): «Dahan Rébéca · 7 ans · Chalom ~ Yacot · … oct 55 · a quitté» — עזבה את בית הספר באוקטובר 1955. המקור: <a href="#src-2">פנקס אליאנס מכנאס 1950</a>.</figcaption></figure>
+<figure><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_header_1950_1400q82_fdaf63.jpg" alt="כותרת עמוד 1950 בפנקס אליאנס מכנאס ושורה 1871" loading="lazy" decoding="async" width="1400" height="95"></a><figcaption><span class="fignum">איור 4</span> — ראיה 3 — כותרת העמוד ושורה 1871 (Sebbag Fréha), שבעמודת הכניסה שלה רשום "Février 50". בשורות שאחריה, ובהן שורת רבקה, התא ריק — מכאן ההיקש שהרישום נעשה בתחילת 1950.</figcaption></figure>
+<h3 id="3-3-רחל-דהן-פנקס-1953"><span id="s3-3" class="legacy-anchor"></span>3.3 רחל דהן — פנקס 1953</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">שדה</th>
+<th scope="col">קריאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>מספר סידורי</td>
+<td>3054 (שורה 4 בעמוד); בשולי העמוד, בעיפרון, סדרה נוספת (2351, 2352) שאינה חלק מהרישום</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>שם</td>
+<td>Dahan Rachel</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>גיל</td>
+<td>6 ans (שש שנים)</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>הורים</td>
+<td>Chalom · Yacot</td>
+<td><span class="rank v1">מאומת</span> — קריאה ברורה</td>
+</tr>
+<tr>
+<td>מגורים ומקצוע ההורים</td>
+<td>מילה אחת שקריאתה הסבירה היא "absente" (נעדרת)</td>
+<td><span class="rank v4">טעון אימות</span> — כתב היד לא פוענח בוודאות</td>
+</tr>
+<tr>
+<td>כניסה</td>
+<td>Oct 53 (אוקטובר 1953, בסימן "כנ"ל" מהשורות שמעל)</td>
+<td><span class="rank v3">ככל הנראה</span></td>
+</tr>
+</tbody>
+</table></div>
+<figure><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_rachel_1953_1400q82_cac00e.jpg" alt="שורת Dahan Rachel בפנקס אליאנס מכנאס, 1953" loading="lazy" decoding="async" width="1400" height="77"></a><figcaption><span class="fignum">איור 5</span> — ראיה 4 — רחל דהן, פנקס 1953, מספר סידורי 3054 (שורה 4 בעמוד): «Dahan Rachel · 6 ans · Chalom Yacot · [absente?] · Oct 53». עמודת הלאום מסומנת בסוגר "כנ"ל" מהשורה הראשונה (Marocaine). המקור: <a href="#src-3">פנקס אליאנס מכנאס 1953, AIU‑MA‑240.2</a>.</figcaption></figure>
+<h3 id="3-4-מועמדות-שנשללו"><span id="s3-4" class="legacy-anchor"></span>3.4 מועמדות שנשללו</h3>
+<p>בפנקסי מכנאס נבדקו כ-70 רשומות של תלמידות בשם דהן מהשנים <bdi dir="ltr">1937–1960</bdi>.<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a> שלוש מהן היו מועמדות שדרשו בדיקה בסריקה עצמה, ונשללו לפי שמות ההורים: "Marie Dahan" בפנקס 1950 (מספר סידורי 1807, שורה 17 בעמוד, בת 7) — הוריה Aaron ו-Haciba;<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> "Rachel Dahan" בפנקס 1949 (מספר סידורי 1661, שורה 21 בעמוד, בת 10) — הוריה Maklouf ו-Simha;<a href="#src-9" class="cit" title="אל ערך המקור">[9]</a> ו"Rachel Dahan" ילידת 1948 בפנקס 1953 (מספר סידורי 3289, שורה 7 בעמוד) — הוריה Maklouf ו-Flory.<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> הפירוט המלא ב<a href="#s9-4">סעיף 9.4</a>.</p>
+<span id="s4" class="legacy-anchor"></span><h2 id="4-הזיהוי-ושאלת-הגיל">4. הזיהוי ושאלת הגיל</h2>
+<p>שלושת הפנקסים מצביעים על משפחה אחת: שלום ויקוט דהן במכנאס, שלוש בנות — מרי, רבקה ורחל — בהפרשי גיל של כארבע שנים (ילידות 1939, 1943 ו-1947 בקירוב, לפי הגילים הרשומים). צירוף השמות Chalom + Yacot אינו חוזר אצל אף משפחת דהן אחרת בפנקסים שנבדקו, ושמות הבנות זהים לשמות שמסרה המשפחה. הזיהוי מדורג <span class="rank v2">כמעט ודאי</span> על סמך שלוש הרשומות החיוביות המתכנסות יחד עם השמות שמסרה המשפחה; החיפוש השלילי (<a href="#s9-4">סעיף 9.4</a>) בפנקסים חלקיים ומאונדקסים ביד תומך בו אך אינו הבסיס לו.</p>
+<p>בפתח המחקר נמסר שמרים ילידת 1941, ואילו בפנקס 1949 נרשמה כבת עשר. הפער נסגר: בתעודת הזהות רשומה שנת הלידה 1939 (בלי יום וחודש), בהתאמה לפנקס.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> שלוש ההערות הבאות נשמרות כרקע, כי הגיל בפנקס הוא הערכה גם כשהוא מתיישב:</p>
+<ol>
+<li>עמודת הגיל בפנקס נושאת את הכותרת "<bdi dir="ltr">date de la naissance ou, à défaut, âge approximatif</bdi>" — תאריך לידה, ובהיעדרו גיל משוער. ברוב השורות בעמודי <bdi dir="ltr">1949–1950</bdi> שנבדקו נרשם גיל מעוגל (7, 8, 10, 10½), אך בחלק מהשורות באותם פנקסים כן נרשמה שנת לידה מדויקת (למשל 1942 בשורה האחרונה בעמוד 1949; בפנקס 1953 נרשמו תאריכי לידה מלאים). כלומר "10 ans" של מרי הוא הערכה של הרושם, לא נתון ממרשם.</li>
+<li>גילים "מעוגלים כלפי מעלה" היו נהוגים ברישום לבתי ספר כדי לעמוד בגיל הקבלה.</li>
+<li>התאריך המשפחתי 1941 היה קירוב; תעודת הזהות הכריעה.</li>
+</ol>
+<p>רישום "00.00.1939" בתעודת הזהות מעיד שבעת הרישום בישראל לא היה בידי המשפחה תאריך לידה מלא — מצב מוכר אצל עולי מרוקו; תאריך מלא, אם קיים, יימצא ברישום האזרחי הצרפתי של מכנאס (<a href="#s7">פרק 7</a>, פעולה 5).</p>
+<span id="s5" class="legacy-anchor"></span><h2 id="5-מה-לא-נמצא-ובאיזה-כיסוי">5. מה לא נמצא — ובאיזה כיסוי</h2>
+<h3 id="5-1-רשימות-העולים-1955-1957"><span id="s5-1" class="legacy-anchor"></span>5.1 רשימות העולים <bdi dir="ltr">1955–1957</bdi></h3>
+<p>ארכיון המדינה מחזיק את רשימות העולים של הסוכנות היהודית (חטיבה גל‑15498 עד גל‑15500).<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a> נסרקו 19 קבצים, מינואר 1955 עד דצמבר 1957, בשתי דרכים: איתור כל העמודים שבהם מופיע השם "יקוט" וקריאת ה-OCR שלהם; ובנפרד, קריאת כל העמודים שבהם מופיע "דהן" בששת קבצי 1956. לא נמצא בלוק משפחתי של דהן עם ראש משפחה שלום ואם יקוט.</p>
+<p>מגבלות הכיסוי, שבגללן הממצא השלילי מדורג <span class="rank v3">ככל הנראה</span> בלבד: ה-OCR של הרשימות (מכונת כתיבה עברית, 1956) משובש בחלק מהעמודים; הכתיבים "יקות" ו"יאקוט" לא ניתנו לאיתור בכלי; קובץ אוגוסט 1957 (גל‑15500/3) לא נסרק ל"יקוט"; ורשימות עליית הנוער אינן חלק מהסדרה. לפי המשפחה מרים עלתה עם הוריה; שם האונייה — כשיימסר — יפנה לרשימה הנכונה, שהרשימות ערוכות לפי אונייה ותאריך.</p>
+<h3 id="5-2-מרדכי-בן-הרוש"><span id="s5-2" class="legacy-anchor"></span>5.2 מרדכי בן הרוש</h3>
+<p>לפי המשפחה: יליד 1931, בן יונה ויקוט, עלה ב-1947 או 1948. לא נמצא עדיין תיעוד שניתן לייחס לו בביטחון; המועמדים, מה שנשלל והצעדים הבאים מרוכזים ב<a href="../index.html#research-mordechai-benharoush">דף הנלווה</a>.</p>
+<h3 id="5-3-מועמדות-שנשללו-בישראל"><span id="s5-3" class="legacy-anchor"></span>5.3 מועמדות שנשללו בישראל</h3>
+<p>רשומת שינוי שם "מרים (מרי) בן-הרוש (הרוש)", חדרה, 21.9.1972<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a> — נראתה בתחילה מבטיחה בגלל הכינוי "מרי", אך היא חלק מקבוצה של תשעה בני משפחה בשם הרוש שהחליפו יחד את שם משפחתם ל"בן-הרוש" בחדרה (רחמה נחמה, אפרת, סגלית, משה, מסעוד, שרה, מרים, מאיר ופנחס). מרים שם היא בת למשפחת הרוש, לא כלה לבית דהן, והמשפחה בחדרה ולא בחולון. <strong>נשלל</strong>.</p>
+<p>רשומת שינוי שם "נורית (יקוט) דהן", ירושלים, 19.5.1970<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> — נבדקה מול המשפחה: יקוט לא שינתה את שמה. <strong>נשלל</strong> — ככל הנראה אישה אחרת.</p>
+<span id="s6" class="legacy-anchor"></span><h2 id="6-עץ-המשפחה">6. עץ המשפחה</h2>
+<p>העץ מוצג בתרשים ב<a href="#tree">מקטע העץ</a>. בטקסט:</p>
+<ul>
+<li><strong>שלום דהן</strong> — ככל הנראה חייט במלאח הישן של מכנאס (פענוח הקיצורים "Tail. ind." ו-"A.M." בפנקס 1949); לימים ירושלים (משפחה). שנות לידה ופטירה — <span class="rank v4">טעון אימות</span>.</li>
+<li><strong>יקוט דהן</strong> — אשתו; לימים ירושלים (משפחה). שנות לידה ופטירה — <span class="rank v4">טעון אימות</span>.</li>
+<li><strong>מרים (מרי) בן הרוש לבית דהן</strong> — נולדה 1939 (תעודת זהות; פנקס 1949: "10 ans"); עלתה 1956 עם הוריה (משפחה); נישאה למרדכי בן הרוש; חולון.</li>
+<li><strong>רבקה דהן</strong> — ~1943 (פנקס 1950); עזבה את בית הספר באוקטובר 1955.</li>
+<li><strong>רחל דהן</strong> — ~1947 (פנקס 1953).</li>
+<li><strong>מרדכי בן הרוש</strong> — בעלה של מרים; יליד 1931, בן יונה ויקוט, עלה 1947/48, נפטר 2010 (הכול לפי המשפחה; טרם תועד במסמך) — <a href="../index.html#research-mordechai-benharoush">הדף הנלווה</a>.</li>
+</ul>
+<span id="s7" class="legacy-anchor"></span><h2 id="7-פעולות-פתוחות">7. פעולות פתוחות</h2>
+<p>לפי מה שממצא ישנה, לא לפי קלות החיפוש:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">פעולה</th>
+<th scope="col">מה זה ישנה</th>
+<th scope="col">מי</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>רשומת העלייה 1956</strong> — שם האונייה או חודש העלייה</td>
+<td>פותח את הרשימה הנכונה לקריאה מהסריקה עצמה, לא מה-OCR</td>
+<td>משפחה, ואז ארכיון</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>ההורים של שלום ושל יקוט</strong> ושם הנעורים של יקוט</td>
+<td>המפתח לדור שלישי אחורה: פנקסי אליאנס מכנאס מ-1917 עשויים לתעד את שלום ויקוט עצמם כתלמידים, על שמות הוריהם</td>
+<td>משפחה</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>ההורים בירושלים</strong> — שנות פטירה משוערות</td>
+<td>חברה קדישא ירושלים / הר המנוחות; פנקסי בוחרים</td>
+<td>משפחה, ואז ארכיון</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>מרדכי בן הרוש</strong></td>
+<td>ראו <a href="../index.html#research-mordechai-benharoush">הדף הנלווה</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>מכנאס לפני 1949</strong> — רישום אזרחי צרפתי (état civil), פנקסי הבנים של אליאנס (אחים?), ארכיון AIU בפריז</td>
+<td>תאריך לידה מלא; אחים</td>
+<td>ארכיון (FamilySearch חסום — <a href="#s9-5">סעיף 9.5</a>)</td>
+</tr>
+</tbody>
+</table></div>
+<span id="s8" class="legacy-anchor"></span><h2 id="8-סיכום-המקורות">8. סיכום המקורות</h2>
+<p>הרשימה המלאה, עם הקישור הכפול לכל ערך, ב<a href="#index">אינדקס המקורות</a>. בקצרה: שלושת פנקסי אליאנס (ערכים <a href="#src-1">1</a>, <a href="#src-2">2</a>, <a href="#src-3">3</a>) הם הראיות החיוביות; ערכים <a href="#src-7">7</a>–<a href="#src-9">9</a> הם המועמדות שנשללו בסריקה; ערך <a href="#src-10">10</a> הוא סקר הרשומות; ערכים <a href="#src-4">4</a>–<a href="#src-6">6</a> הם החיפושים בישראל.</p>
+<span id="s9" class="legacy-anchor"></span><h2 id="9-שיטה-ומגבלות">9. שיטה ומגבלות</h2>
+<h3 id="9-1-בסיס-הראיות"><span id="s9-1" class="legacy-anchor"></span>9.1 בסיס הראיות</h3>
+<p>הדוח נשען על שלושה סוגי מקורות: פנקסי בית ספר של אליאנס (מקור ראשוני, בכתב יד, בצרפתית); מאגרי IGRA (אינדקס — מקור עזר שמוביל אל הסריקה); ורשימות העולים של ארכיון המדינה דרך אוסף Google Pinpoint (מקור ראשוני שנקרא דרך שכבת OCR רועשת). המידע המשפחתי נרשם ב<a href="#s2">פרק 2</a> ומדורג כזיכרון, לא כרשומה.</p>
+<h3 id="9-2-סולם-הוודאות"><span id="s9-2" class="legacy-anchor"></span>9.2 סולם הוודאות</h3>
+<p>ארבע דרגות: <span class="rank v1">מאומת</span> — נקרא ישירות מהמסמך, קריאה ברורה; <span class="rank v2">כמעט ודאי</span> — מסמכים מתכנסים ללא סתירה; <span class="rank v3">ככל הנראה</span> — פרשנות סבירה או קריאה בכתב יד קשה; <span class="rank v4">טעון אימות</span> — לא פוענח או לא נבדק. מסמך מדורג בנפרד מן הזיהוי שנשען עליו: שורת הפנקס "מאומתת", ואילו הזיהוי שהיא שורתה של מרים — "כמעט ודאי".</p>
+<h3 id="9-3-מוסכמות-הכתיב"><span id="s9-3" class="legacy-anchor"></span>9.3 מוסכמות הכתיב</h3>
+<p>בעברית: דהן, בן הרוש, מכנאס. בצרפתית של הפנקסים: <bdi dir="ltr">Dahan, Chalom, Yacot, Marie, Rébéca, Rachel.</bdi> שמות המקומות: מכנאס = Meknès = مكناس. מספרי הפנקסים מצוטטים לפי "מספר סידורי N (שורה K בעמוד)".</p>
+<h3 id="9-4-ממצאים-שליליים"><span id="s9-4" class="legacy-anchor"></span>9.4 ממצאים שליליים</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">שאלה</th>
+<th scope="col">מקור וכיסוי מדויק</th>
+<th scope="col">תוצאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N-1</td>
+<td>משפחת דהן (שלום + יקוט + מרים/מרי, רבקה, רחל) ברשימות העולים</td>
+<td>ארכיון המדינה, רשימות עולים ינואר 1955 – דצמבר 1957 (19 קבצים, גל-15498/4 עד גל-15500/5)</td>
+<td>אין בלוק תואם; כיסוי חלקי (ראו <a href="#s5-1">5.1</a>)</td>
+<td><span class="rank v3">ככל הנראה</span></td>
+</tr>
+<tr>
+<td>N-2</td>
+<td>"Marie Dahan" מכנאס 1950</td>
+<td>פנקס 1950, מספר סידורי 1807 (שורה 17 בעמוד)<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a></td>
+<td>הורים Aaron/Haciba — משפחה אחרת</td>
+<td><strong>נשלל</strong></td>
+</tr>
+<tr>
+<td>N-3</td>
+<td>"Rachel Dahan" מכנאס 1949 ו-1953</td>
+<td>פנקס 1949 מס' 1661 (שורה 21);<a href="#src-9" class="cit" title="אל ערך המקור">[9]</a> פנקס 1953 מס' 3289 (שורה 7)<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a></td>
+<td>הורים Maklouf/Simha ו-Maklouf/Flory — משפחות אחרות</td>
+<td><strong>נשלל</strong></td>
+</tr>
+<tr>
+<td>N-4</td>
+<td>משפחת דהן נוספת במכנאס עם ההורים Chalom + Yacot</td>
+<td>IGRA, "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו": 69 רשומות ייחודיות של תלמידות דהן שעירן מכנאס, <bdi dir="ltr">1937–1960</bdi>; שמות ההורים נקראו מהסריקה רק בשש רשומות — האינדקס אינו כולל שמות הורים<a href="#src-10" class="cit" title="אל ערך המקור">[10]</a></td>
+<td>הצירוף נמצא רק בשלוש הרשומות; ב-63 האחרות שמות ההורים לא נבדקו</td>
+<td><span class="rank v3">ככל הנראה</span> — סקר חלקי</td>
+</tr>
+<tr>
+<td>N-5</td>
+<td>מרים דהן/בן הרוש בחולון ב-IGRA</td>
+<td>IGRA, שם משפחה בן הרוש + מרים, מיקום חולון</td>
+<td>אפס</td>
+<td><span class="rank v3">ככל הנראה</span></td>
+</tr>
+<tr>
+<td>N-6</td>
+<td>יקוט → נורית (ירושלים 1970)</td>
+<td>IGRA, שינויי שמות<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a></td>
+<td>המשפחה: לא שינתה את שמה</td>
+<td><strong>נשלל</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="9-5-חסמים"><span id="s9-5" class="legacy-anchor"></span>9.5 חסמים</h3>
+<p>FamilySearch דורש אסימון גישה (token) שלא הוגדר — חיפוש הטקסט המלא ברשומות מרוקו לא בוצע. הרישום האזרחי הצרפתי במרוקו נגיש רק דרך ארכיונים בצרפת ובמרוקו.</p>
+<h3 id="9-6-מה-הדוח-אינו-עושה"><span id="s9-6" class="legacy-anchor"></span>9.6 מה הדוח אינו עושה</h3>
+<p>אינו מתעד את מקום הקבורה של בני המשפחה; אינו מכיל פרטים מזהים של אנשים חיים מעבר לשמות ולמקום מגורים כללי; אינו מסתמך על עצים משפחתיים מקוונים.</p></section><hr><section id="tree"><h2>עץ המשפחה</h2><div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="-10 0 790 300" width="790" height="300" font-family="'David Libre','Frank Ruhl Libre',Georgia,serif">
+ <title>עץ המשפחה — שלום ויקוט דהן, בנותיהם מרים, רבקה ורחל, ובעלה של מרים מרדכי בן הרוש</title>
+ <g fill="none" stroke="#c5ccc7" stroke-width="1.5">
+  <path d="M265 62 V120 H647 M287 120 V150 M467 120 V150 M647 120 V150"/>
+  <path d="M160 200 H205" stroke-dasharray="4 3" stroke="#9aa5a0"/>
+  <path d="M230 62 H300" stroke-dasharray="4 3" stroke="#9aa5a0"/>
+ </g>
+ <g fill="#ffffff" stroke="#c5ccc7" stroke-width="1.2">
+  <rect x="60" y="30" width="170" height="62" rx="4"/>
+  <rect x="300" y="30" width="170" height="62" rx="4"/>
+  <rect x="205" y="150" width="165" height="70" rx="4" stroke="#1f6f5b" stroke-width="2"/>
+  <rect x="385" y="150" width="165" height="70" rx="4"/>
+  <rect x="565" y="150" width="165" height="70" rx="4"/>
+  <rect x="0" y="170" width="160" height="62" rx="4"/>
+ </g>
+ <g fill="#1e2a32" font-size="17" text-anchor="middle">
+  <text x="145" y="55">שלום דהן</text>
+  <text x="385" y="55">יקוט דהן</text>
+  <text x="287" y="176">מרים (מרי) בן הרוש</text>
+  <text x="467" y="176">רבקה דהן</text>
+  <text x="647" y="176">רחל דהן</text>
+  <text x="80" y="195">מרדכי בן הרוש</text>
+ </g>
+ <g fill="#5e6b73" font-size="12" text-anchor="middle">
+  <text x="145" y="78">חייט? במלאח הישן, מכנאס · ירושלים</text>
+  <text x="385" y="78">ירושלים</text>
+  <text x="287" y="195">לבית דהן · נולדה 1939 (ת"ז; פנקס 1949)</text>
+  <text x="287" y="211">מכנאס, עלייה 1956, חולון</text>
+  <text x="467" y="195">~1943 (פנקס 1950)</text>
+  <text x="467" y="211">עזבה את ביה"ס באוקטובר 1955</text>
+  <text x="647" y="195">~1947 (פנקס 1953)</text>
+  <text x="80" y="216">בעלה · 1931 עד 2010 · בן יונה ויקוט</text>
+ </g>
+</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלת העץ</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val">100%</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button></div><div class="legend"><span><i class="sw focus"></i> נושאת המחקר</span><span><i class="sw"></i> בן משפחה</span><span><i class="sw marr"></i> נישואין</span><span>~ — שנה שנגזרה מגיל בפנקס</span></div><p class="tree-foot">שנים המסומנות ב-~ נגזרו מגיל שנרשם בפנקס אליאנס; שנת הלידה של מרים — מתעודת הזהות. פרטי מרדכי והוריו — לפי המשפחה.</p><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="gallery"><h2>מסמכי מפתח</h2><p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. לחיצה פותחת את הסריקה המלאה.</p><div class="gallery"><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_marie_1949_440_9bdad3.jpg" alt="מרי דהן — פנקס אליאנס מכנאס 1949, מס׳ 1617" loading="lazy" decoding="async" width="440" height="24"><span>מרי דהן — פנקס אליאנס מכנאס 1949, מס׳ 1617</span></a><a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_rebeca_1950_440_d8af02.jpg" alt="רבקה דהן — פנקס 1950, מס׳ 1878" loading="lazy" decoding="async" width="440" height="22"><span>רבקה דהן — פנקס 1950, מס׳ 1878</span></a><a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_rachel_1953_440_cac00e.jpg" alt="רחל דהן — פנקס 1953, מס׳ 3054" loading="lazy" decoding="async" width="440" height="24"><span>רחל דהן — פנקס 1953, מס׳ 3054</span></a><a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_header_1949_440_8e88bb.jpg" alt="כותרות העמודות של הפנקס" loading="lazy" decoding="async" width="440" height="18"><span>כותרות העמודות של הפנקס</span></a></div></section><hr><section id="people"><h2>אינדקס האנשים</h2><p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p><div class="people"><div class="person"><b><a href="#s1">מרים (מרי) בן הרוש לבית דהן</a></b><span class="d">נ׳ 1939, מכנאס</span><span class="r">נושאת המחקר; פנקס אליאנס מכנאס 1949; עלתה 1956; חולון</span><span hidden><bdi dir="ltr">Miriam Mary Marie Mari Dahan Ben Harush Benharoush Benharoch</bdi> דהאן בנהרוש בן-הרוש מכנאס Meknes</span></div><div class="person"><b><a href="#s6">שלום דהן</a></b><span class="r">אביה; ככל הנראה חייט במלאח הישן של מכנאס; לימים ירושלים</span><span hidden>Shalom Chalom Dahan דהאן חייט Tailleur Mellah</span></div><div class="person"><b><a href="#s6">יקוט דהן</a></b><span class="r">אמה; לימים ירושלים</span><span hidden>Yakut Yacot Yacout Yakot יאקוט יקות Dahan</span></div><div class="person"><b><a href="#s3-2">רבקה דהן</a></b><span class="d">נ׳ ~1943</span><span class="r">אחותה; פנקס אליאנס 1950, עזבה אוקטובר 1955</span><span hidden><bdi dir="ltr">Rivka Rebecca Rébéca Rebeca Dahan</bdi></span></div><div class="person"><b><a href="#s3-3">רחל דהן</a></b><span class="d">נ׳ ~1947</span><span class="r">אחותה; פנקס אליאנס 1953</span><span hidden>Rachel Dahan</span></div><div class="person"><b><a href="#s5-2">מרדכי בן הרוש</a></b><span class="d"><bdi dir="ltr">1931 – 2010</bdi></span><span class="r">בעלה; בן יונה ויקוט, עלה 1947/48 — דף מחקר נלווה</span><span hidden><bdi dir="ltr">Mordechai Mordekhai Mardochée Ben Harush Benharoush</bdi> מרדושי</span></div></div></section><hr><section id="index"><h2>אינדקס המקורות</h2><h3>רשימת מקורות</h3>
+<p>רשימת המקורות שעליהם נשען הדוח. לכל ערך: מהות המקור ומעמדו, ההפניה החיצונית למסמך המקורי, העותק המקומי השמור בתיקיית המחקר, ומה בדיוק הוא מוכיח. "עותק מקומי" פירושו עותק של <strong>המסמך עצמו</strong> — סריקת הרשומה — ולא צילום של דף האינטרנט שמפנה אליו. כל המקורות נצפו בספטמבר 2026.</p>
+<h2 id="מקורות-ראשוניים-פנקסי-אליאנס-מכנאס">מקורות ראשוניים — פנקסי אליאנס, מכנאס</h2>
+<h3 id="1-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1949-מספר-סידורי-1617"><span id="src-1" class="legacy-anchor"></span>1. פנקס בית הספר לבנות של אליאנס במכנאס, 1949 — מספר סידורי 1617 <em>(עוגן המחקר)</em></h3>
+<ul>
+<li><strong>מהות:</strong> פנקס רישום תלמידות, כתב יד בצרפתית. CAHJP, סימול AIU‑MA‑240.1; אונדקס על ידי IGRA (מסמך 1617, שורה 24 באינדקס).</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby00ODE0OQ==" target="_blank" rel="noopener">IGRA-AIU-Morocco-48149<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a> · <a href="docs/ev_marie_1949.jpg" target="_blank" rel="noopener">חיתוך השורה</a> · <a href="docs/ev_header_1949.jpg" target="_blank" rel="noopener">כותרות העמודות</a></li>
+<li><strong>מה הוא מוכיח:</strong> Dahan Marie, בת 10, הורים Chalom ו-Yacot, מרוקאית; ככל הנראה המלאח הישן, אב חייט; יציאה 1954. מאומת: שם, גיל, הורים.</li>
+</ul>
+<h3 id="2-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1950-מספר-סידורי-1878"><span id="src-2" class="legacy-anchor"></span>2. פנקס בית הספר לבנות של אליאנס במכנאס, 1950 — מספר סידורי 1878</h3>
+<ul>
+<li><strong>מהות:</strong> אותו פנקס, AIU‑MA‑240.1; IGRA מסמך 1878, שורה 8.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01MTQyNw==" target="_blank" rel="noopener">IGRA-AIU-Morocco-51427<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_51.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a> · <a href="docs/ev_rebeca_1950.jpg" target="_blank" rel="noopener">חיתוך השורה</a> · <a href="docs/ev_header_1950.jpg" target="_blank" rel="noopener">כותרת העמוד ושורה 1871</a></li>
+<li><strong>מה הוא מוכיח:</strong> Dahan Rébéca, בת 7, הורים Chalom ו-Yacot; עזבה באוקטובר 1955 ("a quitté"). כניסה תחילת 1950 — היקש.</li>
+</ul>
+<h3 id="3-פנקס-בית-הספר-לבנות-של-אליאנס-במכנאס-1953-מספר-סידורי-3054"><span id="src-3" class="legacy-anchor"></span>3. פנקס בית הספר לבנות של אליאנס במכנאס, 1953 — מספר סידורי 3054</h3>
+<ul>
+<li><strong>מהות:</strong> הכרך השני, AIU‑MA‑240.2; IGRA מסמך 2354, שורה 4 (המספר הסידורי בפנקס עצמו: 3054).</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01NDEyNw==" target="_blank" rel="noopener">IGRA-AIU-Morocco-54127<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.2_00028.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a> · <a href="docs/ev_rachel_1953.jpg" target="_blank" rel="noopener">חיתוך השורה</a></li>
+<li><strong>מה הוא מוכיח:</strong> Dahan Rachel, בת 6, הורים Chalom ו-Yacot; כניסה אוקטובר 1953. המילה בעמודת המגורים ("absente"?) — טעון אימות.</li>
+</ul>
+<h2 id="מאגרים-ישראליים">מאגרים ישראליים</h2>
+<h3 id="4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך"><span id="src-4" class="legacy-anchor"></span>4. מסירות משפחתיות (ספטמבר 2026) <em>(מקור משפחתי — ללא מסמך)</em></h3>
+<ul>
+<li><strong>מהות:</strong> פרטים שנמסרו ישירות בידי בני המשפחה: שנת הלידה 1939 מתעודת הזהות ("00.00.1939"); העלייה עם ההורים ב-1956; שמות ההורים והאחיות; פרטי מרדכי; שיקוט לא שינתה את שמה.</li>
+<li><strong>מה הוא מוכיח:</strong> נקודת המוצא לזיהוי — <a href="#s2">פרק 2</a>. מדורג כזיכרון משפחתי, לא כרשומה, למעט שנת הלידה שנקראה מתעודת הזהות.</li>
+<li><strong>הערה:</strong> אין הפניה חיצונית — מסירה בעל-פה; תעודת הזהות עצמה לא צולמה לדוח.</li>
+</ul>
+<h3 id="5-ילקוט-הפרסומים-1859-1972-עמ'-95-שורות-31-39-קבוצת-הרוש-בן-"><span id="src-5" class="legacy-anchor"></span>5. ילקוט הפרסומים 1859 (1972), עמ' 95, שורות <bdi dir="ltr">31–39</bdi> — קבוצת הרוש → בן-הרוש, חדרה <em>(נשלל)</em></h3>
+<ul>
+<li><strong>מהות:</strong> הודעה בדבר שינויי שם, משרד הפנים; אונדקס ב-IGRA (שינויי שמות לאחר 1948).</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTY5LTc5LW5jLU5PSU1BR0VTLTQwMjg1" target="_blank" rel="noopener"><bdi dir="ltr">IGRA-1969-79-nc-NOIMAGES-40285</bdi><span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> "מרים (מרי) בן-הרוש (הרוש)" בחדרה היא אחת מתשעה בני משפחת הרוש — לא כלה לבית דהן. מועמדת שנשללה (<a href="#s5-3">סעיף 5.3</a>).</li>
+<li><strong>הערה:</strong> אין עותק מקומי — רשומת אינדקס ללא סריקה ("NOIMAGES").</li>
+</ul>
+<h3 id="6-ארכיון-המדינה-רשימות-עולים-1955-1957-גל-15498-4-עד-גל-1550"><span id="src-6" class="legacy-anchor"></span>6. ארכיון המדינה — רשימות עולים <bdi dir="ltr">1955–1957</bdi> (גל-15498/4 עד גל-15500/5), אוסף Google Pinpoint</h3>
+<ul>
+<li><strong>מהות:</strong> רשימות העולים של הסוכנות היהודית, מכונת כתיבה עברית, 19 קבצים; נקראו דרך שכבת ה-OCR של Pinpoint.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://journaliststudio.google.com/pinpoint/search?collection=585158a3cc8e02af&amp;q=%D7%93%D7%94%D7%9F%20%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%95%D7%98" target="_blank" rel="noopener">האוסף ב-Pinpoint — חיפוש "דהן שלום יקוט"<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> ממצא שלילי בלבד — <a href="#s5-1">סעיף 5.1</a>. הכיסוי חלקי.</li>
+<li><strong>הערה:</strong> אין עותק מקומי — לא נמצא עמוד שיש בו את המשפחה; אין מה לשמור.</li>
+</ul>
+<h2 id="מועמדות-שנשללו-סריקות">מועמדות שנשללו — סריקות</h2>
+<h3 id="7-פנקס-אליאנס-מכנאס-1950-מספר-סידורי-1807-שורה-17-Dahan-Mari"><span id="src-7" class="legacy-anchor"></span>7. פנקס אליאנס מכנאס 1950, מספר סידורי 1807 (שורה 17) — "Dahan Marie", הורים Aaron/Haciba</h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01MTM3MQ==" target="_blank" rel="noopener">IGRA-AIU-Morocco-51371<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_49.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_49.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a></li>
+<li><strong>מה הוא מוכיח:</strong> מרי דהן אחרת, בת 7 ב-1950, הורים אחרים — נשלל.</li>
+</ul>
+<h3 id="8-פנקס-אליאנס-מכנאס-1953-מספר-סידורי-3289-שורה-7-Dahan-Rache"><span id="src-8" class="legacy-anchor"></span>8. פנקס אליאנס מכנאס 1953, מספר סידורי 3289 (שורה 7) — "Dahan Rachel", ילידת 1948, הורים Maklouf/Flory</h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby01NTExMA==" target="_blank" rel="noopener">IGRA-AIU-Morocco-55110<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.2_00065.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.2_00065.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a></li>
+<li><strong>מה הוא מוכיח:</strong> רחל דהן אחרת — נשלל.</li>
+</ul>
+<h3 id="9-פנקס-אליאנס-מכנאס-1949-מספר-סידורי-1661-שורה-21-Dahan-Rach"><span id="src-9" class="legacy-anchor"></span>9. פנקס אליאנס מכנאס 1949, מספר סידורי 1661 (שורה 21) — "Dahan Rachel", בת 10, הורים Maklouf/Simha</h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1BSVUtTW9yb2Njby00ODE5NA==" target="_blank" rel="noopener">IGRA-AIU-Morocco-48194<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_41.jpg" target="_blank" rel="noopener">הסריקה בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/AIU_MA_240.1_41.jpg" target="_blank" rel="noopener">עמוד הפנקס המלא</a></li>
+<li><strong>מה הוא מוכיח:</strong> רחל דהן אחרת — נשלל.</li>
+</ul>
+<h2 id="מקורות-עזר">מקורות עזר</h2>
+<h3 id="10-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-סקר-רשומות-Dahan-שעיר"><span id="src-10" class="legacy-anchor"></span>10. IGRA — "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו": סקר רשומות "Dahan" שעירן מכנאס <em>(מקור עזר מקוון)</em></h3>
+<ul>
+<li><strong>מהות:</strong> אינדקס IGRA לפנקסי אליאנס; חיפוש Dahan עם שמות פרטיים <bdi dir="ltr">Marie/Mary/Miriam/Myriam/Meriem/Mimi/Rebecca/Rivka/Rachel</bdi> ועם השנים <bdi dir="ltr">1947–1956</bdi>, כל העמודים; סוננו 69 רשומות ייחודיות שעירן מכנאס (<bdi dir="ltr">1937–1960</bdi>). האינדקס אינו כולל שמות הורים.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> הבסיס לממצא השלילי N-4 (<a href="#s9-4">סעיף 9.4</a>). אינדקס — לא מסמך; אין לו עותק מקומי.</li>
+</ul></section><hr><section id="changelog"><h2>יומן המהדורות</h2>
+<h2 id="מהדורה-1-11-09-2026">מהדורה 1 · 11.09.2026</h2>
+<ul>
+<li>מחקר ראשון. סריקת IGRA (פנקסי אליאנס מרוקו, שינויי שמות, קבורות), ארכיון המדינה/Pinpoint (רשימות עולים <bdi dir="ltr">1955–1957</bdi>), JPress, חברה קדישא ת"א.</li>
+<li>זוהו שלוש רשומות אליאנס במכנאס להורים Chalom/Yacot: מרי (1949), רבקה (1950), רחל (1953).</li>
+<li>נשללו: קבוצת הרוש→בן-הרוש בחדרה 1972; <bdi dir="ltr">Marie Dahan 1950 (Aaron/Haciba); Rachel Dahan 1949</bdi> ו-1953 (Maklouf).</li>
+<li>נפתחו T-1 עד T-5; חסמים B-1 עד B-3.</li>
+</ul>
+<h2 id="מהדורה-2-11-09-2026">מהדורה 2 · 11.09.2026</h2>
+<ul>
+<li>סבב ביקורת חיצוני ראשון (21 ממצאים, 9 ראייתיים). תוקנו: המספר הסידורי של רשומת רחל 1953 (3054, לא 2354); תאריך הכניסה 1950 הוגדר כהיקש מהשורה הראשונה בעמוד (ככל הנראה); הסבר הגילים בפרק 4 נוסח מחדש לפי מה שיש בעמודים; "מאומתות" בתמצית צומצם לליבת הרשומות; פענוח הקיצורים (חייט, מלאח ישן) סומן כפרשנות בכל מקום; הוסרה קריאת "M." מכיתוב ראיה 3.</li>
+<li>נוספו: N-6 (סקר 69 רשומות דהן ממכנאס), S9–S10, סריקת AIU_MA_240.1_41, ראיה 4 (כותרת עמוד 1950 עם "Février 50"), T-6 (דורות אחורה); דירוגים ב-NEGATIVES יושרו לסולם; מונחים אוחדו ("מספר סידורי N (שורה K בעמוד)").</li>
+<li>עמוד: doctype/charset/dir בעותק העצמאי, עץ ללא חפיפות, טקסט דו-כיווני בעץ, TOC ופוטר הושלמו.</li>
+</ul>
+<h2 id="מהדורה-3-11-09-2026">מהדורה 3 · 11.09.2026</h2>
+<ul>
+<li>לפי המשפחה: מרדכי בן הרוש קבור בבית העלמין ירקון, ומקום הקבורה אינו ממטרות הדוח. הוסרו הפניות לחיפוש קבר בחולון (פרק 5.2, פרק 7 סעיף 4); B-2 נסגר; T-3 עודכן.</li>
+</ul>
+<h2 id="מהדורה-4-11-09-2026">מהדורה 4 · 11.09.2026</h2>
+<ul>
+<li>מהמשפחה: תעודת הזהות של מרים — 00.00.1939; הפער בגיל נסגר (T-7 סגור; פרק 4 נוסח מחדש). יקוט לא שינתה את שמה לנורית — S4 נשלל, T-2 סגור. מרים עלתה עם הוריה ב-1956 (שם האונייה בהמתנה).</li>
+<li>מרדכי בן הרוש: יליד 1931, בן יונה ויקוט, עלה 1947/48 (משפחה). נסרקו רשימות העולים <bdi dir="ltr">1947–1949</bdi> (N-7, חלקי) ו-IGRA; נשללו "בנארוש 1910" (S11) ו"בן ארוש מכלוף 1931"; רשפים 1927 (S12) ככל הנראה נשלל; מגדים 1954 (S13) פתוח. פרק 5.2 ופרק 7 עודכנו.</li>
+</ul>
+<h2 id="מהדורה-5-11-09-2026">מהדורה 5 · 11.09.2026</h2>
+<ul>
+<li>נפתח דף מחקר נלווה למרדכי בן הרוש (mordechai-benharoush/); פרק 5.2 מפנה אליו.</li>
+</ul>
+<h2 id="מהדורה-6-11-09-2026">מהדורה 6 · 11.09.2026</h2>
+<ul>
+<li>הסבה לשלד המשותף של הארכיון, המנוע genealogy_site לפי המפרט TEMPLATE.md: report.md עם קופסת פתיחה ו"מאיפה להתחיל", sources-index.md עם ערכים ממוספרים וקישור כפול, tree.html, פרק שיטה ומגבלות (9) עם הממצאים השליליים והחסמים, טבלת פעולות פתוחות. הדף: מרים-בן-הרוש.html.</li>
+</ul></section>
+</main>
+<footer>מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.</footer>
+<script>
+(function(){
+  var IDX = [{"t": "1. תמצית", "h": "#1-תמצית", "k": "פרק"}, {"t": "2. מה ידוע מהמשפחה", "h": "#2-מה-ידוע-מהמשפחה", "k": "פרק"}, {"t": "3. הממצאים במכנאס — פנקסי אליאנס", "h": "#3-הממצאים-במכנאס-פנקסי-אליאנס", "k": "פרק"}, {"t": "4. הזיהוי ושאלת הגיל", "h": "#4-הזיהוי-ושאלת-הגיל", "k": "פרק"}, {"t": "5. מה לא נמצא — ובאיזה כיסוי", "h": "#5-מה-לא-נמצא-ובאיזה-כיסוי", "k": "פרק"}, {"t": "6. עץ המשפחה", "h": "#6-עץ-המשפחה", "k": "פרק"}, {"t": "7. פעולות פתוחות", "h": "#7-פעולות-פתוחות", "k": "פרק"}, {"t": "8. סיכום המקורות", "h": "#8-סיכום-המקורות", "k": "פרק"}, {"t": "9. שיטה ומגבלות", "h": "#9-שיטה-ומגבלות", "k": "פרק"}, {"t": "מרים (מרי) בן הרוש לבית דהן — נושאת המחקר; פנקס אליאנס מכנאס 1949; עלתה 1956; חולון", "h": "#s1", "k": "אדם", "x": "Miriam Mary Marie Mari Dahan Ben Harush Benharoush Benharoch דהאן בנהרוש בן-הרוש מכנאס Meknes נ׳ 1939, מכנאס"}, {"t": "שלום דהן — אביה; ככל הנראה חייט במלאח הישן של מכנאס; לימים ירושלים", "h": "#s6", "k": "אדם", "x": "Shalom Chalom Dahan דהאן חייט Tailleur Mellah"}, {"t": "יקוט דהן — אמה; לימים ירושלים", "h": "#s6", "k": "אדם", "x": "Yakut Yacot Yacout Yakot יאקוט יקות Dahan"}, {"t": "רבקה דהן — אחותה; פנקס אליאנס 1950, עזבה אוקטובר 1955", "h": "#s3-2", "k": "אדם", "x": "Rivka Rebecca Rébéca Rebeca Dahan נ׳ ~1943"}, {"t": "רחל דהן — אחותה; פנקס אליאנס 1953", "h": "#s3-3", "k": "אדם", "x": "Rachel Dahan נ׳ ~1947"}, {"t": "מרדכי בן הרוש — בעלה; בן יונה ויקוט, עלה 1947/48 — דף מחקר נלווה", "h": "#s5-2", "k": "אדם", "x": "Mordechai Mordekhai Mardochée Ben Harush Benharoush מרדושי 1931 – 2010"}, {"t": "מכנאס — המלאח הישן", "h": "#s3", "k": "מקום", "x": "Meknes Meknès מקנס מכנס Mellah מלאח"}, {"t": "בית הספר לבנות של אליאנס במכנאס", "h": "#s3", "k": "מקור", "x": "Alliance AIU École de Filles כל ישראל חברים CAHJP AIU-MA-240"}, {"t": "רשימות העולים 1955–1957", "h": "#s5-1", "k": "מקור", "x": "רשימת עולים ארכיון המדינה Pinpoint גל-15498 גל-15499 גל-15500"}, {"t": "ממצאים שליליים", "h": "#s9-4", "k": "נושא", "x": "ממצא שלילי negative נשלל"}, {"t": "פעולות פתוחות", "h": "#s7", "k": "נושא", "x": "צעדים הבאים open actions"}];
+  var q = document.getElementById('q'), res = document.getElementById('qres');
+  function norm(s){ return (s||'').replace(/["'ְ-ׇ]/g,'').toLowerCase(); }
+  function clear(){ res.textContent=''; res.hidden=true; }
+  function run(){
+    var v = norm(q.value.trim());
+    res.textContent = '';
+    if (v.length < 2){ clear(); return; }
+    var out = [], i, it, hay;
+    for (i=0;i<IDX.length && out.length<12;i++){
+      it = IDX[i]; hay = norm(it.t + ' ' + (it.x||''));
+      if (hay.indexOf(v) !== -1) out.push(it);
+    }
+    if (out.length){
+      var head = document.createElement('p'); head.className='qcount';
+      head.textContent = out.length === 1 ? 'תוצאה אחת'
+                       : (out.length === 12 ? '12 התוצאות הראשונות' : out.length + ' תוצאות');
+      res.appendChild(head);
+      out.forEach(function(o){
+        var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
+        var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        a.appendChild(k); res.appendChild(a);
+      });
+    } else {
+      var p = document.createElement('p'); p.className='nores';
+      p.textContent='לא נמצאו תוצאות בכותרות ובאינדקס האנשים. לחיפוש בגוף הטקסט: Ctrl+F';
+      res.appendChild(p);
+    }
+    res.hidden = false;
+  }
+  function jump(h){
+    // re-applying the hash after the list closes keeps the heading where the
+    // browser put it, whatever else moved
+    location.hash=''; location.hash=h;
+  }
+  if (q){
+    q.hidden = false; clear();
+    q.addEventListener('input', run);
+    q.addEventListener('keydown', function(e){
+      if (e.key==='Escape'){ q.value=''; clear(); return; }
+      if (e.key==='ArrowDown'){ var a=res.querySelector('a'); if(a){ e.preventDefault(); a.focus(); } }
+      if (e.key==='Enter'){ var f=res.querySelector('a'); if(f){ e.preventDefault(); f.click(); } }
+    });
+    res.addEventListener('keydown', function(e){
+      var as = [].slice.call(res.querySelectorAll('a')), i = as.indexOf(document.activeElement);
+      if (e.key==='ArrowDown' && i > -1 && as[i+1]){ e.preventDefault(); as[i+1].focus(); }
+      if (e.key==='ArrowUp'){ e.preventDefault(); (i > 0 ? as[i-1] : q).focus(); }
+      if (e.key==='Escape'){ q.value=''; clear(); q.focus(); }
+    });
+    res.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a') : null;
+      var h = a ? a.getAttribute('href') : '';
+      setTimeout(function(){ clear(); q.value=''; offset(); if (h) jump(h); }, 60);
+    });
+  }
+  var nav = document.querySelector('.nav');
+  function offset(){
+    if (!nav) return;
+    var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
+    document.documentElement.style.setProperty('--anchor-off', h + 'px');
+  }
+  var det = document.querySelector('.chapters-wrap');
+  // on a phone the open chapter strip costs a quarter of the viewport
+  if (det && matchMedia('(max-width:40rem)').matches) det.removeAttribute('open');
+  offset(); addEventListener('resize', offset);
+  if (det) det.addEventListener('toggle', offset);
+  var top = document.querySelector('.top');
+  function topvis(){ var on = scrollY > 900;
+    top.classList.toggle('show', on); top.setAttribute('tabindex', on ? '0' : '-1'); }
+  if (top){ top.setAttribute('tabindex','-1'); addEventListener('scroll', topvis, {passive:true}); }
+  // a lazy image that never entered the viewport prints as an empty frame,
+  // and a fetch started inside beforeprint is not awaited — so the whole set
+  // is promoted once the page has settled, and again as a backstop
+  // A lazy image that never entered the viewport prints as an empty frame. But
+  // promoting all of them on load would download the whole gallery for a reader
+  // who never scrolls. So: promote once the reader has actually started reading,
+  // and again at print time as a backstop.
+  function eager(){
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),
+                    function(i){ i.loading='eager'; });
+  }
+  var promoted = false;
+  function promoteOnce(){
+    if (promoted) return;
+    promoted = true;
+    var idle = window.requestIdleCallback || function(f){ setTimeout(f, 600); };
+    idle(eager);
+  }
+  addEventListener('scroll', promoteOnce, {passive:true, once:true});
+  addEventListener('beforeprint', eager);
+  // only a table that actually overflows is a scroll region worth a tab stop
+  function scrollables(){
+    [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
+      var over = w.scrollWidth - w.clientWidth > 1;
+      if (over){ w.tabIndex = 0; w.setAttribute('role','region');
+                 w.setAttribute('aria-label','טבלה — ניתנת לגלילה אופקית'); }
+      else { w.removeAttribute('tabindex'); w.removeAttribute('role');
+             w.removeAttribute('aria-label'); }
+    });
+  }
+  scrollables(); addEventListener('resize', scrollables);
+  // the tree is laid out at fixed coordinates; zooming the frame is how a reader
+  // gets its labels to a readable size without the boxes colliding
+  // BASE 2 is the diagram's native size; the frame opens at three quarters of
+  // it, which shows the whole shape; the reader zooms in to read a branch
+  var BASE = 2, zoom = 1.5, zval = document.getElementById('tree-zoom-val');
+  if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+  [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
+    btn.addEventListener('click', function(){
+      var step = parseInt(btn.getAttribute('data-tree-zoom'), 10) * 0.25;
+      zoom = Math.min(3, Math.max(1, Math.round((zoom + step) * 100) / 100));
+      document.documentElement.style.setProperty('--tree-zoom', zoom);
+      if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+    });
+  });
+  var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = targets.indexOf(e.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('on'); });
+        links[i].classList.add('on');
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>

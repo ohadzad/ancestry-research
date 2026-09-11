@@ -4,7 +4,7 @@
 
 שני המחקרים שבארכיון הזה — [rachel-zadok](../rachel-zadok/) ו-[avraham-zadok](../avraham-zadok/) — נבנים מאותו מנוע ולפי אותו שלד. המסמך הזה הוא המפרט: מה משותף, מה לכל דוח משלו, ואיך מסבים דוח קיים לפורמט.
 
-**מצב נכון ל-28.08.2026:** rachel-zadok הוסב (מהדורה 44). avraham-zadok טרם — ראו "איך מסבים דוח" בסוף.
+**מצב נכון ל-11.09.2026:** כל ארבעת המחקרים — rachel-zadok, avraham-zadok, miriam-benharoush, mordechai-benharoush — בנויים מהמנוע המשותף.
 
 ---
 

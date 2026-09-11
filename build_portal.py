@@ -89,7 +89,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
 
 def card(r):
     p = []
-    p.append('<article class="card">')
+    p.append('<article class="card" id="research-%s">' % e(r['slug']))
     if r.get('cover'):
         img = ('<img src="%s" alt="%s" loading="lazy">' % (e(r['cover']), e(r.get('cover_alt',''))))
         if r.get('cover_href'):

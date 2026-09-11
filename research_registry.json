@@ -243,7 +243,7 @@
       "life": "1939, מכנאס — חולון",
       "state": "in-progress",
       "state_label": "מחקר בתחילתו",
-      "edition": "מהדורה 5 · סבב ביקורת חיצונית אחד",
+      "edition": "מהדורה 6 · סבב ביקורת חיצונית אחד",
       "summary": "ילידת מכנאס, 1939, שעלתה עם הוריה ב-1956. המחקר איתר אותה ואת אחיותיה רבקה ורחל בשלושה פנקסי תלמידות של בית הספר לבנות של אליאנס במכנאס (1949, 1950, 1953), בשלושתם על שם ההורים שלום ויקוט — ומתעד מה עדיין חסר: רשומת העלייה, בעלה מרדכי (1931–2010, בן יונה ויקוט), וההורים בירושלים.",
       "cover": "miriam-benharoush/docs/cover_marie_1949.jpg",
       "cover_alt": "שורת \"Dahan Marie, 10 ans, Chalom Yacot\" בפנקס אליאנס מכנאס, 1949",
@@ -269,24 +269,24 @@
       "links": [
         {
           "label": "למחקר המלא",
-          "href": "miriam-benharoush/",
+          "href": "miriam-benharoush/מרים-בן-הרוש.html",
           "primary": true
         },
         {
           "label": "עץ המשפחה",
-          "href": "miriam-benharoush/index.html#s6"
+          "href": "miriam-benharoush/מרים-בן-הרוש.html#tree"
         },
         {
           "label": "גלריית הראיות",
-          "href": "miriam-benharoush/index.html#gallery"
+          "href": "miriam-benharoush/מרים-בן-הרוש.html#gallery"
         },
         {
-          "label": "פעולות פתוחות",
-          "href": "miriam-benharoush/index.html#s7"
+          "label": "אינדקס האנשים",
+          "href": "miriam-benharoush/מרים-בן-הרוש.html#people"
         },
         {
           "label": "אינדקס המקורות",
-          "href": "miriam-benharoush/index.html#s8"
+          "href": "miriam-benharoush/מרים-בן-הרוש.html#index"
         }
       ],
       "people": [
@@ -294,37 +294,37 @@
           "n": "מרים (\"מרי\") בן הרוש לבית דהן",
           "d": "נ׳ 1939",
           "s": "נושאת המחקר; פנקס אליאנס מכנאס 1949",
-          "h": "miriam-benharoush/index.html#s3-1"
+          "h": "miriam-benharoush/מרים-בן-הרוש.html#s1"
         },
         {
           "n": "שלום דהן",
           "d": "?",
           "s": "אביה; ככל הנראה חייט במלאח הישן של מכנאס; לימים ירושלים",
-          "h": "miriam-benharoush/index.html#s6"
+          "h": "miriam-benharoush/מרים-בן-הרוש.html#s6"
         },
         {
           "n": "יקוט דהן",
           "d": "?",
           "s": "אמה; לימים ירושלים",
-          "h": "miriam-benharoush/index.html#s6"
+          "h": "miriam-benharoush/מרים-בן-הרוש.html#s6"
         },
         {
           "n": "רבקה דהן",
           "d": "נ׳ ~1943",
           "s": "אחותה; פנקס אליאנס 1950, עזבה 10/1955",
-          "h": "miriam-benharoush/index.html#s3-2"
+          "h": "miriam-benharoush/מרים-בן-הרוש.html#s3-2"
         },
         {
           "n": "רחל דהן",
           "d": "נ׳ ~1947",
           "s": "אחותה; פנקס אליאנס 1953",
-          "h": "miriam-benharoush/index.html#s3-3"
+          "h": "miriam-benharoush/מרים-בן-הרוש.html#s3-3"
         },
         {
           "n": "מרדכי בן הרוש",
           "d": "1931 – 2010",
           "s": "בעלה; בן יונה ויקוט, עלה 1947/48 — טרם תועד",
-          "h": "miriam-benharoush/index.html#s5-2"
+          "h": "miriam-benharoush/מרים-בן-הרוש.html#s5-2"
         }
       ]
     },
@@ -335,7 +335,7 @@
       "life": "1931, מרוקו — 2010",
       "state": "in-progress",
       "state_label": "דף נלווה · בתחילתו",
-      "edition": "מהדורה 1",
+      "edition": "מהדורה 2",
       "summary": "בעלה של מרים לבית דהן: בן יונה ויקוט, יליד מרוקו 1931, עלה ב-1947 או 1948. אין עדיין מסמך שניתן לייחס לו בביטחון; המועמד היחיד שנשאר פתוח הוא רישום שינוי שם ממושב מגדים (1954) — \"בנערוש מרדושי\" שהפך ל\"בן הרוש מרדכי\". שש רשומות אחרות נשללו.",
       "cover": "mordechai-benharoush/docs/ev_yalkut_1954_row.jpg",
       "cover_alt": "השורה בילקוט הפרסומים 407 (1955): בנערוש מרדושי → בן הרוש מרדכי, מגדים",
@@ -361,20 +361,24 @@
       "links": [
         {
           "label": "לדף המחקר",
-          "href": "mordechai-benharoush/",
+          "href": "mordechai-benharoush/מרדכי-בן-הרוש.html",
           "primary": true
         },
         {
           "label": "המועמד הפתוח",
-          "href": "mordechai-benharoush/index.html#s3"
+          "href": "mordechai-benharoush/מרדכי-בן-הרוש.html#s3"
+        },
+        {
+          "label": "עץ המשפחה",
+          "href": "mordechai-benharoush/מרדכי-בן-הרוש.html#tree"
         },
         {
           "label": "גלריית הראיות",
-          "href": "mordechai-benharoush/index.html#gallery"
+          "href": "mordechai-benharoush/מרדכי-בן-הרוש.html#gallery"
         },
         {
-          "label": "פעולות פתוחות",
-          "href": "mordechai-benharoush/index.html#s7"
+          "label": "אינדקס המקורות",
+          "href": "mordechai-benharoush/מרדכי-בן-הרוש.html#index"
         }
       ],
       "people": [
@@ -382,19 +386,19 @@
           "n": "מרדכי בן הרוש",
           "d": "1931 – 2010",
           "s": "נושא הדף; עלה 1947/48",
-          "h": "mordechai-benharoush/index.html#s1"
+          "h": "mordechai-benharoush/מרדכי-בן-הרוש.html#s1"
         },
         {
           "n": "יונה בן הרוש",
           "d": "?",
           "s": "אביו (משפחה)",
-          "h": "mordechai-benharoush/index.html#s6"
+          "h": "mordechai-benharoush/מרדכי-בן-הרוש.html#s6"
         },
         {
           "n": "יקוט בן הרוש",
           "d": "?",
           "s": "אמו (משפחה)",
-          "h": "mordechai-benharoush/index.html#s6"
+          "h": "mordechai-benharoush/מרדכי-בן-הרוש.html#s6"
         }
       ]
     }

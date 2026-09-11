@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מרדכי בן הרוש</title>
+<meta name="description" content="דף מחקר על מרדכי בן הרוש, בן יונה ויקוט, יליד מרוקו 1931 שעלה ב-1947/48 — המועמד הפתוח ממושב מגדים 1954, המועמדים שנשללו, ומה נסרק.">
+<meta name="color-scheme" content="light">
+<style>
+:root {
+  --ink:#2a2320; --muted:#6b5f57; --line:#ddd3c9;
+  --paper:#faf7f3; --accent:#8a4a2a; --accent-soft:#b0673f;
+  --link:#7a3f22;
+  --hero-from:#3a2118; --hero-to:#8a4a2a;
+  --col: 60rem;               /* the reading column */
+  --nav-h: 3.25rem;
+  --anchor-off: 6.5rem;
+  --radius: 6px;
+  --serif: 'David Libre','Frank Ruhl Libre','Times New Roman',Georgia,serif;
+  --sans: 'Assistant','Segoe UI',Arial,Helvetica,sans-serif;
+  --sbw: 0px;
+}
+*,*::before,*::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+body {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.75;
+  text-rendering:optimizeLegibility; -webkit-text-size-adjust:100%;
+  overflow-wrap:break-word; word-break:normal;
+}
+img, svg, video { max-width:100%; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));
+  color:#f6efe2; padding:2.5rem 1.25rem 2rem;
+}
+.hero-in { max-width:var(--col); margin-inline:auto; }
+.hero .crumb { font-family:var(--sans); font-size:.8rem; opacity:.8; margin-block-end:1rem; }
+.hero .crumb a { color:#f2e5c8; text-decoration:none; border-block-end:1px solid rgba(242,229,200,.4); }
+.hero h1 { font-size:clamp(1.6rem,3.4vw,2.4rem); line-height:1.25; margin:0 0 .5rem; font-weight:700; letter-spacing:-.01em; }
+.hero .subject { font-size:1.05rem; opacity:.94; margin:0 0 .35rem; }
+.hero .meta { font-family:var(--sans); font-size:.8rem; color:#e8dcc2; }
+
+.spine { display:flex; flex-wrap:wrap; gap:.5rem; margin-block-start:1.5rem; }
+.spine div {
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radius); padding:.5rem .8rem; min-width:7.5rem;
+}
+.spine b { display:block; font-size:1.3rem; line-height:1.2; font-family:var(--sans); font-weight:700; }
+.spine span { /* floor: no supporting text below 12.5px */ font-family:var(--sans); font-size:.78rem; color:#e8dcc2; }
+
+/* ---------- sticky navigation ---------- */
+.nav {
+  position:sticky; top:0; z-index:40; background:rgba(250,247,242,.97);
+  backdrop-filter:saturate(150%) blur(6px);
+  border-block-end:1px solid var(--line); font-family:var(--sans);
+}
+.nav-in { max-width:var(--col); margin-inline:auto; padding:0 1.25rem; }
+.nav-row { display:flex; align-items:center; gap:.4rem; height:var(--nav-h); }
+/* only the chapter strip scrolls; the first row must not clip the search panel */
+.nav-row.chapters { overflow-x:auto; scrollbar-width:thin; }
+.nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.4rem; }
+.chapters-wrap { border-block-start:1px dotted var(--line); }
+.chapters-wrap > summary {
+  list-style:none; cursor:pointer; padding:.3rem 0; font-size:.78rem; color:var(--muted);
+}
+.chapters-wrap > summary::-webkit-details-marker { display:none; }
+.chapters-wrap > summary::after { content:" ▾"; }
+.chapters-wrap[open] > summary::after { content:" ▴"; }
+.nav-row.chapters { height:2.4rem; }
+/* the row scrolls horizontally; a fade at the overflowing edge is the only cue */
+.chapters-wrap { position:relative; }
+.chapters-wrap::after {
+  /* at rest the strip is scrolled to its start, so the hidden chips are at the
+     inline-END edge — that is where the cue belongs */
+  content:""; position:absolute; inset-block:auto 0; inset-inline-end:0;
+  block-size:2.4rem; inline-size:2.2rem; pointer-events:none;
+  background:linear-gradient(to left, rgba(250,247,242,0), rgba(250,247,242,.98));
+}
+[dir="rtl"] .chapters-wrap::after {
+  background:linear-gradient(to right, rgba(250,247,242,0), rgba(250,247,242,.98));
+}
+.chapters-wrap:not([open])::after { display:none; }
+.nav a {
+  flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.82rem;
+  padding:.3rem .6rem; border-radius:999px; white-space:nowrap;
+}
+.nav a:hover { background:rgba(0,0,0,.05); }
+.nav a.on { background:var(--accent); color:#fff; }
+.nav .lbl { flex:0 0 auto; font-size:.78rem; color:var(--muted); padding-inline-end:.2rem; }
+.nav-row.chapters a:not(.on) { font-size:.78rem; color:var(--muted); }
+.nav-row.chapters a.on { font-size:.78rem; }
+
+.qwrap { position:relative; flex:0 0 auto; margin-inline-start:auto; }
+#q {
+  font-family:var(--sans); font-size:.8rem;
+  padding:.32rem .7rem; border:1px solid var(--line); border-radius:999px;
+  background:#fff; color:var(--ink); min-width:9rem;
+}
+#q:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+/* out of flow: opening the list must not change the nav's height, or every
+   anchor below it would shift while the reader is looking at one */
+#qres {
+  position:absolute; inset-block-start:calc(100% + .4rem); inset-inline-end:0;
+  min-width:20rem; max-width:min(28rem, 92vw); max-height:60vh; overflow-y:auto;
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(0,0,0,.14); padding:.35rem .8rem .5rem;
+  font-family:var(--sans); font-size:.82rem; z-index:60;
+}
+#qres[hidden] { display:none; }
+#qres a {
+  display:block; white-space:normal; flex:initial; border-radius:0;
+  padding:.35rem 0; color:var(--ink); border-block-end:1px dotted var(--line);
+}
+#qres a:last-child { border-block-end:0; }
+#qres .k { color:var(--muted); font-size:.78rem; margin-inline-start:.4rem; }
+#qres .nores { margin:.3rem 0; color:var(--muted); }
+#qres .qcount {
+  margin:.1rem 0 .35rem; color:var(--muted); font-size:.78rem;
+  border-block-end:1px solid var(--line); padding-block-end:.3rem;
+}
+
+/* ---------- the reading column ---------- */
+main { max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 4rem; }
+section, .legacy-anchor { scroll-margin-top:var(--anchor-off); display:block; }
+.legacy-anchor { height:0; }
+h2, h3, h4 { scroll-margin-top:var(--anchor-off); }
+h2 {
+  font-size:1.45rem; line-height:1.3; margin:2.6rem 0 .9rem; color:var(--accent);
+  border-block-end:2px solid var(--line); padding-block-end:.35rem;
+}
+h3 { font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }
+h4 { font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }
+p { margin:0 0 1rem; }
+a { color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }
+a:hover { border-block-end-color:var(--link); }
+a:focus-visible { outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }
+ul, ol { margin:0 0 1rem; padding-inline-start:1.4rem; }
+li { margin-block-end:.4rem; }
+hr { border:0; border-block-start:1px solid var(--line); margin:2.5rem 0; }
+strong { font-weight:700; }
+blockquote {
+  margin:1.2rem 0; padding:.1rem 1rem; border-inline-start:3px solid var(--line);
+  color:var(--muted);
+}
+code {
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;
+  background:rgba(0,0,0,.045); padding:.1em .35em; border-radius:3px;
+  direction:ltr; unicode-bidi:isolate;
+}
+
+/* ---------- callouts ---------- */
+.lede {
+  background:#fff; border:1px solid var(--line); border-inline-start:4px solid var(--accent);
+  border-radius:var(--radius); padding:1.1rem 1.2rem; margin:0 0 1.6rem;
+  font-size:1.08rem; line-height:1.72;
+}
+.note {
+  background:rgba(0,0,0,.025); border:1px solid var(--line); border-radius:var(--radius);
+  padding:.8rem 1rem; margin:1.2rem 0; font-size:.94rem; color:var(--muted);
+}
+
+/* ---------- certainty chips ---------- */
+.rank {
+  display:inline-block; font-family:var(--sans); font-size:.78rem; font-style:normal; font-weight:600;
+  line-height:1.5; padding:.05rem .5rem; border-radius:999px; white-space:nowrap;
+  border:1px solid currentColor; vertical-align:.08em;
+}
+.rank.v1 { color:#2f6b41; background:rgba(47,107,65,.08); }   /* מאומת */
+.rank.v2 { color:#6b5324; background:rgba(107,83,36,.08); }   /* כמעט ודאי */
+.rank.v3 { color:#8a5a00; background:rgba(138,90,0,.08); }    /* ככל הנראה */
+.rank.v4 { color:#8a3d2e; background:rgba(138,61,46,.08); }   /* טעון אימות */
+
+/* ---------- tables ---------- */
+.tablewrap:focus-visible, .tree-embed:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
+.tablewrap { overflow-x:auto; margin:1.2rem 0; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+table { border-collapse:collapse; width:100%; font-size:.93rem; }
+th, td { padding:.5rem .7rem; border-block-end:1px solid var(--line); text-align:start; vertical-align:top; }
+thead th { background:rgba(0,0,0,.035); font-family:var(--sans); font-size:.82rem; }
+tbody tr:last-child td { border-block-end:0; }
+
+/* ---------- figures ---------- */
+figure { margin:1.6rem auto; text-align:center; max-width:100%; }
+figure img {
+  max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 2px 8px rgba(0,0,0,.07); background:#fff;
+}
+figcaption { font-size:.84rem; color:var(--muted); margin-block-start:.5rem; line-height:1.6; text-align:start; }
+figcaption .fignum { font-family:var(--sans); font-weight:700; color:var(--accent); }
+figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(--sans); font-size:.78rem; }
+.imgcap { display:block; font-size:.84rem; color:var(--muted); margin-block-start:.4rem; }
+
+.ext { font-size:.78rem; color:var(--muted); padding-inline-start:.12em; }
+.doclink { display:inline-block; min-inline-size:1.5rem; min-block-size:1.5rem; padding:.15rem .2rem; }
+
+/* ---------- gallery ---------- */
+.gallery { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.2rem 0 2rem; }
+.gallery a {
+  flex:0 0 auto; width:11rem; border:0; text-align:center; color:var(--muted);
+  font-family:var(--sans); font-size:.78rem; line-height:1.4;
+}
+.gallery img { width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+/* a crop far wider than the frame is shown whole rather than magnified */
+.gallery img.contain { object-fit:contain; padding:.3rem; }
+.gallery span { display:block; margin-block-start:.3rem; }
+
+/* ---------- family tree ---------- */
+.tree-embed {
+  overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+  background:#fff; padding:.5rem;
+}
+.tree-embed svg {
+  min-width:calc(75rem * var(--tree-zoom, 1.5)); height:auto; display:block; margin-inline:auto;
+}
+.tree-zoom {
+  display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.5rem;
+}
+.tree-zoom button {
+  font:inherit; line-height:1; min-inline-size:2rem; min-block-size:2rem;
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  color:var(--ink); cursor:pointer;
+}
+.tree-zoom button:hover { background:rgba(0,0,0,.04); }
+.tree-zoom button:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+.legend {
+  display:flex; gap:1.1rem; justify-content:center; flex-wrap:wrap;
+  padding:.7rem 0 .2rem; font-family:var(--sans); font-size:.8rem; color:var(--muted);
+}
+.legend > span { display:flex; align-items:center; gap:.35rem; }
+.dot { width:.7rem; height:.7rem; border-radius:50%; display:inline-block; flex:0 0 auto; }
+.tree-foot {
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); text-align:center;
+  max-width:52rem; margin:.5rem auto 0; line-height:1.6;
+}
+.tree-hint { font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.4rem; }
+.btn {
+  display:inline-block; font-family:var(--sans); font-size:.82rem; border:1px solid var(--accent);
+  color:var(--accent); border-radius:999px; padding:.32rem .9rem; margin-block-start:.6rem;
+}
+.btn:hover { background:var(--accent); color:#fff; }
+
+/* ---------- person index ---------- */
+.people { display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:.6rem; margin:1.2rem 0; }
+.person {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.6rem .75rem; font-size:.9rem;
+}
+.person b { display:block; font-size:.97rem; }
+.person .d { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.person .r { display:block; color:var(--muted); font-size:.84rem; margin-block-start:.15rem; }
+
+.skip {
+  position:absolute; inset-inline-start:-9999px; inset-block-start:0; z-index:99;
+  background:var(--paper); color:var(--link); padding:.6rem 1rem;
+  border:1px solid var(--accent); border-end-end-radius:var(--radius);
+  font-family:var(--sans); font-size:.85rem;
+}
+.skip:focus { inset-inline-start:0; }
+
+/* ---------- back to top ---------- */
+.top {
+  /* the inline-end edge: in RTL that is the ragged end of the lines, so the
+     button never covers the start of a sentence */
+  position:fixed; inset-block-end:1.1rem; inset-inline-end:1.1rem; z-index:50;
+  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid var(--line);
+  background:#fff; color:var(--accent); display:grid; place-items:center;
+  font-size:1.1rem; box-shadow:0 2px 8px rgba(0,0,0,.12); opacity:0; pointer-events:none;
+  transition:opacity .2s;
+}
+.top.show { opacity:1; pointer-events:auto; }
+
+footer {
+  max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 3rem;
+  border-block-start:1px solid var(--line); color:var(--muted);
+  font-family:var(--sans); font-size:.8rem;
+}
+
+/* ---------- mobile ---------- */
+@media (max-width:40rem) {
+  :root { --anchor-off: 12rem; }
+  body { font-size:1rem; overflow-wrap:anywhere; }
+  bdi { overflow-wrap:anywhere; }
+  .hero { padding:1.75rem 1rem 1.5rem; }
+  main { padding:1.25rem 1rem 3rem; }
+  .nav-in { padding:0 1rem; }
+  .nav-row { height:2.9rem; }
+  .qwrap { order:99; margin:0 0 .5rem; width:100%; }
+  #q { width:100%; min-width:0; }
+  #qres { min-width:0; max-width:none; inline-size:100%; max-height:50vh; }
+  main { padding-block-end:4.5rem; }   /* clearance for the floating button */
+  td, th { overflow-wrap:break-word; }
+  .nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.5rem 0; overflow:visible; }
+  .nav-row:first-child > a, .nav-row:first-child > .lbl { margin-block-end:.35rem; }
+  .spine { display:grid; grid-template-columns:1fr 1fr; }
+  .spine div { min-width:0; padding:.45rem .6rem; }
+  .spine b { font-size:1.1rem; }
+  .gallery a { width:8.5rem; }
+  .gallery img { height:6rem; }
+  .top { width:2.2rem; height:2.2rem; inset-block-end:.7rem; inset-inline-end:.7rem; font-size:.95rem; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  @page { size:A4; margin:16mm 14mm; }
+  @page landscape { size:A4 landscape; }
+  body { background:#fff; font-size:10.5pt; line-height:1.5; }
+  .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov, .tree-zoom, .skip { display:none !important; }
+  .hero { background:#fff !important; color:#000; padding:0 0 1rem; border-block-end:2px solid #000; }
+  .hero .meta, .spine span { color:#444; }
+  .spine div { border:1px solid #bbb; background:#fff; }
+  .spine b { color:#000; }
+  main, footer, .hero-in { max-width:none; }
+  h2 { break-after:avoid; }
+  figure, .tablewrap, .person { break-inside:avoid; }
+  figure img { max-height:150mm; box-shadow:none; }
+  #tree { break-before:page; page:landscape; }
+  #tree .tree-embed { overflow:visible; border:0; break-inside:avoid; }
+  /* the diagram is near-square: fitting the width alone spills it over two
+     pages, so the height of a landscape A4 is the binding constraint */
+  .tree-embed svg {
+    min-width:0; width:auto; height:auto; max-width:100%; max-height:118mm;
+    display:block; margin-inline:auto;
+  }
+  #tree h2 { break-after:avoid; }
+  .tree-foot, .legend { font-size:7pt; line-height:1.35; }
+  /* overflow-x has no meaning on paper: a scrolling table would simply lose
+     its last column */
+  .tablewrap { overflow:visible; }
+  .tablewrap table { table-layout:fixed; width:100%; }
+  .tablewrap td, .tablewrap th { overflow-wrap:anywhere; }
+  a { border-block-end:0; color:#000; }
+  /* the external address is what a paper reader cannot otherwise recover;
+     a relative path would only repeat the file name the link already shows */
+  #index a[href^="http"]::after, #report a[href^="http"]::after,
+  #changelog a[href^="http"]::after {
+    content:" ‹" attr(href) "›"; font-size:8pt; color:#555; word-break:break-all;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#report">דילוג לתוכן</a>
+<a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
+<span id="top"></span>
+<header class="hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><h1>מרדכי בן הרוש</h1><p class="subject">1931, מרוקו — 2010 · דף נלווה למחקר על מרים בן הרוש · בתחילתו</p><div class="meta">מהדורה 2 · נבנה 11.09.2026, 18:11</div><div class="spine"><div><b>1</b><span>מועמד פתוח</span></div><div><b>6</b><span>רשומות שנשללו</span></div><div><b>16/29</b><span>קובצי עולים <bdi dir="ltr">1947–49</bdi> שנקראו</span></div><div><b>9</b><span>ערכי מקור</span></div></div></div></header>
+<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><span class="lbl">מקטעים</span><a href="#report">הדוח</a><a href="#tree">עץ המשפחה</a><a href="#gallery">מסמכי מפתח</a><a href="#people">אינדקס אנשים</a><a href="#index">אינדקס מקורות</a><a href="#changelog">יומן מהדורות</a><div class="qwrap"><input id="q" type="search" placeholder="חיפוש בעמוד…" aria-label="חיפוש בפרקים ובאינדקס האנשים" autocomplete="off" aria-controls="qres" hidden><div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div></div></div><details class="chapters-wrap" open><summary class="lbl">פרקים</summary><div class="nav-row chapters"><a href="#1-תמצית" title="1. תמצית">1 · תמצית</a><a href="#2-מה-ידוע-מהמשפחה" title="2. מה ידוע מהמשפחה">2 · מהמשפחה</a><a href="#3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954" title="3. המועמד הפתוח — &quot;בנערוש מרדושי&quot;, מגדים, 1954">3 · המועמד הפתוח</a><a href="#4-מועמדים-שנשללו" title="4. מועמדים שנשללו">4 · נשללו</a><a href="#5-מה-נסרק-ולא-נמצא" title="5. מה נסרק ולא נמצא">5 · מה לא נמצא</a><a href="#6-עץ-המשפחה" title="6. עץ המשפחה">6 · עץ המשפחה</a><a href="#7-פעולות-פתוחות" title="7. פעולות פתוחות">7 · פעולות פתוחות</a><a href="#8-סיכום-המקורות" title="8. סיכום המקורות">8 · המקורות</a><a href="#9-שיטה-ומגבלות" title="9. שיטה ומגבלות">9 · שיטה ומגבלות</a></div></details></div></nav>
+<main>
+<section id="report"><p class="note prov">העמוד הזה טוען את התצלומים ואת המסמכים ישירות מתיקיית <code>docs/</code> שלצדו — לחיצה על כל ראיה פותחת את קובץ המקור המלא.</p><div class="lede"><p><strong>מרדכי בן הרוש</strong> — בעלה של <a href="../index.html#research-miriam-benharoush">מרים לבית דהן</a> — נולד לפי המשפחה ב-1931 במרוקו (העיר אינה ידועה), בנם של <strong>יונה ויקוט</strong>, עלה לישראל ב-1947 או ב-1948, ונפטר ב-2010.</p>
+<p>התמונה נכון להיום: <strong>אין עדיין מסמך שניתן לייחס לו בביטחון.</strong> המועמד היחיד שנשאר פתוח הוא רישום שינוי שם בילקוט הפרסומים: "בנערוש מרדושי" ממושב <strong>מגדים</strong>, שקיבל את השם "בן הרוש מרדכי" ב-12.12.1954. הרישום עצמו <span class="rank v1">מאומת</span>; הזיהוי שלו כמרדכי מדורג <span class="rank v4">טעון אימות</span>. שאלה אחת למשפחה — האם מרדכי גר במגדים או בסביבת עתלית בשנות החמישים, והאם קראו לו "מרדושי" — תכריע.</p>
+<p>שש רשומות אחרות בשם דומה נשללו לפי שנת לידה, הורים או מוצא. <strong>כל מקור מופיע פעמיים: קישור אל הרשומה בארכיון וקישור אל עותק שמור.</strong> גם ממצא שלילי נרשם, עם הכיסוי המדויק שלו.</p></div>
+<p><strong>מאיפה להתחיל</strong></p>
+<ul>
+<li><a href="#s2">מה ידוע מהמשפחה</a> — נקודת המוצא.</li>
+<li><a href="#s3">המועמד הפתוח — מגדים 1954</a> — הרישום, למה הוא סביר, למה הוא לא מוכרע.</li>
+<li><a href="#s4">מועמדים שנשללו</a> — שש רשומות והנימוק לכל אחת.</li>
+<li><a href="#s5">מה נסרק ולא נמצא</a> — רשימות העולים <bdi dir="ltr">1947–1949</bdi> ופנקסי אליאנס.</li>
+<li><a href="#s7">הפעולות הפתוחות</a> — השאלה שמכריעה, ומה אחריה.</li>
+</ul>
+<hr />
+<span id="s1" class="legacy-anchor"></span><h2 id="1-תמצית">1. תמצית</h2>
+<p>מרדכי בן הרוש, בעלה של מרים לבית דהן, נולד לפי המשפחה ב-1931 במרוקו (העיר אינה ידועה), בנם של יונה ויקוט, עלה לישראל ב-1947 או ב-1948, ונפטר ב-2010.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> דף זה מרכז את מה שנבדק עד כה בארכיונים הישראליים ובפנקסי אליאנס במרוקו, את המועמדים שנמצאו ואת מה שנשלל.</p>
+<p>התמונה נכון להיום: <strong>אין עדיין מסמך שניתן לייחס למרדכי בביטחון.</strong> המועמד היחיד שנשאר פתוח הוא רישום שינוי שם בילקוט הפרסומים מ-1955: "בנערוש מרדושי" ממושב מגדים, שקיבל את השם "בן הרוש מרדכי" ב-12.12.1954.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> הרישום עצמו <span class="rank v1">מאומת</span>; הזיהוי שלו כמרדכי בעלה של מרים מדורג <span class="rank v4">טעון אימות</span>, ו<a href="#s3">פרק 3</a> מסביר למה הוא סביר ולמה הוא לא מוכרע.</p>
+<p>מה שנשלל: שש רשומות בשם דומה או קרוב ב-IGRA וברשימות העולים, שפרטיהן (שנת לידה, הורים, מוצא) אינם מתיישבים עם הידוע (<a href="#s4">פרק 4</a>).</p>
+<span id="s2" class="legacy-anchor"></span><h2 id="2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</h2>
+<p>המידע שנמסר, והוא הבסיס לזיהוי — לא ראיה בפני עצמו:<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a></p>
+<ul>
+<li>מרדכי בן הרוש. שנת לידה 1931 (המשפחה אינה בטוחה שכך רשום בתעודת הזהות). מקום הלידה במרוקו — לא נמסר.</li>
+<li>הוריו: יונה ויקוט.</li>
+<li>עלה ב-1947 או 1948. לא ידוע אם לבדו או עם הוריו.</li>
+<li>נישא למרים דהן (ילידת מכנאס, 1939; עלתה 1956) — <a href="../index.html#research-miriam-benharoush">המחקר על מרים</a>.</li>
+<li>נפטר ב-2010; קבור בבית העלמין ירקון. מקום הקבורה מחוץ למטרות הדף.</li>
+</ul>
+<span id="s3" class="legacy-anchor"></span><h2 id="3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954">3. המועמד הפתוח — "בנערוש מרדושי", מגדים, 1954</h2>
+<h3 id="3-1-הרישום"><span id="s3-1" class="legacy-anchor"></span>3.1 הרישום</h3>
+<p>ילקוט הפרסומים 407, ח' בניסן תשט"ו (31.3.1955), עמ' 647, "הודעה בדבר שינויי שם", רשימה מס' 10, מחוז חיפה — נפת חדרה.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> השורה:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">שדה</th>
+<th scope="col">קריאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>השם הקודם</td>
+<td>בנערוש · מרדושי</td>
+<td><span class="rank v1">מאומת</span> — דפוס ברור</td>
+</tr>
+<tr>
+<td>השם החדש</td>
+<td>בן הרוש · מרדכי</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>מקום המגורים</td>
+<td>מגדים</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>תאריך אישור השינוי</td>
+<td>12.12.54</td>
+<td><span class="rank v1">מאומת</span></td>
+</tr>
+<tr>
+<td>מספר הזהות</td>
+<td>מושחר בסריקה</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_row_1400q82_88dd9e.jpg" alt="השורה בילקוט הפרסומים 407: בנערוש מרדושי, בן הרוש מרדכי, מגדים, 12.12.54" loading="lazy" decoding="async" width="1400" height="56"></a><figcaption><span class="fignum">איור 1</span> — ראיה 1 — השורה בילקוט הפרסומים 407, עמ' 647, רשימה 10 (מחוז חיפה, נפת חדרה): «בנערוש · מרדושי → בן הרוש · מרדכי · מגדים · 12.12.54». עמודת מספר הזהות מושחרת בסריקה. המקור: <a href="#src-1">ילקוט הפרסומים 407</a>.</figcaption></figure>
+<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_header_1400q82_1ce059.jpg" alt="כותרת הרשימה: הודעה בדבר שינויי שם" loading="lazy" decoding="async" width="1400" height="151"></a><figcaption><span class="fignum">איור 2</span> — ראיה 2 — כותרת הרשימה: "שינויי שמות האנשים המפורטים להלן נרשמו ביחידות רישום התושבים, האגף למרשם התושבים, משרד הפנים" · רשימה מס' 10 · מחוז חיפה — נפת חדרה · העמודות: השם הקודם, השם החדש, מקום המגורים, מספר הזהות, תאריך אישור השינוי.</figcaption></figure>
+<figure><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_yalkut_1954_footer_1400q82_3bcab1.jpg" alt="תחתית העמוד: ילקוט הפרסומים 407, ח' בניסן תשט&quot;ו, 31.3.1955" loading="lazy" decoding="async" width="1400" height="71"></a><figcaption><span class="fignum">איור 3</span> — ראיה 3 — תחתית העמוד: «ילקוט הפרסומים 407, ח' בניסן תשט"ו, 31.3.1955» · עמ' 647 — הציטוט הביבליוגרפי של הגיליון.</figcaption></figure>
+<h3 id="3-2-למה-זה-סביר"><span id="s3-2" class="legacy-anchor"></span>3.2 למה זה סביר</h3>
+<ul>
+<li><strong>מגדים</strong> הוא מושב ליד עתלית, שהוקם ב-1949 על ידי עולים מצפון אפריקה.<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> צעיר שעלה ממרוקו ב-1947/48 ועבר דרך מחנה עתלית הוא בדיוק הפרופיל של מתיישבי המקום.</li>
+<li><strong>"מרדושי"</strong> הוא צורת חיבה מרוקאית של מרדכי; החלפתה ב"מרדכי" ו"בנערוש" ב"בן הרוש" היא בדיוק סוג התקנון של שמות שעולי מרוקו עשו בשנות החמישים.</li>
+<li>בגיל 23 (אם נולד ב-1931) הוא היה בגיל שבו רווקים ממגדים ומעתלית רשמו שינוי שם לקראת גיוס, עבודה או נישואין.</li>
+</ul>
+<h3 id="3-3-למה-זה-לא-מוכרע"><span id="s3-3" class="legacy-anchor"></span>3.3 למה זה לא מוכרע</h3>
+<ul>
+<li>ההודעה אינה כוללת שנת לידה או שמות הורים; מספר הזהות מושחר בסריקה.</li>
+<li>השם מרדכי בן הרוש נפוץ; ב-IGRA לבדו יש שש רשומות בשם זה מהשנים <bdi dir="ltr">1949–1954</bdi> (<a href="#s4">פרק 4</a>).</li>
+<li>אין עדיין מסמך אחר שמקשר את מרדכי בעלה של מרים למגדים או לעתלית.</li>
+</ul>
+<p><strong>הכרעה:</strong> שאלה למשפחה. אם מרדכי גר במגדים או בסביבת עתלית בשנות החמישים, או אם כונה "מרדושי" — הזיהוי עולה ל"כמעט ודאי". אם לא — הרשומה נשללת.</p>
+<span id="s4" class="legacy-anchor"></span><h2 id="4-מועמדים-שנשללו">4. מועמדים שנשללו</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">מקור</th>
+<th scope="col">מה רשום</th>
+<th scope="col">למה נשלל</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>רשימת עולים אפריל 1949, גל-15493/6 מסמך 192 שורה 54 — "מרדכי בנארוש"<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a></td>
+<td>יליד 1910</td>
+<td>פער של 21 שנה משנת הלידה המשפחתית</td>
+<td><strong>נשלל</strong></td>
+</tr>
+<tr>
+<td>רשימת עולי קיבוץ רשפים 1949 (יד יערי), עמ' 12 שורה 2 — "מרדכי בן-ארוש"<a href="#src-3" class="cit" title="אל ערך המקור">[3]</a></td>
+<td>יליד 1927; נקלט בקיבוץ של השומר הצעיר</td>
+<td>ארבע שנים הפרש; אין קשר ידוע לקיבוץ</td>
+<td><span class="rank v3">ככל הנראה</span> נשלל</td>
+</tr>
+<tr>
+<td>רשימת עולים אוקטובר 1949, גל-15494/5, עמ' 20 — "בן ארוש מכלוף"<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
+<td>יליד 1931</td>
+<td>שם פרטי אחר; ההורים בעמודה אינם יונה/יקוט</td>
+<td><strong>נשלל</strong></td>
+</tr>
+<tr>
+<td>רשימת עולים מרץ 1949 חלק ב, גל-15493/3, עמ' 45, שורות <bdi dir="ltr">199–202</bdi> — משפחת בן הרוש (אסתר 1889, יוסף 1901, אסתר 1913, אברהם 1947)<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a></td>
+<td>"יקוט" בשורה 198 שייכת למשפחת בן שמעון שמעליהם</td>
+<td>אין מרדכי; ההורים אחרים</td>
+<td><strong>נשלל</strong></td>
+</tr>
+<tr>
+<td>רשימת עולים יוני 1949, גל-15493/8, עמ' <bdi dir="ltr">150–151</bdi> — משפחת הרוש (יצחק, עמרם, חנה, רחל, ישראל, אליס, פרחה, רחמה, אסתר)<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
+<td>תשע נפשות ממרוקו</td>
+<td>אין מרדכי; אין יונה/יקוט בעמודת ההורים</td>
+<td><strong>נשלל</strong></td>
+</tr>
+<tr>
+<td>IGRA, "Harush" + "Mordekhai" — 13 רשומות (נוטרים 1936/1947, שבויים 1948, שאלון עולה 1950 יליד קהיר, צפת 1839 ועוד)<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a></td>
+<td>—</td>
+<td>אף אחת עם שנת לידה 1931 או הורים יונה/יקוט</td>
+<td><strong>נשלל</strong></td>
+</tr>
+</tbody>
+</table></div>
+<figure><a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener"><img src="docs/thumbs/1949-03_list_p45_800q82_20577d.jpg" alt="רשימת העולים מ-24.3.1949, עמ' 45: שורות 197–202, בן שמעון ובן הרוש" loading="lazy" decoding="async" width="800" height="1270"></a><figcaption><span class="fignum">איור 4</span> — ראיה 4 — רשימת העולים "מיום 24 מרץ 1949", עמ' 4 של הרשימה (עמ' 45 בקובץ): שורה 198 "יקוט, 1931" שייכת למשפחת בן שמעון (יחיא, 1923, ימין/רוחמה); שורות <bdi dir="ltr">199–202</bdi> הן משפחת בן הרוש — אסתר 1889 (יעקב/שמחה), יוסף 1901 (יצחק/מרי), אסתר 1913, אברהם 1947. אין מרדכי. המקור: <a href="#src-6">ארכיון המדינה, גל-15493/3</a>.</figcaption></figure>
+<span id="s5" class="legacy-anchor"></span><h2 id="5-מה-נסרק-ולא-נמצא">5. מה נסרק ולא נמצא</h2>
+<h3 id="5-1-רשימות-העולים-1947-1949"><span id="s5-1" class="legacy-anchor"></span>5.1 רשימות העולים <bdi dir="ltr">1947–1949</bdi></h3>
+<p>ארכיון המדינה, חטיבות S‑104 (1948) ו-גל‑15492 עד גל‑15494 (<bdi dir="ltr">1947–1949</bdi>), דרך אוסף Google Pinpoint:<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a> 29 קבצים אותרו; ב-16 מהם נקראו כל העמודים שבהם ה-OCR מזהה "הרוש", "ארוש" או "בנארוש"; ב-13 קבצים (ובהם חלקים שניים ושלישיים של קבצי 1948) כלי האיתור לא החזיר עמודים כלל, והם <strong>לא נקראו</strong>. לא נמצא בלוק "בן הרוש מרדכי" עם ההורים יונה/יקוט. הממצא השלילי מדורג <span class="rank v3">ככל הנראה</span> בלבד: ה-OCR של הרשימות עמודתי ומשבש שיוך שורות, חיפוש ביטויים מדויקים אינו עובד בכלי, ושליש מהקבצים לא נקרא. פירוט הכיסוי ב<a href="#s9-4">סעיף 9.4</a>.</p>
+<h3 id="5-2-פנקסי-אליאנס-במרוקו"><span id="s5-2" class="legacy-anchor"></span>5.2 פנקסי אליאנס במרוקו</h3>
+<p>מסד "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו" (IGRA):<a href="#src-9" class="cit" title="אל ערך המקור">[9]</a> נבדקו כל הרשומות של הכתיבים <bdi dir="ltr">Benharoch / Benharroch / Benarroch / Ben Aroch</bdi> (אשכול של כ-455 רשומות) ו-<bdi dir="ltr">Haroch / Harroch / Harouch / Harrouche</bdi> בשנים <bdi dir="ltr">1937–1946</bdi>, עם השם הפרטי Mardochée ובלעדיו. לא נמצא נער בשם מרדכי (Mardochée) בשם משפחה מהאשכולות האלה שנולד בין 1929 ל-1933. שני "Mardochée Haroche/Haroch" בספרו (1939 בן 11; 1944 בן 8) אינם מתיישבים זה עם זה ואף לא עם 1931. נמצאו 13 נערים בשמות אלה ילידי <bdi dir="ltr">1929–1933</bdi> בקזבלנקה, פאס וטנג'יר בשמות פרטיים אחרים — ייתכן שם פרטי שני. הפנקסים אינם מאונדקסים לפי שמות הורים, ולכן אימות "יונה/יקוט" מחייב פתיחת סריקה. הממצא השלילי מדורג <span class="rank v3">ככל הנראה</span>: כיסוי חלקי (חמש שנים מהאשכול הגדול לא נסרקו שנה-שנה), והעיר אינה ידועה.</p>
+<h3 id="5-3-אחר"><span id="s5-3" class="legacy-anchor"></span>5.3 אחר</h3>
+<p>עיתונות (JPress, <bdi dir="ltr">2009–2011</bdi>): אין מודעת אבל. IGRA קבורות: אין. אתר חברה קדישא תל אביב‑יפו: מחזיר נתוני דוגמה בלבד (מקום הקבורה, ירקון, ידוע מהמשפחה ואינו ממטרות הדף).</p>
+<span id="s6" class="legacy-anchor"></span><h2 id="6-עץ-המשפחה">6. עץ המשפחה</h2>
+<p>העץ מוצג בתרשים ב<a href="#tree">מקטע העץ</a>. בטקסט:</p>
+<ul>
+<li><strong>יונה בן הרוש</strong> — אביו (משפחה). לידה, מקום, פטירה — <span class="rank v4">טעון אימות</span>.</li>
+<li><strong>יקוט בן הרוש</strong> — אמו (משפחה). <span class="rank v4">טעון אימות</span>.</li>
+<li><strong>מרדכי בן הרוש</strong> — 1931 (משפחה) – 2010 (משפחה). עלה 1947/48. אפשר שהוא "מרדושי בנערוש" ממגדים (1954) — <span class="rank v4">טעון אימות</span>.<ul>
+<li>נשוי ל<strong>מרים לבית דהן</strong> (1939, מכנאס) — <a href="../index.html#research-miriam-benharoush">המחקר על מרים</a>.</li>
+</ul>
+</li>
+</ul>
+<div class="note"><p>יקוט הוא גם שם אמה של מרים (יקוט דהן). אלו שתי נשים שונות — חמות וכלה בעלות אותו שם פרטי, שם מרוקאי נפוץ.</p></div>
+<span id="s7" class="legacy-anchor"></span><h2 id="7-פעולות-פתוחות">7. פעולות פתוחות</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">פעולה</th>
+<th scope="col">מה זה ישנה</th>
+<th scope="col">מי</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>מגדים / "מרדושי"</strong> — לשאול במשפחה</td>
+<td>מכריע את המועמד היחיד הפתוח. אם כן: לבקש מרשות האוכלוסין את תיק שינוי השם (בן משפחה מדרגה ראשונה) — התיק כולל את מספר הזהות ואת פרטי הלידה</td>
+<td>משפחה</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>עיר הלידה במרוקו</strong></td>
+<td>בלעדיה אין דרך לבחור את פנקס האליאנס הנכון</td>
+<td>משפחה</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>לבדו או עם ההורים?</strong></td>
+<td>אם לבדו — עליית הנוער (הארכיון הציוני המרכזי) ורשימות המעפילים דרך קפריסין <bdi dir="ltr">1947–48</bdi>; אם עם הוריו — לחפש את יונה ויקוט ברשימות <bdi dir="ltr">1947–49</bdi> (ב-IGRA אין "יונה בן הרוש" כלל)</td>
+<td>משפחה, ואז ארכיון</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>13 הקבצים שלא נקראו</strong> ברשימות <bdi dir="ltr">1947–49</bdi></td>
+<td>קריאה עמוד-עמוד (כ-3,000 עמודים) — כדאי אחרי שיהיו חודש עלייה או שם אונייה</td>
+<td>ארכיון</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>תעודת הזהות / תעודת פטירה של מרדכי</strong></td>
+<td>שנת לידה מדויקת ושמות ההורים כפי שנרשמו בישראל; קובע גם את כתיב השם לחיפושים הבאים</td>
+<td>משפחה</td>
+</tr>
+</tbody>
+</table></div>
+<span id="s8" class="legacy-anchor"></span><h2 id="8-סיכום-המקורות">8. סיכום המקורות</h2>
+<p>הרשימה המלאה ב<a href="#index">אינדקס המקורות</a>. ערך <a href="#src-1">1</a> הוא המועמד הפתוח; ערכים <a href="#src-2">2</a>, <a href="#src-3">3</a>, <a href="#src-6">6</a> ו-<a href="#src-8">8</a> — המועמדים שנשללו; ערכים <a href="#src-5">5</a> ו-<a href="#src-9">9</a> — הסריקות השליליות; ערך <a href="#src-7">7</a> — מקור העזר על מגדים.</p>
+<span id="s9" class="legacy-anchor"></span><h2 id="9-שיטה-ומגבלות">9. שיטה ומגבלות</h2>
+<h3 id="9-1-בסיס-הראיות"><span id="s9-1" class="legacy-anchor"></span>9.1 בסיס הראיות</h3>
+<p>ילקוט הפרסומים (מקור ראשוני מודפס, דרך סריקת IGRA); רשימות העולים של ארכיון המדינה (מקור ראשוני שנקרא דרך OCR רועש); אינדקסים של IGRA (מקור עזר); מידע משפחתי (<a href="#s2">פרק 2</a>).</p>
+<h3 id="9-2-סולם-הוודאות"><span id="s9-2" class="legacy-anchor"></span>9.2 סולם הוודאות</h3>
+<p><span class="rank v1">מאומת</span> — נקרא ישירות מהמסמך; <span class="rank v2">כמעט ודאי</span> — מסמכים מתכנסים; <span class="rank v3">ככל הנראה</span> — פרשנות סבירה; <span class="rank v4">טעון אימות</span> — לא נבדק או לא מוכרע. הרישום במגדים "מאומת" כמסמך; הזיהוי שלו כמרדכי — "טעון אימות".</p>
+<h3 id="9-3-מוסכמות-הכתיב"><span id="s9-3" class="legacy-anchor"></span>9.3 מוסכמות הכתיב</h3>
+<p>בן הרוש · בנהרוש · בן-הרוש · בנערוש · בנארוש · הרוש — כולם אותו שם בכתיבים שונים; <bdi dir="ltr">Benharoch / Benharroch / Benarroch</bdi> בצרפתית של הפנקסים. "מרדושי" — כינוי חיבה של מרדכי.</p>
+<h3 id="9-4-ממצאים-שליליים"><span id="s9-4" class="legacy-anchor"></span>9.4 ממצאים שליליים</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">שאלה</th>
+<th scope="col">מקור וכיסוי מדויק</th>
+<th scope="col">תוצאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N-1</td>
+<td>"בן הרוש מרדכי" (~1931, יונה/יקוט) ברשימות העולים <bdi dir="ltr">1947–1949</bdi></td>
+<td>ארכיון המדינה/Pinpoint, 29 קבצים; נקראו עמודי "הרוש/ארוש/בנארוש" ב-16 קבצים (S-104-607/612/613/614; גל-15492/1; 15492/2 חלק א; 15492/5 חלקים א–ב; 15493/1, 15493/2 חלק א, 15493/3–8; 15494/1, /2, /5, /6, /7); 13 קבצים לא נקראו (15492/2 חלק ב, 15492/3, 15492/4, 15492/5 חלק ג, 15493/2 חלק ב, 15494/3, /4, /8 ועוד)<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a></td>
+<td>אין בלוק תואם</td>
+<td><span class="rank v3">ככל הנראה</span> — סריקה חלקית</td>
+</tr>
+<tr>
+<td>N-2</td>
+<td>Mardochée Ben Haroch (~1931) בפנקסי אליאנס מרוקו</td>
+<td>IGRA: אשכול Benharoch/Benarroch (455 רשומות; 1940, 1941, 1943, 1944, 1946 שנה-שנה + Mardochée בכל השנים) ואשכול Haroch/Harroch (<bdi dir="ltr">1937–1946</bdi> שנה-שנה)<a href="#src-9" class="cit" title="אל ערך המקור">[9]</a></td>
+<td>אין Mardochée יליד <bdi dir="ltr">1929–1933</bdi>; 13 נערים ילידי <bdi dir="ltr">1929–1933</bdi> בשמות אחרים (שמות הורים לא נבדקו)</td>
+<td><span class="rank v3">ככל הנראה</span> — חלקי</td>
+</tr>
+<tr>
+<td>N-3</td>
+<td>"יונה בן הרוש" ב-IGRA</td>
+<td>כל המאגרים, עברית ולטינית<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a></td>
+<td>אפס</td>
+<td><span class="rank v3">ככל הנראה</span></td>
+</tr>
+<tr>
+<td>N-4</td>
+<td>מודעת אבל 2010</td>
+<td>JPress, כל העיתונים, <bdi dir="ltr">2009–2011</bdi></td>
+<td>אפס</td>
+<td><span class="rank v3">ככל הנראה</span></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="9-5-חסמים"><span id="s9-5" class="legacy-anchor"></span>9.5 חסמים</h3>
+<p>תיק שינוי השם ברשות האוכלוסין ניתן לבקשה רק על ידי בן משפחה מדרגה ראשונה. ב-13 מקובצי רשימות העולים <bdi dir="ltr">1947–49</bdi> כלי האיתור לא עבד, והם דורשים קריאה עמוד-עמוד.</p>
+<h3 id="9-6-מה-הדף-אינו-עושה"><span id="s9-6" class="legacy-anchor"></span>9.6 מה הדף אינו עושה</h3>
+<p>אינו מתעד את מקום הקבורה; אינו מסתמך על עצים משפחתיים מקוונים; אינו מכריע על סמך שם בלבד.</p></section><hr><section id="tree"><h2>עץ המשפחה</h2><div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="-10 0 790 270" width="790" height="270" font-family="'David Libre','Frank Ruhl Libre',Georgia,serif">
+ <title>עץ המשפחה — יונה ויקוט בן הרוש, בנם מרדכי, ואשתו מרים לבית דהן</title>
+ <g fill="none" stroke="#cbc1b6" stroke-width="1.5">
+  <path d="M385 62 V150"/>
+  <path d="M350 62 H420" stroke-dasharray="4 3" stroke="#a89a8e"/>
+  <path d="M475 195 H545" stroke-dasharray="4 3" stroke="#a89a8e"/>
+ </g>
+ <g fill="#ffffff" stroke="#cbc1b6" stroke-width="1.2">
+  <rect x="180" y="30" width="170" height="62" rx="4"/>
+  <rect x="420" y="30" width="170" height="62" rx="4"/>
+  <rect x="290" y="150" width="185" height="80" rx="4" stroke="#8a4a2a" stroke-width="2"/>
+  <rect x="545" y="160" width="185" height="62" rx="4"/>
+ </g>
+ <g fill="#2a2320" font-size="17" text-anchor="middle">
+  <text x="265" y="55">יונה בן הרוש</text>
+  <text x="505" y="55">יקוט בן הרוש</text>
+  <text x="382" y="176">מרדכי בן הרוש</text>
+  <text x="637" y="185">מרים לבית דהן</text>
+ </g>
+ <g fill="#6b5f57" font-size="12" text-anchor="middle">
+  <text x="265" y="78">אביו (משפחה) · טעון אימות</text>
+  <text x="505" y="78">אמו (משפחה) · טעון אימות</text>
+  <text x="382" y="195">1931 עד 2010 (משפחה) · עלה 1947/48</text>
+  <text x="382" y="213">"מרדושי בנערוש", מגדים 1954? — טעון אימות</text>
+  <text x="637" y="206">אשתו · 1939, מכנאס · עלתה 1956</text>
+ </g>
+</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלת העץ</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val">100%</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button></div><div class="legend"><span><i class="sw focus"></i> נושא הדף</span><span><i class="sw"></i> בן משפחה</span><span><i class="sw marr"></i> נישואין</span></div><p class="tree-foot">כל התאריכים — לפי המשפחה; טרם תועדו במסמך. הרישום במגדים הוא מועמד פתוח.</p><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="gallery"><h2>מסמכי מפתח</h2><p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. לחיצה פותחת את הסריקה המלאה.</p><div class="gallery"><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_yalkut_1954_row_440_88dd9e.jpg" alt="ילקוט הפרסומים 407 — בנערוש מרדושי ← בן הרוש מרדכי, מגדים 1954" loading="lazy" decoding="async" width="440" height="17"><span>ילקוט הפרסומים 407 — בנערוש מרדושי ← בן הרוש מרדכי, מגדים 1954</span></a><a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_yalkut_1954_header_440_1ce059.jpg" alt="כותרת הרשימה — הודעה בדבר שינויי שם" loading="lazy" decoding="async" width="440" height="47"><span>כותרת הרשימה — הודעה בדבר שינויי שם</span></a><a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener"><img src="docs/thumbs/1949-03_list_p45_440_20577d.jpg" alt="רשימת העולים 24.3.1949 — משפחת בן הרוש שנשללה" loading="lazy" decoding="async" width="440" height="698"><span>רשימת העולים 24.3.1949 — משפחת בן הרוש שנשללה</span></a></div></section><hr><section id="people"><h2>אינדקס האנשים</h2><p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p><div class="people"><div class="person"><b><a href="#s1">מרדכי בן הרוש</a></b><span class="d"><bdi dir="ltr">1931 – 2010</bdi></span><span class="r">נושא הדף; בן יונה ויקוט, עלה 1947/48; המועמד הפתוח — מגדים 1954</span><span hidden><bdi dir="ltr">Mordechai Mordekhai Mardochée Ben Harush Benharoush Benharoch</bdi> בנהרוש בן-הרוש בנערוש בנארוש הרוש מרדושי מגדים Megadim</span></div><div class="person"><b><a href="#s6">יונה בן הרוש</a></b><span class="r">אביו (משפחה) — טרם תועד</span><span hidden>Yona Jonas Ben Harush</span></div><div class="person"><b><a href="#s6">יקוט בן הרוש</a></b><span class="r">אמו (משפחה) — טרם תועד</span><span hidden>Yakut Yacot Yacout יאקוט Ben Harush</span></div><div class="person"><b><a href="#s2">מרים בן הרוש לבית דהן</a></b><span class="d">נ׳ 1939, מכנאס</span><span class="r">אשתו — נושאת המחקר האחר בארכיון הזה</span><span hidden>Miriam Mary Marie Dahan דהן</span></div></div></section><hr><section id="index"><h2>אינדקס המקורות</h2><h3>רשימת מקורות</h3>
+<p>לכל ערך: מהות המקור ומעמדו, ההפניה החיצונית למסמך המקורי, העותק המקומי השמור בתיקיית המחקר, ומה בדיוק הוא מוכיח. "עותק מקומי" פירושו עותק של <strong>המסמך עצמו</strong>. כל המקורות נצפו בספטמבר 2026.</p>
+<h2 id="מקורות-ראשוניים">מקורות ראשוניים</h2>
+<h3 id="1-ילקוט-הפרסומים-407-ח'-בניסן-תשט-ו-31-3-1955-עמ'-647-הודעה-"><span id="src-1" class="legacy-anchor"></span>1. ילקוט הפרסומים 407, ח' בניסן תשט"ו (31.3.1955), עמ' 647 — הודעה בדבר שינויי שם, רשימה 10, מחוז חיפה — נפת חדרה <em>(המועמד הפתוח)</em></h3>
+<ul>
+<li><strong>מהות:</strong> הרשומות הרשמיות של מדינת ישראל; העמוד סרוק בספריית המשפטים ע"ש דוד י. לייט, אוניברסיטת תל אביב, ואונדקס ב-IGRA (שינויי שמות לאחר 1948, כרך 13, גיליון 407, רשימה 10).</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ4LTY4LW5jLTIyMTYz" target="_blank" rel="noopener">IGRA-1948-68-nc-22163<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/1948_68_nc/1955_nc_13_407_1.jpg" target="_blank" rel="noopener">סריקת העמוד בשרת IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/yalkut_407_p647.jpg" target="_blank" rel="noopener">העמוד המלא</a> · <a href="docs/ev_yalkut_1954_row.jpg" target="_blank" rel="noopener">חיתוך השורה</a> · <a href="docs/ev_yalkut_1954_header.jpg" target="_blank" rel="noopener">כותרת הרשימה</a> · <a href="docs/ev_yalkut_1954_footer.jpg" target="_blank" rel="noopener">תחתית העמוד</a></li>
+<li><strong>מה הוא מוכיח:</strong> "בנערוש מרדושי" ממגדים קיבל את השם "בן הרוש מרדכי" ב-12.12.1954 — מאומת. שזה מרדכי בעלה של מרים — טעון אימות.</li>
+</ul>
+<h3 id="2-ארכיון-המדינה-רשימת-עולים-אפריל-1949-גל-15493-6-מסמך-192-ש"><span id="src-2" class="legacy-anchor"></span>2. ארכיון המדינה, רשימת עולים אפריל 1949, גל-15493/6, מסמך 192, שורה 54 — "מרדכי בנארוש" <em>(נשלל)</em></h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ5LUltbWlnQXByLTE5Njcz" target="_blank" rel="noopener">IGRA-1949-ImmigApr-19673<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> מרדכי בנארוש יליד 1910 — אדם אחר.</li>
+<li><strong>הערה:</strong> אין עותק מקומי — רשומת אינדקס; הסריקה ב-IGRA לא נשמרה כי הרשומה נשללה.</li>
+</ul>
+<h3 id="3-ארכיון-יד-יערי-רשימות-שמיות-של-עולים-קיבוץ-רשפים-1949-עמ'-"><span id="src-3" class="legacy-anchor"></span>3. ארכיון יד יערי, רשימות שמיות של עולים — קיבוץ רשפים 1949, עמ' 12, שורה 2 — "מרדכי בן-ארוש" <em>(ככל הנראה נשלל)</em></h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1JbW1pZ3JhbnRzLUNvbW11bmFsLVNldHRsZW1lbnRzLTI4Mg==" target="_blank" rel="noopener"><bdi dir="ltr">IGRA-Immigrants-Communal-Settlements-282</bdi><span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> מרדכי בן-ארוש יליד 1927 נקלט ברשפים (השומר הצעיר) ב-1949. ארבע שנים מ-1931; אין קשר ידוע לקיבוץ.</li>
+<li><strong>הערה:</strong> אין עותק מקומי — רשומת אינדקס.</li>
+</ul>
+<h3 id="4-מסירות-משפחתיות-ספטמבר-2026-מקור-משפחתי-ללא-מסמך"><span id="src-4" class="legacy-anchor"></span>4. מסירות משפחתיות (ספטמבר 2026) <em>(מקור משפחתי — ללא מסמך)</em></h3>
+<ul>
+<li><strong>מהות:</strong> שנת הלידה 1931, ההורים יונה ויקוט, העלייה 1947/48, הפטירה 2010 והקבורה בירקון — נמסרו בעל-פה. המשפחה אינה בטוחה ששנת הלידה זהה לרשום בתעודת הזהות.</li>
+<li><strong>מה הוא מוכיח:</strong> נקודת המוצא (<a href="#s2">פרק 2</a>) — זיכרון, לא רשומה.</li>
+</ul>
+<h3 id="5-ארכיון-המדינה-רשימות-עולים-1947-1949-S-104-607-614-גל-1549"><span id="src-5" class="legacy-anchor"></span>5. ארכיון המדינה — רשימות עולים <bdi dir="ltr">1947–1949</bdi> (S‑104‑607…614, גל‑15492/1–5, גל‑15493/1–8, גל‑15494/1–8), אוסף Google Pinpoint</h3>
+<ul>
+<li><strong>מהות:</strong> 29 קבצים; נקראו דרך שכבת ה-OCR של Pinpoint. כולל את "בן ארוש מכלוף" (אוקטובר 1949, גל-15494/5, עמ' 20) ואת משפחת הרוש (יוני 1949, גל-15493/8, עמ' <bdi dir="ltr">150–151</bdi>) שנשללו.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://journaliststudio.google.com/pinpoint/search?collection=585158a3cc8e02af&amp;q=%D7%91%D7%9F%20%D7%94%D7%A8%D7%95%D7%A9%20%D7%9E%D7%A8%D7%93%D7%9B%D7%99" target="_blank" rel="noopener">האוסף ב-Pinpoint — חיפוש "בן הרוש מרדכי"<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> ממצא שלילי חלקי — <a href="#s5-1">סעיף 5.1</a>, <a href="#s9-4">N-1</a>.</li>
+<li><strong>הערה:</strong> אין עותק מקומי לרשומות שנשללו על פי OCR בלבד.</li>
+</ul>
+<h3 id="6-ארכיון-המדינה-רשימת-עולים-מרץ-1949-חלק-ב-גל-15493-3-עמ'-45"><span id="src-6" class="legacy-anchor"></span>6. ארכיון המדינה, רשימת עולים מרץ 1949 חלק ב, גל-15493/3, עמ' 45 — רשימה מיום 24.3.1949 <em>(נשלל)</em></h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://journaliststudio.google.com/pinpoint/document-view?collection=585158a3cc8e02af&amp;docid=92c46cf210433047_585158a3cc8e02af" target="_blank" rel="noopener">המסמך ב-Pinpoint<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/1949-03_list_p45.png" target="_blank" rel="noopener">העמוד (סריקה ברוחב 800)</a></li>
+<li><strong>מה הוא מוכיח:</strong> משפחת בן הרוש (שורות <bdi dir="ltr">199–202</bdi>) ללא מרדכי; "יקוט" בשורה 198 שייכת למשפחת בן שמעון.</li>
+</ul>
+<h2 id="מקורות-עזר">מקורות עזר</h2>
+<h3 id="7-אתר-מושב-מגדים-מקור-עזר-מקוון-משני"><span id="src-7" class="legacy-anchor"></span>7. אתר מושב מגדים <em>(מקור עזר מקוון — משני)</em></h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://www.homee.co.il/%D7%9E%D7%92%D7%93%D7%99%D7%9D/" target="_blank" rel="noopener">homee.co.il — מגדים<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> "מגדים הוקם בשנת 1949 על-ידי קבוצת עולים מצפון אפריקה"; המושב סמוך לעתלית. מקור משני; אין לו עותק מקומי.</li>
+</ul>
+<h3 id="8-IGRA-חיפוש-Harush-Mordekhai-ו-בן-הרוש-יונה-מקור-עזר-מקוון"><span id="src-8" class="legacy-anchor"></span>8. IGRA — חיפוש "Harush" + "Mordekhai" ו-"בן הרוש" + "יונה" <em>(מקור עזר מקוון)</em></h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> 13 רשומות בשם מרדכי הרוש/חרוש/ארוש (נוטרים 1936 ו-1947, שבויים 1948, שאלון עולה 1950 יליד קהיר, צפת 1839 ועוד) — אף אחת עם 1931 או יונה/יקוט; אין "יונה בן הרוש". ממצא שלילי.</li>
+</ul>
+<h3 id="9-IGRA-תלמידים-1917-1964-אליאנס-מרוקו-אשכולות-Benharoch-Bena"><span id="src-9" class="legacy-anchor"></span>9. IGRA — "תלמידים <bdi dir="ltr">1917–1964</bdi> אליאנס מרוקו", אשכולות Benharoch/Benarroch ו-Haroch/Harroch, <bdi dir="ltr">1937–1946</bdi> <em>(מקור עזר מקוון)</em></h3>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php" target="_blank" rel="noopener">מסד הנתונים של IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>מה הוא מוכיח:</strong> ממצא שלילי חלקי — <a href="#s5-2">סעיף 5.2</a>, <a href="#s9-4">N-2</a>.</li>
+</ul></section><hr><section id="changelog"><h2>יומן המהדורות</h2>
+<h2 id="מהדורה-1-11-09-2026">מהדורה 1 · 11.09.2026</h2>
+<ul>
+<li>דף ראשון. נתוני המשפחה: יליד 1931, בן יונה ויקוט, עלה 1947/48, נפטר 2010. נסרקו IGRA (שינויי שמות, עולים, קבורות, אליאנס מרוקו), רשימות העולים <bdi dir="ltr">1947–1949</bdi> (חלקית) ו-JPress.</li>
+<li>מועמד פתוח: "בנערוש מרדושי → בן הרוש מרדכי", מגדים, 12.12.1954 (ילקוט הפרסומים 407 עמ' 647). נשללו: בנארוש 1910, בן ארוש מכלוף 1931, משפחת בן הרוש 24.3.1949, משפחת הרוש יוני 1949; רשפים 1927 ככל הנראה נשלל.</li>
+</ul>
+<h2 id="מהדורה-2-11-09-2026">מהדורה 2 · 11.09.2026</h2>
+<ul>
+<li>הסבה לשלד המשותף של הארכיון, המנוע genealogy_site: <bdi dir="ltr">report.md, sources-index.md, tree.html</bdi>, פרק שיטה ומגבלות. נוספה ראיה 4 — עמוד רשימת העולים מ-24.3.1949 עם משפחת בן הרוש שנשללה. הדף: מרדכי-בן-הרוש.html.</li>
+</ul></section>
+</main>
+<footer>מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.</footer>
+<script>
+(function(){
+  var IDX = [{"t": "1. תמצית", "h": "#1-תמצית", "k": "פרק"}, {"t": "2. מה ידוע מהמשפחה", "h": "#2-מה-ידוע-מהמשפחה", "k": "פרק"}, {"t": "3. המועמד הפתוח — \"בנערוש מרדושי\", מגדים, 1954", "h": "#3-המועמד-הפתוח-בנערוש-מרדושי-מגדים-1954", "k": "פרק"}, {"t": "4. מועמדים שנשללו", "h": "#4-מועמדים-שנשללו", "k": "פרק"}, {"t": "5. מה נסרק ולא נמצא", "h": "#5-מה-נסרק-ולא-נמצא", "k": "פרק"}, {"t": "6. עץ המשפחה", "h": "#6-עץ-המשפחה", "k": "פרק"}, {"t": "7. פעולות פתוחות", "h": "#7-פעולות-פתוחות", "k": "פרק"}, {"t": "8. סיכום המקורות", "h": "#8-סיכום-המקורות", "k": "פרק"}, {"t": "9. שיטה ומגבלות", "h": "#9-שיטה-ומגבלות", "k": "פרק"}, {"t": "מרדכי בן הרוש — נושא הדף; בן יונה ויקוט, עלה 1947/48; המועמד הפתוח — מגדים 1954", "h": "#s1", "k": "אדם", "x": "Mordechai Mordekhai Mardochée Ben Harush Benharoush Benharoch בנהרוש בן-הרוש בנערוש בנארוש הרוש מרדושי מגדים Megadim 1931 – 2010"}, {"t": "יונה בן הרוש — אביו (משפחה) — טרם תועד", "h": "#s6", "k": "אדם", "x": "Yona Jonas Ben Harush"}, {"t": "יקוט בן הרוש — אמו (משפחה) — טרם תועד", "h": "#s6", "k": "אדם", "x": "Yakut Yacot Yacout יאקוט Ben Harush"}, {"t": "מרים בן הרוש לבית דהן — אשתו — נושאת המחקר האחר בארכיון הזה", "h": "#s2", "k": "אדם", "x": "Miriam Mary Marie Dahan דהן נ׳ 1939, מכנאס"}, {"t": "מושב מגדים", "h": "#s3", "k": "מקום", "x": "Megadim מגדים עתלית Atlit"}, {"t": "ילקוט הפרסומים 407 (1955)", "h": "#s3-1", "k": "מקור", "x": "ילקוט הפרסומים שינוי שם 1954 1955"}, {"t": "רשימות העולים 1947–1949", "h": "#s5-1", "k": "מקור", "x": "רשימת עולים ארכיון המדינה Pinpoint גל-15492 גל-15493 גל-15494 קפריסין"}, {"t": "פנקסי אליאנס מרוקו", "h": "#s5-2", "k": "מקור", "x": "Alliance AIU Benharoch Benarroch Harroch"}, {"t": "ממצאים שליליים", "h": "#s9-4", "k": "נושא", "x": "ממצא שלילי נשלל"}];
+  var q = document.getElementById('q'), res = document.getElementById('qres');
+  function norm(s){ return (s||'').replace(/["'ְ-ׇ]/g,'').toLowerCase(); }
+  function clear(){ res.textContent=''; res.hidden=true; }
+  function run(){
+    var v = norm(q.value.trim());
+    res.textContent = '';
+    if (v.length < 2){ clear(); return; }
+    var out = [], i, it, hay;
+    for (i=0;i<IDX.length && out.length<12;i++){
+      it = IDX[i]; hay = norm(it.t + ' ' + (it.x||''));
+      if (hay.indexOf(v) !== -1) out.push(it);
+    }
+    if (out.length){
+      var head = document.createElement('p'); head.className='qcount';
+      head.textContent = out.length === 1 ? 'תוצאה אחת'
+                       : (out.length === 12 ? '12 התוצאות הראשונות' : out.length + ' תוצאות');
+      res.appendChild(head);
+      out.forEach(function(o){
+        var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
+        var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        a.appendChild(k); res.appendChild(a);
+      });
+    } else {
+      var p = document.createElement('p'); p.className='nores';
+      p.textContent='לא נמצאו תוצאות בכותרות ובאינדקס האנשים. לחיפוש בגוף הטקסט: Ctrl+F';
+      res.appendChild(p);
+    }
+    res.hidden = false;
+  }
+  function jump(h){
+    // re-applying the hash after the list closes keeps the heading where the
+    // browser put it, whatever else moved
+    location.hash=''; location.hash=h;
+  }
+  if (q){
+    q.hidden = false; clear();
+    q.addEventListener('input', run);
+    q.addEventListener('keydown', function(e){
+      if (e.key==='Escape'){ q.value=''; clear(); return; }
+      if (e.key==='ArrowDown'){ var a=res.querySelector('a'); if(a){ e.preventDefault(); a.focus(); } }
+      if (e.key==='Enter'){ var f=res.querySelector('a'); if(f){ e.preventDefault(); f.click(); } }
+    });
+    res.addEventListener('keydown', function(e){
+      var as = [].slice.call(res.querySelectorAll('a')), i = as.indexOf(document.activeElement);
+      if (e.key==='ArrowDown' && i > -1 && as[i+1]){ e.preventDefault(); as[i+1].focus(); }
+      if (e.key==='ArrowUp'){ e.preventDefault(); (i > 0 ? as[i-1] : q).focus(); }
+      if (e.key==='Escape'){ q.value=''; clear(); q.focus(); }
+    });
+    res.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a') : null;
+      var h = a ? a.getAttribute('href') : '';
+      setTimeout(function(){ clear(); q.value=''; offset(); if (h) jump(h); }, 60);
+    });
+  }
+  var nav = document.querySelector('.nav');
+  function offset(){
+    if (!nav) return;
+    var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
+    document.documentElement.style.setProperty('--anchor-off', h + 'px');
+  }
+  var det = document.querySelector('.chapters-wrap');
+  // on a phone the open chapter strip costs a quarter of the viewport
+  if (det && matchMedia('(max-width:40rem)').matches) det.removeAttribute('open');
+  offset(); addEventListener('resize', offset);
+  if (det) det.addEventListener('toggle', offset);
+  var top = document.querySelector('.top');
+  function topvis(){ var on = scrollY > 900;
+    top.classList.toggle('show', on); top.setAttribute('tabindex', on ? '0' : '-1'); }
+  if (top){ top.setAttribute('tabindex','-1'); addEventListener('scroll', topvis, {passive:true}); }
+  // a lazy image that never entered the viewport prints as an empty frame,
+  // and a fetch started inside beforeprint is not awaited — so the whole set
+  // is promoted once the page has settled, and again as a backstop
+  // A lazy image that never entered the viewport prints as an empty frame. But
+  // promoting all of them on load would download the whole gallery for a reader
+  // who never scrolls. So: promote once the reader has actually started reading,
+  // and again at print time as a backstop.
+  function eager(){
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),
+                    function(i){ i.loading='eager'; });
+  }
+  var promoted = false;
+  function promoteOnce(){
+    if (promoted) return;
+    promoted = true;
+    var idle = window.requestIdleCallback || function(f){ setTimeout(f, 600); };
+    idle(eager);
+  }
+  addEventListener('scroll', promoteOnce, {passive:true, once:true});
+  addEventListener('beforeprint', eager);
+  // only a table that actually overflows is a scroll region worth a tab stop
+  function scrollables(){
+    [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
+      var over = w.scrollWidth - w.clientWidth > 1;
+      if (over){ w.tabIndex = 0; w.setAttribute('role','region');
+                 w.setAttribute('aria-label','טבלה — ניתנת לגלילה אופקית'); }
+      else { w.removeAttribute('tabindex'); w.removeAttribute('role');
+             w.removeAttribute('aria-label'); }
+    });
+  }
+  scrollables(); addEventListener('resize', scrollables);
+  // the tree is laid out at fixed coordinates; zooming the frame is how a reader
+  // gets its labels to a readable size without the boxes colliding
+  // BASE 2 is the diagram's native size; the frame opens at three quarters of
+  // it, which shows the whole shape; the reader zooms in to read a branch
+  var BASE = 2, zoom = 1.5, zval = document.getElementById('tree-zoom-val');
+  if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+  [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
+    btn.addEventListener('click', function(){
+      var step = parseInt(btn.getAttribute('data-tree-zoom'), 10) * 0.25;
+      zoom = Math.min(3, Math.max(1, Math.round((zoom + step) * 100) / 100));
+      document.documentElement.style.setProperty('--tree-zoom', zoom);
+      if (zval) zval.textContent = Math.round(zoom / BASE * 100) + '%';
+    });
+  });
+  var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = targets.indexOf(e.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('on'); });
+        links[i].classList.add('on');
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>
