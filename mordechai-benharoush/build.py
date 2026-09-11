@@ -23,21 +23,15 @@ def hid(m):
 report_html = re.sub(r'<h([23])>(.*?)</h\1>', hid, report_html)
 
 EV = [
- ("ev_marie_1949.jpg", "ראיה 1 · מרי דהן, פנקס 1949, מספר סידורי 1617 (שורה 7 בעמוד)",
-  "«Dahan Marie · 10 ans · Chalom Yacot · M. · A.M. Tail. ind. · 54» — שם; 10 ans = בת עשר; הורים; M. = מרוקאית; A.M. Tail. ind. = ככל הנראה \"Ancien Mellah, Tailleur indigène\" (המלאח הישן, חייט מקומי — פענוח); 54 = ככל הנראה שנת היציאה 1954. השורות שמעל ומתחת נשארו לעיגון.",
-  "https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_40.jpg", "docs/AIU_MA_240.1_40.jpg"),
- ("ev_rebeca_1950.jpg", "ראיה 2 · רבקה (Rébéca) דהן, פנקס 1950, מספר סידורי 1878 (שורה 8 בעמוד)",
-  "«Dahan Rébéca · 7 ans · Chalom ~ Yacot · … oct 55 · a quitté» — 7 ans = בת שבע; oct 55 = אוקטובר 1955; a quitté = עזבה (את בית הספר). תא תאריך הכניסה בשורה ריק — ראו ראיה 4.",
-  "https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_51.jpg", "docs/AIU_MA_240.1_51.jpg"),
- ("ev_rachel_1953.jpg", "ראיה 3 · רחל דהן, פנקס 1953, מספר סידורי 3054 (שורה 4 בעמוד)",
-  "«Dahan Rachel · 6 ans · Chalom Yacot · [absente?] · Oct 53» — 6 ans = בת שש; עמודת הלאום מסומנת בסוגר \"כנ\"ל\" מהשורה הראשונה (Marocaine); המילה בעמודת המגורים והמקצוע נקראת כ-absente (נעדרת) ולא פוענחה בוודאות; Oct 53 = אוקטובר 1953 בסימן \"כנ\"ל\".",
-  "https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.2_00028.jpg", "docs/AIU_MA_240.2_00028.jpg"),
- ("ev_header_1950.jpg", "ראיה 4 · כותרת עמוד 1950 ושורה 1871 — הבסיס להיקש תאריך הכניסה",
-  "בשורה הראשונה בעמוד (מס' 1871, Sebbag Fréha) רשום בעמודת הכניסה \"Février 50\" (פברואר 1950); בשורות שאחריה, ובהן שורת רבקה (1878), התא ריק. מכאן ההיקש שהרישום נעשה בתחילת 1950 — ככל הנראה, לא קריאה.",
-  "https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_51.jpg", "docs/AIU_MA_240.1_51.jpg"),
- ("ev_header_1949.jpg", "ראיה 5 · מפתח העמודות — כותרות הפנקס (1949)",
-  "מימין לשמאל בסריקה (הפנקס בצרפתית, משמאל לימין): מס' סידורי · שם ושם פרטי · תאריך לידה או גיל משוער · שמות ההורים · לאום · מגורי ההורים · תאריך כניסה · תאריך יציאה · סיבת היציאה · הערות.",
-  "https://igra-images.genealogy.org.il/AIU_Morocco/AIU_MA_240.1_40.jpg", "docs/AIU_MA_240.1_40.jpg"),
+ ("ev_yalkut_1954_row.jpg", "ראיה 1 · השורה בילקוט הפרסומים 407, עמ' 647 — רשימה 10, מחוז חיפה, נפת חדרה",
+  "«בנערוש · מרדושי → בן הרוש · מרדכי · מגדים · 12.12.54» — השם הקודם (שם משפחה ושם פרטי), השם החדש, מקום המגורים, תאריך אישור השינוי. עמודת מספר הזהות מושחרת בסריקה.",
+  "https://igra-images.genealogy.org.il/1948_68_nc/1955_nc_13_407_1.jpg", "docs/yalkut_407_p647.jpg"),
+ ("ev_yalkut_1954_header.jpg", "ראיה 2 · כותרת הרשימה — \"הודעה בדבר שינויי שם\"",
+  "\"שינויי שמות האנשים המפורטים להלן נרשמו ביחידות רישום התושבים, האגף למרשם התושבים, משרד הפנים\" · רשימה מס' 10 · מחוז חיפה — נפת חדרה · עמודות: השם הקודם, השם החדש, מקום המגורים, מספר הזהות, תאריך אישור השינוי.",
+  "https://igra-images.genealogy.org.il/1948_68_nc/1955_nc_13_407_1.jpg", "docs/yalkut_407_p647.jpg"),
+ ("ev_yalkut_1954_footer.jpg", "ראיה 3 · כותרת תחתית העמוד",
+  "«ילקוט הפרסומים 407, ח' בניסן תשט\"ו, 31.3.1955» · עמ' 647 — הציטוט הביבליוגרפי של הגיליון.",
+  "https://igra-images.genealogy.org.il/1948_68_nc/1955_nc_13_407_1.jpg", "docs/yalkut_407_p647.jpg"),
 ]
 gallery = "".join(f'''
 <figure class="ev">
@@ -47,7 +41,7 @@ gallery = "".join(f'''
 </figure>''' for f, t, c, ext, loc in EV)
 
 tree = '''
-<svg class="tree" viewBox="-10 0 790 330" role="img" aria-label="עץ משפחה: שלום ויקוט דהן, בנותיהם מרים, רבקה ורחל, ובעלה של מרים מרדכי בן הרוש">
+<svg class="tree" viewBox="-10 0 790 300" role="img" aria-label="עץ משפחה: יונה ויקוט בן הרוש, בנם מרדכי, ואשתו מרים לבית דהן">
  <defs><style>
   .p{fill:var(--card);stroke:var(--line);stroke-width:1.2}
   .p.focus{stroke:var(--accent);stroke-width:2}
@@ -56,34 +50,27 @@ tree = '''
   .e{stroke:var(--line);stroke-width:1.5;fill:none}
   .e.marr{stroke-dasharray:4 3}
  </style></defs>
- <path class="e" d="M265 62 V120 H647 M287 120 V150 M467 120 V150 M647 120 V150"/>
- <path class="e marr" d="M160 200 H205"/>
- <path class="e marr" d="M230 62 H300"/>
- <rect class="p" x="60" y="30" width="170" height="62" rx="4"/>
- <text class="n" x="145" y="55" text-anchor="middle">שלום דהן</text>
- <text class="m" x="145" y="78" text-anchor="middle">חייט? במלאח הישן, מכנאס (פענוח) · ירושלים</text>
- <rect class="p" x="300" y="30" width="170" height="62" rx="4"/>
- <text class="n" x="385" y="55" text-anchor="middle">יקוט דהן</text>
- <text class="m" x="385" y="78" text-anchor="middle">ירושלים</text>
- <rect class="p focus" x="205" y="150" width="165" height="70" rx="4"/>
- <text class="n" x="287" y="176" text-anchor="middle">מרים (מרי) בן הרוש</text>
- <text class="m" x="287" y="195" text-anchor="middle">לבית דהן · נולדה <tspan direction="ltr" unicode-bidi="isolate">1939</tspan> (ת"ז; פנקס 1949)</text>
- <text class="m" x="287" y="211" text-anchor="middle">מכנאס, עלייה 1956, חולון</text>
- <rect class="p" x="385" y="150" width="165" height="70" rx="4"/>
- <text class="n" x="467" y="176" text-anchor="middle">רבקה דהן</text>
- <text class="m" x="467" y="195" text-anchor="middle"><tspan direction="ltr" unicode-bidi="isolate">~1943</tspan> (פנקס 1950)</text>
- <text class="m" x="467" y="211" text-anchor="middle">עזבה את ביה"ס באוקטובר 1955</text>
- <rect class="p" x="565" y="150" width="165" height="70" rx="4"/>
- <text class="n" x="647" y="176" text-anchor="middle">רחל דהן</text>
- <text class="m" x="647" y="195" text-anchor="middle"><tspan direction="ltr" unicode-bidi="isolate">~1947</tspan> (פנקס 1953)</text>
- <rect class="p" x="0" y="170" width="160" height="62" rx="4"/>
- <text class="n" x="80" y="195" text-anchor="middle">מרדכי בן הרוש</text>
- <text class="m" x="80" y="216" text-anchor="middle">בעלה · 1931 – 2010 · בן יונה ויקוט (משפחה)</text>
- <text class="m" x="385" y="300" text-anchor="middle">קו מקווקו — נישואין · מסגרת ירוקה — נושאת המחקר · שנים עם ~ נגזרות מגיל בפנקס</text>
+ <path class="e" d="M385 62 V120 M385 120 V150"/>
+ <path class="e marr" d="M350 62 H420"/>
+ <path class="e marr" d="M475 195 H545"/>
+ <rect class="p" x="180" y="30" width="170" height="62" rx="4"/>
+ <text class="n" x="265" y="55" text-anchor="middle">יונה בן הרוש</text>
+ <text class="m" x="265" y="78" text-anchor="middle">אביו (משפחה) · טעון אימות</text>
+ <rect class="p" x="420" y="30" width="170" height="62" rx="4"/>
+ <text class="n" x="505" y="55" text-anchor="middle">יקוט בן הרוש</text>
+ <text class="m" x="505" y="78" text-anchor="middle">אמו (משפחה) · טעון אימות</text>
+ <rect class="p focus" x="290" y="150" width="185" height="80" rx="4"/>
+ <text class="n" x="382" y="176" text-anchor="middle">מרדכי בן הרוש</text>
+ <text class="m" x="382" y="195" text-anchor="middle"><tspan direction="ltr" unicode-bidi="isolate">1931</tspan> – <tspan direction="ltr" unicode-bidi="isolate">2010</tspan> (משפחה) · עלה 1947/48</text>
+ <text class="m" x="382" y="213" text-anchor="middle">"מרדושי בנערוש", מגדים 1954? — טעון אימות</text>
+ <rect class="p" x="545" y="160" width="185" height="62" rx="4"/>
+ <text class="n" x="637" y="185" text-anchor="middle">מרים לבית דהן</text>
+ <text class="m" x="637" y="206" text-anchor="middle">אשתו · 1939, מכנאס · עלתה 1956</text>
+ <text class="m" x="385" y="275" text-anchor="middle">קו מקווקו — נישואין · מסגרת ירוקה — נושא הדף</text>
 </svg>'''
 
 # adjust: the marriage edge should join Mordechai (right edge x=155,y=211) to Miriam (x=215)
-html = f'''<title>מרים בן הרוש לבית דהן</title>
+html = f'''<title>מרדכי בן הרוש</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Assistant:wght@400;600&display=swap">
 <style>
@@ -129,22 +116,22 @@ footer{{margin-top:3rem;border-top:1px solid var(--line);padding-top:1rem;font-s
 </style>
 <div class="wrap">
 <header class="hero">
- <div class="eyebrow">תיק מחקר משפחתי · מהדורה 5 · 11.09.2026</div>
- <h1>מרים בן הרוש לבית דהן</h1>
- <p class="sub">ממכנאס לחולון: מה מספרים פנקסי אליאנס, רשימות העולים ומאגרי IGRA על מרים, הוריה שלום ויקוט ואחיותיה רבקה ורחל — וכל טענה עם המקור שלה.</p>
+ <div class="eyebrow">תיק מחקר משפחתי · מהדורה 1 · 11.09.2026 · דף נלווה למחקר על <a href="../miriam-benharoush/">מרים בן הרוש</a></div>
+ <h1>מרדכי בן הרוש</h1>
+ <p class="sub">בן יונה ויקוט, יליד מרוקו 1931, עלה ב-1947 או 1948: מה נבדק, מי המועמד היחיד שנשאר פתוח, ומה נשלל — כל טענה עם המקור שלה.</p>
  <div class="strip">
-  <div><b>3</b><span>רשומות פנקס אליאנס עם ההורים Chalom · Yacot</span></div>
-  <div><b dir="ltr">~70</b><span>רשומות "דהן" ממכנאס שנבדקו</span></div>
-  <div><b>19</b><span>קבצי רשימות עולים 1955–1957 שנסרקו</span></div>
-  <div><b>5</b><span>שאלות פתוחות למשפחה ולארכיונים</span></div>
+  <div><b>1</b><span>מועמד פתוח — מגדים 1954</span></div>
+  <div><b>6</b><span>רשומות שנשללו</span></div>
+  <div><b>16/29</b><span>קובצי רשימות עולים 1947–49 שנקראו</span></div>
+  <div><b>5</b><span>שאלות פתוחות</span></div>
  </div>
  <div class="legend">סולם ודאות: <span class="grade g-v">מאומת</span> <span class="grade g-nc">כמעט ודאי</span> <span class="grade g-l">ככל הנראה</span> <span class="grade g-u">טעון אימות</span> <span class="grade g-x">נשלל</span></div>
 </header>
-<nav class="toc" aria-label="ניווט"><a href="#s1">תמצית</a><a href="#s2">נקודת המוצא</a><a href="#s3">מכנאס</a><a href="#s4">הזיהוי</a><a href="#s5">מה לא נמצא</a><a href="#tree">עץ</a><a href="#gallery">ראיות</a><a href="#s7">פעולות</a><a href="#s8">מקורות</a><a href="#changelog">מהדורות</a></nav>
+<nav class="toc" aria-label="ניווט"><a href="#s1">תמצית</a><a href="#s2">נקודת המוצא</a><a href="#s3">המועמד הפתוח</a><a href="#s4">נשללו</a><a href="#s5">מה לא נמצא</a><a href="#tree">עץ</a><a href="#gallery">ראיות</a><a href="#s7">פעולות</a><a href="#s8">מקורות</a><a href="#changelog">מהדורות</a></nav>
 <main>
 {report_html.replace('<h2 id="s6">6. עץ המשפחה</h2>', '<h2 id="s6">6. עץ המשפחה</h2><span id="tree"></span>' + tree)}
 <h2 id="gallery">גלריית ראיות</h2>
-<p>כל חיתוך נלקח מסריקת הפנקס המקורית (CAHJP דרך IGRA), לא מכרטיס תוצאות. לחיצה על התמונה פותחת את העותק המקומי של הדף המלא; הקישור החיצוני מוביל לסריקה בשרת IGRA.</p>
+<p>החיתוכים נלקחו מסריקת עמוד 647 של ילקוט הפרסומים 407 (ספריית המשפטים ע"ש דוד י. לייט, אוניברסיטת תל אביב, דרך IGRA). לחיצה על התמונה פותחת את העותק המקומי של העמוד המלא; הקישור החיצוני מוביל לסריקה בשרת IGRA.</p>
 {gallery}
 <h2 id="changelog">יומן מהדורות</h2>
 {changelog_html.replace('<h1>יומן מהדורות</h1>','').replace('<h2>','<h3>').replace('</h2>','</h3>')}
