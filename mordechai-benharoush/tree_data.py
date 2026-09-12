@@ -17,6 +17,7 @@ nodes = [
     N('juliette',   5, 2, 'ז\'וליט',        ['1943 · "ארצה" 1956']),
     N('salomon',    6, 2, 'סלומון',        ['1945 · "ארצה" 1956']),
     N('esther',     7, 2, 'אסתר',          ['1948 · "ארצה" 1956', 'פנקס אליאנס מכנאס 1953']),
+    N('michael',    8, 2, 'מיכאל מכלוף',    ['צעיר ממרדכי · עלה בנפרד', 'מועד לא ידוע · לפי המשפחה'], dashed=True),
     N('hana',       1, 3, 'חנה (אנה?)',     ['אשתו הראשונה', 'לפי המשפחה'], dashed=True),
     N('miriamd',    2, 3, 'מרים לבית דהן',  ['אשתו · 1939, מכנאס', 'נישאו ת"א 9.1960 · מחקר נפרד']),
     N('mari',       3, 3, 'מרי',           ['1936 · אשתו של יעקב', '"ארצה" 1956']),
@@ -27,7 +28,7 @@ tree = Tree(
     couples=[('mordechai0', 'miriam0'), ('yona', 'yakut')],
     families=[
         (['mordechai0', 'miriam0'], ['yona'], 0),
-        (['yona', 'yakut'], ['nissim', 'miriam1', 'mordechai', 'yaakov', 'gabriel', 'juliette', 'salomon', 'esther'], 0),
+        (['yona', 'yakut'], ['nissim', 'miriam1', 'mordechai', 'yaakov', 'gabriel', 'juliette', 'salomon', 'esther', 'michael'], 0),
         (['hana'], ['yoni'], 0),
     ],
     links=[('mordechai', 'miriamd'), ('mordechai', 'hana'), ('yaakov', 'mari')],
