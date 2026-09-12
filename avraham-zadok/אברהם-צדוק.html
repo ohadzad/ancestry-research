@@ -225,8 +225,8 @@ figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(
 /* zoom 1 == fit to width: the diagram is never wider than the frame unless the
    reader asks for it, on a phone as on a desktop */
 .tree-embed svg {
-  width:calc(100% * var(--tree-zoom, 1.5));
-  min-width:min(100%, calc(75rem * var(--tree-zoom, 1.5)));
+  width:calc(100% * var(--tree-zoom, 1));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1)));
   /* the global svg max-width would clamp the zoom away */
   max-width:none;
   height:auto; display:block; margin-inline:auto;
@@ -2625,7 +2625,7 @@ footer {
   // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
   // so the reader always has a state where the whole shape is on the screen,
   // and every step above it is stated relative to that (×1.5, ×2)
-  var zoom = matchMedia('(max-width:40rem)').matches ? 1 : 1.5;
+  var zoom = 1; // start at fit-to-width everywhere; readers zoom in with +
   var zval = document.getElementById('tree-zoom-val');
   function zshow(){
     document.documentElement.style.setProperty('--tree-zoom', zoom);

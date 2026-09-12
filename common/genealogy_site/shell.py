@@ -254,7 +254,7 @@ _JS = """
   // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
   // so the reader always has a state where the whole shape is on the screen,
   // and every step above it is stated relative to that (×1.5, ×2)
-  var zoom = matchMedia('(max-width:40rem)').matches ? 1 : 1.5;
+  var zoom = 1; // start at fit-to-width everywhere; readers zoom in with +
   var zval = document.getElementById('tree-zoom-val');
   function zshow(){
     document.documentElement.style.setProperty('--tree-zoom', zoom);

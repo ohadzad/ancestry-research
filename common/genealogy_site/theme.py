@@ -222,8 +222,8 @@ figcaption .figlinks {{ display:block; margin-block-start:.3rem; font-family:var
 /* zoom 1 == fit to width: the diagram is never wider than the frame unless the
    reader asks for it, on a phone as on a desktop */
 .tree-embed svg {{
-  width:calc(100% * var(--tree-zoom, 1.5));
-  min-width:min(100%, calc(75rem * var(--tree-zoom, 1.5)));
+  width:calc(100% * var(--tree-zoom, 1));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1)));
   /* the global svg max-width would clamp the zoom away */
   max-width:none;
   height:auto; display:block; margin-inline:auto;
