@@ -145,6 +145,7 @@ def build(cfg, verbose=True):
     swept = site.sweep_thumbs(cfg, out)
     site.mirror(cfg, files)
     problems += qa.local_links_exist(out, cfg.p('site'), 'ב-site/: ', git_check=False)
+    warnings += qa.untracked_link_targets(out, cfg.root)
 
     if verbose:
         print(f'{cfg.slug}: {edition} · {len(out) // 1024} KB · {n_figs} איורים · '

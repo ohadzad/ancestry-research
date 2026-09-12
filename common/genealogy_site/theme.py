@@ -176,6 +176,8 @@ code {{
 .rank.v2 {{ color:#6b5324; background:rgba(107,83,36,.08); }}   /* כמעט ודאי */
 .rank.v3 {{ color:#8a5a00; background:rgba(138,90,0,.08); }}    /* ככל הנראה */
 .rank.v4 {{ color:#8a3d2e; background:rgba(138,61,46,.08); }}   /* טעון אימות */
+.rank.v5 {{ color:#5a5a5a; background:rgba(90,90,90,.10); }}   /* נשלל */
+.rank.v6 {{ color:#7a7a7a; background:rgba(122,122,122,.08); }}   /* בוטל */
 
 /* ---------- tables ---------- */
 .tablewrap:focus-visible, .tree-embed:focus-visible {{ outline:2px solid var(--link); outline-offset:2px; }}

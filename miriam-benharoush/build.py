@@ -54,7 +54,8 @@ GALLERY = (
     (F.thumb(ROOT, 'docs/ev_rebeca_1950.jpg', 440), 'docs/AIU_MA_240.1_51.jpg', 'רבקה דהן — פנקס 1950, מס׳ 1878'),
     (F.thumb(ROOT, 'docs/ev_rachel_1953.jpg', 440), 'docs/AIU_MA_240.2_00028.jpg', 'רחל דהן — פנקס 1953, מס׳ 3054'),
     (F.thumb(ROOT, 'docs/ev_shalom_1956.jpg', 440), 'docs/1956-01-15_yerushalayim_p8.jpg', 'משפחת דהן — רשימת העולים של "ירושלים", 15.1.1956'),
-    (F.thumb(ROOT, 'docs/ev_dahan_1956.jpg', 440), 'docs/1956-01-15_yerushalayim_p8.jpg', 'שלוש משפחות דהן באותו עמוד — מכלוף, שלום, שלומון'),
+    (F.thumb(ROOT, 'docs/ev_dahan_1956.jpg', 440), 'docs/1956-01-15_yerushalayim_p8.jpg', 'שלושת בלוקי האחים באותו עמוד — מכלוף, שלום, שלומון (ת.ע. 91496 — הספרה האחרונה חדה יותר בעמוד המלא)'),
+    (F.thumb(ROOT, 'docs/ev_esther_1636_1949.jpg', 440), 'docs/AIU_MA_240.1_40.jpg', 'אסתר דהן, מס׳ 1636 — אם בשם Yacot, אב Salomon, שניהם נפטרו: משפחה אחרת (N-3א)'),
     (F.thumb(ROOT, 'docs/ev_rachel_maklouf_1949.jpg', 440), 'docs/AIU_MA_240.1_41.jpg', 'רחל דהן, בת מכלוף וסמחה — פנקס 1949, מס׳ 1661 (בת-דודתה של מרים, ככל הנראה)'),
     (F.thumb(ROOT, 'docs/ev_header_1949.jpg', 440), 'docs/AIU_MA_240.1_40.jpg', 'כותרות העמודות של הפנקס — "Nom des parents ou des tuteurs des enfants"'),
 )
@@ -92,8 +93,8 @@ cfg = ProjectConfig(
     spine=(
         SpineFact('1', 'רשומת עלייה, 15.1.1956'),
         SpineFact('3', 'רשומות פנקס אליאנס'),
-        SpineFact('16', 'בני משפחה ברשימת 1956'),
-        SpineFact('8', 'סריקות מקור שמורות'),
+        SpineFact('16+', 'בני משפחה ברשימת 1956'),
+        SpineFact('7', 'סריקות מקור שמורות'),
     ),
     people=PEOPLE,
     gallery=GALLERY,

@@ -80,7 +80,7 @@ def people_section(cfg):
         cards.append(f'<div class="person"><b>{name}</b>{d}{r}{aka}</div>')
     legend = f' {cfg.people_legend}' if cfg.people_legend else ''
     return ('<hr><section id="people"><h2>אינדקס האנשים</h2>'
-            '<p class="note">כל אדם שהדוח מתעד, עם קישור אל הפרק שבו הוא נדון. '
+            '<p class="note">בני המשפחה המרכזיים בדוח, עם קישור אל הפרק שבו כל אחד נדון; העץ מציג את כולם. '
             'שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.'
             f'{legend}</p>'
             f'<div class="people">{"".join(cards)}</div></section>')

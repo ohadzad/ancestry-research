@@ -21,6 +21,7 @@ class Node:
     sub: List[str] = field(default_factory=list)
     dashed: bool = False      # known from family / parents column only
     focus: bool = False       # the page's subject
+    tentative: bool = False   # child link drawn dotted — filiation probable, not verified
 
 
 @dataclass
@@ -66,7 +67,7 @@ class Tree:
             xs = [cx(c) for c in cs] + [pcx]
             paths.append(f'M{pcx:g} {pbot:g} V{busy:g} M{min(xs):g} {busy:g} H{max(xs):g}')
             for c in cs:
-                paths.append(f'M{cx(c):g} {busy:g} V{top(c):g}')
+                (dots if c.tentative else paths).append(f'M{cx(c):g} {busy:g} V{top(c):g}')
 
         out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" font-family="{FONT}">']
         if self.title:

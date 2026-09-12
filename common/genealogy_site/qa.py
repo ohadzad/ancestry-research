@@ -19,15 +19,18 @@ def _local_targets(html):
     return out
 
 
-def _git_tracked(root):
-    """Set of repo-relative paths git knows about under `root` (None when not a git checkout)."""
+def _git_tracked(root, cached_only=False):
+    """Paths (relative to `root`) that git tracks under it — with cached_only=False also
+    untracked-but-not-ignored files. None when `root` is not inside a git checkout."""
     import subprocess
+    args = ['git', 'ls-files', '-z', '--cached'] + ([] if cached_only else ['--others', '--exclude-standard']) + ['.']
     try:
-        out = subprocess.run(['git', 'ls-files', '-z', '--cached', '--others', '--exclude-standard', '.'],
-                             cwd=root, capture_output=True, check=True).stdout
+        out = subprocess.run(args, cwd=root, capture_output=True, check=True).stdout
     except Exception:
         return None
-    return {p.decode('utf-8', 'replace') for p in out.split(b'\0') if p}
+    if not out and cached_only:
+        return None
+    return {os.path.normpath(p.decode('utf-8', 'replace')) for p in out.split(b'\0') if p}
 
 
 def _git_ignored(root, t):
@@ -51,6 +54,18 @@ def local_links_exist(html, root, label='', git_check=True):
         elif git_check and _git_ignored(root, t):
             bad.append(f'{label}קישור לקובץ שמוחרג מ-git (לא יפורסם): {t}')
     return bad
+
+
+def untracked_link_targets(html, root):
+    """Warnings: link targets that exist and are not ignored, but were never `git add`-ed —
+    a build passes, a publish of the page would 404 on them. Empty outside a git checkout."""
+    tracked = _git_tracked(root, cached_only=True)
+    if tracked is None:
+        return []
+    return [f'קישור לקובץ שאינו במעקב git — יש להוסיפו (git add): {t}'
+            for t in sorted(_local_targets(html))
+            if t and not t.startswith('..') and os.path.exists(os.path.join(root, t))
+            and os.path.normpath(t) not in tracked]
 
 
 def anchors_resolve(html):
