@@ -21,7 +21,7 @@ nodes = [
     N('haim',    0, 2, 'חיים דהן',          ['1926 · בן מכלוף', 'רשימת 1956']),
     N('miriamm', 1, 2, 'מרים דהן',          ['1938 · בת מכלוף', 'רשימת 1956']),
     N('rachelm', 2, 2, 'רחל דהן',           ['1941 · רמת הדסה · אליאנס 1949', 'בת מכלוף — ככל הנראה'], tentative=True),
-    N('lorem',   3, 2, 'לורט(?) דהן',       ['1942 · רמת הדסה', 'בת מכלוף — ככל הנראה'], tentative=True),
+    N('laurette',   3, 2, 'לורט(?) דהן',       ['1942 · רמת הדסה', 'בת מכלוף — ככל הנראה'], tentative=True),
     N('masoudi', 4, 2, 'מסעודי דהן',        ['1944 · רמת הדסה', 'בת מכלוף — ככל הנראה'], tentative=True),
     N('geula',   5, 2, 'גאולה דהן',         ['1951 · בת מכלוף', 'רשימת 1956']),
     N('miriam',  6, 2, 'מרים (מרי) בן הרוש', ['לבית דהן · 1939 · מכנאס', 'עלתה 15.1.1956 · חולון'], focus=True),
@@ -36,7 +36,7 @@ tree = Tree(
     families=[
         (['habib', 'miriamd'], ['makhlouf', 'shalom', 'shlomon'], 0),
         (['yitzhak', 'rivkaab'], ['yakut'], -8),
-        (['makhlouf', 'simha'], ['haim', 'miriamm', 'rachelm', 'lorem', 'masoudi', 'geula'], 0),
+        (['makhlouf', 'simha'], ['haim', 'miriamm', 'rachelm', 'laurette', 'masoudi', 'geula'], 0),
         (['shalom', 'yakut'], ['miriam', 'rivka', 'rachel'], 0),
     ],
     links=[('tzipora', 'shalom'), ('miriam', 'mordechai')],

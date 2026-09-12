@@ -43,10 +43,13 @@ python3 -m venv ~/.venvs/ancestry-research && $PY -m pip install markdown pillow
 
 ```bash
 $PY build_portal.py                # עמוד השער
-$PY rachel-zadok/build.py          # הדוח המאוחד + עותק site/
+$PY rachel-zadok/build.py          # כל דוח — הדף המלא + עותק site/
+$PY avraham-zadok/build.py
+$PY miriam-benharoush/build.py
+$PY mordechai-benharoush/build.py
 ```
 
-שני הדוחות נבנים מאותו מנוע, `common/genealogy_site/`, ולפי אותו שלד; ה-`build.py`
+ארבעת הדוחות נבנים מאותו מנוע, `common/genealogy_site/`, ולפי אותו שלד; ה-`build.py`
 שבתיקיית הפרויקט אינו אלא ההצהרה של אותו פרויקט — הגוון, קובצי המקור, האנשים
 והתצלומים. המפרט המלא, ובכללו מתכון בן שמונה שלבים להסבת דוח קיים, נמצא
 ב-[`common/TEMPLATE.md`](common/TEMPLATE.md).
