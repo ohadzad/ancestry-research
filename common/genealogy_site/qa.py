@@ -343,3 +343,35 @@ def run_all(html, root, patterns=()):
     problems += prose_files_exist(html, root)
     problems += privacy(html, patterns)
     return problems
+
+
+_ID_NEAR = re.compile(r'(?:זהות|ת\.?ז\.?|ת"ז)[^\n]{0,40}?\b(\d{7,9})\b|\b(\d{7,9})\b[^\n]{0,40}?(?:זהות|ת\.?ז\.?|ת"ז)')
+_APPROX_YEAR = re.compile(r'~\s?19\d\d')
+
+
+def ledger_privacy(root, published_ids=(), md_glob=('*.md',), warn=None):
+    """Scan every git-tracked markdown file of the project (ledgers included — they are
+    served by GitHub Pages like everything else) for identity numbers that were not
+    explicitly cleared for publication, and for approximate birth years ("~1954") of
+    living people. Returns problem strings."""
+    import glob as _g
+    tracked = _git_tracked(root)
+    bad = []
+    for pat in md_glob:
+        for f in sorted(set(_g.glob(os.path.join(root, pat)))):
+            rel = os.path.normpath(os.path.relpath(f, root))
+            if tracked is not None and rel not in tracked:
+                continue
+            if os.path.basename(f).startswith('audit-'):
+                continue
+            txt = open(f, encoding='utf-8', errors='replace').read()
+            for m in _ID_NEAR.finditer(txt):
+                n = m.group(1) or m.group(2)
+                if n not in published_ids:
+                    bad.append(f'{rel}: מספר זהות שלא אושר לפרסום ({n[:2]}…{n[-2:]})')
+
+            if warn is not None:
+                for m in _APPROX_YEAR.finditer(txt):
+                    if int(m.group(0)[-4:]) >= 1940:
+                        warn.append(f'{rel}: שנת לידה משוערת "{m.group(0)}" — לוודא שאינה של אדם חי שנמסרה בעל-פה (9.6)')
+    return sorted(set(bad))

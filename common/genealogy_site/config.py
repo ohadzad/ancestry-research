@@ -101,6 +101,7 @@ class ProjectConfig:
     privacy_file_patterns: tuple = ()
     # substrings that must not appear anywhere in the finished page
     privacy_text_patterns: tuple = ()
+    published_ids: tuple = ()          # identity numbers cleared for publication (appear in an official gazette)
     qa_strict: bool = True
 
     def p(self, *parts):

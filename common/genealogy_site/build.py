@@ -146,6 +146,7 @@ def build(cfg, verbose=True):
     site.mirror(cfg, files)
     problems += qa.local_links_exist(out, cfg.p('site'), 'ב-site/: ', git_check=False)
     warnings += qa.untracked_link_targets(out, cfg.root)
+    problems += qa.ledger_privacy(cfg.root, getattr(cfg, 'published_ids', ()), warn=warnings)
 
     if verbose:
         print(f'{cfg.slug}: {edition} · {len(out) // 1024} KB · {n_figs} איורים · '
