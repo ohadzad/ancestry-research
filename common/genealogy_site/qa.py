@@ -19,13 +19,37 @@ def _local_targets(html):
     return out
 
 
-def local_links_exist(html, root, label=''):
+def _git_tracked(root):
+    """Set of repo-relative paths git knows about under `root` (None when not a git checkout)."""
+    import subprocess
+    try:
+        out = subprocess.run(['git', 'ls-files', '-z', '--cached', '--others', '--exclude-standard', '.'],
+                             cwd=root, capture_output=True, check=True).stdout
+    except Exception:
+        return None
+    return {p.decode('utf-8', 'replace') for p in out.split(b'\0') if p}
+
+
+def _git_ignored(root, t):
+    import subprocess
+    try:
+        r = subprocess.run(['git', 'check-ignore', '-q', t], cwd=root, capture_output=True)
+        return r.returncode == 0
+    except Exception:
+        return False
+
+
+def local_links_exist(html, root, label='', git_check=True):
+    """A link target must exist on disk — and, in a git checkout, must not be ignored:
+    an ignored file will not reach the published site even though the build sees it."""
     bad = []
     for t in sorted(_local_targets(html)):
         if not t:
             continue
         if not os.path.exists(os.path.join(root, t)):
             bad.append(f'{label}קישור פנימי ללא קובץ: {t}')
+        elif git_check and _git_ignored(root, t):
+            bad.append(f'{label}קישור לקובץ שמוחרג מ-git (לא יפורסם): {t}')
     return bad
 
 

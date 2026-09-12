@@ -144,7 +144,7 @@ def build(cfg, verbose=True):
         files.append(view_name)
     swept = site.sweep_thumbs(cfg, out)
     site.mirror(cfg, files)
-    problems += qa.local_links_exist(out, cfg.p('site'), 'ב-site/: ')
+    problems += qa.local_links_exist(out, cfg.p('site'), 'ב-site/: ', git_check=False)
 
     if verbose:
         print(f'{cfg.slug}: {edition} · {len(out) // 1024} KB · {n_figs} איורים · '
