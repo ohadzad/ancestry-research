@@ -21,6 +21,18 @@ h1{font-size:2.35rem; margin:0 0 10px; letter-spacing:-.01em}
 h2.sec{font-size:1.02rem; letter-spacing:.14em; color:#6f675b; font-weight:normal;
        margin:52px 0 18px; padding-bottom:8px; border-bottom:1px solid #e3dbcd}
 
+/* the family arc: every research on one rail */
+.ftl{display:flex; flex-wrap:wrap; gap:0 0; margin:0 0 30px}
+.tev{flex:1 1 8.5rem; min-width:8.5rem; padding:16px 10px 10px; position:relative;
+     color:inherit; display:block; border-top:2px solid #e3dbcd}
+a.tev:hover{background:#fdfaf3; text-decoration:none}
+a.tev:hover .tt{color:#2b2620}
+.tev::before{content:""; position:absolute; top:-5px; inset-inline-start:10px;
+  width:9px; height:9px; border-radius:50%; background:#faf7f2; border:2px solid #b9a98c}
+a.tev::before{border-color:#7a4a2b}
+.ty{display:block; font-size:.95rem; color:#7a4a2b; line-height:1.3}
+.tt{display:block; font-size:.79rem; color:#6f675b; line-height:1.5; margin-top:2px}
+
 /* the family map: two couples, four faces, four links */
 .couples{display:flex; flex-wrap:wrap; gap:16px}
 .couple{flex:1 1 340px; background:#fff; border:1px solid #d8d0c2; border-radius:12px;
@@ -90,6 +102,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
   .cover{width:100%}
   h1{font-size:1.85rem}
   .couple{flex-basis:100%}
+  .tev{flex-basis:calc(50% - 0px); min-width:0}
 }
 </style>
 </head>
@@ -98,7 +111,9 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
 <header class="top"><div class="wrap">
 <h1>מחקר שורשי המשפחה</h1>
 <p class="lede">ארבעה מחקרים מתועדי־מקורות על שני זוגות סבים: <b>רחל ואברהם צדוק</b> — מהרי הקרפטים וממקווה ישראל, ו<b>מרים ומרדכי בן הרוש</b> — ממכנאס שבמרוקו.</p>
-<div class="couples"><div class="couple"><span class="couple-label">קרפטורוס · מקווה ישראל</span><div class="pair"><a class="who" href="rachel-zadok/"><img src="rachel-zadok/docs/thumbs/105591037_001_180_5588c0.jpg" alt="" loading="lazy" width="180" height="256"><span class="wn">רחל צדוק לבית סטרולוביץ־רפפורט</span><span class="wd">16.4.1929, וולובה (אוקרמזו) — 1/2021, חולון</span><span class="wgo">למחקר ←</span></a><a class="who" href="avraham-zadok/אברהם-צדוק.html"><img src="avraham-zadok/docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg" alt="" loading="lazy" width="768" height="578"><span class="wn">אברהם צדוק</span><span class="wd">16.9.1925, מקווה ישראל — 1.1.2017, תל אביב</span><span class="wgo">למחקר ←</span></a></div></div><div class="couple"><span class="couple-label">מכנאס, מרוקו</span><div class="pair"><a class="who" href="miriam-benharoush/מרים-בן-הרוש-הסיפור.html"><img src="miriam-benharoush/docs/cover_marie_1949.jpg" alt="" loading="lazy" width="450" height="70"><span class="wn">מרים בן הרוש לבית דהן</span><span class="wd">1939, מכנאס — חולון</span><span class="wgo">הסיפור ←</span></a><a class="who" href="mordechai-benharoush/מרדכי-בן-הרוש-הסיפור.html"><img src="mordechai-benharoush/docs/ev_mordechai_photo_1950.jpg" alt="" loading="lazy" width="364" height="781"><span class="wn">מרדכי בן הרוש</span><span class="wd">1928, מכנאס — 2010</span><span class="wgo">הסיפור ←</span></a></div></div></div>
+<div class="couples"><div class="couple"><span class="couple-label">קרפטורוס · מקווה ישראל</span><div class="pair"><a class="who" href="rachel-zadok/רחל_צדוק_המחקר_המלא-הסיפור.html"><img src="rachel-zadok/docs/thumbs/105591037_001_180_5588c0.jpg" alt="" loading="lazy" width="180" height="256"><span class="wn">רחל צדוק לבית סטרולוביץ־רפפורט</span><span class="wd">16.4.1929, וולובה (אוקרמזו) — 1/2021, חולון</span><span class="wgo">הסיפור ←</span></a><a class="who" href="avraham-zadok/אברהם-צדוק-הסיפור.html"><img src="avraham-zadok/docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg" alt="" loading="lazy" width="768" height="578"><span class="wn">אברהם צדוק</span><span class="wd">16.9.1925, מקווה ישראל — 1.1.2017, תל אביב</span><span class="wgo">הסיפור ←</span></a></div></div><div class="couple"><span class="couple-label">מכנאס, מרוקו</span><div class="pair"><a class="who" href="miriam-benharoush/מרים-בן-הרוש-הסיפור.html"><img src="miriam-benharoush/docs/cover_marie_1949.jpg" alt="" loading="lazy" width="450" height="70"><span class="wn">מרים בן הרוש לבית דהן</span><span class="wd">1939, מכנאס — חולון</span><span class="wgo">הסיפור ←</span></a><a class="who" href="mordechai-benharoush/מרדכי-בן-הרוש-הסיפור.html"><img src="mordechai-benharoush/docs/ev_mordechai_photo_1950.jpg" alt="" loading="lazy" width="364" height="781"><span class="wn">מרדכי בן הרוש</span><span class="wd">1928, מכנאס — 2010</span><span class="wgo">הסיפור ←</span></a></div></div></div>
+<h2 class="sec" id="arc">ציר הזמן של המשפחה</h2>
+<div class="ftl" role="list" aria-label="ציר הזמן של המשפחה"><a class="tev" href="avraham-zadok/אברהם-צדוק-הסיפור.html"><span class="ty">1833</span><span class="tt">משפחת <b>ארואס</b> עולה מגיברלטר ליפו</span></a><a class="tev" href="avraham-zadok/אברהם-צדוק-הסיפור.html"><span class="ty">1870</span><span class="tt"><b>מקווה ישראל</b> נוסד — בית הספר החקלאי הראשון</span></a><a class="tev" href="avraham-zadok/אברהם-צדוק-הסיפור.html"><span class="ty">1914</span><span class="tt"><b>אהרון צדוק</b> עולה מצנעא ויורד בחוף יפו</span></a><a class="tev" href="avraham-zadok/אברהם-צדוק-הסיפור.html"><span class="ty">1925</span><span class="tt"><b>אברהם</b> נולד במקווה ישראל</span></a><a class="tev" href="mordechai-benharoush/מרדכי-בן-הרוש-הסיפור.html"><span class="ty">1928</span><span class="tt"><b>מרדכי</b> נולד במכנאס</span></a><a class="tev" href="rachel-zadok/רחל_צדוק_המחקר_המלא-הסיפור.html"><span class="ty">1929</span><span class="tt"><b>רחל</b> נולדת בוולובה שבקרפטים</span></a><a class="tev" href="miriam-benharoush/מרים-בן-הרוש-הסיפור.html"><span class="ty">1939</span><span class="tt"><b>מרים</b> נולדת במכנאס</span></a><a class="tev" href="rachel-zadok/רחל_צדוק_המחקר_המלא-הסיפור.html"><span class="ty">1944</span><span class="tt">גירוש יהודי קרפטורוס — אושוויץ, שטוטהוף, טורן</span></a><a class="tev" href="rachel-zadok/רחל_צדוק_המחקר_המלא-הסיפור.html"><span class="ty">1946</span><span class="tt"><b>רחל</b> עולה ארצה, למקווה ישראל</span></a><a class="tev" href="mordechai-benharoush/מרדכי-בן-הרוש-הסיפור.html"><span class="ty">1949</span><span class="tt"><b>מרדכי</b> עולה ארצה לבדו, ומיד לצבא</span></a><a class="tev" href="rachel-zadok/רחל_צדוק_המחקר_המלא-הסיפור.html"><span class="ty">1950</span><span class="tt"><b>רחל ואברהם</b> נישאים</span></a><a class="tev" href="miriam-benharoush/מרים-בן-הרוש-הסיפור.html"><span class="ty">1956</span><span class="tt"><b>מרים</b> עולה באונייה "ירושלים"</span></a><a class="tev" href="mordechai-benharoush/מרדכי-בן-הרוש-הסיפור.html"><span class="ty">1960</span><span class="tt"><b>מרים ומרדכי</b> נישאים בתל אביב</span></a><a class="tev" href="rachel-zadok/רחל_צדוק_המחקר_המלא-הסיפור.html"><span class="ty">2017 · 2021</span><span class="tt"><b>אברהם</b> ו<b>רחל</b> נפטרים</span></a></div>
 </div></header>
 <main id="main"><div class="wrap">
 <h2 class="sec" id="researches">ארבעת המחקרים</h2>
@@ -107,27 +122,27 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
 <div>
 <h3>רחל צדוק לבית סטרולוביץ־רפפורט <span class="aka">&quot;רוצי&quot;</span></h3><span class="badge">מחקר מלא</span>
 <p class="life">16.4.1929, וולובה (אוקרמזו) — 1/2021, חולון</p>
-<p class="edition">מהדורה 45 · עשרים ואחד סבבי ביקורת חיצונית</p>
+<p class="edition">מהדורה 46 · עשרים ואחד סבבי ביקורת חיצונית</p>
 <p class="summary">ניצולת אושוויץ ושטוטהוף מהרי הקרפטים; המחקר עוקב אחר משפחתה משלושה כיוונים ומצליב עדות מצולמת מול רשומות.</p>
 <p class="counts"><b>244</b> קובצי מקור שמורים · <b>31</b> תצלומי ראיה בדוח · <b>18</b> ארכיונים ומאגרים · <b>7</b> דורות מתועדים</p>
-<p class="links"><a class="btn primary" href="rachel-zadok/">למחקר המלא</a></p>
+<p class="links"><a class="btn primary" href="rachel-zadok/רחל_צדוק_המחקר_המלא-הסיפור.html">הסיפור</a><a class="btn" href="rachel-zadok/">הדוח המלא</a></p>
 </div></article>
 <article class="card" id="research-avraham-zadok">
 <figure class="cover" style="margin:0"><a href="avraham-zadok/docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg" target="_blank" rel="noopener"><img src="avraham-zadok/docs/family_docs/israelalbum/ia_012_yitzhak_grandchildren_1936.jpg" alt="יצחק (פפו) פריינטה מוקף נכדיו במקווה ישראל, 1936 — אברהם עומד מימין" loading="lazy" width="768" height="578"></a><figcaption>יצחק (פפו) פריינטה מוקף נכדיו במקווה ישראל, 1936 — אברהם עומד מימין</figcaption></figure>
 <div>
 <h3>אברהם צדוק <span class="aka">צדוק (צאלח) · פריינטה · ארואס</span></h3><span class="badge">מחקר מלא</span>
 <p class="life">16.9.1925, מקווה ישראל — 1.1.2017, תל אביב</p>
-<p class="edition">מהדורה 76 · שנים-עשר סבבי ביקורת חיצונית</p>
+<p class="edition">מהדורה 77 · שנים-עשר סבבי ביקורת חיצונית</p>
 <p class="summary">לוחם פלמ&quot;ח יליד מקווה ישראל, שבו נפגשו משפחת אמו מסלוניקי-ירושלים ומתימן ומשפחת אביו מבגדד.</p>
 <p class="counts"><b>82</b> ערכי מקור · <b>79</b> תצלומי ראיה · <b>10</b> רשומות קבורה · <b>7</b> שורות דורות</p>
-<p class="links"><a class="btn primary" href="avraham-zadok/אברהם-צדוק.html">למחקר המלא</a></p>
+<p class="links"><a class="btn primary" href="avraham-zadok/אברהם-צדוק-הסיפור.html">הסיפור</a><a class="btn" href="avraham-zadok/אברהם-צדוק.html">הדוח המלא</a></p>
 </div></article>
 <article class="card" id="research-miriam-benharoush">
 <figure class="cover" style="margin:0"><a href="miriam-benharoush/docs/AIU_MA_240.1_40.jpg" target="_blank" rel="noopener"><img src="miriam-benharoush/docs/cover_marie_1949.jpg" alt="שורת &quot;Dahan Marie, 10 ans, Chalom Yacot&quot; בפנקס אליאנס מכנאס, 1949" loading="lazy" width="450" height="70"></a><figcaption>שורת &quot;Dahan Marie, 10 ans, Chalom Yacot&quot; בפנקס אליאנס מכנאס, 1949</figcaption></figure>
 <div>
 <h3>מרים בן הרוש לבית דהן <span class="aka">&quot;מרי&quot;</span></h3><span class="badge">מחקר בתחילתו</span>
 <p class="life">1939, מכנאס — חולון</p>
-<p class="edition">מהדורה 22 · חמישה סבבי ביקורת חיצונית</p>
+<p class="edition">מהדורה 23 · חמישה סבבי ביקורת חיצונית</p>
 <p class="summary">ילידת מכנאס שעלתה באונייה &quot;ירושלים&quot; בינואר 1956; נמצאה בפנקסי אליאנס עם שתי אחיותיה וברשומת העלייה.</p>
 <p class="counts"><b>1</b> רשומת עלייה, 15.1.1956 · <b>3</b> רשומות פנקס אליאנס · <b>16+</b> בני משפחה ברשימת 1956 · <b>7</b> סריקות מקור שמורות</p>
 <p class="links"><a class="btn primary" href="miriam-benharoush/מרים-בן-הרוש-הסיפור.html">הסיפור</a><a class="btn" href="miriam-benharoush/מרים-בן-הרוש.html">הדוח המלא</a></p>
@@ -137,7 +152,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
 <div>
 <h3>מרדכי בן הרוש <span class="aka">&quot;מרדושי&quot;</span></h3><span class="badge">דף נלווה · בתהליך</span>
 <p class="life">1928, מכנאס — 2010</p>
-<p class="edition">מהדורה 27 · חמישה סבבי ביקורת חיצונית</p>
+<p class="edition">מהדורה 28 · חמישה סבבי ביקורת חיצונית</p>
 <p class="summary">יליד מכנאס שעלה לבדו, שבע שנים לפני משפחתו; עשרה מסמכים שלו עצמו, מ-1949 ועד צו בית משפט משנת 1990.</p>
 <p class="counts"><b>10</b> מסמכים של מרדכי עצמו · <b>2</b> רשומות של משפחתו · <b>1</b> רישום — ככל הנראה שלו · <b>7</b> רשומות שנשללו</p>
 <p class="links"><a class="btn primary" href="mordechai-benharoush/מרדכי-בן-הרוש-הסיפור.html">הסיפור</a><a class="btn" href="mordechai-benharoush/מרדכי-בן-הרוש.html">הדוח המלא</a></p>

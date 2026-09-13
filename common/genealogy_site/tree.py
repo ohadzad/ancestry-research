@@ -124,9 +124,33 @@ def standalone(cfg, warn=None):
     return html, href[:-5] + '-view.html'
 
 
-def embed(cfg, svg, legend, foot='', page_href=None):
+# The colour key is the part of a legend a reader needs in order to read the
+# diagram. Anything after it — a project's running commentary on what each
+# edition added — is the report's business.
+def key_only(legend):
+    """Just the colour key — the legend up to its second heading.
+
+    A project's legend often carries, after the key, a running note on what each
+    edition of the research added. That is the road, not the destination.
+    """
+    if not legend:
+        return ''
+    parts = re.split(r'(?=<h2\b)', legend)
+    if len(parts) <= 2:
+        return legend
+    return parts[0] + parts[1].rstrip() + '</div>' 
+
+
+def embed(cfg, svg, legend, foot='', page_href=None, compact=False):
+    """``compact`` drops the footnotes and keeps only the colour key.
+
+    The story page states what is known; a legend that narrates what each
+    edition of the research added belongs with the research.
+    """
     if not svg:
         return ''
+    if compact:
+        legend, foot = key_only(legend), ''
     btn = ''
     href = page_href or (cfg.tree.page_href if cfg.tree else '')
     if href:

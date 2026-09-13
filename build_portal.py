@@ -61,6 +61,18 @@ h1{font-size:2.35rem; margin:0 0 10px; letter-spacing:-.01em}
 h2.sec{font-size:1.02rem; letter-spacing:.14em; color:#6f675b; font-weight:normal;
        margin:52px 0 18px; padding-bottom:8px; border-bottom:1px solid #e3dbcd}
 
+/* the family arc: every research on one rail */
+.ftl{display:flex; flex-wrap:wrap; gap:0 0; margin:0 0 30px}
+.tev{flex:1 1 8.5rem; min-width:8.5rem; padding:16px 10px 10px; position:relative;
+     color:inherit; display:block; border-top:2px solid #e3dbcd}
+a.tev:hover{background:#fdfaf3; text-decoration:none}
+a.tev:hover .tt{color:#2b2620}
+.tev::before{content:""; position:absolute; top:-5px; inset-inline-start:10px;
+  width:9px; height:9px; border-radius:50%; background:#faf7f2; border:2px solid #b9a98c}
+a.tev::before{border-color:#7a4a2b}
+.ty{display:block; font-size:.95rem; color:#7a4a2b; line-height:1.3}
+.tt{display:block; font-size:.79rem; color:#6f675b; line-height:1.5; margin-top:2px}
+
 /* the family map: two couples, four faces, four links */
 .couples{display:flex; flex-wrap:wrap; gap:16px}
 .couple{flex:1 1 340px; background:#fff; border:1px solid #d8d0c2; border-radius:12px;
@@ -130,6 +142,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
   .cover{width:100%}
   h1{font-size:1.85rem}
   .couple{flex-basis:100%}
+  .tev{flex-basis:calc(50% - 0px); min-width:0}
 }
 """
 
@@ -152,6 +165,27 @@ def couples_map():
         out.append('<div class="couple"><span class="couple-label">%s</span>'
                    '<div class="pair">%s</div></div>' % (e(c.get('label', '')), tiles))
     return '<div class="couples">%s</div>' % ''.join(out) if out else ''
+
+
+def family_timeline():
+    """The arc the whole archive covers, in one band.
+
+    Four researches and two worlds — Carpathian and Mediterranean — that meet in
+    one family. A reader who sees the years in one row understands the shape of
+    the archive before reading a word of any report.
+    """
+    items = site.get('timeline') or []
+    if not items:
+        return ''
+    out = []
+    for it in items:
+        href = front(BY_SLUG[it['s']]) if it.get('s') in BY_SLUG else ''
+        inner = ('<span class="ty">%s</span><span class="tt">%s</span>'
+                 % (e(it['y']), it['t']))
+        out.append('<a class="tev" href="%s">%s</a>' % (e(href), inner) if href
+                   else '<div class="tev">%s</div>' % inner)
+    return ('<div class="ftl" role="list" aria-label="ציר הזמן של המשפחה">%s</div>'
+            % ''.join(out))
 
 
 def card(r):
@@ -262,6 +296,8 @@ body.append('<header class="top"><div class="wrap">')
 body.append('<h1>%s</h1>' % e(site['title']))
 body.append('<p class="lede">%s</p>' % site.get('lede', e(site.get('intro', ''))))
 body.append(couples_map())
+body.append('<h2 class="sec" id="arc">ציר הזמן של המשפחה</h2>')
+body.append(family_timeline())
 body.append('</div></header>')
 body.append('<main id="main"><div class="wrap">')
 body.append('<h2 class="sec" id="researches">ארבעת המחקרים</h2>')

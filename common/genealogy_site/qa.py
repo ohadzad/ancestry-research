@@ -333,7 +333,9 @@ def entity_hygiene(html):
 
 
 _TAG = re.compile(r'<[^>]+>')
-_SCRIPT_STYLE = re.compile(r'<(script|style)\b.*?</\1>', re.S | re.I)
+# an <svg> family tree carries the name of every person in it; those labels are a
+# diagram, not reading, and counting them as prose would penalise a big tree
+_SCRIPT_STYLE = re.compile(r'<(script|style|svg)\b.*?</\1>', re.S | re.I)
 
 # Gates on the shape of a page, not on its correctness. Each number is the point
 # at which a reader stops reading: a lede that runs past a screenful stops being

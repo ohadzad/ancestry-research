@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שורשיה של משפחה ממקווה ישראל: אברהם צדוק</title>
+<meta name="description" content="מחקר גנאלוגי מתועד-מקורות על אברהם צדוק, יליד מקווה ישראל 1925 — שתי שושלות המוצא שנפגשו שם: פריינטה-ארואס מגיברלטר ומיפו העות׳מאנית, וצדוק (צאלח) מצנעא — עם עץ משפחה, גלריית ראיות ואינדקס מקורות.">
+<meta name="color-scheme" content="light">
+<style>
+:root {
+  --ink:#22282a; --muted:#5d6a66; --line:#dbe2dd;
+  --paper:#f8f8f5; --accent:#1d5b50; --accent-soft:#2e7c6c;
+  --link:#12564a;
+  --hero-from:#13292a; --hero-to:#1d5b50;
+  --col: 60rem;               /* the reading column */
+  --nav-h: 3.25rem;
+  --anchor-off: 6.5rem;
+  --radius: 6px;
+  --serif: 'David Libre','Frank Ruhl Libre','Times New Roman',Georgia,serif;
+  --sans: 'Assistant','Segoe UI',Arial,Helvetica,sans-serif;
+  --sbw: 0px;
+}
+*,*::before,*::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+body {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.75;
+  text-rendering:optimizeLegibility; -webkit-text-size-adjust:100%;
+  overflow-wrap:break-word; word-break:normal;
+}
+img, svg, video { max-width:100%; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));
+  color:#f6efe2; padding:2.5rem 1.25rem 2rem;
+}
+.hero-in { max-width:var(--col); margin-inline:auto; }
+.hero .crumb { font-family:var(--sans); font-size:.8rem; opacity:.8; margin-block-end:1rem; }
+.hero .crumb a { color:#f2e5c8; text-decoration:none; border-block-end:1px solid rgba(242,229,200,.4); }
+.hero h1 { font-size:clamp(1.6rem,3.4vw,2.4rem); line-height:1.25; margin:0 0 .5rem; font-weight:700; letter-spacing:-.01em; }
+.hero .subject { font-size:1.05rem; opacity:.94; margin:0 0 .35rem; }
+.hero .meta { font-family:var(--sans); font-size:.8rem; color:#e8dcc2; }
+
+.spine { display:flex; flex-wrap:wrap; gap:.5rem; margin-block-start:1.5rem; }
+.spine div {
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radius); padding:.5rem .8rem; min-width:7.5rem;
+}
+.spine b { display:block; font-size:1.3rem; line-height:1.2; font-family:var(--sans); font-weight:700; }
+.spine span { /* floor: no supporting text below 12.5px */ font-family:var(--sans); font-size:.78rem; color:#e8dcc2; }
+
+/* ---------- sticky navigation ---------- */
+.nav {
+  position:sticky; top:0; z-index:40; background:rgba(250,247,242,.97);
+  backdrop-filter:saturate(150%) blur(6px);
+  border-block-end:1px solid var(--line); font-family:var(--sans);
+}
+.nav-in { max-width:var(--col); margin-inline:auto; padding:0 1.25rem; }
+.nav-row { display:flex; align-items:center; gap:.4rem; height:var(--nav-h); }
+.nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.4rem; }
+.nav a {
+  flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.82rem;
+  padding:.3rem .6rem; border-radius:999px; white-space:nowrap;
+}
+.nav a:hover { background:rgba(0,0,0,.05); }
+.nav a.on { background:var(--accent); color:#fff; }
+.nav .lbl { flex:0 0 auto; font-size:.78rem; color:var(--muted); padding-inline-end:.2rem; }
+
+.qwrap { position:relative; flex:0 0 auto; margin-inline-start:auto; }
+#q {
+  font-family:var(--sans); font-size:.8rem;
+  padding:.32rem .7rem; border:1px solid var(--line); border-radius:999px;
+  background:#fff; color:var(--ink); min-width:9rem;
+}
+#q:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+/* out of flow: opening the list must not change the nav's height, or every
+   anchor below it would shift while the reader is looking at one */
+#qres {
+  position:absolute; inset-block-start:calc(100% + .4rem); inset-inline-end:0;
+  min-width:20rem; max-width:min(28rem, 92vw); max-height:60vh; overflow-y:auto;
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(0,0,0,.14); padding:.35rem .8rem .5rem;
+  font-family:var(--sans); font-size:.82rem; z-index:60;
+}
+#qres[hidden] { display:none; }
+#qres a {
+  display:block; white-space:normal; flex:initial; border-radius:0;
+  padding:.35rem 0; color:var(--ink); border-block-end:1px dotted var(--line);
+}
+#qres a:last-child { border-block-end:0; }
+#qres .k { color:var(--muted); font-size:.78rem; margin-inline-start:.4rem; }
+#qres .nores { margin:.3rem 0; color:var(--muted); }
+#qres .qcount {
+  margin:.1rem 0 .35rem; color:var(--muted); font-size:.78rem;
+  border-block-end:1px solid var(--line); padding-block-end:.3rem;
+}
+
+/* ---------- the reading column ---------- */
+main { max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 4rem; }
+section, .legacy-anchor { scroll-margin-top:var(--anchor-off); display:block; }
+.legacy-anchor { height:0; }
+h2, h3, h4 { scroll-margin-top:var(--anchor-off); }
+h2 {
+  font-size:1.45rem; line-height:1.3; margin:2.6rem 0 .9rem; color:var(--accent);
+  border-block-end:2px solid var(--line); padding-block-end:.35rem;
+}
+h3 { font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }
+h4 { font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }
+p { margin:0 0 1rem; }
+a { color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }
+/* a citation marker after a Latin run would otherwise be laid out on the far
+   side of it, before the very words it cites */
+a.cit { unicode-bidi:isolate; }
+.visually-hidden {
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0;
+}
+a:hover { border-block-end-color:var(--link); }
+a:focus-visible { outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }
+ul, ol { margin:0 0 1rem; padding-inline-start:1.4rem; }
+li { margin-block-end:.4rem; }
+hr { border:0; border-block-start:1px solid var(--line); margin:2.5rem 0; }
+strong { font-weight:700; }
+blockquote {
+  margin:1.2rem 0; padding:.1rem 1rem; border-inline-start:3px solid var(--line);
+  color:var(--muted);
+}
+code {
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;
+  background:rgba(0,0,0,.045); padding:.1em .35em; border-radius:3px;
+  direction:ltr; unicode-bidi:isolate;
+}
+
+/* ---------- callouts ---------- */
+.lede {
+  background:#fff; border:1px solid var(--line); border-inline-start:4px solid var(--accent);
+  border-radius:var(--radius); padding:1.1rem 1.2rem; margin:0 0 1.6rem;
+  font-size:1.08rem; line-height:1.72;
+}
+.note {
+  background:rgba(0,0,0,.025); border:1px solid var(--line); border-radius:var(--radius);
+  padding:.8rem 1rem; margin:1.2rem 0; font-size:.94rem; color:var(--muted);
+}
+
+/* ---------- the certainty ladder, spelled out ---------- */
+.ladder {
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.84rem;
+}
+.ladder > summary {
+  cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none;
+}
+.ladder > summary::-webkit-details-marker { display:none; }
+.ladder > summary::after { content:" ▾"; }
+.ladder[open] > summary::after { content:" ▴"; }
+.ladder > summary:hover { color:var(--ink); }
+.ladder-in { padding:.2rem .9rem .9rem; }
+.rungs { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.4rem .9rem; }
+.rung { display:flex; gap:.5rem; align-items:baseline; line-height:1.5; }
+.rung > span { color:var(--muted); }
+.terms {
+  margin-block-start:.8rem; padding-block-start:.7rem; border-block-start:1px dotted var(--line);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:.4rem .9rem;
+}
+.term { line-height:1.5; }
+.term b { color:var(--ink); }
+.term span { color:var(--muted); }
+.term b::after { content:" — "; color:var(--muted); font-weight:400; }
+
+/* ---------- certainty chips ---------- */
+.rank {
+  display:inline-block; font-family:var(--sans); font-size:.78rem; font-style:normal; font-weight:600;
+  line-height:1.5; padding:.05rem .5rem; border-radius:999px; white-space:nowrap;
+  border:1px solid currentColor; vertical-align:.08em;
+}
+.rank.v1 { color:#2f6b41; background:rgba(47,107,65,.08); }   /* מאומת */
+.rank.v2 { color:#6b5324; background:rgba(107,83,36,.08); }   /* כמעט ודאי */
+.rank.v3 { color:#8a5a00; background:rgba(138,90,0,.08); }    /* ככל הנראה */
+.rank.v4 { color:#8a3d2e; background:rgba(138,61,46,.08); }   /* טעון אימות */
+.rank.v5 { color:#5a5a5a; background:rgba(90,90,90,.10); }   /* נשלל */
+.rank.v6 { color:#7a7a7a; background:rgba(122,122,122,.08); }   /* בוטל */
+
+/* ---------- the story page ---------- */
+/* A second page over the same research: the life in order, for a reader who
+   arrived without context. Everything auditable stays in the report. */
+body.story main { padding-block-start:2rem; }
+.story-hero .hero-cols { display:flex; gap:1.5rem; align-items:flex-start; }
+.story-hero .hero-text { flex:1 1 auto; min-width:0; }
+.story-hero .portrait {
+  flex:0 0 auto; inline-size:9.5rem; margin:0; text-align:start;
+}
+.story-hero .portrait img {
+  inline-size:100%; max-block-size:13rem; object-fit:cover; object-position:center top;
+  border:1px solid rgba(255,255,255,.35); border-radius:var(--radius);
+  box-shadow:0 3px 12px rgba(0,0,0,.28); background:#fff;
+}
+.story-hero .portrait figcaption {
+  color:#e8dcc2; font-family:var(--sans); font-size:.76rem; line-height:1.5;
+  margin-block-start:.4rem; text-align:start;
+}
+.story-hero h1 { margin-block-end:.6rem; }
+.story-hero .subject { font-size:1.1rem; line-height:1.6; }
+
+.nav-report, .nav-story {
+  font-weight:600; color:var(--accent) !important; border:1px solid var(--accent);
+}
+.nav-report { margin-inline-start:auto; }
+.nav-story { margin-inline-end:.5rem; }
+.nav-report:hover, .nav-story:hover { background:var(--accent); color:#fff !important; }
+
+/* the edition log is the researcher's bookkeeping: collapsed by default, and
+   reachable for anyone who wants to see what changed */
+.changelog-wrap > summary {
+  cursor:pointer; list-style:none; font-family:var(--sans); font-size:.86rem;
+  color:var(--muted); padding:.5rem .9rem; border:1px solid var(--line);
+  border-radius:var(--radius); background:#fff; display:inline-block;
+}
+.changelog-wrap > summary::-webkit-details-marker { display:none; }
+.changelog-wrap > summary::after { content:" ▾"; }
+.changelog-wrap[open] > summary::after { content:" ▴"; }
+.changelog-wrap > summary:hover { color:var(--ink); }
+
+/* ---------- table of contents ---------- */
+.toc {
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.86rem;
+}
+.toc > summary { cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none; }
+.toc > summary::-webkit-details-marker { display:none; }
+.toc > summary::after { content:" ▾"; }
+.toc[open] > summary::after { content:" ▴"; }
+.toc > summary:hover { color:var(--ink); }
+.toc-list {
+  margin:0; padding:.1rem 2.4rem .9rem; columns:2; column-gap:1.6rem;
+}
+.toc-list li { margin-block-end:.3rem; break-inside:avoid; }
+.toc-list a { border:0; }
+
+/* three columns: certain · probable · open — the whole state of the research */
+.verdicts {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+  gap:.9rem; margin:1.8rem 0 2.4rem;
+}
+.verdict {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.9rem 1rem 1rem;
+}
+.verdict h3 {
+  margin:0 0 .6rem; font-size:1rem; color:var(--ink);
+  display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+}
+.verdict ul { margin:0; padding-inline-start:1.1rem; font-size:.95rem; }
+.verdict li { margin-block-end:.5rem; line-height:1.6; }
+.verdict a, 
+.verdict a::after { content:" ←"; }
+
+/* the timeline: the date is the handle the eye scans down */
+.timeline { list-style:none; margin:1.2rem 0 2rem; padding:0; position:relative; }
+.timeline::before {
+  /* the rail runs through the dots, which sit in the gap between the date
+     column and the text — i.e. at the INLINE-START side in an RTL page */
+  content:""; position:absolute; inset-block:.6rem 1.4rem;
+  inset-inline-start:calc(5.325rem - 1px); inset-inline-end:auto;
+  inline-size:2px; background:var(--line);
+}
+li.tl {
+  display:flex; gap:1.1rem; margin:0 0 1.15rem; position:relative;
+  align-items:flex-start;
+}
+.tl-when {
+  flex:0 0 4.5rem; text-align:end; padding-block-start:.15rem;
+  font-family:var(--sans); position:relative;
+}
+.tl-when::after {
+  /* the node on the rail */
+  content:""; position:absolute; inset-block-start:.55rem; inset-inline-end:-1.1rem;
+  inline-size:.55rem; block-size:.55rem; border-radius:50%;
+  background:var(--paper); border:2px solid var(--accent-soft);
+}
+.tl-when b { display:block; font-size:.92rem; color:var(--accent); line-height:1.4; }
+.tl-place { display:block; font-size:.76rem; color:var(--muted); line-height:1.4; }
+.tl-what { flex:1 1 auto; min-width:0; padding-inline-start:.5rem; }
+.tl-what p { margin:0 0 .3rem; }
+.tl-foot {
+  display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;
+  font-family:var(--sans); font-size:.78rem;
+}
+.tl-more a { border:0; font-family:var(--sans); font-size:.78rem; }
+.rank-plain { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+
+/* key documents as cards: picture, date, what it proves, how sure */
+.doccards {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));
+  gap:1rem; margin:1.2rem 0 2rem;
+}
+.doccard {
+  margin:0; background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; display:flex; flex-direction:column; text-align:start;
+}
+.doccard .doc-img { display:block; border:0; line-height:0; background:#f3efe6; }
+.doccard img {
+  inline-size:100%; block-size:9.5rem; object-fit:cover; object-position:center top;
+  border:0; border-radius:0; box-shadow:none; display:block;
+}
+.doccard figcaption {
+  padding:.7rem .85rem .8rem; font-size:.88rem; color:var(--ink);
+  text-align:start; margin:0; display:flex; flex-direction:column; gap:.25rem;
+  flex:1 1 auto;
+}
+.doc-when { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.doccard b { font-size:.95rem; line-height:1.45; }
+.doc-proves { color:var(--muted); font-size:.86rem; line-height:1.55; flex:1 1 auto; }
+.doc-foot {
+  display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;
+  margin-block-start:.35rem; font-family:var(--sans); font-size:.78rem;
+}
+.doc-foot a { border:0; }
+
+/* "where this is written down" — on every beat and every card */
+.src { color:var(--muted); font-family:var(--sans); font-size:.78rem; }
+.src a { border:0; color:var(--link); }
+.srclist { margin:1.1rem 0 1.8rem; padding-inline-start:1.4rem; font-size:.95rem; }
+.srclist li { margin-block-end:.5rem; line-height:1.6; }
+.srclist a { border-block-end:1px solid rgba(0,0,0,.14); }
+.report-cta { margin:2rem 0 1rem; }
+.btn.big {
+  font-size:.95rem; padding:.6rem 1.4rem; background:var(--accent); color:#fff;
+  border-color:var(--accent);
+}
+.btn.big:hover { background:var(--hero-from); border-color:var(--hero-from); }
+
+/* ---------- tables ---------- */
+.tablewrap:focus-visible, .tree-embed:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
+.tablewrap { overflow-x:auto; margin:1.2rem 0; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+table { border-collapse:collapse; width:100%; font-size:.93rem; }
+th, td { padding:.5rem .7rem; border-block-end:1px solid var(--line); text-align:start; vertical-align:top; }
+thead th { background:rgba(0,0,0,.035); font-family:var(--sans); font-size:.82rem; }
+tbody tr:last-child td { border-block-end:0; }
+
+/* ---------- figures ---------- */
+figure { margin:1.6rem auto; text-align:center; max-width:100%; }
+figure img {
+  max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 2px 8px rgba(0,0,0,.07); background:#fff;
+}
+figcaption { font-size:.84rem; color:var(--muted); margin-block-start:.5rem; line-height:1.6; text-align:start; }
+figcaption .fignum { font-family:var(--sans); font-weight:700; color:var(--accent); }
+figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(--sans); font-size:.78rem; }
+.imgcap { display:block; font-size:.84rem; color:var(--muted); margin-block-start:.4rem; }
+
+.ext { font-size:.78rem; color:var(--muted); padding-inline-start:.12em; }
+.doclink { display:inline-block; min-inline-size:1.5rem; min-block-size:1.5rem; padding:.15rem .2rem; }
+
+/* ---------- gallery ---------- */
+.gallery { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.2rem 0 2rem; }
+.gallery a {
+  flex:0 0 auto; width:11rem; border:0; text-align:center; color:var(--muted);
+  font-family:var(--sans); font-size:.78rem; line-height:1.4;
+}
+.gallery img { width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+/* a crop far wider than the frame is shown whole rather than magnified */
+.gallery img.contain { object-fit:contain; padding:.3rem; }
+/* a line strip (wider than 6:1) is a hairline inside a square tile: it takes
+   the whole row and keeps its own proportions, so the writing can be read */
+.gallery a.wide { width:100%; }
+.gallery a.wide img { height:auto; max-block-size:11rem; object-fit:contain; }
+.gallery span { display:block; margin-block-start:.3rem; }
+
+/* ---------- family tree ---------- */
+.tree-embed {
+  overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+  background:#fff; padding:.5rem;
+}
+/* zoom 1 == fit to width: the diagram is never wider than the frame unless the
+   reader asks for it, on a phone as on a desktop */
+.tree-embed svg {
+  width:calc(100% * var(--tree-zoom, 1));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1)));
+  /* the global svg max-width would clamp the zoom away */
+  max-width:none;
+  height:auto; display:block; margin-inline:auto;
+}
+.tree-zoom {
+  display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.5rem;
+}
+.tree-zoom button {
+  font:inherit; line-height:1; min-inline-size:2rem; min-block-size:2rem;
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  color:var(--ink); cursor:pointer;
+}
+.tree-zoom button:hover { background:rgba(0,0,0,.04); }
+.tree-zoom button:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+.legend {
+  display:flex; gap:1.1rem; justify-content:center; flex-wrap:wrap;
+  padding:.7rem 0 .2rem; font-family:var(--sans); font-size:.8rem; color:var(--muted);
+}
+.legend > span { display:flex; align-items:center; gap:.35rem; }
+.dot { width:.7rem; height:.7rem; border-radius:50%; display:inline-block; flex:0 0 auto; }
+.tree-foot {
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); text-align:center;
+  max-width:52rem; margin:.5rem auto 0; line-height:1.6;
+}
+.tree-hint { font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.4rem; }
+.btn {
+  display:inline-block; font-family:var(--sans); font-size:.82rem; border:1px solid var(--accent);
+  color:var(--accent); border-radius:999px; padding:.32rem .9rem; margin-block-start:.6rem;
+}
+.btn:hover { background:var(--accent); color:#fff; }
+
+/* ---------- person index ---------- */
+.people { display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:.6rem; margin:1.2rem 0; }
+.person {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.6rem .75rem; font-size:.9rem;
+}
+.person b { display:block; font-size:.97rem; }
+.person .d { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.person .r { display:block; color:var(--muted); font-size:.84rem; margin-block-start:.15rem; }
+
+.skip {
+  position:absolute; inset-inline-start:-9999px; inset-block-start:0; z-index:99;
+  background:var(--paper); color:var(--link); padding:.6rem 1rem;
+  border:1px solid var(--accent); border-end-end-radius:var(--radius);
+  font-family:var(--sans); font-size:.85rem;
+}
+.skip:focus { inset-inline-start:0; }
+
+/* ---------- back to top ---------- */
+.top {
+  /* the inline-end edge: in RTL that is the ragged end of the lines, so the
+     button never covers the start of a sentence */
+  position:fixed; inset-block-end:1.1rem; inset-inline-end:1.1rem; z-index:50;
+  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid var(--line);
+  background:#fff; color:var(--accent); display:grid; place-items:center;
+  font-size:1.1rem; box-shadow:0 2px 8px rgba(0,0,0,.12); opacity:0; pointer-events:none;
+  transition:opacity .2s;
+}
+.top.show { opacity:1; pointer-events:auto; }
+
+footer {
+  max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 3rem;
+  border-block-start:1px solid var(--line); color:var(--muted);
+  font-family:var(--sans); font-size:.8rem;
+}
+
+/* ---------- mobile ---------- */
+.qtoggle {
+  display:none; font:inherit; font-size:.82rem; line-height:1; cursor:pointer;
+  padding:.35rem .7rem; min-block-size:1.9rem; margin-inline-start:auto;
+  border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink);
+}
+.qtoggle:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+
+@media (max-width:40rem) {
+  :root { --anchor-off: 7rem; --tree-zoom: 1; }
+  body { font-size:1rem; overflow-wrap:anywhere; }
+  bdi { overflow-wrap:anywhere; }
+  .hero { padding:1.75rem 1rem 1.5rem; }
+  main { padding:1.25rem 1rem 3rem; }
+  .nav-in { padding:0 1rem; }
+  .nav-row { height:2.4rem; }
+  /* one scrolling row instead of three wrapped ones: the sticky bar cost a
+     quarter of the screen and no link is lost by scrolling it */
+  .nav-row:first-child {
+    flex-wrap:nowrap; height:2.4rem; padding-block:0;
+    overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
+  }
+  .nav-row:first-child::-webkit-scrollbar { display:none; }
+  .qtoggle { display:block; flex:0 0 auto; position:sticky; inset-inline-end:0;
+             box-shadow:-6px 0 8px rgba(250,247,242,.97); }
+  .qwrap { display:none; }
+  /* while searching, the row IS the search: the links step aside for it, and
+     nothing clips the results panel */
+  .nav.qopen .nav-row:first-child { overflow:visible; }
+  .nav.qopen .nav-row:first-child > a,
+  .nav.qopen .nav-row:first-child > .lbl { display:none; }
+  .nav.qopen .qwrap { display:block; flex:1 1 auto; margin:0; min-width:0; }
+  #q { width:100%; min-width:0; }
+  #qres { min-width:0; max-width:none; inline-size:100%; max-height:50vh; }
+  main { padding-block-end:4.5rem; }   /* clearance for the floating button */
+  td, th { overflow-wrap:break-word; }
+  .tree-embed { max-block-size:70vh; overflow-y:auto; }
+  .spine { display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); }
+  /* an odd last tile would otherwise sit alone at half width */
+  .spine div:last-child:nth-child(odd) { grid-column:1/-1; }
+  .spine div { min-width:0; padding:.45rem .6rem; }
+  .spine b { font-size:1.1rem; }
+  .gallery a { width:8.5rem; }
+  .gallery img { height:6rem; }
+  /* the story page on a phone: the portrait sits beside the title rather than
+     costing a screen of its own */
+  .story-hero .hero-cols { gap:1rem; }
+  .story-hero .portrait { inline-size:6.5rem; }
+  .story-hero .portrait figcaption { display:none; }
+  .story-hero .subject { font-size:.98rem; }
+  .timeline::before { inset-inline-start:calc(4.425rem - 1px); }
+  .tl-when { flex-basis:3.6rem; }
+  .tl-when b { font-size:.85rem; }
+  li.tl { gap:.9rem; }
+  .doccards { grid-template-columns:1fr 1fr; gap:.7rem; }
+  .doccard img { block-size:7rem; }
+  .doccard figcaption { padding:.55rem .6rem .65rem; font-size:.84rem; }
+  .verdicts { gap:.7rem; margin-block:1.2rem 1.8rem; }
+  .rungs, .terms { grid-template-columns:1fr; }
+  /* the link to the full report is the one thing that must never scroll out
+     of the phone's navigation row */
+  .nav-report {
+    position:sticky; inset-inline-end:0; background:var(--paper);
+    box-shadow:6px 0 8px rgba(250,247,242,.97);
+  }
+  /* the way back to the story must never scroll out of reach either */
+  .nav-story {
+    position:sticky; inset-inline-start:0; background:var(--paper);
+    box-shadow:-6px 0 8px rgba(250,247,242,.97); margin-inline-end:.3rem;
+  }
+  .toc-list { columns:1; padding-inline:1.6rem; }
+  .top { width:2.2rem; height:2.2rem; inset-block-end:.7rem; inset-inline-end:.7rem; font-size:.95rem; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  @page { size:A4; margin:16mm 14mm; }
+  @page landscape { size:A4 landscape; }
+  body { background:#fff; font-size:10.5pt; line-height:1.5; }
+  .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov, .tree-zoom, .skip { display:none !important; }
+  /* a collapsed block prints as its summary alone; the script opens every
+     <details> for the print run, and this is the belt to that pair of braces */
+  .ladder > summary { font-weight:700; color:#000; }
+  details:not([open]) > *:not(summary) { display:block !important; }
+  .story-hero .portrait img { border:1px solid #bbb; box-shadow:none; }
+  .story-hero .portrait figcaption { color:#444; }
+  .verdict, .doccard { border:1px solid #bbb; break-inside:avoid; }
+  li.tl { break-inside:avoid; }
+  .doccards { grid-template-columns:1fr 1fr; }
+  .report-cta { display:none !important; }
+  .hero { background:#fff !important; color:#000; padding:0 0 1rem; border-block-end:2px solid #000; }
+  .hero .meta, .spine span { color:#444; }
+  .spine div { border:1px solid #bbb; background:#fff; }
+  .spine b { color:#000; }
+  main, footer, .hero-in { max-width:none; }
+  h2 { break-after:avoid; }
+  figure, .tablewrap, .person { break-inside:avoid; }
+  figure img { max-height:150mm; box-shadow:none; }
+  #tree { break-before:page; page:landscape; }
+  #tree .tree-embed { overflow:visible; border:0; break-inside:avoid; }
+  /* the diagram is near-square: fitting the width alone spills it over two
+     pages, so the height of a landscape A4 is the binding constraint */
+  .tree-embed svg {
+    min-width:0; width:auto; height:auto; max-width:100%; max-height:118mm;
+    display:block; margin-inline:auto;
+  }
+  #tree h2 { break-after:avoid; }
+  .tree-foot, .legend { font-size:7pt; line-height:1.35; }
+  /* overflow-x has no meaning on paper: a scrolling table would simply lose
+     its last column */
+  .tablewrap { overflow:visible; }
+  .tablewrap table { table-layout:fixed; width:100%; }
+  .tablewrap td, .tablewrap th { overflow-wrap:anywhere; }
+  a { border-block-end:0; color:#000; }
+  /* the external address is what a paper reader cannot otherwise recover;
+     a relative path would only repeat the file name the link already shows */
+  #index a[href^="http"]::after, #report a[href^="http"]::after,
+  #changelog a[href^="http"]::after {
+    content:" ‹" attr(href) "›"; font-size:8pt; color:#555; word-break:break-all;
+  }
+}
+</style>
+</head>
+<body class="story">
+<a class="skip" href="#lede">דילוג לתוכן</a>
+<a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
+<span id="top"></span>
+<header class="hero story-hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><div class="hero-cols"><figure class="portrait"><img src="docs/thumbs/ia_012_yitzhak_grandchildren_1936_440q72_31262a.jpg" alt="יצחק (פפו) פריינטה מוקף נכדיו במקווה ישראל, 1936 — אברהם עומד מימין" decoding="async"><figcaption>מקווה ישראל, 1936 — יצחק פריינטה ונכדיו</figcaption></figure><div class="hero-text"><h1>שורשיה של משפחה ממקווה ישראל: אברהם צדוק</h1><p class="subject">מקווה ישראל 1925 — תל אביב 2017 · לוחם פלמ"ח · בנן של שתי משפחות: פריינטה-ארואס מגיברלטר ויפו, וצדוק מצנעא</p><div class="meta">עודכן 13.09.2026 · מהדורה 77</div></div></div><div class="spine"><div><b>1925</b><span>נולד במקווה ישראל</span></div><div><b>1942</b><span>התגייס לפלמ"ח</span></div><div><b>2017</b><span>נפטר בתל אביב</span></div><div><b>7</b><span>דורות מתועדים</span></div></div></div></header>
+<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><a href="#tree">עץ המשפחה</a><a href="#timeline">ציר הזמן</a><a href="#docs">המסמכים</a><a href="#sources">המקורות</a><a class="nav-report" href="אברהם-צדוק.html">הדוח המלא ←</a></div></div></nav>
+<main>
+<section id="lede"><div class="lede"><b>אברהם צדוק</b> נולד ב-1925 בבית הספר החקלאי <b>מקווה ישראל</b>, ומת ב-2017 בן תשעים ואחת. במקווה ישראל נפגשו שתי משפחות משני קצותיו של העולם היהודי: משפחת אמו, <b>פריינטה</b>, נמנתה עם ותיקי המוסד — וקו <b>ארואס</b> שבתוכה מוליך ליפו העות'מאנית ומשם ל<b>גיברלטר</b>, שממנה עלתה המשפחה ב-1833. משפחת אביו יצאה מ<b>צנעא</b>: אהרון צדוק איבד את אמו ואת אחיו ברעב הגדול של 1904, ירד מן האנייה בחוף יפו ב-1914, ונעשה האופה של מקווה ישראל. אברהם התגייס ל<b>פלמ"ח</b> ב-1942, לחם במלחמת העצמאות בחטיבת קרייתי, נשא את <b>רחל</b> ב-1950, והיה שותף בקואופרטיב "דר" לייצור כפתורי צדף.</div><div class="verdicts"><div class="verdict"><h3>ידוע בוודאות <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span></h3><ul><li>נולד ב-1925 ב<b>מקווה ישראל</b>, בן אהרון צדוק ושושנה רוזה לבית פריינטה <a href="אברהם-צדוק.html#s9-2">בדוח</a></li><li>שירת ב<b>פלמ"ח</b> מ-1942 ולחם במלחמת העצמאות בחטיבת קרייתי <a href="אברהם-צדוק.html#s6">בדוח</a></li><li>נשא את <b>רחל</b> ב-1950; שותף בקואופרטיב "דר" לכפתורי צדף עד 1981 <a href="אברהם-צדוק.html#s7">בדוח</a></li><li>אמו רוזה נולדה ב-31.12.1902 במקווה ישראל — בכתב ידו של אביה <a href="אברהם-צדוק.html#s3-1-5">בדוח</a></li><li>נפטר ב-2017 ונטמן בבית העלמין ירקון <a href="אברהם-צדוק.html#s7-1">בדוח</a></li></ul></div><div class="verdict"><h3>כמעט ודאי <span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span></h3><ul><li>רוזה בתם של <b>יצחק "פפו" פריינטה ומרים ארואס</b>, מדור מייסדי מקווה ישראל <a href="אברהם-צדוק.html#s3-1-2">בדוח</a></li><li>"הבעל של רוזה היה האופה" שבכתבת "למרחב" (1970) — הוא אהרון <a href="אברהם-צדוק.html#s3-1-4">בדוח</a></li><li>"צאלח · אהרן · תימני · פועל" שבפנקס תושבי יפו <bdi dir="ltr">1918–1919</bdi> — הוא אהרון <a href="אברהם-צדוק.html#s3-2-1">בדוח</a></li><li><b>Solomon Arruas</b> שבפנקס נתיני בריטניה ביפו הוא שלמה ארואץ של מפקד 1855 <a href="אברהם-צדוק.html#s8">בדוח</a></li></ul></div></div><details class="ladder"><summary>סולם הוודאות ומונחי המחקר — מה המילים האלה אומרות</summary><div class="ladder-in"><div class="rungs"><div class="rung"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span>נקרא במסמך בן התקופה, והקריאה ודאית.</span></div><div class="rung"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span>כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.</span></div></div><div class="terms"><div class="term"><b>מקווה ישראל</b><span>בית הספר החקלאי הראשון בארץ ישראל, שנוסד ב-1870 מטעם "כל ישראל חברים"; בו נולדו וגדלו שלושה דורות של המשפחה.</span></div><div class="term"><b>מפקד מונטיפיורי</b><span>חמישה מפקדים של יהודי ארץ ישראל שערך משה מונטיפיורי בין 1839 ל-1875 — שם, גיל, מקצוע ושנת עלייה לכל נפש.</span></div><div class="term"><b>פנקס נתיני בריטניה</b><span>רישומי הקונסוליה הבריטית בארץ ישראל העות'מאנית: יהודים בעלי חסות בריטית, ובהם יוצאי גיברלטר.</span></div><div class="term"><b>פנקס הבוחרים תש&quot;ט</b><span>רשימת בעלי זכות הבחירה לכנסת הראשונה (1949) — רשומת מדינה ראשונה לשמות ולכתובות.</span></div><div class="term"><b>פלמ&quot;ח</b><span>פלוגות המחץ של ההגנה, <bdi dir="ltr">1941–1948</bdi>; חבריהן שילבו אימון צבאי בעבודה בקיבוצים.</span></div><div class="term"><b>חטיבת קרייתי</b><span>חטיבה מרחבית במלחמת העצמאות, שפעלה באזור תל אביב, לוד ורמלה.</span></div><div class="term"><b>IGRA</b><span>העמותה הישראלית לשורשים משפחתיים — מאגר מאונדקס של פנקסי בוחרים, רשימות עולים ורשומות רשמיות.</span></div></div></div></details></section><hr><section id="tree"><h2>עץ המשפחה</h2><div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0"><svg role="img" aria-labelledby="famtree-t famtree-d" viewBox="0 0 1648 1000" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif" direction="rtl">
+<title>עץ משפחת צדוק–פריינטה — שבע שורות דורות</title><desc>תרשים שושלת בשבע שורות. בראש: שלמה ושמחה ארואץ (ילידי גיברלטר, מפקד יפו 1855) ולצדם ענף אלעזר ומסודה, וכן משפחת צאלח מצנעא. משם: יוסף וגרסיה ארואס ואחיו משה ואליהו; הסבים יצחק פפו פריינטה ומרים ארואס מזה ואברהם וסעדה צדוק מזה; ההורים אהרון צדוק ושושנה רוזה פריינטה ואחיהם; חמשת ילדיהם ובהם אברהם צדוק (נושא המחקר); ואברהם ורחל ושני בניהם.</desc>
+<style>
+ #famtree rect.bg{fill:#ffffff;stroke:none}
+ #famtree g rect{fill:#fbf7ef;stroke:#8a6d3b;stroke-width:1.8}
+ #famtree .person rect{fill:#fdfaf3;stroke:#8a6d3b}
+ #famtree .subject rect{fill:#f4d58d;stroke:#b8860b;stroke-width:3}
+ #famtree .parent rect{fill:#eef3f7;stroke:#3b6d8a}
+ #famtree .frainte rect{fill:#e9f3f1;stroke:#3b7a6d}
+ #famtree .arwas rect{fill:#eaf0f6;stroke:#4a6fa5}
+ #famtree .zadok rect{fill:#f6efe6;stroke:#a5764a}
+ #famtree .misc rect{fill:#f4f1ea;stroke:#857a61;stroke-dasharray:4 4}
+ #famtree .unk rect{fill:#f2f2f0;stroke:#7d7d7d;stroke-dasharray:4 4}
+ #famtree .nm{font-size:14px;font-weight:700;fill:#2b2b2b}
+ #famtree .sb{font-size:10.5px;fill:#555}
+ #famtree .frainte .nm{fill:#204f45}#famtree .arwas .nm{fill:#243f66}#famtree .zadok .nm{fill:#6b4423}
+ #famtree .misc .nm,#famtree .unk .nm{font-size:12px;font-weight:400;fill:#6b5f45}
+ #famtree .ln{stroke:#8a6d3b;stroke-width:1.8;fill:none}
+ #famtree .my{fill:#8a6508;font-size:10px;font-weight:700}
+ #famtree .mybg{fill:#ffffff;stroke:none}
+ #famtree .gen{fill:#7a7156;font-size:12px;font-weight:700}
+ #famtree .rootln{stroke:#8a6d3b;stroke-width:1.6;fill:none;stroke-dasharray:5 4;opacity:.75}
+</style>
+<rect class="bg" x="0" y="0" width="1648" height="1000"/>
+<g class="arwas"><rect x="972.0" y="34" width="184" height="66" rx="8"/><text class="nm" x="1064.0" y="57" text-anchor="middle">שלמה ארואץ (ארואס)</text><text class="sb" text-anchor="middle"><tspan x="1064.0" y="72">~1823 גיברלטר · עלה 1833 / רישום 1839</tspan><tspan x="1064.0" y="86">בנקאי 1855 · חלפן (פנקס הקונסוליה)</tspan><tspan x="1064.0" y="100">נפ׳ יפו 1868?</tspan></text></g><g class="arwas"><rect x="764.0" y="34" width="184" height="66" rx="8"/><text class="nm" x="856.0" y="57" text-anchor="middle">שמחה ארואץ</text><text class="sb" text-anchor="middle"><tspan x="856.0" y="72">אם יוסף</tspan><tspan x="856.0" y="86">(מפקד מונטיפיורי 1855)</tspan></text></g><line class="ln" x1="972.0" y1="67.0" x2="948.0" y2="67.0"/>
+<g class="unk"><rect x="330.0" y="34" width="300" height="66" rx="8"/><text class="nm" x="480" y="57" text-anchor="middle">משפחת צאלח — צנעא, תימן</text><text class="sb" text-anchor="middle"><tspan x="480" y="72">צורפים מדורי דורות</tspan><tspan x="480" y="86">רבנים, דיינים ומחברים</tspan></text></g>
+<g class="arwas"><rect x="1438.0" y="34" width="184" height="66" rx="8"/><text class="nm" x="1530.0" y="57" text-anchor="middle">אלעזר ארואץ</text><text class="sb" text-anchor="middle"><tspan x="1530.0" y="72">~1831 גיברלטר · עלה 1833</tspan><tspan x="1530.0" y="86">כותנה 1855 · מזרנים (פנקס), יפו</tspan></text></g><g class="arwas"><rect x="1230.0" y="34" width="184" height="66" rx="8"/><text class="nm" x="1322.0" y="57" text-anchor="middle">מסודה ארואץ</text><text class="sb" text-anchor="middle"><tspan x="1322.0" y="72">אשת אלעזר</tspan><tspan x="1322.0" y="86">(מפקד מונטיפיורי 1855)</tspan></text></g><line class="ln" x1="1438.0" y1="67.0" x2="1414.0" y2="67.0"/>
+<line class="rootln" x1="1156.0" y1="67.0" x2="1230.0" y2="67.0"/>
+<rect class="mybg" x="1171.0" y="58.0" width="44" height="15"/>
+<text class="my" x="1193.0" y="70.0" text-anchor="middle">אחים?</text>
+<g class="arwas"><rect x="972.0" y="168" width="184" height="66" rx="8"/><text class="nm" x="1064.0" y="191" text-anchor="middle">יוסף ארואס</text><text class="sb" text-anchor="middle"><tspan x="1064.0" y="206">שלוש הצהרות גיל: ~1845 (1869) · ~1849 (1886) · ~1852 (1893)</tspan><tspan x="1064.0" y="220">צראף · טופס 1893: «בן Solomon Arwas»</tspan></text></g><g class="arwas"><rect x="764.0" y="168" width="184" height="66" rx="8"/><text class="nm" x="856.0" y="191" text-anchor="middle">גרסיה ארואס</text><text class="sb" text-anchor="middle"><tspan x="856.0" y="206">אם מרים · ב-1893 רשומה שרה (29)</tspan></text></g><line class="ln" x1="972.0" y1="201.0" x2="948.0" y2="201.0"/>
+<g class="frainte"><rect x="1208.0" y="168" width="184" height="66" rx="8"/><text class="nm" x="1300" y="191" text-anchor="middle">אברהם פריינטה</text><text class="sb" text-anchor="middle"><tspan x="1300" y="206">אבי יצחק פפו</tspan></text></g>
+<line class="rootln" x1="960" y1="100" x2="960" y2="134.0"/><line class="rootln" x1="960" y1="134.0" x2="960" y2="134.0"/><line class="rootln" x1="960" y1="134.0" x2="960" y2="168"/>
+<line class="ln" x1="572" y1="134.0" x2="960" y2="134.0"/>
+<line class="ln" x1="702" y1="134.0" x2="702" y2="168"/>
+<line class="ln" x1="572" y1="134.0" x2="572" y2="168"/>
+<g class="arwas"><rect x="646.0" y="168" width="112" height="124" rx="8"/><text class="nm" x="702" y="191" text-anchor="middle">משה · מיכאל</text><text class="sb" text-anchor="middle"><tspan x="702" y="206">בני שלמה</tspan><tspan x="702" y="220">משה ~1849</tspan><tspan x="702" y="234">(מפקד 1855)</tspan><tspan x="702" y="248">מיכאל ~1864</tspan><tspan x="702" y="262">«בן שלום/שלמה»</tspan><tspan x="702" y="276">1895 · 1904 · 1906</tspan></text></g>
+<g class="arwas"><rect x="491.0" y="168" width="162" height="82" rx="8"/><text class="nm" x="572" y="191" text-anchor="middle">אליהו ארואץ</text><text class="sb" text-anchor="middle"><tspan x="572" y="206">~1852 · בן שלמה (1893)</tspan><tspan x="572" y="220">חלפן יפו 1873 → עזה</tspan><tspan x="572" y="234">«השקפה» 1904 · נפ׳ 1906?</tspan></text></g>
+<g class="arwas"><rect x="145.0" y="168" width="286" height="176" rx="8"/><text class="nm" x="288" y="191" text-anchor="middle">בית אליהו בעזה — 1893</text><text class="sb" text-anchor="middle"><tspan x="288" y="206">תעודת נתין בריטי 24, קונסוליית יפו</tspan><tspan x="288" y="220">«Father’s Name: Shalom Arrwas (dead)»</tspan><tspan x="288" y="234">רעייתו פרו (36)</tspan><tspan x="288" y="248">משה 17 · רחל 14 · מרים 12</tspan><tspan x="288" y="262">סולטנה 10 · יעקב 4 · שלמה 2</tspan><tspan x="288" y="276">— ובפנקס יפו 10.2.1886: אותו בית —</tspan><tspan x="288" y="290">אליהו 30 · אורו 25 · משה 12 · רחל 10</tspan><tspan x="288" y="304">מרים 7 · סולטנה 5 · (גיל ומגורים סותרים)</tspan></text></g>
+<line class="ln" x1="431" y1="201" x2="491" y2="201"/>
+<line class="ln" x1="1426" y1="100" x2="1426" y2="134.0"/><line class="ln" x1="1426" y1="134.0" x2="1522" y2="134.0"/><line class="ln" x1="1522" y1="134.0" x2="1522" y2="168"/>
+<g class="misc"><rect x="1400.0" y="168" width="244" height="112" rx="8"/><text class="nm" x="1522" y="191" text-anchor="middle">בני אלעזר</text><text class="sb" text-anchor="middle"><tspan x="1522" y="206">יוסף אליהו (~1856) · רחמים (~1864) · יעקב (~1865)</tspan><tspan x="1522" y="220">תעודה 12, יפו 12.1.1904: «בן Eliazar»</tspan><tspan x="1522" y="234">ובהערות הפקיד: «Orig. from Gibraltar»</tspan><tspan x="1522" y="248">בנו אזר (21) נרשם בעזה חודש אחר כך</tspan><tspan x="1522" y="262">יעקב ורחמים — «בן Azor/Azar» בטפסי 1896-1912</tspan></text></g>
+<g class="frainte"><rect x="1124.0" y="302" width="184" height="66" rx="8"/><text class="nm" x="1216.0" y="325" text-anchor="middle">יצחק (פפו) פריינטה</text><text class="sb" text-anchor="middle"><tspan x="1216.0" y="340">~1860/62 ירושלים - 31.12.1944 (כהן: 1942?)</tspan><tspan x="1216.0" y="354">מדור מייסדי מקווה ישראל</tspan></text></g><g class="frainte"><rect x="916.0" y="302" width="184" height="66" rx="8"/><text class="nm" x="1008.0" y="325" text-anchor="middle">מרים ארואס</text><text class="sb" text-anchor="middle"><tspan x="1008.0" y="340">~1875 יפו - ז׳ תמוז תרע״ו (1916)</tspan><tspan x="1008.0" y="354">קבורה בטרומפלדור</tspan></text></g><line class="ln" x1="1124.0" y1="335.0" x2="1100.0" y2="335.0"/>
+<g class="zadok"><rect x="492.0" y="302" width="184" height="66" rx="8"/><text class="nm" x="584.0" y="325" text-anchor="middle">אברהם צדוק (צאלח)</text><text class="sb" text-anchor="middle"><tspan x="584.0" y="340">נפטר בעדן ~1900</tspan></text></g><g class="zadok"><rect x="284.0" y="302" width="184" height="66" rx="8"/><text class="nm" x="376.0" y="325" text-anchor="middle">סעדה צדוק (צאלח)</text><text class="sb" text-anchor="middle"><tspan x="376.0" y="340">נספתה ברעב צנעא 1904</tspan></text></g><line class="ln" x1="492.0" y1="335.0" x2="468.0" y2="335.0"/>
+<line class="rootln" x1="480" y1="100" x2="480" y2="201.0"/><line class="rootln" x1="480" y1="201.0" x2="480" y2="201.0"/><line class="rootln" x1="480" y1="201.0" x2="480" y2="302"/>
+<line class="ln" x1="960" y1="234" x2="960" y2="268.0"/>
+<line class="ln" x1="800" y1="268.0" x2="1008.0" y2="268.0"/>
+<line class="ln" x1="1008.0" y1="268.0" x2="1008.0" y2="302"/>
+<line class="ln" x1="800" y1="268.0" x2="800" y2="302"/>
+<g class="arwas"><rect x="702.0" y="302" width="196" height="66" rx="8"/><text class="nm" x="800" y="325" text-anchor="middle">שלמה ארואס (בן יוסף)</text><text class="sb" text-anchor="middle"><tspan x="800" y="340">~1875? · רישומי הקונסוליה 1902-03</tspan><tspan x="800" y="354">ע״ש סבו (ככל הנראה) · בנו יוסף ~1910</tspan></text></g>
+<line class="ln" x1="1300" y1="234" x2="1300" y2="268.0"/><line class="ln" x1="1300" y1="268.0" x2="1216.0" y2="268.0"/><line class="ln" x1="1216.0" y1="268.0" x2="1216.0" y2="302"/>
+<g class="misc"><rect x="1448.0" y="452" width="168" height="66" rx="8"/><text class="nm" x="1532" y="475" text-anchor="middle">יוסף · רפאל · אברהם</text><text class="sb" text-anchor="middle"><tspan x="1532" y="490">אחים נוספים (מתוך 9)</tspan></text></g>
+<g class="frainte"><rect x="1275.0" y="452" width="160" height="66" rx="8"/><text class="nm" x="1355" y="475" text-anchor="middle">משה פרינטה</text><text class="sb" text-anchor="middle"><tspan x="1355" y="490">בן יצחק · נשוי לרבקה (בת דניאל?)</tspan><tspan x="1355" y="504">פנקס הבוגרים ת״א 1944</tspan></text></g>
+<g class="frainte"><rect x="1126.0" y="452" width="138" height="66" rx="8"/><text class="nm" x="1195" y="475" text-anchor="middle">פלורין</text><text class="sb" text-anchor="middle"><tspan x="1195" y="490">לימים בלומברג</tspan></text></g>
+<g class="frainte"><rect x="976.0" y="452" width="138" height="66" rx="8"/><text class="nm" x="1045" y="475" text-anchor="middle">ויקטוריה</text><text class="sb" text-anchor="middle"><tspan x="1045" y="490">לימים בכר</tspan></text></g>
+<g class="frainte"><rect x="826.0" y="452" width="138" height="66" rx="8"/><text class="nm" x="895" y="475" text-anchor="middle">חנה</text><text class="sb" text-anchor="middle"><tspan x="895" y="490">לבית פריינטה</tspan><tspan x="895" y="504">(גרסיה ביטרן)</tspan></text></g>
+<g class="parent"><rect x="628.0" y="452" width="184" height="66" rx="8"/><text class="nm" x="720" y="475" text-anchor="middle">שושנה רוזה</text><text class="sb" text-anchor="middle"><tspan x="720" y="490">לבית פריינטה · 31.12.1902 - 3.4.1979</tspan><tspan x="720" y="504">אם אברהם · קבורה בחולון לצד אהרון</tspan></text></g>
+<g class="parent"><rect x="364.0" y="452" width="184" height="66" rx="8"/><text class="nm" x="456" y="475" text-anchor="middle">אהרון צדוק</text><text class="sb" text-anchor="middle"><tspan x="456" y="490">~1895 - 18.11.1981 · יליד צנעא</tspan><tspan x="456" y="504">עלה 1914 · יפו 1918 · מקווה מ-1916*</tspan><tspan x="456" y="518">אופה ראשי 1920-1960 · סופר ופעיל ציבור</tspan></text></g>
+<line class="ln" x1="1112" y1="368" x2="1112" y2="418"/>
+<line class="ln" x1="720" y1="418" x2="1532" y2="418"/>
+<line class="ln" x1="720" y1="418" x2="720" y2="452"/>
+<line class="ln" x1="895" y1="418" x2="895" y2="452"/>
+<line class="ln" x1="1045" y1="418" x2="1045" y2="452"/>
+<line class="ln" x1="1195" y1="418" x2="1195" y2="452"/>
+<line class="ln" x1="1355" y1="418" x2="1355" y2="452"/>
+<line class="ln" x1="1532" y1="418" x2="1532" y2="452"/>
+<line class="ln" x1="480" y1="368" x2="480" y2="410.0"/><line class="ln" x1="480" y1="410.0" x2="456" y2="410.0"/><line class="ln" x1="456" y1="410.0" x2="456" y2="452"/>
+<line class="ln" x1="260" y1="410.0" x2="480" y2="410.0"/>
+<line class="ln" x1="260" y1="410.0" x2="260" y2="452"/>
+<g class="unk"><rect x="172.0" y="452" width="176" height="66" rx="8"/><text class="nm" x="260" y="475" text-anchor="middle">יוסף, אחיו הצעיר של אהרון</text><text class="sb" text-anchor="middle"><tspan x="260" y="490">נספה ברעב צנעא תרס״ד (1904)</tspan><tspan x="260" y="504">עם אמו · השם — ספר המשפחה</tspan></text></g>
+<line class="ln" x1="548.0" y1="485.0" x2="628.0" y2="485.0"/>
+<rect class="mybg" x="557.0" y="469.0" width="62" height="14"/>
+<text class="my" x="588.0" y="480.0" text-anchor="middle">מקווה ישראל</text>
+<line class="ln" x1="588.0" y1="485.0" x2="588.0" y2="576"/>
+<line class="ln" x1="196.0" y1="576" x2="980.0" y2="576"/>
+<line class="ln" x1="980.0" y1="576" x2="980.0" y2="610"/>
+<g class="person"><rect x="888.0" y="610" width="184" height="66" rx="8"/><text class="nm" x="980.0" y="633" text-anchor="middle">יעל</text><text class="sb" text-anchor="middle"><tspan x="980.0" y="648">1923 - 9.8.1996</tspan><tspan x="980.0" y="662">∞ בן-ציון פרחי · 1943</tspan></text></g>
+<line class="ln" x1="784.0" y1="576" x2="784.0" y2="610"/>
+<g class="person"><rect x="692.0" y="610" width="184" height="66" rx="8"/><text class="nm" x="784.0" y="633" text-anchor="middle">מרים</text><text class="sb" text-anchor="middle"><tspan x="784.0" y="648">«קיקה» · 1927? · חוקוק</tspan></text></g>
+<line class="ln" x1="588.0" y1="576" x2="588.0" y2="610"/>
+<g class="subject"><rect x="496.0" y="610" width="184" height="66" rx="8"/><text class="nm" x="588.0" y="633" text-anchor="middle">אברהם צדוק</text><text class="sb" text-anchor="middle"><tspan x="588.0" y="648">נ׳ 16.9.1925* · נפ׳ 2017</tspan><tspan x="588.0" y="662">פלמ״ח / קרייתי</tspan></text></g>
+<line class="ln" x1="392.0" y1="576" x2="392.0" y2="610"/>
+<g class="person"><rect x="300.0" y="610" width="184" height="66" rx="8"/><text class="nm" x="392.0" y="633" text-anchor="middle">איציק</text><text class="sb" text-anchor="middle"><tspan x="392.0" y="648">(יצחק) · 1933?</tspan></text></g>
+<line class="ln" x1="196.0" y1="576" x2="196.0" y2="610"/>
+<g class="person"><rect x="104.0" y="610" width="184" height="66" rx="8"/><text class="nm" x="196.0" y="633" text-anchor="middle">יוסי</text><text class="sb" text-anchor="middle"><tspan x="196.0" y="648">(יוסף) · 1948?</tspan></text></g>
+<line class="ln" x1="588.0" y1="676" x2="588.0" y2="791.0"/>
+<g class="person"><rect x="264.0" y="758" width="184" height="66" rx="8"/><text class="nm" x="356.0" y="781" text-anchor="middle">רחל צדוק</text><text class="sb" text-anchor="middle"><tspan x="356.0" y="796">לבית רפפורט/פרקש</tspan><tspan x="356.0" y="810">ניצולת שואה · 1950</tspan></text></g>
+<line class="ln" x1="448.0" y1="791.0" x2="588.0" y2="791.0"/>
+<rect class="mybg" x="502.0" y="775.0" width="32" height="14"/>
+<text class="my" x="518.0" y="786.0" text-anchor="middle">1950</text>
+<line class="ln" x1="518.0" y1="791.0" x2="518.0" y2="866"/>
+<line class="ln" x1="414.0" y1="866" x2="622.0" y2="866"/>
+<line class="ln" x1="622.0" y1="866" x2="622.0" y2="896"/>
+<g class="person"><rect x="546.0" y="896" width="152" height="56" rx="8"/><text class="nm" x="622.0" y="919" text-anchor="middle">עדו</text><text class="sb" text-anchor="middle"></text></g>
+<line class="ln" x1="414.0" y1="866" x2="414.0" y2="896"/>
+<g class="person"><rect x="338.0" y="896" width="152" height="56" rx="8"/><text class="nm" x="414.0" y="919" text-anchor="middle">זיו</text><text class="sb" text-anchor="middle"></text></g>
+<text class="gen" x="1020" y="754" text-anchor="middle">שכבות שנוספו במהדורות 43-55 — מתועדים ברשומת מדינה, החוליה לעץ עדיין פתוחה</text>
+<g class="unk"><rect x="710.0" y="768" width="300" height="120" rx="8"/><text class="nm" x="860" y="791" text-anchor="middle">שלושה בני שלמה ארואס — 1916-1944</text><text class="sb" text-anchor="middle"><tspan x="860" y="806">מרקו · צפניה 43 ירושלים תש״ח · «בן שלמה»</tspan><tspan x="860" y="820">אלי · ירושלים 1944 ומפקד תש״ז · «בן שלמה»</tspan><tspan x="860" y="834">— שניהם מרשומה מפורשת —</tspan><tspan x="860" y="848">משה החייט · נווה שלום ת״א · נתין בריטי</tspan><tspan x="860" y="862">בנו נקרא שלמה 1931 ⇒ אביו שלמה (ככל הנראה)</tspan><tspan x="860" y="876">אחים? — טעון אימות</tspan></text></g>
+<g class="unk"><rect x="1040.0" y="768" width="300" height="112" rx="8"/><text class="nm" x="1190" y="791" text-anchor="middle">אברהם פריינטה — ירושלים 1948</text><text class="sb" text-anchor="middle"><tspan x="1190" y="806">מפקד תש״ח, נחלת שבעה · «בית מכלוף»</tspan><tspan x="1190" y="820">בן 58 ⇒ יליד ~1890 · אשתו בוקס (45)</tspan><tspan x="1190" y="834">השערה: בן שמואל, אחיו של יצחק פפו</tspan><tspan x="1190" y="848">— דור האחיינים · טעון אימות</tspan></text></g>
+<text class="gen" x="1495" y="754" text-anchor="middle">ענף מתועד — רק הזיהוי האחרון פתוח</text>
+<g class="arwas"><rect x="1353.0" y="768" width="284" height="120" rx="8"/><text class="nm" x="1495" y="791" text-anchor="middle">הענף שנשאר במצרים — 1904-1950</text><text class="sb" text-anchor="middle"><tspan x="1495" y="806">רפאל בן מיכאל · יליד יפו ~1904</tspan><tspan x="1495" y="820">(טופס 33, יפו 31.1.1906 — «Raphael, 2»)</tspan><tspan x="1495" y="834">היה כבן עשר בגירוש נתיני בריטניה 1914</tspan><tspan x="1495" y="848">בניו שמעון (1934) ויוסף (17.7.1935) — קהיר</tspan><tspan x="1495" y="862">«שם האב: רפאל» · עלו ארצה 1950</tspan><tspan x="1495" y="876">זיהוי האב — ככל הנראה</tspan></text></g>
+<text class="gen" x="56" y="67.0" text-anchor="middle">דור 6 · המוצא</text>
+<text class="gen" x="56" y="201.0" text-anchor="middle">דור 5</text>
+<text class="gen" x="56" y="335.0" text-anchor="middle">סבים וסבתות</text>
+<text class="gen" x="56" y="485.0" text-anchor="middle">ההורים</text>
+<text class="gen" x="56" y="643.0" text-anchor="middle">אברהם ואחיו</text>
+<text class="gen" x="56" y="791.0" text-anchor="middle">נישואין</text>
+<text class="gen" x="56" y="929.0" text-anchor="middle">בנים</text>
+<text class="sb" x="824.0" y="974" text-anchor="middle">* 16.9.1925 — מ-MyHeritage; עץ כהן (2005): 19.9.1925 — פער 3 ימים, טעון אימות (שנת 1925 מאומתת בכרטיס הפלמ״ח) · «נפ׳ ...?» — תאריכי פטירה מועמדים מגאון 1938</text>
+<text class="sb" x="824.0" y="989" text-anchor="middle">אמה של רוזה — מרים ארואס (מאומת: דף הרישום והמצבה; ראו מקרא) · שימו לב: בקורפוס שלוש נשים בשם מרים ארואס — שלנו (ילידת 1875), בתו של אליהו שבבית עזה (~1881), ובת בית יוסף בפנקס 1886 (~1868/9) — ושתי האחרונות אינן אמה של רוזה</text>
+</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלה</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val" aria-labelledby="tree-zoom-label">×1</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button><button type="button" data-tree-zoom="fit">התאמה לרוחב</button></div><div class="legend">
+ <h2>מקרא הצבעים</h2>
+ <p>
+ <span class="sw" style="background:#f4d58d;border-color:#b8860b"></span> אברהם (נושא המחקר) &nbsp;·&nbsp;
+ <span class="sw" style="background:#eef3f7;border-color:#3b6d8a"></span> ההורים (רוזה ואהרון) &nbsp;·&nbsp;
+ <span class="sw" style="background:#e9f3f1;border-color:#3b7a6d"></span> פריינטה &nbsp;·&nbsp;
+ <span class="sw" style="background:#eaf0f6;border-color:#4a6fa5"></span> ארואס (Arwas) &nbsp;·&nbsp;
+ <span class="sw" style="background:#f6efe6;border-color:#a5764a"></span> צדוק / צאלח (תימן) &nbsp;·&nbsp;
+ <span class="sw" style="background:#fbf7ef"></span> בני המשפחה.<br>
+ קו מלא — קשר מתועד. קו מקווקו — קשר משוער או מסגרת־מוצא. סימן «?» אחרי תאריך — מועמד שטרם אומת.
+ </p></div><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree-view.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="timeline"><h2>ציר הזמן</h2><p class="note">כל אירוע מציין עד כמה הוא מבוסס, ומפנה אל המסמך שעליו הוא נשען.</p><ol class="timeline"><li class="tl"><div class="tl-when"><b>1833</b><span class="tl-place">גיברלטר ← יפו</span></div><div class="tl-what"><p>משפחת <b>ארואס</b> עולה מ<b>גיברלטר</b> לארץ ישראל; מפקד 1855 רושם את שלמה ארואץ כמי שעלה בשנת תקצ"ג.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-18">מפקד מונטיפיורי 1855, יפו</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s8">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>8.4.1839</b></div><div class="tl-what"><p>«Salomo Aruas · Gibraltar» נרשם בפנקס נתיני בריטניה של הקונסוליה בירושלים — הרשומה הקדומה ביותר בשושלת.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-29">פנקס נתיני בריטניה, ירושלים</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s8">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1855</b><span class="tl-place">יפו</span></div><div class="tl-what"><p>מפקד מונטיפיורי רושם ביפו את שלמה ארואץ, בן 32, "סוחר ובאנקיר", את אשתו שמחה ואת שלושת בניהם.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-18">מפקד מונטיפיורי 1855, יפו</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s8">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1.1.1869</b><span class="tl-place">יפו</span></div><div class="tl-what"><p>יוסף ארואס בן שלמה נרשם בקונסוליה הבריטית ביפו, בן 24, ומקצועו "Saraff" — חלפן כספים.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-15">רישומי הקונסוליה הבריטית, ארואס</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s8">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1870</b><span class="tl-place">מקווה ישראל</span></div><div class="tl-what"><p>קרל נטר מייסד מטעם "כל ישראל חברים" את <b>מקווה ישראל</b>, בית הספר החקלאי הראשון בארץ ישראל.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-5">אתר מקווה ישראל</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s2">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>31.12.1902</b><span class="tl-place">מקווה ישראל</span></div><div class="tl-what"><p><b>שושנה רוזה פריינטה</b>, אמו של אברהם, נולדת במקווה ישראל; לידתה רשומה בכתב ידו הצרפתי של אביה יצחק.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-2">ספר &quot;משפחת פריינטה&quot;, 2021</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s3-1-5">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1904</b><span class="tl-place">צנעא</span></div><div class="tl-what"><p>ברעב הגדול בצנעא מאבד <b>אהרון צדוק</b>, אביו של אברהם, את אמו ואת אחיו, וניצל לבדו כילד בן שש-שבע.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1ב">זיכרונות אהרון צדוק ומכתבו לנכדו</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s3-2-1">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1914</b><span class="tl-place">יפו</span></div><div class="tl-what"><p>אהרון צדוק יורד מן האנייה בחוף <b>יפו</b>, חודשים אחדים אחרי פרוץ מלחמת העולם הראשונה.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1ב">זיכרונות אהרון צדוק ומכתבו לנכדו</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s3-2-1">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>8.7.1916</b><span class="tl-place">תל אביב</span></div><div class="tl-what"><p>סבתו <b>מרים ארואס-פריינטה</b> מתה במגפת הכולירה ונטמנת בבית העלמין טרומפלדור.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-31">אוסף פריינטה, &quot;האלבום של ישראל&quot;</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s3-1-5">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1920</b><span class="tl-place">מקווה ישראל</span></div><div class="tl-what"><p>אהרון צדוק הוא ה<b>אופה הראשי</b> ומנהל המאפייה של מקווה ישראל — תפקיד שימלא עד ראשית שנות השישים.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-68">&quot;למרחב&quot;, 17.4.1960 — הראיון עמו</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s3-2-2">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1925</b><span class="tl-place">מקווה ישראל</span></div><div class="tl-what"><p><b>אברהם צדוק</b> נולד במקווה ישראל, בנם של אהרון צדוק ושושנה רוזה לבית פריינטה.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1">כרטיס החבר, עמותת דור הפלמ&quot;ח</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s1">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1942</b><span class="tl-place">בן שמן · משמר העמק</span></div><div class="tl-what"><p>מתגייס ל<b>פלמ"ח</b> ומתאמן בפלוגה ד' "נטעים", באימונים בבן שמן ובמשמר העמק.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1">כרטיס החבר, עמותת דור הפלמ&quot;ח</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s6">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1948</b><span class="tl-place">לוד ורמלה</span></div><div class="tl-what"><p>במלחמת העצמאות משרת ב<b>חטיבת קרייתי</b>, לוחם במרחבי לוד ורמלה, ומוסמך לנַשָּׁק.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1">כרטיס החבר, עמותת דור הפלמ&quot;ח</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s6">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1949</b><span class="tl-place">מקווה ישראל</span></div><div class="tl-what"><p>פנקס הבוחרים תש"ט רושם במקוה ישראל, בשורות עוקבות, את "צדוק אהרן בן אברהם" ואת "צדוק שושנה בת יצחק".</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-13">פנקס הבוחרים תש&quot;ט, מקוה ישראל</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s3-2-3">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1.1.2017</b><span class="tl-place">תל אביב</span></div><div class="tl-what"><p>אברהם צדוק מת בגיל תשעים ואחת ונטמן בבית העלמין <b>ירקון</b>, במרחק נסיעה קצרה ממקום הולדתו.</p><div class="tl-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1">כרטיס החבר, עמותת דור הפלמ&quot;ח</a></span><span class="tl-more"><a href="אברהם-צדוק.html#s7-1">בדוח ←</a></span></div></div></li></ol></section><hr><section id="docs"><h2>המסמכים</h2><p class="note">לחיצה על תמונה פותחת את הסריקה המלאה; "בדוח" מוביל אל הקריאה המלאה של המסמך.</p><div class="doccards"><figure class="doccard"><a class="doc-img" href="docs/evidence/palmach_details_zoom.png" target="_blank" rel="noopener"><img src="docs/thumbs/palmach_details_zoom_440q72_c911b6.jpg" alt="כרטיס החבר בפלמ&quot;ח — ללא תאריך" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">ללא תאריך</span><b>כרטיס החבר בפלמ"ח</b><span class="doc-proves">הגרעין הביוגרפי כולו: לידה 1925 במקוה ישראל, ההורים והאחים, הגיוס 1942, קרייתי, והקבורה בירקון.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1">ערך 1</a></span><a href="אברהם-צדוק.html#s1">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/evidence/aharon_letter_zoom.png" target="_blank" rel="noopener"><img src="docs/thumbs/aharon_letter_zoom_440q72_7cdeb6.jpg" alt="מכתב אהרון לנכדו — 1971/72" loading="lazy" decoding="async"></a><figcaption><span class="doc-when"><bdi dir="ltr">1971/72</bdi></span><b>מכתב אהרון לנכדו</b><span class="doc-proves">עדות בגוף ראשון על צנעא, הרעב של 1904, המסע לעדן והנחיתה בחוף יפו ב-1914.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-1ב">ערך 1ב</a></span><a href="אברהם-צדוק.html#s3-2-1">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/family_docs/pariente_birthregister_leaf.png" target="_blank" rel="noopener"><img src="docs/thumbs/pariente_birthregister_leaf_440q72_1005bf.jpg" alt="דף רישום הלידות — 31.12.1902" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">31.12.1902</span><b>דף רישום הלידות</b><span class="doc-proves">לידת רוזה בכתב ידו הצרפתי של אביה — «<bdi dir="ltr">31 Décembre</bdi> 1902 · Rosa Parente».</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-2">ערך 2</a></span><a href="אברהם-צדוק.html#s3-1-5">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/family_docs/ketubah_aharon_roza_5683.png" target="_blank" rel="noopener"><img src="docs/thumbs/ketubah_aharon_roza_5683_440q72_f9e7e8.jpg" alt="כתובת אהרן ורוזה — תרפ&quot;ג" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">תרפ"ג</span><b>כתובת אהרן ורוזה</b><span class="doc-proves">המסמך בן-הזמן הנוקב בשמות האבות: "אהרן בן אברהם צדוק" ו"רוזא בת יצחק פאריינטי".</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-2">ערך 2</a></span><a href="אברהם-צדוק.html#s3-2-3">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/igra/igra_voters1949_mikveh_zadok_rows.png" target="_blank" rel="noopener"><img src="docs/thumbs/igra_voters1949_mikveh_zadok_rows_440q72_7505cd.jpg" alt="פנקס הבוחרים תש&quot;ט — 1949" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">1949</span><b>פנקס הבוחרים תש"ט</b><span class="doc-proves">רשומת מדינה: אהרן בן אברהם ושושנה בת יצחק, בשורות עוקבות, במקוה ישראל.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-13">ערך 13</a></span><a href="אברהם-צדוק.html#s3-2-3">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/montefiore/census1855_jaffa_aruets_row.png" target="_blank" rel="noopener"><img src="docs/thumbs/census1855_jaffa_aruets_row_440q72_6da52f.jpg" alt="מפקד מונטיפיורי, יפו — 1855" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">1855</span><b>מפקד מונטיפיורי, יפו</b><span class="doc-proves">משפחת ארואץ במלואה: שלמה בן 32, "סוחר ובאנקיר", עלה 1833, אשתו שמחה ושלושת בניהם.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-18">ערך 18</a></span><a href="אברהם-צדוק.html#s8">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/igra/igra_britconsul_jerusalem_1839_aruas_zoom.png" target="_blank" rel="noopener"><img src="docs/thumbs/igra_britconsul_jerusalem_1839_aruas_zoom_440q72_ab1c62.jpg" alt="«Salomo Aruas · Gibraltar» — 8.4.1839" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">8.4.1839</span><b>«Salomo Aruas · Gibraltar»</b><span class="doc-proves">הרשומה הקדומה ביותר בשושלת, והיא הקובעת את מוצא המשפחה בגיברלטר.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-29">ערך 29</a></span><a href="אברהם-צדוק.html#s8">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/family_docs/israelalbum/ia_008_miriam_grave_trumpeldor.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ia_008_miriam_grave_trumpeldor_440q72_deaf01.jpg" alt="מצבת מרים ארואס — 8.7.1916" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">8.7.1916</span><b>מצבת מרים ארואס</b><span class="doc-proves">תאריך פטירת הסבתא ומקום קבורתה בטרומפלדור — ז' בתמוז תרע"ו.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="אברהם-צדוק.html#src-31">ערך 31</a></span><a href="אברהם-צדוק.html#s3-1-5">בדוח ←</a></span></figcaption></figure></div></section><hr><section id="sources"><h2>המקורות</h2><p class="note">כל קביעה בדף הזה נשענת על אחד המקורות שלהלן. כל ערך מוביל אל אינדקס המקורות שבדוח, ושם — קישור אל הרשומה בארכיון שממנה נלקחה ואל עותק שמור שלה.</p><ol class="srclist"><li><a href="אברהם-צדוק.html#src-1">כרטיס החבר של אברהם צדוק — עמותת דור הפלמ&quot;ח</a></li><li><a href="אברהם-צדוק.html#src-1ב">זיכרונות אהרון צדוק ומכתבו לנכדו, <bdi dir="ltr">1971/72</bdi></a></li><li><a href="אברהם-צדוק.html#src-2">ספר &quot;משפחת פריינטה: מקוה ישראל&quot;, גיל שחם, 2021</a></li><li><a href="אברהם-צדוק.html#src-5">אתר מקווה ישראל — תולדות המוסד</a></li><li><a href="אברהם-צדוק.html#src-6">&quot;למרחב&quot;, 20.4.1970 — משפחת פריינטה של מקווה ישראל</a></li><li><a href="אברהם-צדוק.html#src-13">פנקס הבוחרים תש&quot;ט (1949), מקוה ישראל</a></li><li><a href="אברהם-צדוק.html#src-15">רישומי הקונסוליה הבריטית בארץ ישראל — ארואס ביפו, <bdi dir="ltr">1839–1903</bdi></a></li><li><a href="אברהם-צדוק.html#src-18">מפקד מונטיפיורי 1855, יפו — שלמה ואלעזר ארואץ</a></li><li><a href="אברהם-צדוק.html#src-22">«Register of British Subjects», יפו — גיליון הפתיחה</a></li><li><a href="אברהם-צדוק.html#src-28">פנקס תושבי ועד העיר ליהודי יפו, <bdi dir="ltr">1918–1919</bdi></a></li><li><a href="אברהם-צדוק.html#src-29">פנקס נתיני בריטניה בירושלים — «Salomo Aruas · Gibraltar»</a></li><li><a href="אברהם-צדוק.html#src-31">אוסף פריינטה ב&quot;האלבום של ישראל&quot; — אוסף 9700.0004</a></li><li><a href="אברהם-צדוק.html#src-33">עדות &quot;סבתא ויקטוריה&quot; — ויקטוריה בכר לבית פריינטה, 11.3.1991</a></li><li><a href="אברהם-צדוק.html#src-68">&quot;למרחב&quot;, 17.4.1960 — הראיון עם אהרון צדוק במאפיית מקווה ישראל</a></li></ol><p class="report-cta"><a class="btn big" href="אברהם-צדוק.html">הדוח המלא — כל הראיות, המקורות והדרך אליהם</a></p></section>
+</main>
+<footer>מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.</footer>
+<script>
+(function(){
+  var IDX = [];
+  var q = document.getElementById('q'), res = document.getElementById('qres');
+  function norm(s){ return (s||'').replace(/["'ְ-ׇ]/g,'').toLowerCase(); }
+  function clear(){ res.textContent=''; res.hidden=true; }
+  function run(){
+    var v = norm(q.value.trim());
+    res.textContent = '';
+    if (v.length < 2){ clear(); return; }
+    var out = [], i, it, hay;
+    for (i=0;i<IDX.length && out.length<12;i++){
+      it = IDX[i]; hay = norm(it.t + ' ' + (it.x||''));
+      if (hay.indexOf(v) !== -1) out.push(it);
+    }
+    if (out.length){
+      var head = document.createElement('p'); head.className='qcount';
+      head.textContent = out.length === 1 ? 'תוצאה אחת'
+                       : (out.length === 12 ? '12 התוצאות הראשונות' : out.length + ' תוצאות');
+      res.appendChild(head);
+      out.forEach(function(o){
+        var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
+        var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        // a space, or the accessible name reads "…ירושליםאדם"
+        a.appendChild(document.createTextNode(' '));
+        a.appendChild(k); res.appendChild(a);
+      });
+    } else {
+      var p = document.createElement('p'); p.className='nores';
+      p.textContent='לא נמצאו תוצאות בפרקים, באנשים ובמקורות. לחיפוש בגוף הטקסט: Ctrl+F';
+      res.appendChild(p);
+    }
+    res.hidden = false;
+  }
+  function jump(h){
+    // re-applying the hash after the list closes keeps the heading where the
+    // browser put it, whatever else moved
+    location.hash=''; location.hash=h;
+  }
+  if (q){
+    q.hidden = false; clear();
+    q.addEventListener('input', run);
+    q.addEventListener('keydown', function(e){
+      if (e.key==='Escape'){ q.value=''; clear(); return; }
+      if (e.key==='ArrowDown'){ var a=res.querySelector('a'); if(a){ e.preventDefault(); a.focus(); } }
+      if (e.key==='Enter'){ var f=res.querySelector('a'); if(f){ e.preventDefault(); f.click(); } }
+    });
+    res.addEventListener('keydown', function(e){
+      var as = [].slice.call(res.querySelectorAll('a')), i = as.indexOf(document.activeElement);
+      if (e.key==='ArrowDown' && i > -1 && as[i+1]){ e.preventDefault(); as[i+1].focus(); }
+      if (e.key==='ArrowUp'){ e.preventDefault(); (i > 0 ? as[i-1] : q).focus(); }
+      if (e.key==='Escape'){ q.value=''; clear(); q.focus(); }
+    });
+    res.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a') : null;
+      var h = a ? a.getAttribute('href') : '';
+      setTimeout(function(){ clear(); q.value=''; offset(); if (h) jump(h); }, 60);
+    });
+  }
+  var nav = document.querySelector('.nav');
+  // the phone nav is one scrolling row; the search field opens from a button
+  var qt = document.querySelector('.qtoggle');
+  if (qt){
+    qt.hidden = false;
+    qt.addEventListener('click', function(){
+      var on = !nav.classList.contains('qopen');
+      nav.classList.toggle('qopen', on);
+      qt.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on && q) q.focus(); else { if (q) q.value=''; if (res) clear(); }
+      offset();
+    });
+  }
+  function offset(){
+    if (!nav) return;
+    var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
+    document.documentElement.style.setProperty('--anchor-off', h + 'px');
+  }
+  offset(); addEventListener('resize', offset);
+  var top = document.querySelector('.top');
+  function topvis(){ var on = scrollY > 900;
+    top.classList.toggle('show', on); top.setAttribute('tabindex', on ? '0' : '-1'); }
+  if (top){ top.setAttribute('tabindex','-1'); addEventListener('scroll', topvis, {passive:true}); }
+  // a lazy image that never entered the viewport prints as an empty frame,
+  // and a fetch started inside beforeprint is not awaited — so the whole set
+  // is promoted once the page has settled, and again as a backstop
+  // A lazy image that never entered the viewport prints as an empty frame. But
+  // promoting all of them on load would download the whole gallery for a reader
+  // who never scrolls. So: promote once the reader has actually started reading,
+  // and again at print time as a backstop.
+  function eager(){
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),
+                    function(i){ i.loading='eager'; });
+  }
+  // a collapsed <details> prints as its summary alone; everything is opened for
+  // the print run and put back afterwards
+  var reopen = [];
+  addEventListener('beforeprint', function(){
+    reopen = [].filter.call(document.querySelectorAll('details'), function(d){ return !d.open; });
+    reopen.forEach(function(d){ d.open = true; });
+  });
+  addEventListener('afterprint', function(){
+    reopen.forEach(function(d){ d.open = false; }); reopen = [];
+  });
+  var promoted = false;
+  function promoteOnce(){
+    if (promoted) return;
+    promoted = true;
+    var idle = window.requestIdleCallback || function(f){ setTimeout(f, 600); };
+    idle(eager);
+  }
+  addEventListener('scroll', promoteOnce, {passive:true, once:true});
+  addEventListener('beforeprint', eager);
+  // only a table that actually overflows is a scroll region worth a tab stop
+  function scrollables(){
+    [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
+      var over = w.scrollWidth - w.clientWidth > 1;
+      var cap = w.querySelector('caption');
+      var name = 'טבלה' + (cap && cap.textContent ? ' — ' + cap.textContent : '');
+      if (over){ w.tabIndex = 0; w.setAttribute('role','region');
+                 w.setAttribute('aria-label', name + ' — ניתנת לגלילה אופקית'); }
+      else { w.removeAttribute('tabindex'); w.removeAttribute('role');
+             w.removeAttribute('aria-label'); }
+    });
+  }
+  scrollables(); addEventListener('resize', scrollables);
+  // the tree is laid out at fixed coordinates; zooming the frame is how a reader
+  // gets its labels to a readable size without the boxes colliding
+  // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
+  // so the reader always has a state where the whole shape is on the screen,
+  // and every step above it is stated relative to that (×1.5, ×2)
+  var zoom = 1; // start at fit-to-width everywhere; readers zoom in with +
+  var zval = document.getElementById('tree-zoom-val');
+  function zshow(){
+    document.documentElement.style.setProperty('--tree-zoom', zoom);
+    if (zval) zval.textContent = '\u00d7' + (Math.round(zoom * 100) / 100);
+  }
+  [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
+    btn.addEventListener('click', function(){
+      var v = btn.getAttribute('data-tree-zoom');
+      if (v === 'fit') zoom = 1;
+      else zoom = Math.min(3, Math.max(1,
+             Math.round((zoom + parseInt(v, 10) * 0.25) * 100) / 100));
+      zshow();
+    });
+  });
+  if (zval) zshow();
+  var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = targets.indexOf(e.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('on'); });
+        links[i].classList.add('on');
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>

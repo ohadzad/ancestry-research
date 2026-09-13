@@ -178,6 +178,9 @@ def build(cfg, verbose=True):
     if view_html:
         open(cfg.p(view_name), 'w', encoding='utf-8').write(view_html)
     tree_html = tree.embed(cfg, svg, legend, foot, page_href=view_name or None)
+    # the story page gets the diagram and its colour key, without the footnotes
+    story_tree = tree.embed(cfg, tree.strip_ids(svg), legend, page_href=view_name or None,
+                            compact=True)
     gal = figures.gallery(cfg.gallery, cfg.root)
 
     present = {'report'}
@@ -228,7 +231,7 @@ def build(cfg, verbose=True):
     story_out, story_name = '', ''
     if cfg.story:
         story_name = cfg.story_name()
-        story_out = _story(cfg, tree_html, _updated_line(changelog_md, _stamp()), warn)
+        story_out = _story(cfg, story_tree, _updated_line(changelog_md, _stamp()), warn)
         open(cfg.p(story_name), 'w', encoding='utf-8').write(story_out)
 
     # the folder's front door opens the story when there is one, and the report

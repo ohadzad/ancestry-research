@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>רחל צדוק לבית רפפורט-סטרולוביץ</title>
+<meta name="description" content="מחקר גנאלוגי מתועד-מקורות על רחל צדוק לבית רפפורט-סטרולוביץ, ילידת וולובה שבקרפטורוס, ניצולת אושוויץ, שטוטהוף וטורן — עם עץ משפחה, גלריית ראיות ואינדקס מקורות.">
+<meta name="color-scheme" content="light">
+<style>
+:root {
+  --ink:#2b2620; --muted:#6a6154; --line:#e2dbcc;
+  --paper:#faf7f2; --accent:#7a5c1e; --accent-soft:#a8781f;
+  --link:#7d5310;
+  --hero-from:#33291a; --hero-to:#6b5324;
+  --col: 60rem;               /* the reading column */
+  --nav-h: 3.25rem;
+  --anchor-off: 6.5rem;
+  --radius: 6px;
+  --serif: 'David Libre','Frank Ruhl Libre','Times New Roman',Georgia,serif;
+  --sans: 'Assistant','Segoe UI',Arial,Helvetica,sans-serif;
+  --sbw: 0px;
+}
+*,*::before,*::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+body {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.75;
+  text-rendering:optimizeLegibility; -webkit-text-size-adjust:100%;
+  overflow-wrap:break-word; word-break:normal;
+}
+img, svg, video { max-width:100%; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));
+  color:#f6efe2; padding:2.5rem 1.25rem 2rem;
+}
+.hero-in { max-width:var(--col); margin-inline:auto; }
+.hero .crumb { font-family:var(--sans); font-size:.8rem; opacity:.8; margin-block-end:1rem; }
+.hero .crumb a { color:#f2e5c8; text-decoration:none; border-block-end:1px solid rgba(242,229,200,.4); }
+.hero h1 { font-size:clamp(1.6rem,3.4vw,2.4rem); line-height:1.25; margin:0 0 .5rem; font-weight:700; letter-spacing:-.01em; }
+.hero .subject { font-size:1.05rem; opacity:.94; margin:0 0 .35rem; }
+.hero .meta { font-family:var(--sans); font-size:.8rem; color:#e8dcc2; }
+
+.spine { display:flex; flex-wrap:wrap; gap:.5rem; margin-block-start:1.5rem; }
+.spine div {
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radius); padding:.5rem .8rem; min-width:7.5rem;
+}
+.spine b { display:block; font-size:1.3rem; line-height:1.2; font-family:var(--sans); font-weight:700; }
+.spine span { /* floor: no supporting text below 12.5px */ font-family:var(--sans); font-size:.78rem; color:#e8dcc2; }
+
+/* ---------- sticky navigation ---------- */
+.nav {
+  position:sticky; top:0; z-index:40; background:rgba(250,247,242,.97);
+  backdrop-filter:saturate(150%) blur(6px);
+  border-block-end:1px solid var(--line); font-family:var(--sans);
+}
+.nav-in { max-width:var(--col); margin-inline:auto; padding:0 1.25rem; }
+.nav-row { display:flex; align-items:center; gap:.4rem; height:var(--nav-h); }
+.nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.4rem; }
+.nav a {
+  flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.82rem;
+  padding:.3rem .6rem; border-radius:999px; white-space:nowrap;
+}
+.nav a:hover { background:rgba(0,0,0,.05); }
+.nav a.on { background:var(--accent); color:#fff; }
+.nav .lbl { flex:0 0 auto; font-size:.78rem; color:var(--muted); padding-inline-end:.2rem; }
+
+.qwrap { position:relative; flex:0 0 auto; margin-inline-start:auto; }
+#q {
+  font-family:var(--sans); font-size:.8rem;
+  padding:.32rem .7rem; border:1px solid var(--line); border-radius:999px;
+  background:#fff; color:var(--ink); min-width:9rem;
+}
+#q:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+/* out of flow: opening the list must not change the nav's height, or every
+   anchor below it would shift while the reader is looking at one */
+#qres {
+  position:absolute; inset-block-start:calc(100% + .4rem); inset-inline-end:0;
+  min-width:20rem; max-width:min(28rem, 92vw); max-height:60vh; overflow-y:auto;
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(0,0,0,.14); padding:.35rem .8rem .5rem;
+  font-family:var(--sans); font-size:.82rem; z-index:60;
+}
+#qres[hidden] { display:none; }
+#qres a {
+  display:block; white-space:normal; flex:initial; border-radius:0;
+  padding:.35rem 0; color:var(--ink); border-block-end:1px dotted var(--line);
+}
+#qres a:last-child { border-block-end:0; }
+#qres .k { color:var(--muted); font-size:.78rem; margin-inline-start:.4rem; }
+#qres .nores { margin:.3rem 0; color:var(--muted); }
+#qres .qcount {
+  margin:.1rem 0 .35rem; color:var(--muted); font-size:.78rem;
+  border-block-end:1px solid var(--line); padding-block-end:.3rem;
+}
+
+/* ---------- the reading column ---------- */
+main { max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 4rem; }
+section, .legacy-anchor { scroll-margin-top:var(--anchor-off); display:block; }
+.legacy-anchor { height:0; }
+h2, h3, h4 { scroll-margin-top:var(--anchor-off); }
+h2 {
+  font-size:1.45rem; line-height:1.3; margin:2.6rem 0 .9rem; color:var(--accent);
+  border-block-end:2px solid var(--line); padding-block-end:.35rem;
+}
+h3 { font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }
+h4 { font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }
+p { margin:0 0 1rem; }
+a { color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }
+/* a citation marker after a Latin run would otherwise be laid out on the far
+   side of it, before the very words it cites */
+a.cit { unicode-bidi:isolate; }
+.visually-hidden {
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0;
+}
+a:hover { border-block-end-color:var(--link); }
+a:focus-visible { outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }
+ul, ol { margin:0 0 1rem; padding-inline-start:1.4rem; }
+li { margin-block-end:.4rem; }
+hr { border:0; border-block-start:1px solid var(--line); margin:2.5rem 0; }
+strong { font-weight:700; }
+blockquote {
+  margin:1.2rem 0; padding:.1rem 1rem; border-inline-start:3px solid var(--line);
+  color:var(--muted);
+}
+code {
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;
+  background:rgba(0,0,0,.045); padding:.1em .35em; border-radius:3px;
+  direction:ltr; unicode-bidi:isolate;
+}
+
+/* ---------- callouts ---------- */
+.lede {
+  background:#fff; border:1px solid var(--line); border-inline-start:4px solid var(--accent);
+  border-radius:var(--radius); padding:1.1rem 1.2rem; margin:0 0 1.6rem;
+  font-size:1.08rem; line-height:1.72;
+}
+.note {
+  background:rgba(0,0,0,.025); border:1px solid var(--line); border-radius:var(--radius);
+  padding:.8rem 1rem; margin:1.2rem 0; font-size:.94rem; color:var(--muted);
+}
+
+/* ---------- the certainty ladder, spelled out ---------- */
+.ladder {
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.84rem;
+}
+.ladder > summary {
+  cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none;
+}
+.ladder > summary::-webkit-details-marker { display:none; }
+.ladder > summary::after { content:" ▾"; }
+.ladder[open] > summary::after { content:" ▴"; }
+.ladder > summary:hover { color:var(--ink); }
+.ladder-in { padding:.2rem .9rem .9rem; }
+.rungs { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.4rem .9rem; }
+.rung { display:flex; gap:.5rem; align-items:baseline; line-height:1.5; }
+.rung > span { color:var(--muted); }
+.terms {
+  margin-block-start:.8rem; padding-block-start:.7rem; border-block-start:1px dotted var(--line);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:.4rem .9rem;
+}
+.term { line-height:1.5; }
+.term b { color:var(--ink); }
+.term span { color:var(--muted); }
+.term b::after { content:" — "; color:var(--muted); font-weight:400; }
+
+/* ---------- certainty chips ---------- */
+.rank {
+  display:inline-block; font-family:var(--sans); font-size:.78rem; font-style:normal; font-weight:600;
+  line-height:1.5; padding:.05rem .5rem; border-radius:999px; white-space:nowrap;
+  border:1px solid currentColor; vertical-align:.08em;
+}
+.rank.v1 { color:#2f6b41; background:rgba(47,107,65,.08); }   /* מאומת */
+.rank.v2 { color:#6b5324; background:rgba(107,83,36,.08); }   /* כמעט ודאי */
+.rank.v3 { color:#8a5a00; background:rgba(138,90,0,.08); }    /* ככל הנראה */
+.rank.v4 { color:#8a3d2e; background:rgba(138,61,46,.08); }   /* טעון אימות */
+.rank.v5 { color:#5a5a5a; background:rgba(90,90,90,.10); }   /* נשלל */
+.rank.v6 { color:#7a7a7a; background:rgba(122,122,122,.08); }   /* בוטל */
+
+/* ---------- the story page ---------- */
+/* A second page over the same research: the life in order, for a reader who
+   arrived without context. Everything auditable stays in the report. */
+body.story main { padding-block-start:2rem; }
+.story-hero .hero-cols { display:flex; gap:1.5rem; align-items:flex-start; }
+.story-hero .hero-text { flex:1 1 auto; min-width:0; }
+.story-hero .portrait {
+  flex:0 0 auto; inline-size:9.5rem; margin:0; text-align:start;
+}
+.story-hero .portrait img {
+  inline-size:100%; max-block-size:13rem; object-fit:cover; object-position:center top;
+  border:1px solid rgba(255,255,255,.35); border-radius:var(--radius);
+  box-shadow:0 3px 12px rgba(0,0,0,.28); background:#fff;
+}
+.story-hero .portrait figcaption {
+  color:#e8dcc2; font-family:var(--sans); font-size:.76rem; line-height:1.5;
+  margin-block-start:.4rem; text-align:start;
+}
+.story-hero h1 { margin-block-end:.6rem; }
+.story-hero .subject { font-size:1.1rem; line-height:1.6; }
+
+.nav-report, .nav-story {
+  font-weight:600; color:var(--accent) !important; border:1px solid var(--accent);
+}
+.nav-report { margin-inline-start:auto; }
+.nav-story { margin-inline-end:.5rem; }
+.nav-report:hover, .nav-story:hover { background:var(--accent); color:#fff !important; }
+
+/* the edition log is the researcher's bookkeeping: collapsed by default, and
+   reachable for anyone who wants to see what changed */
+.changelog-wrap > summary {
+  cursor:pointer; list-style:none; font-family:var(--sans); font-size:.86rem;
+  color:var(--muted); padding:.5rem .9rem; border:1px solid var(--line);
+  border-radius:var(--radius); background:#fff; display:inline-block;
+}
+.changelog-wrap > summary::-webkit-details-marker { display:none; }
+.changelog-wrap > summary::after { content:" ▾"; }
+.changelog-wrap[open] > summary::after { content:" ▴"; }
+.changelog-wrap > summary:hover { color:var(--ink); }
+
+/* ---------- table of contents ---------- */
+.toc {
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.86rem;
+}
+.toc > summary { cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none; }
+.toc > summary::-webkit-details-marker { display:none; }
+.toc > summary::after { content:" ▾"; }
+.toc[open] > summary::after { content:" ▴"; }
+.toc > summary:hover { color:var(--ink); }
+.toc-list {
+  margin:0; padding:.1rem 2.4rem .9rem; columns:2; column-gap:1.6rem;
+}
+.toc-list li { margin-block-end:.3rem; break-inside:avoid; }
+.toc-list a { border:0; }
+
+/* three columns: certain · probable · open — the whole state of the research */
+.verdicts {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+  gap:.9rem; margin:1.8rem 0 2.4rem;
+}
+.verdict {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.9rem 1rem 1rem;
+}
+.verdict h3 {
+  margin:0 0 .6rem; font-size:1rem; color:var(--ink);
+  display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+}
+.verdict ul { margin:0; padding-inline-start:1.1rem; font-size:.95rem; }
+.verdict li { margin-block-end:.5rem; line-height:1.6; }
+.verdict a, 
+.verdict a::after { content:" ←"; }
+
+/* the timeline: the date is the handle the eye scans down */
+.timeline { list-style:none; margin:1.2rem 0 2rem; padding:0; position:relative; }
+.timeline::before {
+  /* the rail runs through the dots, which sit in the gap between the date
+     column and the text — i.e. at the INLINE-START side in an RTL page */
+  content:""; position:absolute; inset-block:.6rem 1.4rem;
+  inset-inline-start:calc(5.325rem - 1px); inset-inline-end:auto;
+  inline-size:2px; background:var(--line);
+}
+li.tl {
+  display:flex; gap:1.1rem; margin:0 0 1.15rem; position:relative;
+  align-items:flex-start;
+}
+.tl-when {
+  flex:0 0 4.5rem; text-align:end; padding-block-start:.15rem;
+  font-family:var(--sans); position:relative;
+}
+.tl-when::after {
+  /* the node on the rail */
+  content:""; position:absolute; inset-block-start:.55rem; inset-inline-end:-1.1rem;
+  inline-size:.55rem; block-size:.55rem; border-radius:50%;
+  background:var(--paper); border:2px solid var(--accent-soft);
+}
+.tl-when b { display:block; font-size:.92rem; color:var(--accent); line-height:1.4; }
+.tl-place { display:block; font-size:.76rem; color:var(--muted); line-height:1.4; }
+.tl-what { flex:1 1 auto; min-width:0; padding-inline-start:.5rem; }
+.tl-what p { margin:0 0 .3rem; }
+.tl-foot {
+  display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;
+  font-family:var(--sans); font-size:.78rem;
+}
+.tl-more a { border:0; font-family:var(--sans); font-size:.78rem; }
+.rank-plain { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+
+/* key documents as cards: picture, date, what it proves, how sure */
+.doccards {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));
+  gap:1rem; margin:1.2rem 0 2rem;
+}
+.doccard {
+  margin:0; background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; display:flex; flex-direction:column; text-align:start;
+}
+.doccard .doc-img { display:block; border:0; line-height:0; background:#f3efe6; }
+.doccard img {
+  inline-size:100%; block-size:9.5rem; object-fit:cover; object-position:center top;
+  border:0; border-radius:0; box-shadow:none; display:block;
+}
+.doccard figcaption {
+  padding:.7rem .85rem .8rem; font-size:.88rem; color:var(--ink);
+  text-align:start; margin:0; display:flex; flex-direction:column; gap:.25rem;
+  flex:1 1 auto;
+}
+.doc-when { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.doccard b { font-size:.95rem; line-height:1.45; }
+.doc-proves { color:var(--muted); font-size:.86rem; line-height:1.55; flex:1 1 auto; }
+.doc-foot {
+  display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;
+  margin-block-start:.35rem; font-family:var(--sans); font-size:.78rem;
+}
+.doc-foot a { border:0; }
+
+/* "where this is written down" — on every beat and every card */
+.src { color:var(--muted); font-family:var(--sans); font-size:.78rem; }
+.src a { border:0; color:var(--link); }
+.srclist { margin:1.1rem 0 1.8rem; padding-inline-start:1.4rem; font-size:.95rem; }
+.srclist li { margin-block-end:.5rem; line-height:1.6; }
+.srclist a { border-block-end:1px solid rgba(0,0,0,.14); }
+.report-cta { margin:2rem 0 1rem; }
+.btn.big {
+  font-size:.95rem; padding:.6rem 1.4rem; background:var(--accent); color:#fff;
+  border-color:var(--accent);
+}
+.btn.big:hover { background:var(--hero-from); border-color:var(--hero-from); }
+
+/* ---------- tables ---------- */
+.tablewrap:focus-visible, .tree-embed:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
+.tablewrap { overflow-x:auto; margin:1.2rem 0; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+table { border-collapse:collapse; width:100%; font-size:.93rem; }
+th, td { padding:.5rem .7rem; border-block-end:1px solid var(--line); text-align:start; vertical-align:top; }
+thead th { background:rgba(0,0,0,.035); font-family:var(--sans); font-size:.82rem; }
+tbody tr:last-child td { border-block-end:0; }
+
+/* ---------- figures ---------- */
+figure { margin:1.6rem auto; text-align:center; max-width:100%; }
+figure img {
+  max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 2px 8px rgba(0,0,0,.07); background:#fff;
+}
+figcaption { font-size:.84rem; color:var(--muted); margin-block-start:.5rem; line-height:1.6; text-align:start; }
+figcaption .fignum { font-family:var(--sans); font-weight:700; color:var(--accent); }
+figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(--sans); font-size:.78rem; }
+.imgcap { display:block; font-size:.84rem; color:var(--muted); margin-block-start:.4rem; }
+
+.ext { font-size:.78rem; color:var(--muted); padding-inline-start:.12em; }
+.doclink { display:inline-block; min-inline-size:1.5rem; min-block-size:1.5rem; padding:.15rem .2rem; }
+
+/* ---------- gallery ---------- */
+.gallery { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.2rem 0 2rem; }
+.gallery a {
+  flex:0 0 auto; width:11rem; border:0; text-align:center; color:var(--muted);
+  font-family:var(--sans); font-size:.78rem; line-height:1.4;
+}
+.gallery img { width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+/* a crop far wider than the frame is shown whole rather than magnified */
+.gallery img.contain { object-fit:contain; padding:.3rem; }
+/* a line strip (wider than 6:1) is a hairline inside a square tile: it takes
+   the whole row and keeps its own proportions, so the writing can be read */
+.gallery a.wide { width:100%; }
+.gallery a.wide img { height:auto; max-block-size:11rem; object-fit:contain; }
+.gallery span { display:block; margin-block-start:.3rem; }
+
+/* ---------- family tree ---------- */
+.tree-embed {
+  overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+  background:#fff; padding:.5rem;
+}
+/* zoom 1 == fit to width: the diagram is never wider than the frame unless the
+   reader asks for it, on a phone as on a desktop */
+.tree-embed svg {
+  width:calc(100% * var(--tree-zoom, 1));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1)));
+  /* the global svg max-width would clamp the zoom away */
+  max-width:none;
+  height:auto; display:block; margin-inline:auto;
+}
+.tree-zoom {
+  display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.5rem;
+}
+.tree-zoom button {
+  font:inherit; line-height:1; min-inline-size:2rem; min-block-size:2rem;
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  color:var(--ink); cursor:pointer;
+}
+.tree-zoom button:hover { background:rgba(0,0,0,.04); }
+.tree-zoom button:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+.legend {
+  display:flex; gap:1.1rem; justify-content:center; flex-wrap:wrap;
+  padding:.7rem 0 .2rem; font-family:var(--sans); font-size:.8rem; color:var(--muted);
+}
+.legend > span { display:flex; align-items:center; gap:.35rem; }
+.dot { width:.7rem; height:.7rem; border-radius:50%; display:inline-block; flex:0 0 auto; }
+.tree-foot {
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); text-align:center;
+  max-width:52rem; margin:.5rem auto 0; line-height:1.6;
+}
+.tree-hint { font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.4rem; }
+.btn {
+  display:inline-block; font-family:var(--sans); font-size:.82rem; border:1px solid var(--accent);
+  color:var(--accent); border-radius:999px; padding:.32rem .9rem; margin-block-start:.6rem;
+}
+.btn:hover { background:var(--accent); color:#fff; }
+
+/* ---------- person index ---------- */
+.people { display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:.6rem; margin:1.2rem 0; }
+.person {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.6rem .75rem; font-size:.9rem;
+}
+.person b { display:block; font-size:.97rem; }
+.person .d { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.person .r { display:block; color:var(--muted); font-size:.84rem; margin-block-start:.15rem; }
+
+.skip {
+  position:absolute; inset-inline-start:-9999px; inset-block-start:0; z-index:99;
+  background:var(--paper); color:var(--link); padding:.6rem 1rem;
+  border:1px solid var(--accent); border-end-end-radius:var(--radius);
+  font-family:var(--sans); font-size:.85rem;
+}
+.skip:focus { inset-inline-start:0; }
+
+/* ---------- back to top ---------- */
+.top {
+  /* the inline-end edge: in RTL that is the ragged end of the lines, so the
+     button never covers the start of a sentence */
+  position:fixed; inset-block-end:1.1rem; inset-inline-end:1.1rem; z-index:50;
+  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid var(--line);
+  background:#fff; color:var(--accent); display:grid; place-items:center;
+  font-size:1.1rem; box-shadow:0 2px 8px rgba(0,0,0,.12); opacity:0; pointer-events:none;
+  transition:opacity .2s;
+}
+.top.show { opacity:1; pointer-events:auto; }
+
+footer {
+  max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 3rem;
+  border-block-start:1px solid var(--line); color:var(--muted);
+  font-family:var(--sans); font-size:.8rem;
+}
+
+/* ---------- mobile ---------- */
+.qtoggle {
+  display:none; font:inherit; font-size:.82rem; line-height:1; cursor:pointer;
+  padding:.35rem .7rem; min-block-size:1.9rem; margin-inline-start:auto;
+  border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink);
+}
+.qtoggle:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+
+@media (max-width:40rem) {
+  :root { --anchor-off: 7rem; --tree-zoom: 1; }
+  body { font-size:1rem; overflow-wrap:anywhere; }
+  bdi { overflow-wrap:anywhere; }
+  .hero { padding:1.75rem 1rem 1.5rem; }
+  main { padding:1.25rem 1rem 3rem; }
+  .nav-in { padding:0 1rem; }
+  .nav-row { height:2.4rem; }
+  /* one scrolling row instead of three wrapped ones: the sticky bar cost a
+     quarter of the screen and no link is lost by scrolling it */
+  .nav-row:first-child {
+    flex-wrap:nowrap; height:2.4rem; padding-block:0;
+    overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
+  }
+  .nav-row:first-child::-webkit-scrollbar { display:none; }
+  .qtoggle { display:block; flex:0 0 auto; position:sticky; inset-inline-end:0;
+             box-shadow:-6px 0 8px rgba(250,247,242,.97); }
+  .qwrap { display:none; }
+  /* while searching, the row IS the search: the links step aside for it, and
+     nothing clips the results panel */
+  .nav.qopen .nav-row:first-child { overflow:visible; }
+  .nav.qopen .nav-row:first-child > a,
+  .nav.qopen .nav-row:first-child > .lbl { display:none; }
+  .nav.qopen .qwrap { display:block; flex:1 1 auto; margin:0; min-width:0; }
+  #q { width:100%; min-width:0; }
+  #qres { min-width:0; max-width:none; inline-size:100%; max-height:50vh; }
+  main { padding-block-end:4.5rem; }   /* clearance for the floating button */
+  td, th { overflow-wrap:break-word; }
+  .tree-embed { max-block-size:70vh; overflow-y:auto; }
+  .spine { display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); }
+  /* an odd last tile would otherwise sit alone at half width */
+  .spine div:last-child:nth-child(odd) { grid-column:1/-1; }
+  .spine div { min-width:0; padding:.45rem .6rem; }
+  .spine b { font-size:1.1rem; }
+  .gallery a { width:8.5rem; }
+  .gallery img { height:6rem; }
+  /* the story page on a phone: the portrait sits beside the title rather than
+     costing a screen of its own */
+  .story-hero .hero-cols { gap:1rem; }
+  .story-hero .portrait { inline-size:6.5rem; }
+  .story-hero .portrait figcaption { display:none; }
+  .story-hero .subject { font-size:.98rem; }
+  .timeline::before { inset-inline-start:calc(4.425rem - 1px); }
+  .tl-when { flex-basis:3.6rem; }
+  .tl-when b { font-size:.85rem; }
+  li.tl { gap:.9rem; }
+  .doccards { grid-template-columns:1fr 1fr; gap:.7rem; }
+  .doccard img { block-size:7rem; }
+  .doccard figcaption { padding:.55rem .6rem .65rem; font-size:.84rem; }
+  .verdicts { gap:.7rem; margin-block:1.2rem 1.8rem; }
+  .rungs, .terms { grid-template-columns:1fr; }
+  /* the link to the full report is the one thing that must never scroll out
+     of the phone's navigation row */
+  .nav-report {
+    position:sticky; inset-inline-end:0; background:var(--paper);
+    box-shadow:6px 0 8px rgba(250,247,242,.97);
+  }
+  /* the way back to the story must never scroll out of reach either */
+  .nav-story {
+    position:sticky; inset-inline-start:0; background:var(--paper);
+    box-shadow:-6px 0 8px rgba(250,247,242,.97); margin-inline-end:.3rem;
+  }
+  .toc-list { columns:1; padding-inline:1.6rem; }
+  .top { width:2.2rem; height:2.2rem; inset-block-end:.7rem; inset-inline-end:.7rem; font-size:.95rem; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  @page { size:A4; margin:16mm 14mm; }
+  @page landscape { size:A4 landscape; }
+  body { background:#fff; font-size:10.5pt; line-height:1.5; }
+  .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov, .tree-zoom, .skip { display:none !important; }
+  /* a collapsed block prints as its summary alone; the script opens every
+     <details> for the print run, and this is the belt to that pair of braces */
+  .ladder > summary { font-weight:700; color:#000; }
+  details:not([open]) > *:not(summary) { display:block !important; }
+  .story-hero .portrait img { border:1px solid #bbb; box-shadow:none; }
+  .story-hero .portrait figcaption { color:#444; }
+  .verdict, .doccard { border:1px solid #bbb; break-inside:avoid; }
+  li.tl { break-inside:avoid; }
+  .doccards { grid-template-columns:1fr 1fr; }
+  .report-cta { display:none !important; }
+  .hero { background:#fff !important; color:#000; padding:0 0 1rem; border-block-end:2px solid #000; }
+  .hero .meta, .spine span { color:#444; }
+  .spine div { border:1px solid #bbb; background:#fff; }
+  .spine b { color:#000; }
+  main, footer, .hero-in { max-width:none; }
+  h2 { break-after:avoid; }
+  figure, .tablewrap, .person { break-inside:avoid; }
+  figure img { max-height:150mm; box-shadow:none; }
+  #tree { break-before:page; page:landscape; }
+  #tree .tree-embed { overflow:visible; border:0; break-inside:avoid; }
+  /* the diagram is near-square: fitting the width alone spills it over two
+     pages, so the height of a landscape A4 is the binding constraint */
+  .tree-embed svg {
+    min-width:0; width:auto; height:auto; max-width:100%; max-height:118mm;
+    display:block; margin-inline:auto;
+  }
+  #tree h2 { break-after:avoid; }
+  .tree-foot, .legend { font-size:7pt; line-height:1.35; }
+  /* overflow-x has no meaning on paper: a scrolling table would simply lose
+     its last column */
+  .tablewrap { overflow:visible; }
+  .tablewrap table { table-layout:fixed; width:100%; }
+  .tablewrap td, .tablewrap th { overflow-wrap:anywhere; }
+  a { border-block-end:0; color:#000; }
+  /* the external address is what a paper reader cannot otherwise recover;
+     a relative path would only repeat the file name the link already shows */
+  #index a[href^="http"]::after, #report a[href^="http"]::after,
+  #changelog a[href^="http"]::after {
+    content:" ‹" attr(href) "›"; font-size:8pt; color:#555; word-break:break-all;
+  }
+}
+</style>
+</head>
+<body class="story">
+<a class="skip" href="#lede">דילוג לתוכן</a>
+<a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
+<span id="top"></span>
+<header class="hero story-hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><div class="hero-cols"><figure class="portrait"><img src="docs/thumbs/105591037_001_440q72_7561bc.jpg" alt="שאלון הקליטה של רחל בשטוטהוף, 29.6.1944, ובתחתיתו חתימתה &quot;Sztrulovics Ruci&quot;" decoding="async"><figcaption>שטוטהוף, 29.6.1944 — שאלון הקליטה וחתימתה</figcaption></figure><div class="hero-text"><h1>רחל צדוק לבית רפפורט-סטרולוביץ</h1><p class="subject">וולובה 1929 — חולון 2021 · ניצולת אושוויץ, שטוטהוף וטורן · אשתו של אברהם צדוק</p><div class="meta">עודכן 13.09.2026 · מהדורה 46</div></div></div><div class="spine"><div><b>1929</b><span>נולדה בוולובה</span></div><div><b>38444</b><span>מספרה בשטוטהוף</span></div><div><b>1946</b><span>עלתה ארצה בסרטיפיקט</span></div><div><b>2009</b><span>מסרה עדות מצולמת</span></div></div></div></header>
+<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><a href="#tree">עץ המשפחה</a><a href="#timeline">ציר הזמן</a><a href="#docs">המסמכים</a><a href="#sources">המקורות</a><a class="nav-report" href="רחל_צדוק_המחקר_המלא.html">הדוח המלא ←</a></div></div></nav>
+<main>
+<section id="lede"><div class="lede"><b>רחל צדוק</b> — בבית קראו לה "רוצי" — נולדה ב-16 באפריל 1929 ב<b>וולובה</b> שבהרי הקרפטים, שלישית מבין חמישה ילדים; אביה היה סוחר עורות. באפריל 1944, ימים אחדים לפני יום הולדתה החמישה-עשר, נאספה המשפחה מביתה: הגטו, רכבת אחת, וב-19 במאי הרמפה ב<b>אושוויץ</b>. מתוך שבע נפשות הבית שרדו שלוש. רחל עברה את אושוויץ, את <b>שטוטהוף</b> כאסירה 38444, את מחנה העבודה בטורן ואת צעדת המוות; שוחררה באזור דנציג, שהתה במחנה העקורים ליפהיים, ועלתה ארצה במאי 1946 — היישר ל<b>מקווה ישראל</b>, שם פגשה את <b>אברהם צדוק</b>. חיה בחולון, מסרה עדות מצולמת ב-2009 ונפטרה בינואר 2021.</div><div class="verdicts"><div class="verdict"><h3>ידוע בוודאות <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span></h3><ul><li>נולדה ב-16.4.1929 ב<b>וולובה</b>, בת אריה-לייב סטרולוביץ ורבקה-רוזה פרקש <a href="רחל_צדוק_המחקר_המלא.html#ch-1">בדוח</a></li><li>רשומות הלידה האזרחיות שלה ושל אחותה סימה, מארכיון DAZO <a href="רחל_צדוק_המחקר_המלא.html#ch-1">בדוח</a></li><li><b>שטוטהוף: 38443 ו-38444</b> — מספרי האחיות, בשתי יחידות ארכיון נפרדות <a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח</a></li><li>מסלול הרדיפה מן המעצר ב-14.4.1944 ועד הקליטה בשטוטהוף ב-29.6.1944 <a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח</a></li><li>רכבת אוקרמזו יצאה ב-17.5.1944 ובה 3,052 מגורשים <a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח</a></li></ul></div><div class="verdict"><h3>כמעט ודאי <span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span></h3><ul><li>רשומת שטוטהוף 38444 היא רחל — כל פרטי הכרטיס והשאלון תואמים <a href="רחל_צדוק_המחקר_המלא.html#ch-9">בדוח</a></li><li>אחותה <b>סימה</b> מתה בשטוטהוף <a href="רחל_צדוק_המחקר_המלא.html#ch-9">בדוח</a></li><li>אביה <b>אריה-לייב</b> עבר את הסלקציה ומת מרעב באושוויץ <a href="רחל_צדוק_המחקר_המלא.html#ch-9">בדוח</a></li><li>הרישום בפנקס הבוחרים תש"ט במקווה ישראל הוא שלה <a href="רחל_צדוק_המחקר_המלא.html#ch-9">בדוח</a></li></ul></div></div><details class="ladder"><summary>סולם הוודאות ומונחי המחקר — מה המילים האלה אומרות</summary><div class="ladder-in"><div class="rungs"><div class="rung"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span>נקרא במסמך בן התקופה, והקריאה ודאית.</span></div><div class="rung"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span>כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.</span></div><div class="rung"><span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span><span>הראיה תומכת, אך חסר פרט מזהה שיכריע.</span></div></div><div class="terms"><div class="term"><b>שטוטהוף</b><span>מחנה ריכוז ליד דנציג. ביוני 1944 הגיעו אליו מאושוויץ משלוחי נשים יהודיות מהונגריה, ובהם רחל ואחותה.</span></div><div class="term"><b>טורן (Thorn)</b><span>מערך מחנות עבודה בפולין שהיה כפוף לשטוטהוף; נשים נשלחו אליו לעבודות ביצורים.</span></div><div class="term"><b>ארולסן (Arolsen)</b><span>הארכיון הבין-לאומי לנרדפי הנאצים; מחזיק את תיקי המחנות המקוריים ואת כרטיסי העקורים.</span></div><div class="term"><b>דף עד</b><span>טופס הנצחה של יד ושם שממלא קרוב או מכר, ובו פרטי הנספה וסיפור מותו.</span></div><div class="term"><b>מחנה עקורים</b><span>מחנה לניצולים שלא יכלו לשוב לבתיהם; ליפהיים שבבוואריה היה אחד מהם.</span></div><div class="term"><b>קרפטורוס</b><span>רוסיה הקרפטית — אזור הרים שעבר בין צ'כוסלובקיה, הונגריה וברית המועצות; וולובה שוכנת בו.</span></div></div></div></details></section><hr><section id="tree"><h2>עץ המשפחה</h2><div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0"><svg role="img" viewBox="0 0 2400 2230" xmlns="http://www.w3.org/2000/svg" font-family="'David Libre','Frank Ruhl Libre',Georgia,serif" direction="rtl"><title>עץ המשפחה — התרשים המלא; פירוט מילולי באינדקס האנשים</title>
+<rect width="2400" height="2230" fill="#faf7f2"/>
+<path d="M 1652.0 110 H 1588.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1032.0 110 H 968.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2177.0 330 H 2113.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1652.0 330 H 1588.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 792.0 330 H 728.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1620 152.0 V 288.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1620 372.0 V 468" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 680 468 H 2280" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2280 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2080 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1880 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1680 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1480 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1280 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1080 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 880 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 680 468 V 510.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2180 468 V 745 H 1738 V 758" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1907.0 800 H 1843.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 562.0 800 H 498.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2145 372.0 V 440 H 2390 V 725 H 2012.0 V 758.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 760 372.0 V 700 H 667.0 V 758.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 300 372.0 V 700 H 393.0 V 758.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1152.0 1090 H 1088.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1875 842.0 V 940" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1277.0 940 H 2392" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1277.0 940 V 1048.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2270 940 V 1034.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2022 940 V 1034.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1774 940 V 1034.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1526 940 V 1034.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2392 940 V 1180.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2392 1180.0 H 1526" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2270 1180.0 V 1234.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2022 1180.0 V 1234.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1774 1180.0 V 1234.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1526 1180.0 V 1234.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2392 1180.0 V 1380.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2392 1380.0 H 1278" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2270 1380.0 V 1434.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 2022 1380.0 V 1434.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1774 1380.0 V 1434.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1526 1380.0 V 1434.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1278 1380.0 V 1434.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 530 842.0 V 940" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 983.0 940 H 110" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 983.0 940 V 1048.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 740 940 V 1034.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 492 940 V 1034.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 244 940 V 1034.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 110 940 V 1180.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 110 1180.0 H 740" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 740 1180.0 V 1234.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 492 1180.0 V 1234.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 244 1180.0 V 1234.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 110 1180.0 V 1380.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 110 1380.0 H 740" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 740 1380.0 V 1434.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 492 1380.0 V 1434.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1120 1132.0 V 1650" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1322.0 1750 H 1258.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 660 1650 H 1900" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1900 1650 V 1708.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1670 1650 V 1708.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1427.0 1650 V 1708.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 890 1650 V 1708.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 660 1650 V 1708.0" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1900 1792.0 V 1929" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1290 1792.0 V 1929" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 890 1792.0 V 1929" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<path d="M 1290 2001 V 2092" fill="none" stroke="#a89d8a" stroke-width="1.9"/>
+<rect x="1652.0" y="68.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1757.0" y="99" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">משה רפפורט</text>
+<text x="1757.0" y="119" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<text x="1757.0" y="134" text-anchor="middle" font-size="12.5" fill="#6a6154">אוקרמזו</text>
+<rect x="1378.0" y="68.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1483.0" y="106" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">יֶנטה שפיגל</text>
+<text x="1483.0" y="126" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<rect x="1032.0" y="68.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1137.0" y="99" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">זלמן ברקוביץ</text>
+<text x="1137.0" y="119" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<text x="1137.0" y="134" text-anchor="middle" font-size="12.5" fill="#6a6154">קרצ׳ונפלבה</text>
+<rect x="758.0" y="68.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="863.0" y="106" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">פריידא קאופמן</text>
+<text x="863.0" y="126" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<rect x="2177.0" y="288.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="2282.0" y="319" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">לייב סטרולוביץ</text>
+<text x="2282.0" y="339" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<text x="2282.0" y="354" text-anchor="middle" font-size="12.5" fill="#6a6154">קושלובו</text>
+<rect x="1903.0" y="288.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="2008.0" y="326" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">ריבקה (נאיוביץ/שפשוביץ?)</text>
+<text x="2008.0" y="346" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<rect x="1652.0" y="288.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1757.0" y="319" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">גדליה רפפורט</text>
+<text x="1757.0" y="339" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 1.4.1846 · נפ׳ 1908/9</text>
+<text x="1757.0" y="354" text-anchor="middle" font-size="12.5" fill="#6a6154">בעל האחוזות של אוקרמזו</text>
+<rect x="1378.0" y="288.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1483.0" y="319" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">אסתר כץ</text>
+<text x="1483.0" y="339" text-anchor="middle" font-size="14" fill="#4a4238">נפ׳/נפרדו לפני 1884</text>
+<text x="1483.0" y="354" text-anchor="middle" font-size="12.5" fill="#6a6154">אשתו השנייה</text>
+<rect x="792.0" y="288.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="897.0" y="319" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">ברל (דב) פרקש</text>
+<text x="897.0" y="339" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<text x="897.0" y="354" text-anchor="middle" font-size="12.5" fill="#6a6154">דנילובו</text>
+<rect x="518.0" y="288.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="623.0" y="326" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">גיטל</text>
+<text x="623.0" y="346" text-anchor="middle" font-size="14" fill="#4a4238">המאה ה-19</text>
+<rect x="195.0" y="288.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="300.0" y="326" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">משפחת שטיינר</text>
+<text x="300.0" y="346" text-anchor="middle" font-size="14" fill="#4a4238">קירלהאזה (קורולבו)</text>
+<rect x="2187.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="2280.0" y="546" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">שיינדל (זיסוביץ)</text>
+<text x="2280.0" y="562" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1869</text>
+<text x="2280.0" y="577" text-anchor="middle" font-size="11" fill="#6a6154">בת ריבקה גרוסמן</text>
+<text x="2280.0" y="592" text-anchor="middle" font-size="11" fill="#6a6154">⚭ לזר זיסוביץ; בנה גדליה נ׳ 1909</text>
+<rect x="1987.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="2080.0" y="546" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">נתן</text>
+<text x="2080.0" y="562" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1879</text>
+<text x="2080.0" y="577" text-anchor="middle" font-size="11" fill="#6a6154">בן אסתר כץ; סוחר עצים</text>
+<text x="2080.0" y="592" text-anchor="middle" font-size="11" fill="#6a6154">⚭ ברטה וייס 1906; בנו גדליה נ׳ 1910</text>
+<rect x="1787.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1880.0" y="546" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">אלדר</text>
+<text x="1880.0" y="562" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 11/1885</text>
+<text x="1880.0" y="577" text-anchor="middle" font-size="11" fill="#6a6154">בן מינדל ברקוביץ; בנקאי</text>
+<text x="1880.0" y="592" text-anchor="middle" font-size="11" fill="#6a6154">מנכ״ל הבנק הנאג׳סלשי; ⚭ חוה וייס 1909</text>
+<rect x="1587.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1680.0" y="552" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">ברטה</text>
+<text x="1680.0" y="570" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1889</text>
+<text x="1680.0" y="584" text-anchor="middle" font-size="11" fill="#6a6154">בת מינדל</text>
+<rect x="1387.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1480.0" y="546" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">יוסף-דוד</text>
+<text x="1480.0" y="562" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 16.10.1891</text>
+<text x="1480.0" y="577" text-anchor="middle" font-size="11" fill="#6a6154">בן גדליה ומינדל (דף עד: "גדלי" + "מינדה ברקוביץ")</text>
+<text x="1480.0" y="592" text-anchor="middle" font-size="11" fill="#6a6154">נספה באושוויץ 26.5.1942</text>
+<rect x="1187.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1280.0" y="552" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">פרידריקה</text>
+<text x="1280.0" y="570" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1894</text>
+<text x="1280.0" y="584" text-anchor="middle" font-size="11" fill="#6a6154">בת מינדל; נישאה 1914</text>
+<rect x="987.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1080.0" y="552" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">זלמן</text>
+<text x="1080.0" y="570" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1897</text>
+<text x="1080.0" y="584" text-anchor="middle" font-size="11" fill="#6a6154">בן מינדל</text>
+<rect x="787.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="880.0" y="552" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">הרמן</text>
+<text x="880.0" y="570" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1904</text>
+<text x="880.0" y="584" text-anchor="middle" font-size="11" fill="#6a6154">נפטר בן 7 שבועות</text>
+<rect x="587.5" y="510.0" width="185" height="104" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="680.0" y="538" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">מאיר</text>
+<text x="680.0" y="556" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1908</text>
+<text x="680.0" y="570" text-anchor="middle" font-size="11" fill="#6a6154">בן מינדל; טכנאי שיניים</text>
+<text x="680.0" y="584" text-anchor="middle" font-size="11" fill="#6a6154">⚭ רוזה נוילינגר (חוסט, 1912)</text>
+<text x="680.0" y="599" text-anchor="middle" font-size="11" fill="#6a6154">הודעת "מבוקש" נגדם, 1944</text>
+<rect x="1907.0" y="758.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="2012.0" y="789" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">יעקב סטרולוביץ</text>
+<text x="2012.0" y="809" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 15.1.1870 · נפ׳ 1945</text>
+<text x="2012.0" y="824" text-anchor="middle" font-size="12.5" fill="#6a6154">שרד בהסתתרות; מת בחוסט</text>
+<rect x="1633.0" y="758.0" width="210" height="84" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="1738.0" y="789" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">שרה רפפורט</text>
+<text x="1738.0" y="809" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 1/1876 · נפ׳ 1944</text>
+<text x="1738.0" y="824" text-anchor="middle" font-size="12.5" fill="#6a6154">נרצחה באושוויץ</text>
+<rect x="562.0" y="758.0" width="210" height="84" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="667.0" y="782" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">בצלאל פרקש</text>
+<text x="667.0" y="802" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 1873 · נפ׳ 1944</text>
+<text x="667.0" y="816" text-anchor="middle" font-size="12.5" fill="#6a6154">"Czallo/Czulo" ברשומות</text>
+<text x="667.0" y="831" text-anchor="middle" font-size="12.5" fill="#6a6154">נרצח באושוויץ</text>
+<rect x="288.0" y="758.0" width="210" height="84" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="393.0" y="782" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">אסתר שטיינר</text>
+<text x="393.0" y="802" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 1879 · נפ׳ 1944</text>
+<text x="393.0" y="816" text-anchor="middle" font-size="12.5" fill="#6a6154">ילידת קירלהאזה</text>
+<text x="393.0" y="831" text-anchor="middle" font-size="12.5" fill="#6a6154">נרצחה באושוויץ</text>
+<rect x="1152.0" y="1048.0" width="250" height="84" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="1277.0" y="1079" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">אריה-לייב סטרולוביץ-רפפורט</text>
+<text x="1277.0" y="1099" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 3/1894 · נפ׳ 1944?</text>
+<text x="1277.0" y="1114" text-anchor="middle" font-size="12.5" fill="#6a6154">סוחר עורות; מת מרעב באושוויץ (עדות)</text>
+<rect x="878.0" y="1048.0" width="210" height="84" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="983.0" y="1079" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">רבקה-רוזה פרקש</text>
+<text x="983.0" y="1099" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 25.4.1904 · נפ׳ 1944</text>
+<text x="983.0" y="1114" text-anchor="middle" font-size="12.5" fill="#6a6154">נרצחה באושוויץ 1944; המועד לא ידוע</text>
+<rect x="2154.0" y="1034.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="2270.0" y="1074" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">ריבקה (גדלוביץ)</text>
+<text x="2270.0" y="1090" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1896 · נפ׳ 1944</text>
+<text x="2270.0" y="1105" text-anchor="middle" font-size="11" fill="#6a6154">⚭ יצחק גדלוביץ, אפשה</text>
+<text x="2270.0" y="1120" text-anchor="middle" font-size="11" fill="#6a6154">אסתר (שרדה), מרדכי, לייב, שמיל, פרקש</text>
+<rect x="1906.0" y="1034.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="2022.0" y="1080" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">אסתר</text>
+<text x="2022.0" y="1098" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1897 · נפ׳ 1942</text>
+<text x="2022.0" y="1112" text-anchor="middle" font-size="11" fill="#6a6154">בתה רגינה נ׳ 1927</text>
+<rect x="1658.0" y="1034.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="1774.0" y="1074" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">רחל (קליין)</text>
+<text x="1774.0" y="1090" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1899 · נפ׳ 1944</text>
+<text x="1774.0" y="1105" text-anchor="middle" font-size="11" fill="#6a6154">⚭ דוד קליין</text>
+<text x="1774.0" y="1120" text-anchor="middle" font-size="11" fill="#6a6154">מונקץ׳/קרצקי</text>
+<rect x="1410.0" y="1034.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="1526.0" y="1074" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">מנדל</text>
+<text x="1526.0" y="1090" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1900 · נפ׳ 1944</text>
+<text x="1526.0" y="1105" text-anchor="middle" font-size="11" fill="#6a6154">⚭ רוחל הרשקוביץ, 1938</text>
+<text x="1526.0" y="1120" text-anchor="middle" font-size="11" fill="#6a6154">גדליה, משה, רגינה†, אסתר, +בן ובת</text>
+<rect x="2154.0" y="1234.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="2270.0" y="1274" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">גיטל (וולף)</text>
+<text x="2270.0" y="1290" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1902 · נפ׳ 1944</text>
+<text x="2270.0" y="1305" text-anchor="middle" font-size="11" fill="#6a6154">⚭ אלכסנדר וולף, 1933</text>
+<text x="2270.0" y="1320" text-anchor="middle" font-size="11" fill="#6a6154">טקהאזה</text>
+<rect x="1906.0" y="1234.0" width="232" height="112" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="2022.0" y="1280" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">סימה</text>
+<text x="2022.0" y="1298" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1904</text>
+<text x="2022.0" y="1312" text-anchor="middle" font-size="11" fill="#6a6154">גורלה לא תועד</text>
+<rect x="1658.0" y="1234.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="1774.0" y="1274" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">יצחק</text>
+<text x="1774.0" y="1290" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1905 · נפ׳ 1944</text>
+<text x="1774.0" y="1305" text-anchor="middle" font-size="11" fill="#6a6154">רווק, סוחר ויערן</text>
+<text x="1774.0" y="1320" text-anchor="middle" font-size="11" fill="#6a6154">נספה במאוטהאוזן</text>
+<rect x="1410.0" y="1234.0" width="232" height="112" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1526.0" y="1280" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">חיה</text>
+<text x="1526.0" y="1298" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1907</text>
+<text x="1526.0" y="1312" text-anchor="middle" font-size="11" fill="#6a6154">גורלה לא תועד</text>
+<rect x="2154.0" y="1434.0" width="232" height="112" rx="9" fill="#f2f8f3" stroke="#3a7d44" stroke-width="2"/>
+<text x="2270.0" y="1480" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">נתן (Neso)</text>
+<text x="2270.0" y="1498" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1908</text>
+<text x="2270.0" y="1512" text-anchor="middle" font-size="11" fill="#6a6154">שרד; ברשימות החוזרים בקושלובו</text>
+<rect x="1906.0" y="1434.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="2022.0" y="1480" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">גדליה</text>
+<text x="2022.0" y="1498" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1911</text>
+<text x="2022.0" y="1512" text-anchor="middle" font-size="11" fill="#6a6154">רווק, יערן; נרצח בשואה</text>
+<rect x="1658.0" y="1434.0" width="232" height="112" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1774.0" y="1474" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">שרה (פוירוורקר)</text>
+<text x="1774.0" y="1490" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1912</text>
+<text x="1774.0" y="1505" text-anchor="middle" font-size="11" fill="#6a6154">⚭ יוזף פוירוורקר, נאג׳בוצ׳קו</text>
+<text x="1774.0" y="1520" text-anchor="middle" font-size="11" fill="#6a6154">בנם גיולה נ׳ 20.6.1943</text>
+<rect x="1410.0" y="1434.0" width="232" height="112" rx="9" fill="#f2f8f3" stroke="#3a7d44" stroke-width="2"/>
+<text x="1526.0" y="1474" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">פייגה (פאני, לבוביץ)</text>
+<text x="1526.0" y="1490" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1914</text>
+<text x="1526.0" y="1505" text-anchor="middle" font-size="11" fill="#6a6154">תאומה; שרדה בהסתתרות</text>
+<text x="1526.0" y="1520" text-anchor="middle" font-size="11" fill="#6a6154">הגישה דפי עד על אחיה</text>
+<rect x="1162.0" y="1434.0" width="232" height="112" rx="9" fill="#f2f8f3" stroke="#3a7d44" stroke-width="2"/>
+<text x="1278.0" y="1474" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">פפי</text>
+<text x="1278.0" y="1490" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 1914</text>
+<text x="1278.0" y="1505" text-anchor="middle" font-size="11" fill="#6a6154">תאומה; שרדה</text>
+<text x="1278.0" y="1520" text-anchor="middle" font-size="11" fill="#6a6154">ככה"נ זו שנספתה בתאונה אחרי השחרור</text>
+<rect x="624.0" y="1034.0" width="232" height="112" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="740.0" y="1080" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">מנדל</text>
+<text x="740.0" y="1098" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 26.4.1897</text>
+<text x="740.0" y="1112" text-anchor="middle" font-size="11" fill="#6a6154">גורלו לא תועד</text>
+<rect x="376.0" y="1034.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="492.0" y="1074" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">גולדה-ארנקה (פוקס)</text>
+<text x="492.0" y="1090" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 2.1.1899 · נפ׳ 1944</text>
+<text x="492.0" y="1105" text-anchor="middle" font-size="11" fill="#6a6154">⚭ שמואל פוקס, וישק</text>
+<text x="492.0" y="1120" text-anchor="middle" font-size="11" fill="#6a6154">לילי ושרה שרדו; עוד חמישה נספו</text>
+<rect x="128.0" y="1034.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="244.0" y="1066" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">אליהו</text>
+<text x="244.0" y="1084" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 30.5.1901 · נפ׳ 1944</text>
+<text x="244.0" y="1098" text-anchor="middle" font-size="11" fill="#6a6154">⚭ רוז׳נה (רייזל) זלמנוביץ, 1932</text>
+<text x="244.0" y="1112" text-anchor="middle" font-size="11" fill="#6a6154">מכולת בדנילובו; גולדה†, איגנץ</text>
+<text x="244.0" y="1127" text-anchor="middle" font-size="11" fill="#6a6154">נרצח עם ארבעת ילדיו</text>
+<rect x="624.0" y="1234.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="740.0" y="1266" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">זיסל-לייב (ליפוט)</text>
+<text x="740.0" y="1284" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 7.10.1906 · נפ׳ 1944</text>
+<text x="740.0" y="1298" text-anchor="middle" font-size="11" fill="#6a6154">⚭ סרנה (שרה) פוקס, 1930</text>
+<text x="740.0" y="1312" text-anchor="middle" font-size="11" fill="#6a6154">ירקן; בנם הרמן (1941)†</text>
+<text x="740.0" y="1327" text-anchor="middle" font-size="11" fill="#6a6154">נרצח עם שתי בנותיו</text>
+<rect x="376.0" y="1234.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="492.0" y="1266" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">חנה (הלנה)</text>
+<text x="492.0" y="1284" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 9.2.1909 · נפ׳ 1944</text>
+<text x="492.0" y="1298" text-anchor="middle" font-size="11" fill="#6a6154">⚭ יוסף פרקש, חוסט, 1928</text>
+<text x="492.0" y="1312" text-anchor="middle" font-size="11" fill="#6a6154">בנם דוד (1936)†</text>
+<text x="492.0" y="1327" text-anchor="middle" font-size="11" fill="#6a6154">נרצחה עם בנה חיים</text>
+<rect x="128.0" y="1234.0" width="232" height="112" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="244.0" y="1266" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">רחל (איצקוביץ)</text>
+<text x="244.0" y="1284" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 22.11.1913 · נפ׳ 1944/5</text>
+<text x="244.0" y="1298" text-anchor="middle" font-size="11" fill="#6a6154">⚭ הרש איצקוביץ, רוסקה פולה, 1935</text>
+<text x="244.0" y="1312" text-anchor="middle" font-size="11" fill="#6a6154">ברל (1936), שרה (1938)</text>
+<text x="244.0" y="1327" text-anchor="middle" font-size="11" fill="#6a6154">ייתכן "רחל פרקש" מעדות טורן</text>
+<rect x="624.0" y="1434.0" width="232" height="112" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="740.0" y="1480" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">הרמן</text>
+<text x="740.0" y="1498" text-anchor="middle" font-size="12.5" fill="#4a4238">נ׳ 14.2.1918</text>
+<text x="740.0" y="1512" text-anchor="middle" font-size="11" fill="#6a6154">גורלו לא תועד</text>
+<rect x="376.0" y="1434.0" width="232" height="112" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="492.0" y="1474" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#2b2620">שישה שמתו בילדותם</text>
+<text x="492.0" y="1490" text-anchor="middle" font-size="12.5" fill="#4a4238">1895-1920</text>
+<text x="492.0" y="1505" text-anchor="middle" font-size="11" fill="#6a6154">לאיה (1895), הלנה (1903), רגינה (1911),</text>
+<text x="492.0" y="1520" text-anchor="middle" font-size="11" fill="#6a6154">בן ללא שם (1912), זלמן (1912), צינה (1920)</text>
+<rect x="1795.0" y="1708.0" width="210" height="84" rx="9" fill="#f2f8f3" stroke="#3a7d44" stroke-width="2"/>
+<text x="1900.0" y="1739" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">דב</text>
+<text x="1900.0" y="1759" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 1924? · נפ׳ 1998</text>
+<text x="1900.0" y="1774" text-anchor="middle" font-size="12.5" fill="#6a6154">פרטיזנים; רמתיים</text>
+<rect x="1565.0" y="1708.0" width="210" height="84" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="1670.0" y="1739" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">סימה (Sari)</text>
+<text x="1670.0" y="1759" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 26.12.1926 · נפ׳ 1944/5</text>
+<text x="1670.0" y="1774" text-anchor="middle" font-size="12.5" fill="#6a6154">מתה בשטוטהוף (עדות), אסירה 38443</text>
+<rect x="1322.0" y="1708.0" width="210" height="84" rx="9" fill="#fdf6e3" stroke="#b8860b" stroke-width="2"/>
+<text x="1427.0" y="1739" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">רחל ("רוצי")</text>
+<text x="1427.0" y="1759" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 16.4.1929 · נפ׳ 1/2021</text>
+<text x="1427.0" y="1774" text-anchor="middle" font-size="12.5" fill="#6a6154">אושוויץ→שטוטהוף (38444)→טורן; חולון</text>
+<rect x="1048.0" y="1708.0" width="210" height="84" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1153.0" y="1739" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">אברהם צדוק</text>
+<text x="1153.0" y="1759" text-anchor="middle" font-size="14" fill="#4a4238">יליד מקווה ישראל</text>
+<text x="1153.0" y="1774" text-anchor="middle" font-size="12.5" fill="#6a6154">הכירו במקווה ישראל, 1946</text>
+<rect x="785.0" y="1708.0" width="210" height="84" rx="9" fill="#f2f8f3" stroke="#3a7d44" stroke-width="2"/>
+<text x="890.0" y="1739" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">גדליהו (גיולה) רף</text>
+<text x="890.0" y="1759" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 3.3.1931 · נפ׳ 2008</text>
+<text x="890.0" y="1774" text-anchor="middle" font-size="12.5" fill="#6a6154">אסיר בוכנוולד 54982 · ⚭ יוכבד · ממקימי אילניה</text>
+<rect x="555.0" y="1708.0" width="210" height="84" rx="9" fill="#fdf3f1" stroke="#a0392e" stroke-width="2"/>
+<text x="660.0" y="1739" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">גיטה (Gizela)</text>
+<text x="660.0" y="1759" text-anchor="middle" font-size="14" fill="#4a4238">נ׳ 26.3.1936 · נפ׳ 1944</text>
+<text x="660.0" y="1774" text-anchor="middle" font-size="12.5" fill="#6a6154">נרצחה באושוויץ, בת 8</text>
+<rect x="1795.0" y="1929.0" width="210" height="72" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1900.0" y="1954" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">אורית · מרב</text>
+<text x="1900.0" y="1974" text-anchor="middle" font-size="14" fill="#4a4238">בנות דב</text>
+<text x="1900.0" y="1988" text-anchor="middle" font-size="12.5" fill="#6a6154">רמתיים</text>
+<rect x="1185.0" y="1929.0" width="210" height="72" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1290.0" y="1954" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">עדו · זיו</text>
+<text x="1290.0" y="1974" text-anchor="middle" font-size="14" fill="#4a4238">בני רחל ואברהם</text>
+<text x="1290.0" y="1988" text-anchor="middle" font-size="12.5" fill="#6a6154">חולון</text>
+<rect x="750.0" y="1929.0" width="280" height="72" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="890.0" y="1954" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">אריה (1955) · זאב (1964) · רבקה ("ריקה")</text>
+<text x="890.0" y="1974" text-anchor="middle" font-size="14" fill="#4a4238">ילדי גדליהו ויוכבד · אילניה</text>
+<text x="890.0" y="1988" text-anchor="middle" font-size="12.5" fill="#6a6154">ריקה: נ׳ 10.8.1958, נפלה בצה״ל 12.5.1977</text>
+<rect x="1130.0" y="2092.0" width="320" height="66" rx="9" fill="#f7f5f1" stroke="#8a8177" stroke-width="2"/>
+<text x="1290.0" y="2121" text-anchor="middle" font-size="18" font-weight="bold" fill="#2b2620">שישה נכדים לרחל ולאברהם</text>
+<text x="1290.0" y="2141" text-anchor="middle" font-size="14" fill="#4a4238">"סבתא, ביום השואה אני אזמין אותך ואתגאה בך"</text>
+<rect x="855.7" y="155.0" width="288.59999999999997" height="18" fill="#faf7f2"/>
+<text x="1000" y="168.0" text-anchor="middle" font-size="13" fill="#8a7a55" font-style="italic">הוריה של מינדל, אשתו השלישית של גדליה</text>
+<rect x="994.0" y="399.0" width="702.0" height="18" fill="#faf7f2"/>
+<text x="1345" y="412.0" text-anchor="middle" font-size="13" fill="#8a7a55" font-style="italic">נשא גם את ריבקה גרוסמן, ומ-6.8.1884 את מינדל ברקוביץ (1865 - לפני 8.1944), בת זלמן ופריידא</text>
+<rect x="2133.2" y="647" width="93.6" height="18" fill="#faf7f2"/>
+<text x="2180" y="660" text-anchor="middle" font-size="13" fill="#8a7a55" font-style="italic">שרה (1876) ↓</text>
+<rect x="1797.0" y="737.0" width="156.0" height="18" fill="#faf7f2"/>
+<text x="1875" y="750.0" text-anchor="middle" font-size="13" fill="#8a7a55" font-style="italic">נישואים דתיים, ~1892</text>
+<rect x="1053.7" y="1027.0" width="132.6" height="18" fill="#faf7f2"/>
+<text x="1120" y="1040.0" text-anchor="middle" font-size="13" fill="#8a7a55" font-style="italic">⚭ (נישואים דתיים)</text>
+</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלה</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val" aria-labelledby="tree-zoom-label">×1</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button><button type="button" data-tree-zoom="fit">התאמה לרוחב</button></div><div class="legend">
+  <span><span class="dot" style="background:#a0392e"></span> נרצחו בשואה</span>
+  <span><span class="dot" style="background:#3a7d44"></span> שרדו</span>
+  <span><span class="dot" style="background:#b8860b"></span> רחל</span>
+  <span><span class="dot" style="background:#8a8177"></span> נפטרו לפני/אחרי השואה, גורלם לא תועד — או בני הדורות שאחרי</span>
+</div><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="עץ_משפחה_מורחב-view.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="timeline"><h2>ציר הזמן</h2><p class="note">כל אירוע מציין עד כמה הוא מבוסס, ומפנה אל המסמך שעליו הוא נשען.</p><ol class="timeline"><li class="tl"><div class="tl-when"><b>16.4.1929</b><span class="tl-place">וולובה</span></div><div class="tl-what"><p>נולדה ב<b>וולובה</b> שבקרפטורוס, שלישית מבין חמישה ילדים לאריה-לייב סטרולוביץ ולרבקה-רוזה פרקש.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#קטעי-ראיות-מצולמים-נוצרו-17-08-27-08-2026">רשומת הלידה האזרחית, JewishGen/DAZO</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-1">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1939</b><span class="tl-place">וולובה</span></div><div class="tl-what"><p>הצבא ההונגרי מספח את האזור; חקיקה אנטי-יהודית, ועסק העורות של האב מוחרם.</p><div class="tl-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#העדות-של-רחל">עדות הווידאו של רחל</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>14.4.1944</b><span class="tl-place">וולובה</span></div><div class="tl-what"><p>נעצרת בביתה — "Verhaftet am 14.4.44, am Orte" — יומיים לפני יום הולדתה החמישה-עשר.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תיקי-שטוטהוף-המקוריים-סריקות-מארכיון-Arolsen-הורדו-17-08-202">שאלון הקליטה בשטוטהוף</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>אפריל–מאי 1944</b><span class="tl-place">גטו סקלנצה</span></div><div class="tl-what"><p>שלושה ימים נעולים בבית הכנסת, ואחריהם שבועות ב<b>גטו סקלנצה</b> שכפרו רוקן מתושביו.</p><div class="tl-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#הנצחה-ועדויות">עדות ריטה שניידר-פולק ופרוטוקול 73</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>17.5.1944</b><span class="tl-place">קושיצה</span></div><div class="tl-what"><p>המשפחה מגורשת ב<b>רכבת אוקרמזו</b>, ובה 3,052 מגורשים, שנרשמה במפקד תחנת קושיצה.</p><div class="tl-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#מסמכי-מחנות-וטרנספורטים">רשימת תחנת קושיצה (דגו&quot;ב)</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>19.5.1944</b><span class="tl-place">אושוויץ-בירקנאו</span></div><div class="tl-what"><p>הגעה ל<b>אושוויץ-בירקנאו</b>; רחל וסימה נבחרות לעבודה, ואחותן גיטה בת השמונה נרצחת.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#התיק-האישי-של-גדליה-בבוכנוולד-Arolsen-הורד-25-08-2026">כרטיס האסיר של גדליה בבוכנוולד</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-8">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>19.5.1944</b><span class="tl-place">אושוויץ-בירקנאו</span></div><div class="tl-what"><p>בסלקציה משיבה רחל שהיא בת חמש-עשרה, וקאפו מכריזה למנגלה "בת שמונה עשרה" — ומצילה אותה.</p><div class="tl-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#קבצים-בתיקייה-הראשית">תמליל העדות המלא</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-7">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>29.6.1944</b><span class="tl-place">שטוטהוף</span></div><div class="tl-what"><p>האחיות נקלטות ב<b>שטוטהוף</b> במשלוח הנשים ההונגריות הראשון: סימה 38443, רחל 38444.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תשובת-ארכיון-מוזיאון-שטוטהוף-18-קבצים">רשימת הטרנספורט וכרטיסי האסירה</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>29.6.1944</b><span class="tl-place">שטוטהוף</span></div><div class="tl-what"><p>בקליטה מוסרת רחל ששני הוריה "כעת באושוויץ", וחותמת בכתב ידה "Sztrulovics Ruci".</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תיקי-שטוטהוף-המקוריים-סריקות-מארכיון-Arolsen-הורדו-17-08-202">שאלון הקליטה 105591037</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>סוף קיץ 1944</b><span class="tl-place">טורן</span></div><div class="tl-what"><p>נשלחת למחנה העבודה <b>טורן</b> ונפרדת מסימה החולה — ולא תראה אותה עוד.</p><div class="tl-foot"><span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תשובת-ארכיון-מוזיאון-שטוטהוף-18-קבצים">עדות רחל ומחקר ארכיון שטוטהוף</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>ינואר 1945</b><span class="tl-place">פראוסט</span></div><div class="tl-what"><p>פינוי מחנות טורן: <b>צעדת מוות</b> בת כעשרה ימים, ובסופה הגעה לפראוסט שליד דנציג.</p><div class="tl-foot"><span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תשובת-ארכיון-מוזיאון-שטוטהוף-18-קבצים">עדות רחל ומחקר ארכיון שטוטהוף</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1946</b><span class="tl-place">ליפהיים</span></div><div class="tl-what"><p>אחרי השחרור נדדה מערבה ושהתה במחנה העקורים <b>ליפהיים</b> שבבוואריה, בלוק 24.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תקופת-העקורים-Arolsen-הורד-17-08-2026">כרטיס מרשם השמות המרכזי, ארולסן</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>מאי 1946</b><span class="tl-place">מקווה ישראל</span></div><div class="tl-what"><p>עולה ארצה בסרטיפיקט, היישר ל<b>מקווה ישראל</b> — שם תפגוש את אברהם צדוק.</p><div class="tl-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#העדות-של-רחל">עדות רחל</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-7">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>1949</b><span class="tl-place">מקווה ישראל</span></div><div class="tl-what"><p>פנקס הבוחרים תש"ט רושם במקוה ישראל: "פורקוש (רפופורט), רחל, בת אריה, 1929".</p><div class="tl-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#התיעוד-הישראלי-IGRA-ארכיון-המדינה-הורד-26-08-2026">פנקס הבוחרים תש&quot;ט, IGRA</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>23.12.2009</b></div><div class="tl-what"><p>מוסרת ל<b>יד ושם</b> עדות מצולמת בת שעתיים וארבעים דקות.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#העדות-של-רחל">עדות הווידאו, יד ושם O.3/8424116</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-6">בדוח ←</a></span></div></div></li><li class="tl"><div class="tl-when"><b>ינואר 2021</b><span class="tl-place">חולון</span></div><div class="tl-what"><p>נפטרה בחולון, כבת תשעים ואחת.</p><div class="tl-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#עלון-יוצאי-קרפטורוס-137-עברית-ואנגלית">עלון יוצאי קרפטורוס 137</a></span><span class="tl-more"><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></div></div></li></ol></section><hr><section id="docs"><h2>המסמכים</h2><p class="note">לחיצה על תמונה פותחת את הסריקה המלאה; "בדוח" מוביל אל הקריאה המלאה של המסמך.</p><div class="doccards"><figure class="doccard"><a class="doc-img" href="docs/arolsen_stutthof/105591047_001.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/105591047_001_440q72_c1a104.jpg" alt="כרטיס האסירה 38444 — 29.6.1944" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">29.6.1944</span><b>כרטיס האסירה 38444</b><span class="doc-proves">קליטתה בשטוטהוף מאושוויץ, ורישום האב כמי שנמצא "כעת באושוויץ".</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תיקי-שטוטהוף-המקוריים-סריקות-מארכיון-Arolsen-הורדו-17-08-202">תיקי שטוטהוף, ארולסן</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/arolsen_stutthof/105591037_001.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/105591037_001_440q72_7561bc.jpg" alt="שאלון הקליטה וחתימתה — 29.6.1944" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">29.6.1944</span><b>שאלון הקליטה וחתימתה</b><span class="doc-proves">תאריך המעצר, שמות שני ההורים ומקומם, וחתימת ידה בת החמש-עשרה.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תיקי-שטוטהוף-המקוריים-סריקות-מארכיון-Arolsen-הורדו-17-08-202">תיקי שטוטהוף, ארולסן</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/evidence/stutthof_transport_list_rows802-803_zoom.png" target="_blank" rel="noopener"><img src="docs/thumbs/stutthof_transport_list_rows802-803_zoom_440q72_4a44ef.jpg" alt="רשימת הטרנספורט, שורות 802–803 — 29.6.1944" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">29.6.1944</span><b>רשימת הטרנספורט, שורות <bdi dir="ltr">802–803</bdi></b><span class="doc-proves">האחיות רשומות בשורות עוקבות במשלוח מאושוויץ — המסמך שממנו נגזרו הכרטיסים.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תשובת-ארכיון-מוזיאון-שטוטהוף-18-קבצים">ארכיון מוזיאון שטוטהוף</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/arolsen_stutthof/105590973_001.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/105590973_001_440q72_187a9b.jpg" alt="כרטיס ההפניה על שם האב — 1944" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">1944</span><b>כרטיס ההפניה על שם האב</b><span class="doc-proves">האב לא היה אסיר בשטוטהוף; מקומו נרשם "מחנה אושוויץ", בהפניה לתיק בתו.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תיקי-שטוטהוף-המקוריים-סריקות-מארכיון-Arolsen-הורדו-17-08-202">תיקי שטוטהוף, ארולסן</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-5">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/evidence/jewishgen_rachel_sima_own_birth_records_zoom.png" target="_blank" rel="noopener"><img src="docs/thumbs/jewishgen_rachel_sima_own_birth_records_zoom_440q72_b20c6e.jpg" alt="רשומות הלידה של רחל וסימה — 1926 · 1929" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">1926 · 1929</span><b>רשומות הלידה של רחל וסימה</b><span class="doc-proves">הרישום האזרחי של שתי האחיות, בנות Struljovic Leba ו-Farkas Rifka.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#קטעי-ראיות-מצולמים-נוצרו-17-08-27-08-2026">JewishGen — פונד 1606, DAZO</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-1">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/hungaricana_1921_census_koselovo_house30_full.png" target="_blank" rel="noopener"><img src="docs/thumbs/hungaricana_1921_census_koselovo_house30_full_440q72_169a3a.jpg" alt="מפקד 1921, בית 30 בקושלובו — 16.2.1921" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">16.2.1921</span><b>מפקד 1921, בית 30 בקושלובו</b><span class="doc-proves">בית סבהּ יעקב סטרולוביץ ושרה רפפורט, ושלושה-עשר ילדיהם, בתאריכי לידה מדויקים.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#גיליון-מפקד-1921-המקורי-5-קבצים">גיליון מפקד 1921, Hungaricana</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-3">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/arolsen_dp/cni_farkas_rachel_001.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/cni_farkas_rachel_001_440q72_bd648f.jpg" alt="כרטיס העקורים — ליפהיים — 1946" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">1946</span><b>כרטיס העקורים — ליפהיים</b><span class="doc-proves">תחנתה האחרונה באירופה: מחנה העקורים ליפהיים, בלוק 24, בוואריה.</span><span class="doc-foot"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#תקופת-העקורים-Arolsen-הורד-17-08-2026">תקופת העקורים, ארולסן</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-4">בדוח ←</a></span></figcaption></figure><figure class="doccard"><a class="doc-img" href="docs/yadvashem_pot_scans/10846653_04122013_8915_158.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/10846653_04122013_8915_158_440q72_793d6d.jpg" alt="דף עד על האב, בכתב ידה — 22.11.2013" loading="lazy" decoding="async"></a><figcaption><span class="doc-when">22.11.2013</span><b>דף עד על האב, בכתב ידה</b><span class="doc-proves">רחל מנציחה את אביה, סוחר העורות, ומוסרת את כתובתה וחתימתה.</span><span class="doc-foot"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span class="src">מקור: <a href="רחל_צדוק_המחקר_המלא.html#סריקות-דפי-העד-ומסמכי-הניצולים-44-קבצים-הורדו-17-08-2026">דפי העד, יד ושם</a></span><a href="רחל_צדוק_המחקר_המלא.html#ch-9">בדוח ←</a></span></figcaption></figure></div></section><hr><section id="sources"><h2>המקורות</h2><p class="note">כל קביעה בדף הזה נשענת על אחד המקורות שלהלן. כל ערך מוביל אל אינדקס המקורות שבדוח, ושם — קישור אל הרשומה בארכיון שממנה נלקחה ואל עותק שמור שלה.</p><ol class="srclist"><li><a href="רחל_צדוק_המחקר_המלא.html#העדות-של-רחל">עדות הווידאו של רחל, יד ושם O.3/8424116 (23.12.2009)</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#קבצים-בתיקייה-הראשית">התמליל המתוזמן המלא של העדות</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#סריקות-דפי-העד-ומסמכי-הניצולים-44-קבצים-הורדו-17-08-2026">ארבעה דפי עד בכתב ידה של רחל (22.11.2013), יד ושם</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#תיקי-שטוטהוף-המקוריים-סריקות-מארכיון-Arolsen-הורדו-17-08-202">תיקי שטוטהוף המקוריים — סריקות מארכיון ארולסן</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#התיק-האישי-של-גדליה-בבוכנוולד-Arolsen-הורד-25-08-2026">התיק האישי של גדליה בבוכנוולד, ארולסן</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#תשובת-ארכיון-מוזיאון-שטוטהוף-18-קבצים">ארכיון מוזיאון שטוטהוף — מסמכי הטרנספורט ומחנות העבודה</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#תקופת-העקורים-Arolsen-הורד-17-08-2026">כרטיס מרשם השמות המרכזי (CNI), ארולסן — ליפהיים</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#קטעי-ראיות-מצולמים-נוצרו-17-08-27-08-2026">JewishGen — רשומות אזרחיות מפונד 1606, ארכיון DAZO</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#מסמכי-מחנות-וטרנספורטים">מסמכי מחנות וטרנספורטים — רשימת תחנת קושיצה, דגו&quot;ב</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#הנצחה-ועדויות">הנצחה ועדויות — עדות ריטה שניידר-פולק, KehilaLinks</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#התיעוד-הישראלי-IGRA-ארכיון-המדינה-הורד-26-08-2026">התיעוד הישראלי — IGRA וארכיון המדינה</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#עלון-יוצאי-קרפטורוס-137-עברית-ואנגלית">עלון יוצאי קרפטורוס 137 (08/2025)</a></li><li><a href="רחל_צדוק_המחקר_המלא.html#גיליון-מפקד-1921-המקורי-5-קבצים">גיליון מפקד 1921 המקורי, ספריית Hungaricana</a></li></ol><p class="report-cta"><a class="btn big" href="רחל_צדוק_המחקר_המלא.html">הדוח המלא — כל הראיות, המקורות והדרך אליהם</a></p></section>
+</main>
+<footer>מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.</footer>
+<script>
+(function(){
+  var IDX = [];
+  var q = document.getElementById('q'), res = document.getElementById('qres');
+  function norm(s){ return (s||'').replace(/["'ְ-ׇ]/g,'').toLowerCase(); }
+  function clear(){ res.textContent=''; res.hidden=true; }
+  function run(){
+    var v = norm(q.value.trim());
+    res.textContent = '';
+    if (v.length < 2){ clear(); return; }
+    var out = [], i, it, hay;
+    for (i=0;i<IDX.length && out.length<12;i++){
+      it = IDX[i]; hay = norm(it.t + ' ' + (it.x||''));
+      if (hay.indexOf(v) !== -1) out.push(it);
+    }
+    if (out.length){
+      var head = document.createElement('p'); head.className='qcount';
+      head.textContent = out.length === 1 ? 'תוצאה אחת'
+                       : (out.length === 12 ? '12 התוצאות הראשונות' : out.length + ' תוצאות');
+      res.appendChild(head);
+      out.forEach(function(o){
+        var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
+        var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        // a space, or the accessible name reads "…ירושליםאדם"
+        a.appendChild(document.createTextNode(' '));
+        a.appendChild(k); res.appendChild(a);
+      });
+    } else {
+      var p = document.createElement('p'); p.className='nores';
+      p.textContent='לא נמצאו תוצאות בפרקים, באנשים ובמקורות. לחיפוש בגוף הטקסט: Ctrl+F';
+      res.appendChild(p);
+    }
+    res.hidden = false;
+  }
+  function jump(h){
+    // re-applying the hash after the list closes keeps the heading where the
+    // browser put it, whatever else moved
+    location.hash=''; location.hash=h;
+  }
+  if (q){
+    q.hidden = false; clear();
+    q.addEventListener('input', run);
+    q.addEventListener('keydown', function(e){
+      if (e.key==='Escape'){ q.value=''; clear(); return; }
+      if (e.key==='ArrowDown'){ var a=res.querySelector('a'); if(a){ e.preventDefault(); a.focus(); } }
+      if (e.key==='Enter'){ var f=res.querySelector('a'); if(f){ e.preventDefault(); f.click(); } }
+    });
+    res.addEventListener('keydown', function(e){
+      var as = [].slice.call(res.querySelectorAll('a')), i = as.indexOf(document.activeElement);
+      if (e.key==='ArrowDown' && i > -1 && as[i+1]){ e.preventDefault(); as[i+1].focus(); }
+      if (e.key==='ArrowUp'){ e.preventDefault(); (i > 0 ? as[i-1] : q).focus(); }
+      if (e.key==='Escape'){ q.value=''; clear(); q.focus(); }
+    });
+    res.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a') : null;
+      var h = a ? a.getAttribute('href') : '';
+      setTimeout(function(){ clear(); q.value=''; offset(); if (h) jump(h); }, 60);
+    });
+  }
+  var nav = document.querySelector('.nav');
+  // the phone nav is one scrolling row; the search field opens from a button
+  var qt = document.querySelector('.qtoggle');
+  if (qt){
+    qt.hidden = false;
+    qt.addEventListener('click', function(){
+      var on = !nav.classList.contains('qopen');
+      nav.classList.toggle('qopen', on);
+      qt.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on && q) q.focus(); else { if (q) q.value=''; if (res) clear(); }
+      offset();
+    });
+  }
+  function offset(){
+    if (!nav) return;
+    var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
+    document.documentElement.style.setProperty('--anchor-off', h + 'px');
+  }
+  offset(); addEventListener('resize', offset);
+  var top = document.querySelector('.top');
+  function topvis(){ var on = scrollY > 900;
+    top.classList.toggle('show', on); top.setAttribute('tabindex', on ? '0' : '-1'); }
+  if (top){ top.setAttribute('tabindex','-1'); addEventListener('scroll', topvis, {passive:true}); }
+  // a lazy image that never entered the viewport prints as an empty frame,
+  // and a fetch started inside beforeprint is not awaited — so the whole set
+  // is promoted once the page has settled, and again as a backstop
+  // A lazy image that never entered the viewport prints as an empty frame. But
+  // promoting all of them on load would download the whole gallery for a reader
+  // who never scrolls. So: promote once the reader has actually started reading,
+  // and again at print time as a backstop.
+  function eager(){
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),
+                    function(i){ i.loading='eager'; });
+  }
+  // a collapsed <details> prints as its summary alone; everything is opened for
+  // the print run and put back afterwards
+  var reopen = [];
+  addEventListener('beforeprint', function(){
+    reopen = [].filter.call(document.querySelectorAll('details'), function(d){ return !d.open; });
+    reopen.forEach(function(d){ d.open = true; });
+  });
+  addEventListener('afterprint', function(){
+    reopen.forEach(function(d){ d.open = false; }); reopen = [];
+  });
+  var promoted = false;
+  function promoteOnce(){
+    if (promoted) return;
+    promoted = true;
+    var idle = window.requestIdleCallback || function(f){ setTimeout(f, 600); };
+    idle(eager);
+  }
+  addEventListener('scroll', promoteOnce, {passive:true, once:true});
+  addEventListener('beforeprint', eager);
+  // only a table that actually overflows is a scroll region worth a tab stop
+  function scrollables(){
+    [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
+      var over = w.scrollWidth - w.clientWidth > 1;
+      var cap = w.querySelector('caption');
+      var name = 'טבלה' + (cap && cap.textContent ? ' — ' + cap.textContent : '');
+      if (over){ w.tabIndex = 0; w.setAttribute('role','region');
+                 w.setAttribute('aria-label', name + ' — ניתנת לגלילה אופקית'); }
+      else { w.removeAttribute('tabindex'); w.removeAttribute('role');
+             w.removeAttribute('aria-label'); }
+    });
+  }
+  scrollables(); addEventListener('resize', scrollables);
+  // the tree is laid out at fixed coordinates; zooming the frame is how a reader
+  // gets its labels to a readable size without the boxes colliding
+  // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
+  // so the reader always has a state where the whole shape is on the screen,
+  // and every step above it is stated relative to that (×1.5, ×2)
+  var zoom = 1; // start at fit-to-width everywhere; readers zoom in with +
+  var zval = document.getElementById('tree-zoom-val');
+  function zshow(){
+    document.documentElement.style.setProperty('--tree-zoom', zoom);
+    if (zval) zval.textContent = '\u00d7' + (Math.round(zoom * 100) / 100);
+  }
+  [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
+    btn.addEventListener('click', function(){
+      var v = btn.getAttribute('data-tree-zoom');
+      if (v === 'fit') zoom = 1;
+      else zoom = Math.min(3, Math.max(1,
+             Math.round((zoom + parseInt(v, 10) * 0.25) * 100) / 100));
+      zshow();
+    });
+  });
+  if (zval) zshow();
+  var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = targets.indexOf(e.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('on'); });
+        links[i].classList.add('on');
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>

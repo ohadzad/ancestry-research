@@ -5,10 +5,39 @@ Every person is one box. Couples are adjacent boxes joined by a dashed line. A p
 couple) feeds a horizontal bus that drops to each child. Colours are passed in so each project
 keeps its palette. Output is the <svg> element only; the project's tree.html wraps it.
 """
+import re
 from dataclasses import dataclass, field
 from typing import List, Optional, Tuple
 
 BOX_W, BOX_H, GAP_X, GAP_Y = 138, 60, 14, 62
+
+# An SVG <text> has no box to be contained by: a label longer than its node
+# simply runs over the neighbouring one. Anything that would overflow is asked
+# to fit the node's width instead; past ~1.5× it would be squeezed into
+# illegibility, so it is cut and the full text kept as a tooltip.
+_TEXT_PAD = 8
+_ADVANCE = 0.52          # mean glyph advance as a fraction of the font size
+
+
+def _width(text, size):
+    import html as _h
+    return len(_h.unescape(re.sub(r'<[^>]+>', '', text))) * size * _ADVANCE
+
+
+def _fit(text, size, box=None):
+    room = (box or BOX_W) - _TEXT_PAD
+    if _width(text, size) <= room:
+        return ''
+    return f' textLength="{room:g}" lengthAdjust="spacingAndGlyphs"'
+
+
+def clip(text, size, box=None, limit=1.5):
+    """Shorten a label that could not be squeezed into its node and stay readable."""
+    room = ((box or BOX_W) - _TEXT_PAD) * limit
+    if _width(text, size) <= room:
+        return text
+    keep = max(4, int(room / (size * _ADVANCE)) - 1)
+    return text[:keep].rstrip(' ,;·-—') + '…' 
 FONT = "'David Libre','Frank Ruhl Libre',Georgia,serif"
 
 
@@ -86,12 +115,14 @@ class Tree:
         out.append(' </g>')
         out.append(f' <g fill="{self.ink}" font-size="15" text-anchor="middle">')
         for n in self.nodes:
-            out.append(f'  <text x="{cx(n):g}" y="{y(n)+22:g}">{n.title}</text>')
+            out.append(f'  <text x="{cx(n):g}" y="{y(n)+22:g}"{_fit(n.title, 15)}>'
+                       f'{n.title}</text>')
         out.append(' </g>')
         out.append(f' <g fill="{self.muted}" font-size="10.5" text-anchor="middle">')
         for n in self.nodes:
             for i, s in enumerate(n.sub[:2]):
-                out.append(f'  <text x="{cx(n):g}" y="{y(n)+38+i*13:g}">{s}</text>')
+                out.append(f'  <text x="{cx(n):g}" y="{y(n)+38+i*13:g}"{_fit(s, 10.5)}>'
+                           f'{s}</text>')
         out.append(' </g>')
         out.append('</svg>')
         return '\n'.join(out)
