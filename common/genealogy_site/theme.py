@@ -166,6 +166,31 @@ code {{
   padding:.8rem 1rem; margin:1.2rem 0; font-size:.94rem; color:var(--muted);
 }}
 
+/* ---------- the certainty ladder, spelled out ---------- */
+.ladder {{
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.84rem;
+}}
+.ladder > summary {{
+  cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none;
+}}
+.ladder > summary::-webkit-details-marker {{ display:none; }}
+.ladder > summary::after {{ content:" ▾"; }}
+.ladder[open] > summary::after {{ content:" ▴"; }}
+.ladder > summary:hover {{ color:var(--ink); }}
+.ladder-in {{ padding:.2rem .9rem .9rem; }}
+.rungs {{ display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.4rem .9rem; }}
+.rung {{ display:flex; gap:.5rem; align-items:baseline; line-height:1.5; }}
+.rung > span {{ color:var(--muted); }}
+.terms {{
+  margin-block-start:.8rem; padding-block-start:.7rem; border-block-start:1px dotted var(--line);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:.4rem .9rem;
+}}
+.term {{ line-height:1.5; }}
+.term b {{ color:var(--ink); }}
+.term span {{ color:var(--muted); }}
+.term b::after {{ content:" — "; color:var(--muted); font-weight:400; }}
+
 /* ---------- certainty chips ---------- */
 .rank {{
   display:inline-block; font-family:var(--sans); font-size:.78rem; font-style:normal; font-weight:600;
@@ -473,6 +498,7 @@ footer {{
   .doccard img {{ block-size:7rem; }}
   .doccard figcaption {{ padding:.55rem .6rem .65rem; font-size:.84rem; }}
   .verdicts {{ gap:.7rem; margin-block:1.2rem 1.8rem; }}
+  .rungs, .terms {{ grid-template-columns:1fr; }}
   /* the link to the full report is the one thing that must never scroll out
      of the phone's navigation row */
   .nav-report {{
@@ -488,6 +514,10 @@ footer {{
   @page landscape {{ size:A4 landscape; }}
   body {{ background:#fff; font-size:10.5pt; line-height:1.5; }}
   .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov, .tree-zoom, .skip {{ display:none !important; }}
+  /* a collapsed block prints as its summary alone; the script opens every
+     <details> for the print run, and this is the belt to that pair of braces */
+  .ladder > summary {{ font-weight:700; color:#000; }}
+  details:not([open]) > *:not(summary) {{ display:block !important; }}
   .story-hero .portrait img {{ border:1px solid #bbb; box-shadow:none; }}
   .story-hero .portrait figcaption {{ color:#444; }}
   .verdict, .doccard {{ border:1px solid #bbb; break-inside:avoid; }}

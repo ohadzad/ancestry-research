@@ -71,7 +71,7 @@ def _story(cfg, tree_html, updated, warn):
         st = replace(st, portrait=card_thumb(st.portrait) or st.portrait)
     present, body = set(), []
     body.append(f'<section id="lede"><div class="lede">{st.lede}</div>'
-                f'{shell.verdicts_block(st)}</section>')
+                f'{shell.verdicts_block(st)}{shell.ladder_legend(cfg)}</section>')
     tl = shell.timeline_block(st)
     if tl:
         present.add('timeline')
@@ -168,7 +168,7 @@ def build(cfg, verbose=True):
 
     present = {'report'}
     prov = (f'<p class="note prov">{cfg.provenance_note}</p>' if cfg.provenance_note else '')
-    body = [_section('report', '', prov + rep, rule=False)]
+    body = [_section('report', '', prov + shell.ladder_legend(cfg) + rep, rule=False)]
     if tree_html:
         present.add('tree')
         body.append(_section('tree', 'עץ המשפחה', tree_html))

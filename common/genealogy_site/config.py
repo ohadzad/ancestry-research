@@ -156,6 +156,9 @@ class ProjectConfig:
     search_extra: tuple = ()
     # one line under the person index explaining the date notation it uses
     people_legend: str = ''
+    # (term, explanation) — the handful of research words a first-time reader
+    # cannot be expected to know; shown beside the certainty ladder
+    glossary: tuple = ()
 
     # publishing
     site_extra_files: tuple = ()

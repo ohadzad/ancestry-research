@@ -206,6 +206,28 @@ def story_page(cfg, story, updated, report_href, sections, present):
 """
 
 
+def ladder_legend(cfg, open_by_default=False):
+    """The certainty ladder, spelled out where it is first used.
+
+    Both pages grade from their opening sentence, while the chapter that defines
+    the ladder sits at the far end of the report. One collapsed line at the top
+    costs nothing and removes the guesswork.
+    """
+    chips = ''.join(
+        f'<div class="rung">{mdpipe.rank_chip(w)}'
+        f'<span>{mdpipe.RANK_HELP[mdpipe._RANK_CLASS[w]].split("—", 1)[1].strip()}</span></div>'
+        for w in mdpipe.LADDER)
+    terms = ''
+    if cfg.glossary:
+        rows = ''.join(f'<div class="term"><b>{_h.escape(t)}</b><span>{d}</span></div>'
+                       for t, d in cfg.glossary)
+        terms = f'<div class="terms">{rows}</div>'
+    op = ' open' if open_by_default else ''
+    return (f'<details class="ladder"{op}><summary>סולם הוודאות'
+            f'{" ומונחי המחקר" if terms else ""} — מה המילים האלה אומרות</summary>'
+            f'<div class="ladder-in"><div class="rungs">{chips}</div>{terms}</div></details>')
+
+
 def people_section(cfg):
     if not cfg.people:
         return ''
@@ -375,6 +397,16 @@ _JS = """
     [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),
                     function(i){ i.loading='eager'; });
   }
+  // a collapsed <details> prints as its summary alone; everything is opened for
+  // the print run and put back afterwards
+  var reopen = [];
+  addEventListener('beforeprint', function(){
+    reopen = [].filter.call(document.querySelectorAll('details'), function(d){ return !d.open; });
+    reopen.forEach(function(d){ d.open = true; });
+  });
+  addEventListener('afterprint', function(){
+    reopen.forEach(function(d){ d.open = false; }); reopen = [];
+  });
   var promoted = false;
   function promoteOnce(){
     if (promoted) return;

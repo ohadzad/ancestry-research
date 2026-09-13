@@ -151,6 +151,21 @@ _RANK_RE = re.compile(
 _RANK_CLASS = {w: c for w, c in RANKS}
 
 
+# What each rung means, in one line. The ladder appears from a page's first
+# sentence, while the chapter that defines it sits tens of thousands of pixels
+# below; a reader who hovers a chip should not have to go looking.
+RANK_HELP = {
+    'v1': 'מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.',
+    'v2': 'כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.',
+    'v3': 'ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.',
+    'v4': 'טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.',
+    'v5': 'נשלל — נבדק ונמצא שאינו מתאים.',
+    'v6': 'בוטל — נקבע בעבר ובוטל מאז.',
+}
+
+LADDER = ('מאומת', 'כמעט ודאי', 'ככל הנראה', 'טעון אימות', 'נשלל')
+
+
 def rank_chip(word, extra=''):
     """One certainty chip, for markup the engine writes itself (the story page).
 
@@ -162,7 +177,9 @@ def rank_chip(word, extra=''):
     cls = _RANK_CLASS.get(word.strip())
     if not cls:
         return f'<span class="rank-plain">{word}</span>'
-    return f'<span class="rank {cls}{extra}">{word}</span>'
+    t = RANK_HELP.get(cls, '')
+    title = f' title="{t}"' if t else ''
+    return f'<span class="rank {cls}{extra}"{title}>{word}</span>'
 
 
 _LABEL_BEFORE = re.compile(r'(?:^|[>\s(\[—–·:,]|&nbsp;)$')
@@ -183,7 +200,10 @@ def rank_chips(html):
         if after[:1] not in ('', ' ', '<', '.', ',', ')', ';', ':', '—', '–', '\n'):
             return m.group(0)
         w = m.group(1)
-        return f'<span class="rank {_RANK_CLASS[w]}">{w}</span>'
+        cls = _RANK_CLASS[w]
+        t = RANK_HELP.get(cls, '')
+        title = f' title="{t}"' if t else ''
+        return f'<span class="rank {cls}"{title}>{w}</span>'
     return _RANK_RE.sub(sub, html)
 
 
