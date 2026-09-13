@@ -151,6 +151,20 @@ _RANK_RE = re.compile(
 _RANK_CLASS = {w: c for w, c in RANKS}
 
 
+def rank_chip(word, extra=''):
+    """One certainty chip, for markup the engine writes itself (the story page).
+
+    Unknown wording is returned as plain text rather than mis-graded: a chip that
+    claims a rung the ladder does not have would be worse than no chip.
+    """
+    if not word:
+        return ''
+    cls = _RANK_CLASS.get(word.strip())
+    if not cls:
+        return f'<span class="rank-plain">{word}</span>'
+    return f'<span class="rank {cls}{extra}">{word}</span>'
+
+
 _LABEL_BEFORE = re.compile(r'(?:^|[>\s(\[—–·:,]|&nbsp;)$')
 
 

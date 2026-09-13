@@ -21,11 +21,25 @@ def _stamp(tz='Asia/Jerusalem'):
 
 
 _ED = re.compile(r'מהדורה\s+(\d+)')
+_ED_HEAD = re.compile(r'^#{1,3}\s*מהדורה\s+(\d+)\s*·\s*([\d.]+)', re.M)
 
 
 def _edition(text):
     n = [int(m.group(1)) for m in _ED.finditer(text)]
     return f'מהדורה {max(n)}' if n else ''
+
+
+def _updated_line(changelog_md, stamp):
+    """"Last updated" for the story page's hero.
+
+    A reader judges a research page by how current it is (TR-12); an edition
+    number alone says nothing to someone who has never seen the previous one.
+    """
+    heads = [(int(m.group(1)), m.group(2)) for m in _ED_HEAD.finditer(changelog_md or '')]
+    if not heads:
+        return f'עודכן {stamp}'
+    n, date = max(heads)
+    return f'עודכן {date} · מהדורה {n}'
 
 
 def _section(sid, title, body, rule=True):
@@ -34,6 +48,63 @@ def _section(sid, title, body, rule=True):
     hr = '<hr>' if rule else ''
     head = f'<h2>{title}</h2>' if title else ''
     return f'{hr}<section id="{sid}">{head}{body}</section>'
+
+
+def _story(cfg, tree_html, updated, warn):
+    """Render the reader-facing page from the project's ``Story`` declaration."""
+    st = cfg.story
+    report = cfg.main_html
+
+    def card_thumb(path):
+        if not os.path.exists(cfg.p(path)):
+            warn(f'תצלום לכרטיס מסמך אינו קיים: {path}')
+            return ''
+        return figures.thumb(cfg.root, path, width=440, quality=72)
+
+    def deep(href):
+        """A '#anchor' on the story page means 'that place in the report'."""
+        return report + href if href.startswith('#') else href
+
+    st = _resolve_hrefs(st, deep)
+    if st.portrait:
+        from dataclasses import replace
+        st = replace(st, portrait=card_thumb(st.portrait) or st.portrait)
+    present, body = set(), []
+    body.append(f'<section id="lede"><div class="lede">{st.lede}</div>'
+                f'{shell.verdicts_block(st)}</section>')
+    tl = shell.timeline_block(st)
+    if tl:
+        present.add('timeline')
+        body.append(_section('timeline', 'ציר הזמן', tl))
+    dc = shell.docs_block(cfg, st, card_thumb)
+    if dc:
+        present.add('docs')
+        body.append(_section('docs', 'המסמכים', dc))
+    if tree_html:
+        present.add('tree')
+        body.append(_section('tree', 'עץ המשפחה', tree_html))
+    present.add('open')
+    body.append(_section(
+        'open', 'מה עוד פתוח',
+        shell.open_block(st, report, 'הדוח המלא — כל הראיות, המועמדים שנשללו והמקורות')))
+
+    html = shell.story_page(cfg, st, updated, report, ''.join(body), present)
+    html = mdpipe.wrap_tables(html)
+    html = mdpipe.mark_external(html)
+    return bidi.fix_document(html, cfg.extra_bidi_rules)
+
+
+def _resolve_hrefs(st, deep):
+    """Rewrite every in-story '#anchor' into a link to that anchor in the report."""
+    from dataclasses import replace
+    return replace(
+        st,
+        verdicts=tuple(replace(v, lines=tuple((t, deep(h) if h else '') for t, h in v.lines))
+                       for v in st.verdicts),
+        timeline=tuple(replace(b, href=deep(b.href) if b.href else '') for b in st.timeline),
+        docs=tuple(replace(d, href=deep(d.href) if d.href else '') for d in st.docs),
+        open_questions=tuple((t, deep(h) if h else '') for t, h in st.open_questions),
+    )
 
 
 def build(cfg, verbose=True):
@@ -131,8 +202,20 @@ def build(cfg, verbose=True):
     out = bidi.fix_document(out, cfg.extra_bidi_rules)
 
     open(cfg.p(cfg.main_html), 'w', encoding='utf-8').write(out)
+
+    # ---- the story page ---------------------------------------------------
+    story_out, story_name = '', ''
+    if cfg.story:
+        story_name = cfg.story_name()
+        story_out = _story(cfg, tree_html, _updated_line(changelog_md, _stamp()), warn)
+        open(cfg.p(story_name), 'w', encoding='utf-8').write(story_out)
+
+    # the folder's front door opens the story when there is one, and the report
+    # otherwise; the report itself never changes its filename, so every anchor
+    # ever shared still resolves
+    front = story_name or cfg.main_html
     open(cfg.p('index.html'), 'w', encoding='utf-8').write(
-        shell.index_stub(cfg.main_html, cfg.title))
+        shell.index_stub(front, cfg.story_title or cfg.title))
 
     # ---- gates ------------------------------------------------------------
     problems = qa.run_all(out, cfg.root, cfg.privacy_text_patterns)
@@ -142,9 +225,16 @@ def build(cfg, verbose=True):
     files += list(cfg.site_extra_files)
     if view_name:
         files.append(view_name)
-    swept = site.sweep_thumbs(cfg, out)
+    if story_name:
+        files.append(story_name)
+        problems += [f'בעמוד הסיפור: {p}'
+                     for p in qa.run_all(story_out, cfg.root, cfg.privacy_text_patterns)]
+    swept = site.sweep_thumbs(cfg, out, story_out)
     site.mirror(cfg, files)
     problems += qa.local_links_exist(out, cfg.p('site'), 'ב-site/: ', git_check=False)
+    if story_out:
+        problems += qa.local_links_exist(story_out, cfg.p('site'), 'בסיפור, ב-site/: ',
+                                         git_check=False)
     warnings += qa.untracked_link_targets(out, cfg.root)
     problems += qa.ledger_privacy(cfg.root, getattr(cfg, 'published_ids', ()), warn=warnings)
 

@@ -41,6 +41,63 @@ class SpineFact:
 
 
 @dataclass
+class Beat:
+    """One event on the story timeline.
+
+    The timeline is the story page's spine: the life in order, one sentence per
+    event, each graded and each linking into the place in the report that argues
+    for it. A reader who reads nothing else should still come away with the shape
+    of the life.
+    """
+    when: str                       # '1928', '22.6.1949', 'אוגוסט 1956'
+    what: str                       # one sentence; inline HTML allowed
+    place: str = ''                 # 'מכנאס', 'מעברת טירה'
+    rank: str = ''                  # a rung of the ladder, spelled out
+    href: str = ''                  # deep link into the report
+
+
+@dataclass
+class DocCard:
+    """One key document on the story page: picture, date, what it proves."""
+    img: str                        # path under the project, e.g. 'docs/…jpg'
+    when: str
+    title: str
+    proves: str                     # one sentence — what this document establishes
+    rank: str = ''
+    href: str = ''                  # the section of the report that reads it
+    focus: str = 'center top'       # object-position: what the crop must keep
+
+
+@dataclass
+class Verdict:
+    """One column of the three-column "where the research stands" block."""
+    title: str                      # 'ידוע בוודאות'
+    rank: str                       # the rung this column represents
+    lines: tuple = ()               # (text, href) pairs
+
+
+@dataclass
+class Story:
+    """The reader-facing page: the same research, told as a life.
+
+    The report is organised by kind of evidence (candidates, rejections, method);
+    that is right for an auditor and wrong for a first-time reader, who wants to
+    know in ten seconds who this was, what is certain, what is open, and where the
+    photographs are. Both pages are generated from the same project.
+    """
+    lede: str                       # ~120 words, inline HTML allowed
+    portrait: str = ''              # the photograph that opens the page
+    portrait_alt: str = ''
+    portrait_caption: str = ''
+    verdicts: tuple = ()            # Verdict ×3
+    timeline: tuple = ()            # Beat
+    docs: tuple = ()                # DocCard
+    open_questions: tuple = ()      # (text, href) — what is still being looked for
+    timeline_note: str = ''
+    docs_note: str = ''
+
+
+@dataclass
 class Person:
     """One row of the person index."""
     name: str
@@ -62,6 +119,14 @@ class ProjectConfig:
     report_md: str
     sources_md: str
     changelog_md: Optional[str] = None   # when set, the changelog lives outside the report
+
+    # the reader-facing front page; when set, the project builds two pages and
+    # the directory's index.html opens this one
+    story: Optional['Story'] = None
+    story_html: str = ''             # defaults to '<main_html stem>-הסיפור.html'
+    story_title: str = ''            # defaults to cfg.title
+    story_subject: str = ''          # hero sub-line on the story page
+    story_spine: tuple = ()          # SpineFact — reader facts, not process counts
 
     tree: Optional[TreeSource] = None
     palette: Palette = field(default_factory=Palette)
@@ -106,3 +171,16 @@ class ProjectConfig:
 
     def p(self, *parts):
         return os.path.join(self.root, *parts)
+
+    def story_name(self):
+        """The story page's filename.
+
+        The report keeps the filename it has always had: every anchor shared or
+        cited so far points into it, and a research page that moves is a research
+        page that breaks. The story is the new file, and the folder's index.html
+        is what changes to open it.
+        """
+        if self.story_html:
+            return self.story_html
+        stem = os.path.splitext(self.main_html)[0]
+        return f'{stem}-הסיפור.html'

@@ -5,7 +5,7 @@ import json
 import re
 import urllib.parse
 
-from . import theme
+from . import mdpipe, theme
 
 SECTIONS = [
     ('report', 'הדוח'),
@@ -56,6 +56,154 @@ def nav(present, chapters):
         f'<details class="chapters-wrap" open><summary class="lbl">פרקים</summary>'
         f'<div class="nav-row chapters">{chs}</div></details>'
         '</div></nav>')
+
+
+# --------------------------------------------------------------- the story --
+# The story page answers, from its first screen: who was this, what is certain,
+# what is still open, and where are the photographs. Everything that makes the
+# report an auditable record — the rejected candidates, the negative findings,
+# the method — stays in the report, one click away.
+
+STORY_SECTIONS = [
+    ('timeline', 'ציר הזמן'),
+    ('docs', 'המסמכים'),
+    ('tree', 'עץ המשפחה'),
+    ('open', 'מה עוד פתוח'),
+]
+
+
+def _story_link(href, label):
+    return f'<a href="{href}">{label}</a>' if href else ''
+
+
+def story_hero(cfg, story, updated, report_href):
+    crumb = ''
+    if cfg.breadcrumb:
+        href, label = cfg.breadcrumb
+        crumb = f'<div class="crumb"><a href="{href}">← {label}</a></div>'
+    spine = ''
+    facts = cfg.story_spine or cfg.spine
+    if facts:
+        spine = '<div class="spine">' + ''.join(
+            f'<div><b>{f.value}</b><span>{f.label}</span></div>' for f in facts) + '</div>'
+    portrait = ''
+    if story.portrait:
+        alt = _h.escape(story.portrait_alt or cfg.title, quote=True)
+        cap = (f'<figcaption>{story.portrait_caption}</figcaption>'
+               if story.portrait_caption else '')
+        portrait = (f'<figure class="portrait"><img src="{story.portrait}" alt="{alt}" '
+                    f'decoding="async">{cap}</figure>')
+    subject = cfg.story_subject or cfg.subject
+    upd = f'<div class="meta">{updated}</div>' if updated else ''
+    return (f'<header class="hero story-hero"><div class="hero-in">{crumb}'
+            f'<div class="hero-cols">{portrait}<div class="hero-text">'
+            f'<h1>{_h.escape(cfg.story_title or cfg.title)}</h1>'
+            f'<p class="subject">{subject}</p>{upd}</div></div>'
+            f'{spine}</div></header>')
+
+
+def story_nav(present, report_href):
+    links = ''.join(f'<a href="#{sid}">{label}</a>'
+                    for sid, label in STORY_SECTIONS if sid in present)
+    return ('<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in">'
+            f'<div class="nav-row">{links}'
+            f'<a class="nav-report" href="{report_href}">הדוח המלא ←</a>'
+            '</div></div></nav>')
+
+
+def verdicts_block(story):
+    """Three columns: what is certain, what is probable, what is still open."""
+    if not story.verdicts:
+        return ''
+    cols = []
+    for v in story.verdicts:
+        chip = mdpipe.rank_chip(v.rank)
+        items = ''.join(
+            f'<li>{text}{(" " + _story_link(href, "בדוח")) if href else ""}</li>'
+            for text, href in v.lines)
+        cols.append(f'<div class="verdict"><h3>{_h.escape(v.title)} {chip}</h3>'
+                    f'<ul>{items}</ul></div>')
+    return f'<div class="verdicts">{"".join(cols)}</div>'
+
+
+def timeline_block(story):
+    """The life in order — the one thing the report never shows."""
+    if not story.timeline:
+        return ''
+    rows = []
+    for b in story.timeline:
+        chip = mdpipe.rank_chip(b.rank)
+        place = f'<span class="tl-place">{b.place}</span>' if b.place else ''
+        # the date is the row's handle: it is what the eye scans down
+        when = f'<div class="tl-when"><b>{b.when}</b>{place}</div>'
+        more = _story_link(b.href, 'בדוח ←')
+        tail = f'<span class="tl-more">{more}</span>' if more else ''
+        rows.append(f'<li class="tl">{when}'
+                    f'<div class="tl-what"><p>{b.what}</p>'
+                    f'<div class="tl-foot">{chip}{tail}</div></div></li>')
+    note = f'<p class="note">{story.timeline_note}</p>' if story.timeline_note else ''
+    return f'{note}<ol class="timeline">{"".join(rows)}</ol>'
+
+
+def docs_block(cfg, story, root_thumb):
+    """Key documents as cards: picture, date, what it proves, how sure."""
+    if not story.docs:
+        return ''
+    cards = []
+    for d in story.docs:
+        img = root_thumb(d.img)
+        alt = _h.escape(f'{d.title} — {d.when}', quote=True)
+        chip = mdpipe.rank_chip(d.rank)
+        more = _story_link(d.href, 'בדוח ←')
+        pos = f' style="object-position:{d.focus}"' if d.focus != 'center top' else ''
+        pic = (f'<img src="{img}" alt="{alt}" loading="lazy" decoding="async"{pos}>'
+               if img else '')
+        # the whole card is the click target for the scan; the report link is
+        # a second, explicit destination
+        cards.append(
+            f'<figure class="doccard"><a class="doc-img" href="{d.img}">{pic}</a>'
+            f'<figcaption><span class="doc-when">{d.when}</span>'
+            f'<b>{d.title}</b><span class="doc-proves">{d.proves}</span>'
+            f'<span class="doc-foot">{chip}{more}</span></figcaption></figure>')
+    note = f'<p class="note">{story.docs_note}</p>' if story.docs_note else ''
+    return f'{note}<div class="doccards">{"".join(cards)}</div>'
+
+
+def open_block(story, report_href, report_label):
+    items = ''.join(f'<li>{text}{(" " + _story_link(href, "בדוח")) if href else ""}</li>'
+                    for text, href in story.open_questions)
+    lst = f'<ul class="openq">{items}</ul>' if items else ''
+    return (f'{lst}<p class="report-cta"><a class="btn big" href="{report_href}">'
+            f'{report_label}</a></p>')
+
+
+def story_page(cfg, story, updated, report_href, sections, present):
+    js = _JS % '[]'
+    title = _h.escape(cfg.story_title or cfg.title)
+    return f"""<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{_h.escape(cfg.meta_description)}">
+<meta name="color-scheme" content="light">
+<style>{theme.css(cfg.palette)}</style>
+</head>
+<body class="story">
+<a class="skip" href="#lede">דילוג לתוכן</a>
+<a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
+<span id="top"></span>
+{story_hero(cfg, story, updated, report_href)}
+{story_nav(present, report_href)}
+<main>
+{sections}
+</main>
+<footer>{cfg.footer_note}</footer>
+<script>{js}</script>
+</body>
+</html>
+"""
 
 
 def people_section(cfg):

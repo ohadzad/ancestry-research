@@ -28,12 +28,16 @@ def mirror(cfg, files, ignore=SKIP):
     return out
 
 
-def sweep_thumbs(cfg, html):
-    """Delete cached thumbnails no page that references this project still uses."""
+def sweep_thumbs(cfg, *html):
+    """Delete cached thumbnails no page that references this project still uses.
+
+    Every page built from this project must be passed: a thumbnail used only by
+    the story page would otherwise be swept the moment the report was rebuilt.
+    """
     d = cfg.p('docs', 'thumbs')
     if not os.path.isdir(d):
         return []
-    sources = [html]
+    sources = [h for h in html if h]
     for ref in cfg.thumb_referrers:
         path = cfg.p(ref)
         if os.path.exists(path):
