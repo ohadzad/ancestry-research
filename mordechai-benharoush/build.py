@@ -50,6 +50,7 @@ PEOPLE = (
 
 GALLERY = (
     (F.thumb(ROOT, 'docs/ev_mordechai_photo_1950.jpg', 440), 'docs/1950-03-07_certificat_communaute.jpg', 'מרדכי בן הרוש, כבן 22 — התצלום המהודק לתעודת הקהילה, מכנאס, מרץ 1950 (באדיבות המשפחה)'),
+    (F.thumb(ROOT, 'docs/ev_photo_1949_uniform_face.jpg', 440), 'docs/1949-08-29_photo_front_uniform.jpg', 'מרדכי במדי חאקי ברחוב עירוני — התצלום שעל גבו ההקדשה החתומה "בן הרוש מרדכי", 29.8.1949'),
     (F.thumb(ROOT, 'docs/ev_certificat_1950_text.jpg', 440), 'docs/1950-03-07_certificat_communaute.jpg', 'תעודת ועד הקהילה היהודית במכנאס, 7.3.1950 — בן יונאס בנארוש ויאקות חיון'),
     (F.thumb(ROOT, 'docs/ev_traduction_1950_parents.jpg', 440), 'docs/1950-08-10_traduction_acte_p1.jpg', 'תרגום כתב העדות, 1950 — "מרדכי בן יונה בנהרוש ויאקות בת דאוד אוחיון", יליד מכנאס, רווק עד שעזב לארץ ישראל'),
     (F.thumb(ROOT, 'docs/ev_laissez_passer_1950_text.jpg', 440), 'docs/1950-08-11_laissez-passer_consulat_jerusalem.jpg', 'לסה-פסה של הקונסוליה הצרפתית בירושלים, 11.8.1950 — נולד כמשוער 1928 במכנאס, סנדלר; לנסיעת חזרה למרוקו'),
