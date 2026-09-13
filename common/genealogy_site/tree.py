@@ -33,14 +33,6 @@ def load(cfg, warn=None):
     return svg, (lg.group(1) if lg else ''), foot
 
 
-_ID = re.compile(r'\sid="([^"]+)"')
-
-
-def strip_ids(svg):
-    """Remove ids from an SVG copy so duplicated markup cannot clash."""
-    return _ID.sub('', svg)
-
-
 _WRAP = re.compile(r'<div class="(?:wrap|chart)"[^>]*>')
 
 # the standalone page is a project file the engine must not rewrite in place;

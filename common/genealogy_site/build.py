@@ -178,8 +178,11 @@ def build(cfg, verbose=True):
     if view_html:
         open(cfg.p(view_name), 'w', encoding='utf-8').write(view_html)
     tree_html = tree.embed(cfg, svg, legend, foot, page_href=view_name or None)
-    # the story page gets the diagram and its colour key, without the footnotes
-    story_tree = tree.embed(cfg, tree.strip_ids(svg), legend, page_href=view_name or None,
+    # the story page gets the diagram and its colour key, without the footnotes.
+    # the svg goes in unmodified: its own <style> is scoped to #famtree, so
+    # stripping ids would leave every shape with the default black fill. The two
+    # copies live in separate documents, so no id can collide.
+    story_tree = tree.embed(cfg, svg, legend, page_href=view_name or None,
                             compact=True)
     gal = figures.gallery(cfg.gallery, cfg.root)
 
