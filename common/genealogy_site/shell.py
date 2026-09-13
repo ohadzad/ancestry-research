@@ -77,21 +77,35 @@ def toc(chapters):
 
 
 # --------------------------------------------------------------- the story --
-# The story page answers, from its first screen: who was this, what is certain,
-# what is still open, and where are the photographs. Everything that makes the
-# report an auditable record — the rejected candidates, the negative findings,
-# the method — stays in the report, one click away.
+# The story page answers, from its first screen: who was this, who were they to
+# each other, what is known, and where it is written down. Everything that is
+# the road rather than the destination — candidates weighed and rejected,
+# negative findings, open questions, method — stays in the report, one click away.
 
+# The tree comes first: who these people were to each other is the model the
+# rest of the page hangs on (MM-1), and it is the one thing a family reader
+# looks for before anything else.
 STORY_SECTIONS = [
+    ('tree', 'עץ המשפחה'),
     ('timeline', 'ציר הזמן'),
     ('docs', 'המסמכים'),
-    ('tree', 'עץ המשפחה'),
-    ('open', 'מה עוד פתוח'),
+    ('sources', 'המקורות'),
 ]
 
 
 def _story_link(href, label):
     return f'<a href="{href}">{label}</a>' if href else ''
+
+
+def _src_link(src):
+    """"Where this is written down" — the record itself, not the reasoning."""
+    if not src:
+        return ''
+    label, href = src
+    inner = _h.escape(label)
+    if href:
+        inner = f'<a href="{href}">{inner}</a>'
+    return f'<span class="src">מקור: {inner}</span>'
 
 
 def story_hero(cfg, story, updated, report_href):
@@ -158,7 +172,7 @@ def timeline_block(story):
         tail = f'<span class="tl-more">{more}</span>' if more else ''
         rows.append(f'<li class="tl">{when}'
                     f'<div class="tl-what"><p>{b.what}</p>'
-                    f'<div class="tl-foot">{chip}{tail}</div></div></li>')
+                    f'<div class="tl-foot">{chip}{_src_link(b.src)}{tail}</div></div></li>')
     note = f'<p class="note">{story.timeline_note}</p>' if story.timeline_note else ''
     return f'{note}<ol class="timeline">{"".join(rows)}</ol>'
 
@@ -182,16 +196,25 @@ def docs_block(cfg, story, root_thumb):
             f'<figure class="doccard"><a class="doc-img" href="{d.img}">{pic}</a>'
             f'<figcaption><span class="doc-when">{d.when}</span>'
             f'<b>{d.title}</b><span class="doc-proves">{d.proves}</span>'
-            f'<span class="doc-foot">{chip}{more}</span></figcaption></figure>')
+            f'<span class="doc-foot">{chip}{_src_link(d.src)}{more}</span>'
+            f'</figcaption></figure>')
     note = f'<p class="note">{story.docs_note}</p>' if story.docs_note else ''
     return f'{note}<div class="doccards">{"".join(cards)}</div>'
 
 
-def open_block(story, report_href, report_label):
-    items = ''.join(f'<li>{text}{(" " + _story_link(href, "בדוח")) if href else ""}</li>'
-                    for text, href in story.open_questions)
-    lst = f'<ul class="openq">{items}</ul>' if items else ''
-    return (f'{lst}<p class="report-cta"><a class="btn big" href="{report_href}">'
+def sources_block(story, report_href, report_label):
+    """The records this page rests on.
+
+    The page says what is known; this says where each of it is written down.
+    How the research got there — the candidates weighed and rejected, the
+    questions still open, the searches that returned nothing — is the report's
+    business, and the button at the foot is the way to it.
+    """
+    items = ''.join(f'<li>{_story_link(href, _h.escape(label)) or _h.escape(label)}</li>'
+                    for label, href in story.sources)
+    lst = f'<ol class="srclist">{items}</ol>' if items else ''
+    note = f'<p class="note">{story.sources_note}</p>' if story.sources_note else ''
+    return (f'{note}{lst}<p class="report-cta"><a class="btn big" href="{report_href}">'
             f'{report_label}</a></p>')
 
 
@@ -224,17 +247,22 @@ def story_page(cfg, story, updated, report_href, sections, present):
 """
 
 
-def ladder_legend(cfg, open_by_default=False):
+def ladder_legend(cfg, open_by_default=False, rungs=None):
     """The certainty ladder, spelled out where it is first used.
 
     Both pages grade from their opening sentence, while the chapter that defines
     the ladder sits at the far end of the report. One collapsed line at the top
     costs nothing and removes the guesswork.
+
+    ``rungs`` narrows the list to the grades a page actually uses: explaining
+    "נשלל" on a page that states only what is known would be explaining the
+    research's road, which is the report's business.
     """
+    ladder = tuple(w for w in mdpipe.LADDER if rungs is None or w in rungs)
     chips = ''.join(
         f'<div class="rung">{mdpipe.rank_chip(w)}'
         f'<span>{mdpipe.RANK_HELP[mdpipe._RANK_CLASS[w]].split("—", 1)[1].strip()}</span></div>'
-        for w in mdpipe.LADDER)
+        for w in ladder)
     terms = ''
     if cfg.glossary:
         rows = ''.join(f'<div class="term"><b>{_h.escape(t)}</b><span>{d}</span></div>'

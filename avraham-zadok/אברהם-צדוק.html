@@ -253,11 +253,8 @@ body.story main { padding-block-start:2rem; }
 }
 .verdict ul { margin:0; padding-inline-start:1.1rem; font-size:.95rem; }
 .verdict li { margin-block-end:.5rem; line-height:1.6; }
-.verdict a, .openq a {
-  font-family:var(--sans); font-size:.78rem; border:0; white-space:nowrap;
-  color:var(--link); opacity:.85;
-}
-.verdict a::after, .openq a::after { content:" ←"; }
+.verdict a, 
+.verdict a::after { content:" ←"; }
 
 /* the timeline: the date is the handle the eye scans down */
 .timeline { list-style:none; margin:1.2rem 0 2rem; padding:0; position:relative; }
@@ -321,8 +318,12 @@ li.tl {
 }
 .doc-foot a { border:0; }
 
-.openq { margin:1.1rem 0 1.8rem; padding-inline-start:1.2rem; }
-.openq li { margin-block-end:.55rem; }
+/* "where this is written down" — on every beat and every card */
+.src { color:var(--muted); font-family:var(--sans); font-size:.78rem; }
+.src a { border:0; color:var(--link); }
+.srclist { margin:1.1rem 0 1.8rem; padding-inline-start:1.4rem; font-size:.95rem; }
+.srclist li { margin-block-end:.5rem; line-height:1.6; }
+.srclist a { border-block-end:1px solid rgba(0,0,0,.14); }
 .report-cta { margin:2rem 0 1rem; }
 .btn.big {
   font-size:.95rem; padding:.6rem 1.4rem; background:var(--accent); color:#fff;

@@ -73,9 +73,16 @@ def _story(cfg, tree_html, updated, warn):
     if st.portrait:
         from dataclasses import replace
         st = replace(st, portrait=card_thumb(st.portrait) or st.portrait)
+    # only the rungs this page actually uses
+    used = {v.rank for v in st.verdicts} | {b.rank for b in st.timeline} \
+        | {d.rank for d in st.docs}
     present, body = set(), []
     body.append(f'<section id="lede"><div class="lede">{st.lede}</div>'
-                f'{shell.verdicts_block(st)}{shell.ladder_legend(cfg)}</section>')
+                f'{shell.verdicts_block(st)}'
+                f'{shell.ladder_legend(cfg, rungs=used)}</section>')
+    if tree_html:
+        present.add('tree')
+        body.append(_section('tree', 'עץ המשפחה', tree_html))
     tl = shell.timeline_block(st)
     if tl:
         present.add('timeline')
@@ -84,18 +91,19 @@ def _story(cfg, tree_html, updated, warn):
     if dc:
         present.add('docs')
         body.append(_section('docs', 'המסמכים', dc))
-    if tree_html:
-        present.add('tree')
-        body.append(_section('tree', 'עץ המשפחה', tree_html))
-    present.add('open')
+    present.add('sources')
     body.append(_section(
-        'open', 'מה עוד פתוח',
-        shell.open_block(st, report, 'הדוח המלא — כל הראיות, המועמדים שנשללו והמקורות')))
+        'sources', 'המקורות',
+        shell.sources_block(st, report, 'הדוח המלא — כל הראיות, המקורות והדרך אליהם')))
 
     html = shell.story_page(cfg, st, updated, report, ''.join(body), present)
     html = mdpipe.wrap_tables(html)
     html = mdpipe.mark_external(html)
     return bidi.fix_document(html, cfg.extra_bidi_rules)
+
+
+def _deep_src(src, deep):
+    return (src[0], deep(src[1]) if src[1] else '') if src else ()
 
 
 def _resolve_hrefs(st, deep):
@@ -105,9 +113,11 @@ def _resolve_hrefs(st, deep):
         st,
         verdicts=tuple(replace(v, lines=tuple((t, deep(h) if h else '') for t, h in v.lines))
                        for v in st.verdicts),
-        timeline=tuple(replace(b, href=deep(b.href) if b.href else '') for b in st.timeline),
-        docs=tuple(replace(d, href=deep(d.href) if d.href else '') for d in st.docs),
-        open_questions=tuple((t, deep(h) if h else '') for t, h in st.open_questions),
+        timeline=tuple(replace(b, href=deep(b.href) if b.href else '',
+                               src=_deep_src(b.src, deep)) for b in st.timeline),
+        docs=tuple(replace(d, href=deep(d.href) if d.href else '',
+                           src=_deep_src(d.src, deep)) for d in st.docs),
+        sources=tuple((label, deep(h) if h else '') for label, h in st.sources),
     )
 
 

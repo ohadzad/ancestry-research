@@ -253,11 +253,8 @@ body.story main { padding-block-start:2rem; }
 }
 .verdict ul { margin:0; padding-inline-start:1.1rem; font-size:.95rem; }
 .verdict li { margin-block-end:.5rem; line-height:1.6; }
-.verdict a, .openq a {
-  font-family:var(--sans); font-size:.78rem; border:0; white-space:nowrap;
-  color:var(--link); opacity:.85;
-}
-.verdict a::after, .openq a::after { content:" ←"; }
+.verdict a, 
+.verdict a::after { content:" ←"; }
 
 /* the timeline: the date is the handle the eye scans down */
 .timeline { list-style:none; margin:1.2rem 0 2rem; padding:0; position:relative; }
@@ -321,8 +318,12 @@ li.tl {
 }
 .doc-foot a { border:0; }
 
-.openq { margin:1.1rem 0 1.8rem; padding-inline-start:1.2rem; }
-.openq li { margin-block-end:.55rem; }
+/* "where this is written down" — on every beat and every card */
+.src { color:var(--muted); font-family:var(--sans); font-size:.78rem; }
+.src a { border:0; color:var(--link); }
+.srclist { margin:1.1rem 0 1.8rem; padding-inline-start:1.4rem; font-size:.95rem; }
+.srclist li { margin-block-end:.5rem; line-height:1.6; }
+.srclist a { border-block-end:1px solid rgba(0,0,0,.14); }
 .report-cta { margin:2rem 0 1rem; }
 .btn.big {
   font-size:.95rem; padding:.6rem 1.4rem; background:var(--accent); color:#fff;
@@ -743,7 +744,7 @@ footer {
 </tr>
 </tbody>
 </table></div>
-<p>בית המשפחה בקושלובו תועד ב<strong>גיליון מפקד האוכלוסין הצ'כוסלובקי מ-16.02.1921</strong> (בית מס' 30; <a href="docs/hungaricana_1921_census_koselovo_house30_pages299-300_original.pdf" target="_blank" rel="noopener">הגיליון המקורי, בכתב יד — שמור בתיקייה</a>): יעקב ראש הבית, שרה ("Rapaport Sura") אשתו — ו-13 ילדים בבית, כולם "Žid, izrael" (יהודים בני דת ישראל), המבוגרים שבהם רשומים "Zemledelec" (חקלאי) ו"robotník" (פועל). מבין 14 הילדים, היחידה שאינה מופיעה בגיליון היא <strong>שרה (נ' 1912, אז כבת 8)</strong> — היעדרות שטרם הוסברה (אולי שהתה אצל קרובים ביום המפקד; ראוי לבדיקה חוזרת מול הגיליון). מנגד, <strong>רוחלה (הדודה רחל, נ' 1899) מופיעה במפקד פעמיים</strong> — גם בבית ההורים וגם כדיירת בבית הדוד נתן רפפורט בחוסט; כפילות ברישום חד-יומי שנותרה בלתי מיושבת (רישום כפול, או שתי נשים בשם זהה).</p><figure><a href="docs/hungaricana_1921_census_koselovo_house30_full.png" target="_blank" rel="noopener"><img src="docs/thumbs/hungaricana_1921_census_koselovo_house30_full_900_169a3a_900q82_6a668d.jpg" alt="גיליון מפקד 1921 המקורי במלואו — בית מס&#x27; 30 בקושלובו: יעקב ראש הבית, שרה (&quot;Rapaport Sura&quot;) אשתו, ושלושה-עשר ילדים; וחתימ" loading="lazy" decoding="async" width="900" height="1437"></a><figcaption><span class="fignum">איור 12</span> — גיליון מפקד 1921 המקורי במלואו — בית מס' 30 בקושלובו: יעקב ראש הבית, שרה ("Rapaport Sura") אשתו, ושלושה-עשר ילדים; וחתימת הפוקד, "Koselovo, 16 בפברואר 1921". שני העמודים שמורים גם כ<a href="docs/hungaricana_1921_census_koselovo_house30_pages299-300_original.pdf" target="_blank" rel="noopener">PDF מקורי</a>.<span class="figlinks"><a href="docs/hungaricana_1921_census_koselovo_house30_full.png" target="_blank" rel="noopener">המסמך המלא (בתיקייה)</a> · <a href="https://library.hungaricana.hu/hu/view/KANepszaml_006_Huszt_Keselyumezo__097_Koseleve-Keselymezo/?pg=298&layout=s" target="_blank" rel="noopener">המקור המקוון ↗</a></span></figcaption></figure>
+<p>בית המשפחה בקושלובו תועד ב<strong>גיליון מפקד האוכלוסין הצ'כוסלובקי מ-16.02.1921</strong> (בית מס' 30; <a href="docs/hungaricana_1921_census_koselovo_house30_pages299-300_original.pdf" target="_blank" rel="noopener">הגיליון המקורי, בכתב יד — שמור בתיקייה</a>): יעקב ראש הבית, שרה ("Rapaport Sura") אשתו — ו-13 ילדים בבית, כולם "Žid, izrael" (יהודים בני דת ישראל), המבוגרים שבהם רשומים "Zemledelec" (חקלאי) ו"robotník" (פועל). מבין 14 הילדים, היחידה שאינה מופיעה בגיליון היא <strong>שרה (נ' 1912, אז כבת 8)</strong> — היעדרות שטרם הוסברה (אולי שהתה אצל קרובים ביום המפקד; ראוי לבדיקה חוזרת מול הגיליון). מנגד, <strong>רוחלה (הדודה רחל, נ' 1899) מופיעה במפקד פעמיים</strong> — גם בבית ההורים וגם כדיירת בבית הדוד נתן רפפורט בחוסט; כפילות ברישום חד-יומי שנותרה בלתי מיושבת (רישום כפול, או שתי נשים בשם זהה).</p><figure><a href="docs/hungaricana_1921_census_koselovo_house30_full.png" target="_blank" rel="noopener"><img src="docs/thumbs/hungaricana_1921_census_koselovo_house30_full_900_169a3a_900q82_e54f4c.jpg" alt="גיליון מפקד 1921 המקורי במלואו — בית מס&#x27; 30 בקושלובו: יעקב ראש הבית, שרה (&quot;Rapaport Sura&quot;) אשתו, ושלושה-עשר ילדים; וחתימ" loading="lazy" decoding="async" width="900" height="1437"></a><figcaption><span class="fignum">איור 12</span> — גיליון מפקד 1921 המקורי במלואו — בית מס' 30 בקושלובו: יעקב ראש הבית, שרה ("Rapaport Sura") אשתו, ושלושה-עשר ילדים; וחתימת הפוקד, "Koselovo, 16 בפברואר 1921". שני העמודים שמורים גם כ<a href="docs/hungaricana_1921_census_koselovo_house30_pages299-300_original.pdf" target="_blank" rel="noopener">PDF מקורי</a>.<span class="figlinks"><a href="docs/hungaricana_1921_census_koselovo_house30_full.png" target="_blank" rel="noopener">המסמך המלא (בתיקייה)</a> · <a href="https://library.hungaricana.hu/hu/view/KANepszaml_006_Huszt_Keselyumezo__097_Koseleve-Keselymezo/?pg=298&layout=s" target="_blank" rel="noopener">המקור המקוון ↗</a></span></figcaption></figure>
 <h3 id="דור-3-ההורים-הדודים-והדודות">דור 3 — ההורים, הדודים והדודות</h3>
 <p><strong>אחי ואחיות האב — כל 14 ילדי יעקב ושרה, על פי רשומות הלידה האזרחיות (Iza-Koshelovo/מיז'יריה) ומפקד 1921:</strong></p>
 <ol>

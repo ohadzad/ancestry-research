@@ -54,6 +54,7 @@ class Beat:
     place: str = ''                 # 'מכנאס', 'מעברת טירה'
     rank: str = ''                  # a rung of the ladder, spelled out
     href: str = ''                  # deep link into the report
+    src: tuple = ()                 # (label, '#src-N') — the record this rests on
 
 
 @dataclass
@@ -66,6 +67,7 @@ class DocCard:
     rank: str = ''
     href: str = ''                  # the section of the report that reads it
     focus: str = 'center top'       # object-position: what the crop must keep
+    src: tuple = ()                 # (label, '#src-N') — its entry in the index
 
 
 @dataclass
@@ -92,9 +94,14 @@ class Story:
     verdicts: tuple = ()            # Verdict ×3
     timeline: tuple = ()            # Beat
     docs: tuple = ()                # DocCard
-    open_questions: tuple = ()      # (text, href) — what is still being looked for
+    # (label, href) — the records this page rests on, listed at its foot. The
+    # page states what is known and where it is written down; the road to it —
+    # the candidates weighed and rejected, the questions still open — is the
+    # report's business.
+    sources: tuple = ()
     timeline_note: str = ''
     docs_note: str = ''
+    sources_note: str = ''
 
 
 @dataclass
