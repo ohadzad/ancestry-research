@@ -42,6 +42,10 @@ def _updated_line(changelog_md, stamp):
     return f'עודכן {date} · מהדורה {n}'
 
 
+def _count_editions(changelog_md):
+    return len(set(m.group(1) for m in _ED_HEAD.finditer(changelog_md or ''))) or 0
+
+
 def _section(sid, title, body, rule=True):
     if not body:
         return ''
@@ -168,7 +172,11 @@ def build(cfg, verbose=True):
 
     present = {'report'}
     prov = (f'<p class="note prov">{cfg.provenance_note}</p>' if cfg.provenance_note else '')
-    body = [_section('report', '', prov + shell.ladder_legend(cfg) + rep, rule=False)]
+    chapters = [(sid, mdpipe.toc_label(full, overrides=cfg.toc_overrides), full)
+                for sid, full in chapters_raw]
+    body = [_section('report', '',
+                     prov + shell.ladder_legend(cfg) + shell.toc(chapters) + rep,
+                     rule=False)]
     if tree_html:
         present.add('tree')
         body.append(_section('tree', 'עץ המשפחה', tree_html))
@@ -187,7 +195,10 @@ def build(cfg, verbose=True):
         body.append(_section('index', 'אינדקס המקורות', src))
     if log:
         present.add('changelog')
-        body.append(_section('changelog', 'יומן המהדורות', log))
+        body.append('<hr><section id="changelog"><h2>יומן המהדורות</h2>'
+                    '<details class="changelog-wrap"><summary>'
+                    f'כל המהדורות ({_count_editions(changelog_md)}) — מה השתנה בכל אחת'
+                    f'</summary>{log}</details></section>')
 
     body_html = ''.join(body)
     body_html, n_figs = mdpipe.number_figures(body_html)
@@ -195,10 +206,10 @@ def build(cfg, verbose=True):
     body_html = mdpipe.wrap_tables(body_html)
     body_html = mdpipe.mark_external(body_html)
 
-    chapters = [(sid, mdpipe.toc_label(full, overrides=cfg.toc_overrides), full)
-                for sid, full in chapters_raw]
-    out = shell.page(cfg, edition, _stamp(), body_html, chapters, present,
-                     extra_rows=shell.page_rows(body_html))
+    out = shell.page(cfg, _updated_line(changelog_md, _stamp()), _stamp(),
+                     body_html, chapters, present,
+                     extra_rows=shell.page_rows(body_html),
+                     story_href=cfg.story_name() if cfg.story else '')
     out = bidi.fix_document(out, cfg.extra_bidi_rules)
 
     open(cfg.p(cfg.main_html), 'w', encoding='utf-8').write(out)

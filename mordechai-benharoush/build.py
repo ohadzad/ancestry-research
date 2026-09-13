@@ -235,8 +235,6 @@ cfg = ProjectConfig(
     text_transforms=(hyphen_ranges,),
     report_transforms=(citations,),
     breadcrumb=('../index.html', 'ארכיון מחקר המשפחה'),
-    provenance_note=('העמוד הזה טוען את התצלומים ואת המסמכים ישירות מתיקיית <code>docs/</code> '
-                     'שלצדו — לחיצה על כל ראיה פותחת את קובץ המקור המלא.'),
     footer_note=('מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור '
                  'וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.'),
     legacy_anchors={f's{n}': r'^' + str(n) + r'\.' for n in range(1, 10)},

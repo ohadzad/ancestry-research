@@ -7,13 +7,16 @@ import urllib.parse
 
 from . import mdpipe, theme
 
+# Six destinations at most, in one row. The chapter strip that used to sit
+# under them cost a quarter of a phone screen and spoke in the language of the
+# researcher's own filing ("4 · נשללו"); it now lives as a table of contents at
+# the top of the report, where the full titles fit.
 SECTIONS = [
     ('report', 'הדוח'),
     ('tree', 'עץ המשפחה'),
     ('gallery', 'מסמכי מפתח'),
     ('people', 'אינדקס אנשים'),
     ('index', 'אינדקס מקורות'),
-    ('changelog', 'יומן מהדורות'),
 ]
 
 
@@ -26,23 +29,26 @@ def hero(cfg, edition, stamp):
     if cfg.spine:
         spine = '<div class="spine">' + ''.join(
             f'<div><b>{f.value}</b><span>{f.label}</span></div>' for f in cfg.spine) + '</div>'
-    meta = ' · '.join(x for x in [edition, f'נבנה {stamp}'] if x)
+    # `edition` reads "עודכן <date> · מהדורה N"; when the page was built the same
+    # day, repeating the date as "נבנה" says nothing and reads as noise
+    parts = [edition] + ([] if stamp in edition else [f'נבנה {stamp}'])
+    meta = ' · '.join(x for x in parts if x)
     return (f'<header class="hero"><div class="hero-in">{crumb}'
             f'<h1>{_h.escape(cfg.title)}</h1>'
             f'<p class="subject">{cfg.subject}</p>'
             f'<div class="meta">{meta}</div>{spine}</div></header>')
 
 
-def nav(present, chapters):
+def nav(present, chapters, story_href=''):
     secs = ''.join(f'<a href="#{sid}">{label}</a>'
                    for sid, label in SECTIONS if sid in present)
-    chs = ''.join(f'<a href="#{sid}" title="{_h.escape(full)}">{_h.escape(short)}</a>'
-                  for sid, short, full in chapters)
+    back = (f'<a class="nav-story" href="{story_href}">הסיפור →</a>'
+            if story_href else '')
     # the results list sits directly after the input (tab order) but is
     # positioned out of flow (so showing it never changes the nav's height)
     return (
         '<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in">'
-        f'<div class="nav-row"><span class="lbl">מקטעים</span>{secs}'
+        f'<div class="nav-row">{back}{secs}'
         # on a phone the whole row scrolls in one line; the field itself opens
         # from this button, so the search costs no vertical space until it is used
         '<button type="button" class="qtoggle" aria-expanded="false" '
@@ -53,9 +59,21 @@ def nav(present, chapters):
         'aria-controls="qres" hidden>'
         '<div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div>'
         '</div></div>'
-        f'<details class="chapters-wrap" open><summary class="lbl">פרקים</summary>'
-        f'<div class="nav-row chapters">{chs}</div></details>'
         '</div></nav>')
+
+
+def toc(chapters):
+    """The report's table of contents, at the top of the report itself.
+
+    Full chapter titles, where there is room for them — a nav chip truncated to
+    "5 · המשפחה במסמכים" carries no scent for a reader who has not already read
+    the chapter."""
+    if not chapters:
+        return ''
+    items = ''.join(f'<li><a href="#{sid}">{_h.escape(full)}</a></li>'
+                    for sid, _short, full in chapters)
+    return ('<details class="toc"><summary>תוכן העניינים — תשעה פרקים</summary>'
+            f'<ol class="toc-list">{items}</ol></details>')
 
 
 # --------------------------------------------------------------- the story --
@@ -377,11 +395,7 @@ _JS = """
     var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
     document.documentElement.style.setProperty('--anchor-off', h + 'px');
   }
-  var det = document.querySelector('.chapters-wrap');
-  // on a phone the open chapter strip costs a quarter of the viewport
-  if (det && matchMedia('(max-width:40rem)').matches) det.removeAttribute('open');
   offset(); addEventListener('resize', offset);
-  if (det) det.addEventListener('toggle', offset);
   var top = document.querySelector('.top');
   function topvis(){ var on = scrollY > 900;
     top.classList.toggle('show', on); top.setAttribute('tabindex', on ? '0' : '-1'); }
@@ -468,7 +482,8 @@ _JS = """
 """
 
 
-def page(cfg, edition, stamp, body_sections, chapters, present, extra_rows=()):
+def page(cfg, edition, stamp, body_sections, chapters, present, extra_rows=(),
+         story_href=''):
     idx = json.dumps(search_index(chapters, cfg, extra_rows), ensure_ascii=False)\
              .replace('</', '<\\/')
     js = _JS % idx
@@ -487,7 +502,7 @@ def page(cfg, edition, stamp, body_sections, chapters, present, extra_rows=()):
 <a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
 <span id="top"></span>
 {hero(cfg, edition, stamp)}
-{nav(present, chapters)}
+{nav(present, chapters, story_href)}
 <main>
 {body_sections}
 </main>

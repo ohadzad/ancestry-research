@@ -56,30 +56,7 @@ img, svg, video {{ max-width:100%; }}
 }}
 .nav-in {{ max-width:var(--col); margin-inline:auto; padding:0 1.25rem; }}
 .nav-row {{ display:flex; align-items:center; gap:.4rem; height:var(--nav-h); }}
-/* only the chapter strip scrolls; the first row must not clip the search panel */
-.nav-row.chapters {{ overflow-x:auto; scrollbar-width:thin; }}
 .nav-row:first-child {{ flex-wrap:wrap; height:auto; padding-block:.4rem; }}
-.chapters-wrap {{ border-block-start:1px dotted var(--line); }}
-.chapters-wrap > summary {{
-  list-style:none; cursor:pointer; padding:.3rem 0; font-size:.78rem; color:var(--muted);
-}}
-.chapters-wrap > summary::-webkit-details-marker {{ display:none; }}
-.chapters-wrap > summary::after {{ content:" ▾"; }}
-.chapters-wrap[open] > summary::after {{ content:" ▴"; }}
-.nav-row.chapters {{ height:2.4rem; }}
-/* the row scrolls horizontally; a fade at the overflowing edge is the only cue */
-.chapters-wrap {{ position:relative; }}
-.chapters-wrap::after {{
-  /* at rest the strip is scrolled to its start, so the hidden chips are at the
-     inline-END edge — that is where the cue belongs */
-  content:""; position:absolute; inset-block:auto 0; inset-inline-end:0;
-  block-size:2.4rem; inline-size:2.2rem; pointer-events:none;
-  background:linear-gradient(to left, rgba(250,247,242,0), rgba(250,247,242,.98));
-}}
-[dir="rtl"] .chapters-wrap::after {{
-  background:linear-gradient(to right, rgba(250,247,242,0), rgba(250,247,242,.98));
-}}
-.chapters-wrap:not([open])::after {{ display:none; }}
 .nav a {{
   flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.82rem;
   padding:.3rem .6rem; border-radius:999px; white-space:nowrap;
@@ -87,8 +64,6 @@ img, svg, video {{ max-width:100%; }}
 .nav a:hover {{ background:rgba(0,0,0,.05); }}
 .nav a.on {{ background:var(--accent); color:#fff; }}
 .nav .lbl {{ flex:0 0 auto; font-size:.78rem; color:var(--muted); padding-inline-end:.2rem; }}
-.nav-row.chapters a:not(.on) {{ font-size:.78rem; color:var(--muted); }}
-.nav-row.chapters a.on {{ font-size:.78rem; }}
 
 .qwrap {{ position:relative; flex:0 0 auto; margin-inline-start:auto; }}
 #q {{
@@ -225,11 +200,40 @@ body.story main {{ padding-block-start:2rem; }}
 .story-hero h1 {{ margin-block-end:.6rem; }}
 .story-hero .subject {{ font-size:1.1rem; line-height:1.6; }}
 
-.nav-report {{
-  margin-inline-start:auto; font-weight:600;
-  color:var(--accent) !important; border:1px solid var(--accent);
+.nav-report, .nav-story {{
+  font-weight:600; color:var(--accent) !important; border:1px solid var(--accent);
 }}
-.nav-report:hover {{ background:var(--accent); color:#fff !important; }}
+.nav-report {{ margin-inline-start:auto; }}
+.nav-story {{ margin-inline-end:.5rem; }}
+.nav-report:hover, .nav-story:hover {{ background:var(--accent); color:#fff !important; }}
+
+/* the edition log is the researcher's bookkeeping: collapsed by default, and
+   reachable for anyone who wants to see what changed */
+.changelog-wrap > summary {{
+  cursor:pointer; list-style:none; font-family:var(--sans); font-size:.86rem;
+  color:var(--muted); padding:.5rem .9rem; border:1px solid var(--line);
+  border-radius:var(--radius); background:#fff; display:inline-block;
+}}
+.changelog-wrap > summary::-webkit-details-marker {{ display:none; }}
+.changelog-wrap > summary::after {{ content:" ▾"; }}
+.changelog-wrap[open] > summary::after {{ content:" ▴"; }}
+.changelog-wrap > summary:hover {{ color:var(--ink); }}
+
+/* ---------- table of contents ---------- */
+.toc {{
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.86rem;
+}}
+.toc > summary {{ cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none; }}
+.toc > summary::-webkit-details-marker {{ display:none; }}
+.toc > summary::after {{ content:" ▾"; }}
+.toc[open] > summary::after {{ content:" ▴"; }}
+.toc > summary:hover {{ color:var(--ink); }}
+.toc-list {{
+  margin:0; padding:.1rem 2.4rem .9rem; columns:2; column-gap:1.6rem;
+}}
+.toc-list li {{ margin-block-end:.3rem; break-inside:avoid; }}
+.toc-list a {{ border:0; }}
 
 /* three columns: certain · probable · open — the whole state of the research */
 .verdicts {{
@@ -461,8 +465,6 @@ footer {{
     overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
   }}
   .nav-row:first-child::-webkit-scrollbar {{ display:none; }}
-  .chapters-wrap > summary {{ padding:.05rem 0; font-size:.72rem; line-height:1.4; }}
-  .nav-row.chapters {{ height:2.2rem; }}
   .qtoggle {{ display:block; flex:0 0 auto; position:sticky; inset-inline-end:0;
              box-shadow:-6px 0 8px rgba(250,247,242,.97); }}
   .qwrap {{ display:none; }}
@@ -505,6 +507,12 @@ footer {{
     position:sticky; inset-inline-end:0; background:var(--paper);
     box-shadow:6px 0 8px rgba(250,247,242,.97);
   }}
+  /* the way back to the story must never scroll out of reach either */
+  .nav-story {{
+    position:sticky; inset-inline-start:0; background:var(--paper);
+    box-shadow:-6px 0 8px rgba(250,247,242,.97); margin-inline-end:.3rem;
+  }}
+  .toc-list {{ columns:1; padding-inline:1.6rem; }}
   .top {{ width:2.2rem; height:2.2rem; inset-block-end:.7rem; inset-inline-end:.7rem; font-size:.95rem; }}
 }}
 
