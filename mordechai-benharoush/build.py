@@ -96,7 +96,7 @@ cfg = ProjectConfig(
     md_extensions=('tables',),
     thumb_referrers=('../index.html', '../research_registry.json'),
     spine=(
-        SpineFact('7', 'מסמכים של מרדכי עצמו'),
+        SpineFact('8', 'מסמכים של מרדכי עצמו'),
         SpineFact('1', 'רישום — ככל הנראה שלו'),
         SpineFact('7', 'רשומות שנשללו'),
         SpineFact('20/29', 'קובצי עולים 1947–49 שנקראו'),
