@@ -230,6 +230,8 @@ def build(cfg, verbose=True):
 
     # ---- gates ------------------------------------------------------------
     problems = qa.run_all(out, cfg.root, cfg.privacy_text_patterns)
+    problems += qa.reading_shape(out)
+    problems += qa.no_build_paths(out)
     files = [cfg.main_html, 'index.html', cfg.report_md, cfg.sources_md]
     if cfg.changelog_md:
         files.append(cfg.changelog_md)
@@ -239,7 +241,11 @@ def build(cfg, verbose=True):
     if story_name:
         files.append(story_name)
         problems += [f'בעמוד הסיפור: {p}'
-                     for p in qa.run_all(story_out, cfg.root, cfg.privacy_text_patterns)]
+                     for p in (qa.run_all(story_out, cfg.root, cfg.privacy_text_patterns)
+                               + qa.reading_shape(story_out, is_story=True)
+                               + qa.no_build_paths(story_out))]
+        # every link the story makes into the report must land somewhere
+        problems += qa.cross_page_anchors(story_out, out, cfg.main_html, 'בעמוד הסיפור: ')
     swept = site.sweep_thumbs(cfg, out, story_out)
     site.mirror(cfg, files)
     problems += qa.local_links_exist(out, cfg.p('site'), 'ב-site/: ', git_check=False)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """Quality gates. Every check returns a list of problem strings."""
+import html as _h
 import os
 import re
 import urllib.parse
@@ -329,6 +330,78 @@ def entity_hygiene(html):
     """A double-escaped entity: &amp;quot; where &quot; was meant."""
     n = len(re.findall(r'&amp;(?:quot|amp|lt|gt|#\d+|nbsp);', html))
     return [f'ישות HTML שקודדה פעמיים: {n}'] if n else []
+
+
+_TAG = re.compile(r'<[^>]+>')
+_SCRIPT_STYLE = re.compile(r'<(script|style)\b.*?</\1>', re.S | re.I)
+
+# Gates on the shape of a page, not on its correctness. Each number is the point
+# at which a reader stops reading: a lede that runs past a screenful stops being
+# an abstract, and a navigation bar with more than six destinations stops being
+# a map.
+LEDE_MAX = 1200         # characters of rendered text — an abstract, not a chapter
+STORY_WORDS_MAX = 1800
+NAV_LINKS_MAX = 6
+
+
+def _text(html):
+    return _TAG.sub(' ', _SCRIPT_STYLE.sub('', html))
+
+
+def reading_shape(html, is_story=False):
+    """The lede, the navigation row, and (on a story page) the whole page length."""
+    out = []
+    # the lede holds only paragraphs, so its own closing tag is the first one
+    m = re.search(r'<div class="lede">(.*?)</div>', html, re.S)
+    if m:
+        n = len(_h.unescape(_text(m.group(1))).strip())
+        if n > LEDE_MAX:
+            out.append(f'הלִיד ארוך מדי: {n} תווים (המרב {LEDE_MAX}) — '
+                       f'מה שמעבר לתקציר שייך לפרק 1')
+    nav = re.search(r'<nav class="nav".*?</nav>', html, re.S)
+    if nav:
+        n = len(re.findall(r'<a\b', nav.group(0)))
+        if n > NAV_LINKS_MAX:
+            out.append(f'בניווט {n} קישורים (המרב {NAV_LINKS_MAX})')
+    if is_story:
+        words = len(_h.unescape(_text(html)).split())
+        if words > STORY_WORDS_MAX:
+            out.append(f'עמוד הסיפור ארוך מדי: {words} מילים (המרב {STORY_WORDS_MAX})')
+    return out
+
+
+def no_build_paths(html):
+    """The page must not explain its own directory layout to the reader.
+
+    The changelog is exempt: an entry that records the removal of such a mention
+    has to be able to name it.
+    """
+    # only the opening of the page: naming the folder inside the method chapter
+    # is a researcher talking to a researcher, and belongs there
+    head = html.split('<h2', 1)[0]
+    head = re.sub(r'<head\b.*?</head>', '', head, flags=re.S | re.I)
+    body = _text(head)
+    return (['הטקסט הגלוי מזכיר את תיקיית docs/ — פרט בנייה, לא תוכן לקורא']
+            if re.search(r'(?<![\w/.-])docs/(?![\w])', body) else [])
+
+
+def cross_page_anchors(html, other_html, other_name, label=''):
+    """Every deep link into the other page must land on an id that exists there.
+
+    The story page is built entirely out of links into the report; a renamed
+    heading would silently turn all of them into links to the top of a 47,000-pixel
+    document.
+    """
+    ids = set(re.findall(r'\sid="([^"]+)"', other_html))
+    bad = []
+    quoted = urllib.parse.quote(other_name)
+    for m in re.finditer(r'href="([^"#]*)#([^"]+)"', html):
+        target, frag = m.group(1), m.group(2)
+        if urllib.parse.unquote(target) != other_name and target != quoted:
+            continue
+        if frag not in ids:
+            bad.append(f'{label}קישור עמוק אל עוגן שאינו קיים ב{other_name}: #{frag}')
+    return sorted(set(bad))
 
 
 def run_all(html, root, patterns=()):

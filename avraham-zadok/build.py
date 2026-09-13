@@ -157,9 +157,6 @@ cfg = ProjectConfig(
     text_transforms=(hyphen_ranges,),
     report_transforms=(citations,),
     breadcrumb=('../index.html', 'ארכיון מחקר המשפחה'),
-    provenance_note=('העמוד הזה טוען את התצלומים ואת המסמכים ישירות מתיקיית <code>docs/</code> '
-                     'שלצדו — לחיצה על כל ראיה פותחת את קובץ המקור המלא. אם פתחתם אותו מחוץ '
-                     'לתיקייה, התמונות לא ייטענו.'),
     footer_note=('מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור '
                  'וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.'),
     # the chapter numbering that was already published, mapped by chapter name so
