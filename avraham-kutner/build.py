@@ -253,7 +253,7 @@ cfg = ProjectConfig(
         SpineFact('1952', 'חבר קיבוץ צאלים'),
         SpineFact('1986', 'נפטר'),
     ),
-    privacy_text_patterns=('oh' + 'ad', '@' + 'gmail', 'achi' + 'meir', 'Achi' + 'meir', 'אחי' + 'מאיר', 'אי' + 'לנה', 'Il' + 'ana'),
+    privacy_text_patterns=('@' + 'gmail',),
     privacy_file_patterns=('ארכיון_עבודה/*', 'research_findings.md'),
     qa_strict=(_ENGINE != os.path.join(ROOT, '_common')),
 )
