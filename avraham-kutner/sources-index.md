@@ -80,6 +80,11 @@
 - **עותק מקומי:** [עמ' 11 של התמליל — על בעלה](docs/yadvashem/testimony-3559715/page_00012.jpg) · [המחקר עליה, פרק 4.1](../index.html#research-tzipora-kutner)
 - **מה הוא מוכיח:** בעלה, מאותה קבוצת ילדים, היה "במחנה ריכוז בפולין", "מעיירה קטנה ליד לודז'"; אחותו ניצלה; מת בן 56; קבוצתם הגיעה לצאלים כגרעין נח"ל, "הראשונים שם" ([פרק 2](#s2)).
 
+### <span id="src-18" class="legacy-anchor"></span>18. יד ושם — עדות הווידאו של אסתר וסרשטרום (ורבר), 1997: רשומה 3564721 *(עדות — תמלול מכונה)*
+- **מקור חיצוני:** [הרשומה ביד ושם](https://collections.yadvashem.org/he/documents/3564721) · [הסרטון ביוטיוב](https://www.youtube.com/watch?v=z_TipU8B5e0)
+- **עותק מקומי:** [המחקר על צפורה, מקור 16](../index.html#research-tzipora-kutner) — **חריג:** התמלול שמור בתיקיית המחקר על צפורה.
+- **מה הוא מוכיח:** ילדי סלווינו עלו על "אולווא" — "חיים ארלוזורוב"; חצי שנה בקפריסין; ארצה בספטמבר 1947, עתלית ביום כיפור; כפר רופין ([5.1](#s5-1)).
+
 ### <span id="src-8" class="legacy-anchor"></span>8. Sciesopoli — אתר הזיכרון של בית הילדים בסלווינו: "רשימת ילדי סלווינו (בעבודה)" ו"רשימה קצרה של ילדי סלווינו" (על פי ספרו של אהרן מגד) *(משני — ככל הנראה)*
 - **מקור חיצוני:** [רשימת ילדי סלווינו](https://www.sciesopoli.com/en/elenco-bambini-di-selvino-lavori-in-corso/) · [הרשימה הקצרה](https://www.sciesopoli.com/en/news/un-breve-elenco-dei-bambini-di-selvino/)
 - **עותק מקומי:** [הרשימה המלאה — טקסט העמוד](docs/sciesopoli-selvino/list_selvino_children_full.html.txt) · [הרשימה הקצרה — טקסט העמוד](docs/sciesopoli-selvino/list_first80_short.html.txt)
