@@ -1,0 +1,145 @@
+{
+  "doc_id": 106704541,
+  "url": "https://collections.arolsen-archives.org/en/document/106704541",
+  "desc_id": 391160,
+  "title": "Tracing request concerning KUTNER ABRAHAM ",
+  "collection_path": [
+    "6 Records of the ITS and its predecessors",
+    "6.3 Inquiry processing",
+    "6.3.3 ITS case files as of 1947",
+    "6.3.3.1 Microfilm deposit of T/D Correspondence Files",
+    "Files with filing numbers from 26001 to 26500",
+    "Tracing request concerning KUTNER ABRAHAM "
+  ],
+  "reference_code": "06030301 A26.156",
+  "document_count": 3,
+  "header_items": {
+    "referenceCode": "06030301 A26.156",
+    "documentNum": "3"
+  },
+  "persons": [
+    {
+      "doc_id": 106704541,
+      "last_name": "KUTNER",
+      "first_name": "ABRAHAM",
+      "maiden_name": "",
+      "place_of_birth": "",
+      "dob": {
+        "raw": "",
+        "precision": "unknown",
+        "year": null,
+        "month": null,
+        "day": null,
+        "iso": null,
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "",
+      "desc_id": 0,
+      "signature": "6.3.3.1",
+      "father": "",
+      "mother": "",
+      "religion": "",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 106704541,
+        "url": "https://collections.arolsen-archives.org/en/document/106704541",
+        "signature": "6.3.3.1",
+        "desc_id": 0,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    },
+    {
+      "doc_id": 106704541,
+      "last_name": "KUTNER",
+      "first_name": "ISRAEL",
+      "maiden_name": "",
+      "place_of_birth": "",
+      "dob": {
+        "raw": "",
+        "precision": "unknown",
+        "year": null,
+        "month": null,
+        "day": null,
+        "iso": null,
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "",
+      "desc_id": 0,
+      "signature": "6.3.3.1",
+      "father": "",
+      "mother": "",
+      "religion": "",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 106704541,
+        "url": "https://collections.arolsen-archives.org/en/document/106704541",
+        "signature": "6.3.3.1",
+        "desc_id": 0,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    }
+  ],
+  "pages": [],
+  "file_pages": [
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/06030301/aa/il/zb/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/06030301/aa/il/zb/001.jpg?width=700",
+      "doc_id": 106704542,
+      "document_url": "https://collections.arolsen-archives.org/en/document/106704542",
+      "scan_folder_id": null,
+      "label": ""
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/06030301/aa/il/zc/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/06030301/aa/il/zc/001.jpg?width=700",
+      "doc_id": 106704543,
+      "document_url": "https://collections.arolsen-archives.org/en/document/106704543",
+      "scan_folder_id": null,
+      "label": ""
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/06030301/aa/il/zd/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/06030301/aa/il/zd/001.jpg?width=700",
+      "doc_id": 106704544,
+      "document_url": "https://collections.arolsen-archives.org/en/document/106704544",
+      "scan_folder_id": null,
+      "label": ""
+    }
+  ],
+  "citation": {
+    "doc_id": 106704541,
+    "url": "https://collections.arolsen-archives.org/en/document/106704541",
+    "signature": "6.3.3.1 - Files with filing numbers from 26001 to 26500",
+    "desc_id": 391160,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+  },
+  "notes": [
+    "id 106704541 is a person-entry id; its scans are filed under sibling document ids [106704542, 106704543, 106704544]. See file_pages."
+  ]
+}

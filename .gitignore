@@ -21,3 +21,6 @@ rename_repo.sh
 # דוחות ביקורת — קובצי עבודה, לא מתפרסמים
 audit-round-*.md
 audit-ux-*.md
+
+# יומני עבודה גולמיים של סוכני המחקר — לא מתפרסמים
+research_findings.md

@@ -300,7 +300,7 @@ body.append('<h2 class="sec" id="arc">ציר הזמן של המשפחה</h2>')
 body.append(family_timeline())
 body.append('</div></header>')
 body.append('<main id="main"><div class="wrap">')
-body.append('<h2 class="sec" id="researches">ארבעת המחקרים</h2>')
+body.append('<h2 class="sec" id="researches">המחקרים</h2>')
 for r in researches:
     body.append(card(r))
 n_people = sum(len(r.get('people', [])) for r in researches)
@@ -334,7 +334,7 @@ pbody.append('<a class="skip" href="#main">דילוג לתוכן</a>')
 pbody.append('<header class="top"><div class="wrap">')
 pbody.append('<p class="crumb"><a href="index.html">← ארכיון מחקר המשפחה</a></p>')
 pbody.append('<h1>אנשים בארכיון</h1>')
-pbody.append('<p class="lede">כל בני המשפחה שנדונים בארבעת הדוחות, עם קישור אל הפרק שבו כל אחד '
+pbody.append('<p class="lede">כל בני המשפחה שנדונים בדוחות, עם קישור אל הפרק שבו כל אחד '
              'נדון. חיפוש לפי שם, שנה או כתיב חלופי.</p>')
 pbody.append('<div class="pfilter">'
              '<input id="pf" type="search" placeholder="חיפוש בשמות…" autocomplete="off" '
@@ -348,7 +348,7 @@ pbody.append('</div></main>')
 pbody.append('<footer>ארכיון מחקר משפחתי · <a href="index.html">חזרה לארכיון</a></footer>')
 
 pout = page('אנשים בארכיון — ' + site['title'],
-            'אינדקס האנשים בארבעת מחקרי המשפחה', pbody, FILTER_JS)
+            'אינדקס האנשים במחקרי המשפחה', pbody, FILTER_JS)
 open('people.html', 'w', encoding='utf-8').write(pout)
 print('person index written: people.html, %d KB' % (len(pout) // 1024))
 

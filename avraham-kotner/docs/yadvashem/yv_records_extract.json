@@ -1,0 +1,14 @@
+{
+ "note": "Hand-extracted from yv_get_name responses on 2026-10-20; source = Yad Vashem Central Database of Shoah Victims' Names",
+ "records": [
+  {"id":"4552371","url":"https://collections.yadvashem.org/en/names/4552371","source":"List of Lodz ghetto inmates (T1348153)","name":"Abram Kutner","birth":"15/08/1927","address":"KONIGSBERGER STRASSE (ul. Wrzesnienska) 4 FLAT 35; also FISCH STRASSE 9"},
+  {"id":"4552367","url":"https://collections.yadvashem.org/en/names/4552367","source":"List of Lodz ghetto inmates","name":"Abraham Kutner","birth":"15/08/1927","address":"HAMBURGER STRASSE (ul. Lutomierska) 5 FLAT 3; FISCH STRASSE 9"},
+  {"id":"4552423","url":"https://collections.yadvashem.org/en/names/4552423","source":"List of Lodz ghetto inmates","name":"Cywia Kutner nee Bandus","birth":"10/12/1895","address":"KONIGSBERGER STRASSE (ul. Wrzesnienska) 4 FLAT 35","prewar":"Ozorkow"},
+  {"id":"4144734","url":"https://collections.yadvashem.org/en/names/4144734","source":"Mauthausen camp personal card file (T1348154)","name":"Abram Kutner","birth":"15/08/1928","birthplace":"Ozorkow"},
+  {"id":"453751","url":"https://collections.yadvashem.org/en/names/453751","source":"Page of Testimony (T1196978), submitter Sara Mlotek (daughter)","name":"Israel Kutner","birth":"1892 Strykow","father":"Tzvi","mother":"Khaia","spouse":"Tzvia nee Bandus","profession":"Grain merchant","fate":"murdered Auschwitz"},
+  {"id":"552005","url":"https://collections.yadvashem.org/en/names/552005","source":"Page of Testimony, submitter Sara Mlotek","name":"Cywia Kutner","birth":"1891 Ozorkow","fate":"murdered"},
+  {"id":"8760277","url":"https://collections.yadvashem.org/en/names/8760277","source":"Page of Testimony, submitter Sara Mlotek","name":"Feiga Kutner","age":"9","parents":"Israel & Tzvia nee Bandus","fate":"murdered, Auschwitz"},
+  {"id":"16681235 / 16723180 / cluster 17547601","url":"https://collections.yadvashem.org/en/names/17547601","source":"Page of Testimony (self-registration, survivor)","name":"Sara Mlotek Kutner","parents":"Israel; Tzvia nee Bandus / Cywia","fate":"alive post war"},
+  {"id":"720638","url":"https://collections.yadvashem.org/en/names/720638","source":"Page of Testimony","name":"Jakob Bandus","birth":"1890 Ozorkow","note":"possibly maternal uncle Yaakov b.1890 (unverified link)"}
+ ]
+}

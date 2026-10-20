@@ -1,0 +1,23 @@
+{
+ "note": "Index fields as returned by yv_search_by_submitter / yv_get_name (2026-10-20) plus reading of the scans saved beside. Submitter on 1-12 = 'Tzipora Blam Kutner'. Street/phone on the forms deliberately not transcribed.",
+ "submitted_by_tzipora": [
+  {"id":"975385","scan":"975385_1.jpg","victim":"Mendel Blam","relation_written":"daughter (Hebrew: 'הבת של מנדל בלם')","date_signed":"25.4.1999","scan_read":true},
+  {"id":"6544552","scan":"6544552_1.jpg","victim":"Mendel Blam","relation_written":"'אני הבת של הנספה'","date_signed":"11.4.1999","scan_read":true},
+  {"id":"976303","scan":"976303_1.jpg","victim":"Zelda (Sonia) Blam nee Primer (father Yaakov, mother Chaya)","relation_written":"'הבת של זלדה'","date_signed":"25.4.1999","scan_read":true},
+  {"id":"6406843","scan":"6406843_1.jpg","victim":"Moshe Blam (child, age 14, pupil)","relation_written":"sister (אחות)","date_signed":"11.4.1999","scan_read":true},
+  {"id":"960928","scan":"960928_1.jpg","victim":"Reizel Blam (age 7)","relation_written":"sister","date_signed":"11.4.1999","scan_read":true},
+  {"id":"883376","scan":"883376_1.jpg","victim":"Shmuel Blam (age ~5)","relation_written":"sister","date_signed":"11.4.1999","scan_read":true},
+  {"id":"960255","scan":"960255_1.jpg","victim":"Asher Blam (age 4)","relation_written":"sister","date_signed":"11.4.1999","scan_read":true},
+  {"id":"960922","scan":"960922_1.jpg","victim":"Yisrael Blam (age 3.5)","relation_written":"sister","date_signed":"11.4.1999","scan_read":true},
+  {"id":"962173","scan":"962173_1.jpg","victim":"Chaim Blam (age 1)","relation_written":"sister","date_signed":"11.4.1999","scan_read":true},
+  {"id":"5627800","scan":"5627800_1.jpg","victim":"Zakharia Blam (age 60, tailor, b.+d. Dubienka)","relation_written":"granddaughter (נכדה)","date_signed":"25.4.1999","scan_read":true},
+  {"id":"976309","scan":"976309_1.jpg","victim":"Yankel Frimer/Primer (age 65, merchant, Luboml)","relation_written":"granddaughter (נכדה)","date_signed":"25.4.1999","scan_read":true},
+  {"id":"956871","scan":"956871_1.jpg","victim":"Khaia nee Frimer (age 65, housewife, Luboml)","relation_written":"granddaughter","date_signed":"25.4.1999","scan_read":true}
+ ],
+ "other_submitters_or_unsubmitted_by_her": [
+  {"id":"5627799","scan":"5627799_1.jpg","victim":"Khaia Blam (age 55, b.+d. Dubienka; wife of Zakharia)","submitter_on_form":"same hand/sign. Tzipora Kutner (Blam), 25.4.99 - index lists no submitter (not returned by submitter search)","scan_read":true},
+  {"id":"5594221","scan":"5594221_1.jpg","victim":"Iacov Primer (age 60, Lubomil)","submitter":"family member (name withheld; grandson)","scan_read":true},
+  {"id":"5594222","scan":"5594222_1.jpg","victim":"Haia Primer (age 54, Lubomil)","submitter":"family member (name withheld; grandson)","scan_read":true},
+  {"id":"1126285","scan":"1126285_1.jpg","victim":"Frida Shluker nee Primer (age 30, d.1943)","submitter":"family member (name withheld; son)","scan_read":true}
+ ]
+}

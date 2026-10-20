@@ -1,0 +1,10 @@
+{
+ "note": "IGRA index-record text as returned by igra_get_record on 2026-10-20; images saved alongside.",
+ "records": [
+  {"id":"IGRA-DententionCampsCyprus-3617","name":"Cypora Balem / צפורה באלם","db":"Detention Camps in Cyprus (CZA 56-4315 10 3268-3277)","doc_no":452,"list":"Second quota of children orphans","birth_year":1931,"gender":"F","ship":"Chaim Arlozoroff","year":1947,"url":"https://genealogy.org.il/AID/index.php?recordID=SUdSQS1EZW50ZW50aW9uQ2FtcHNDeXBydXMtMzYxNw==","image":"cyprus_list_56-4315_3268-3277-8.jpg"},
+  {"id":"IGRA-DententionCampsCyprus-3632","name":"Abram Kutner / אברהם קוטנר","db":"Detention Camps in Cyprus (CZA 56-4315 10 3268-3277)","doc_no":467,"list":"Second quota of children orphans","birth_year":1930,"gender":"M","ship":"Chaim Arlozoroff","year":1947,"url":"https://genealogy.org.il/AID/index.php?recordID=SUdSQS1EZW50ZW50aW9uQ2FtcHNDeXBydXMtMzYzMg==","image":"cyprus_list_56-4315_3268-3277-8.jpg"},
+  {"id":"IGRA-1952-Voters-LocalElec-WestNegev-930","name":"Tzipora Kotner / צפורה קוטנר","db":"Voters Local Authorities 1948-1953 (ISA 002l9xy)","line":9,"birth_year":1932,"locality":"Tse'elim","year":1952,"url":"https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTUyLVZvdGVycy1Mb2NhbEVsZWMtV2VzdE5lZ2V2LTkzMA==","image":"tselim_voters_1952_KYM_WesternNegevLC_313.jpg"},
+  {"id":"IGRA-1952-Voters-LocalElec-WestNegev-929","name":"Avraham Kotner / אברהם קוטנר","db":"Voters Local Authorities 1948-1953 (ISA 002l9xy)","line":8,"birth_year":1930,"locality":"Tse'elim","year":1952,"url":"https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTUyLVZvdGVycy1Mb2NhbEVsZWMtV2VzdE5lZ2V2LTkyOQ==","image":"tselim_voters_1952_KYM_WesternNegevLC_313.jpg"},
+  {"id":"IGRA-1949-National-Elections-314532","name":"Tzipora Kotner / צפורה קוטנר","db":"Voters Knesset 1949 (Jerusalem)","birth_year":1908,"verdict":"REJECTED - different person (b.1908)"}
+ ]
+}

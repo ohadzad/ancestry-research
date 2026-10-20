@@ -1,0 +1,156 @@
+{
+  "doc_id": 1574339,
+  "url": "https://collections.arolsen-archives.org/en/document/1574339",
+  "desc_id": 2219560,
+  "title": "Personal file of KUTNER, ABRAM, born on 15-Aug-1928",
+  "collection_path": [
+    "1 Incarceration Documents",
+    "1.1 Camps and Ghettos",
+    "1.1.26 Mauthausen Concentration Camp",
+    "1.1.26.3 Individual Documents Regarding Male Detainees Mauthausen",
+    "Personal Files (male) - Concentration Camp Mauthausen",
+    "Files with names from KUSEK",
+    "Personal file of KUTNER, ABRAM, born on 15-Aug-1928"
+  ],
+  "reference_code": "01012603 113.286",
+  "document_count": 4,
+  "header_items": {
+    "referenceCode": "01012603 113.286",
+    "documentNum": "4"
+  },
+  "persons": [
+    {
+      "doc_id": 1574339,
+      "last_name": "KUTNER",
+      "first_name": "ABRAM",
+      "maiden_name": "",
+      "place_of_birth": "",
+      "dob": {
+        "raw": "08/15/1928",
+        "precision": "day",
+        "year": 1928,
+        "month": 8,
+        "day": 15,
+        "iso": "1928-08-15",
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "133332",
+      "desc_id": 2219560,
+      "signature": "1.1.26.3 - Files with names from KUSEK",
+      "father": "",
+      "mother": "",
+      "religion": "",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 1574339,
+        "url": "https://collections.arolsen-archives.org/en/document/1574339",
+        "signature": "1.1.26.3 - Files with names from KUSEK",
+        "desc_id": 2219560,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    }
+  ],
+  "pages": [],
+  "file_pages": [
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947711/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947711/001.jpg?width=700",
+      "doc_id": 1574340,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574340",
+      "scan_folder_id": "109947711",
+      "label": "ABRAM KUTNER"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947711/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947711/002.jpg?width=700",
+      "doc_id": 1574340,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574340",
+      "scan_folder_id": "109947711",
+      "label": "ABRAM KUTNER"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947716/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947716/001.jpg?width=700",
+      "doc_id": 1574341,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574341",
+      "scan_folder_id": "109947716",
+      "label": "ABRAM KUTNER"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947716/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947716/002.jpg?width=700",
+      "doc_id": 1574341,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574341",
+      "scan_folder_id": "109947716",
+      "label": "ABRAM KUTNER"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947706/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947706/001.jpg?width=700",
+      "doc_id": 1574342,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574342",
+      "scan_folder_id": "109947706",
+      "label": "ABRAM KUTNER"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947706/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947706/002.jpg?width=700",
+      "doc_id": 1574342,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574342",
+      "scan_folder_id": "109947706",
+      "label": "ABRAM KUTNER"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947721/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947721/001.jpg?width=700",
+      "doc_id": 1574343,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574343",
+      "scan_folder_id": "109947721",
+      "label": "ABRAM KUTNER"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947721/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01012603/0193/109947721/002.jpg?width=700",
+      "doc_id": 1574343,
+      "document_url": "https://collections.arolsen-archives.org/en/document/1574343",
+      "scan_folder_id": "109947721",
+      "label": "ABRAM KUTNER"
+    }
+  ],
+  "citation": {
+    "doc_id": 1574339,
+    "url": "https://collections.arolsen-archives.org/en/document/1574339",
+    "signature": "1.1.26.3 - Files with names from KUSEK",
+    "desc_id": 2219560,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+  },
+  "notes": [
+    "id 1574339 is a person-entry id; its scans are filed under sibling document ids [1574340, 1574341, 1574342, 1574343]. See file_pages."
+  ]
+}
