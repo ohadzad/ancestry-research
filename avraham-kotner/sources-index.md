@@ -46,6 +46,11 @@
 - **עותק מקומי:** [כרטיס האסירה האישי](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633159_01_front.jpg) · מסמכי התיק: [7633158](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633158_01_front.jpg), [7633160](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633160_01_front.jpg), [7633161](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633161_01_front.jpg), [7633162](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633162_01_front.jpg), [7633163](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633163_01_front.jpg), [7633164](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633164_01_front.jpg), [7633165](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633165_01_front.jpg), [7633166](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633166_01_front.jpg) · [פרטי הציטוט](docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633158_citation.json) · [חיתוך](docs/ev_sala_buchenwald.jpg)
 - **מה הוא מוכיח:** סלה קוטנר, 14.8.1922, אוזורקוב, לודז' רחוב קניגסברג 4; אושוויץ 10.8.1944, ברגן-בלזן, בוכנוולד 18.1.1945, אסירה 40821 — מאומת; שהיא שרה, אחותו של אברהם — כמעט ודאי ([3.3](#s3-3)).
 
+### <span id="src-13" class="legacy-anchor"></span>13. יד ושם — דף עד על יעקב בנדוס (720638), מאת מרדכי מלוטק לפי מפתח יד ושם, 15.II.56 *(מאומת כעדות)*
+- **מקור חיצוני:** [יעקב בנדוס — רשומה 720638](https://collections.yadvashem.org/en/names/720638)
+- **עותק מקומי:** [הסריקה](docs/yadvashem/PoT-round3/720638_1.jpg) (כתובת הרחוב של הממלא הושחרה) · [חיתוך](docs/ev_pot_bandus.jpg)
+- **מה הוא מוכיח:** יעקב בנדוס, 1890, אוזורקוב, בן אברהם ושרה, סוחר, נשוי לאסתר לבית ברושצקי, נספה בחלמנו — מאומת כעדות; שהוא אחיה של צביה — כמעט ודאי ([3.2](#s3-2)).
+
 ## מקורות משניים ומשפחתיים
 
 ### <span id="src-7" class="legacy-anchor"></span>7. עץ משפחתי ב-MyHeritage, נקרא 20.10.2026 *(נקודת מוצא — לא ראיה)*
@@ -68,7 +73,7 @@
 - **מהות:** תצלום מצבה של מתנדב (BillionGraves GPS Verified Headstones) ותעתיק שלו; התצלום המלא פתוח בתשלום בלבד.
 - **מקור חיצוני:** [אברהם קוטנר](https://billiongraves.com/grave/%D7%90%D7%91%D7%A8%D7%94%D7%9D-%D7%A7%D7%95%D7%98%D7%A0%D7%A8/21279103) · [צפורה קוטנר](https://billiongraves.com/grave/%D7%A6%D7%A4%D7%95%D7%A8%D7%94-%D7%A7%D7%95%D7%98%D7%A0%D7%A8/21279102)
 - **עותק מקומי:** [תמליל שדות שתי הרשומות](docs/billiongraves/billiongraves_21279103_21279102.md) — **חריג:** התצלום אינו נגיש להורדה.
-- **מה הוא מוכיח:** פטירה 19.3.1986 (ח' באדר ב' תשמ"ו), גיל 57; ההורים ישראל וציביה; מצבה משותפת עם צפורה — כמעט ודאי ([5.3](#s5-3)).
+- **מה הוא מוכיח:** פטירה ח' באדר ב' תשמ"ו (18/19.3.1986; 19.3 בתעתיק), גיל 57; ההורים ישראל וציביה; מצבה משותפת עם צפורה — כמעט ודאי ([5.3](#s5-3)).
 
 ## נבדקו ונשללו
 

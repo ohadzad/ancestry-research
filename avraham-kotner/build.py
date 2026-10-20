@@ -35,7 +35,7 @@ PAL = Palette(
 
 P = Person
 PEOPLE = (
-    P('אברהם ("אברמק") קוטנר', '15.8.1928 (1930 בישראל) – 19.3.1986', 'נושא הדף; אוזורקוב; גטו לודז\'; אושוויץ; מאוטהאוזן, אסיר 133332 (23.2.1945); ילדי סלווינו; קפריסין 1947; קיבוץ צאלים 1952; דימונה',
+    P('אברהם ("אברמק") קוטנר', '15.8.1928 (1930 בישראל) – 18/19.3.1986', 'נושא הדף; אוזורקוב; גטו לודז\'; אושוויץ; מאוטהאוזן, אסיר 133332 (23.2.1945); ילדי סלווינו; קפריסין 1947; קיבוץ צאלים 1952; דימונה',
       '#s4-2', 'Abram Abraham Avraham Avramek Kutner Kotner Kottner אברם אברמק Ozorkow Ozorków Mauthausen 133332 Selvino סלווינו צאלים Tze\'elim Zeelim'),
     P('ישראל קוטנר', '1892, סטריקוב', 'אביו; בן צבי וחיה; סוחר תבואה באוזורקוב; גטו לודז\'; נספה באושוויץ (דף העד)', '#s3-1', 'Israel Izrael Kutner Kotner Strykow Stryków'),
     P('צביה (Cywia) קוטנר לבית בנדוס', '1891 (דף העד) / 10.12.1895 (רשימת הגטו)', 'אמו; בת אברהם ושרה; גטו לודז\', קניגסברג 4; נספתה באושוויץ (דף העד)', '#s3-2', 'Cywia Tzvia Zywia Kutner Bandus Bendos בנדוס'),
@@ -43,6 +43,7 @@ PEOPLE = (
     P('פייגה קוטנר', 'בת 9', 'אחותו הצעירה; נלקחה מגטו לודז\' "למקום בלתי ידוע" (דף העד)', '#s3-1', 'Feiga Fela Fajga Kutner פלה'),
     P('צבי (הרש) וחיה קוטנר', '', 'סבו וסבתו — הוריו של ישראל (דף העד)', '#s3-1', 'Tzvi Hersh Hersz Hirsch Chaja Kutner'),
     P('אברהם ושרה בנדוס', '', 'סבו וסבתו — הוריה של צביה (דף העד)', '#s3-2', 'Abraham Sara Bandus Bendos'),
+    P('יעקב בנדוס', '1890 – ?', 'דודו — אחיה של צביה; סוחר באוזורקוב; נספה בחלמנו (דף עד)', '#s3-2', 'Jakob Yaakov Bandus Bendos Ester Broshitzki Chelmno חלמנו'),
     P('מרדכי מלוטק', '1919 – 2010 (העץ)', 'בעלה של שרה (העץ המשפחתי)', '#s2', 'Mordechai Mlotek Malotek'),
     P('צפורה קוטנר לבית בלם', '25.12.1931/2 – 2006', 'אשתו — נושאת המחקר האחר בארכיון הזה', '#s5-2', 'Tzipora Cipora Zipora Cypora Balem Balam Blam Kotner Kutner'),
 )
@@ -53,6 +54,7 @@ GALLERY = (
     (F.thumb(ROOT, 'docs/ev_pot_israel.jpg', 440), 'docs/yadvashem/PoT-parents-submitted-by-Sara-Mlotek/PoT_scan134_Israel-Kutner_No329533_YV-records-453751-8760277-16681235.jpg', 'דף העד על ישראל קוטנר, שנות ה-50 — בן צבי וחיה, סטריקוב 1892, סוחר תבואה באוזורקוב'),
     (F.thumb(ROOT, 'docs/ev_pot_feiga.jpg', 440), 'docs/yadvashem/PoT-parents-submitted-by-Sara-Mlotek/PoT_scan134_Israel-Kutner_No329533_YV-records-453751-8760277-16681235.jpg', 'פייגה קוטנר, בת 9 — "גיטו לודז\' — נלקחה למקום בלתי ידוע"'),
     (F.thumb(ROOT, 'docs/ev_sala_buchenwald.jpg', 440), 'docs/arolsen/Sala-Kutner-Buchenwald-1861737/arolsen_7633159_01_front.jpg', 'אחותו סלה (שרה) קוטנר, 14.8.22 — אושוויץ 10.8.44, ברגן-בלזן, בוכנוולד 18.1.45, אסירה 40821'),
+    (F.thumb(ROOT, 'docs/ev_pot_bandus.jpg', 440), 'docs/yadvashem/PoT-round3/720638_1.jpg', 'דף העד על יעקב בנדוס — בן אברהם ושרה, אוזורקוב 1890; נספה בחלמנו. אחיה של צביה'),
     (F.thumb(ROOT, 'docs/ev_pot_cywia.jpg', 440), 'docs/yadvashem/PoT-parents-submitted-by-Sara-Mlotek/PoT_scan204_Cywia-Kutner_No379532_YV-records-552005-16723180.jpg', 'דף העד על צביה קוטנר, שנות ה-50 — בת אברהם ושרה, אוזורקוב'),
     (F.thumb(ROOT, 'docs/ev_cyprus_balem_kutner.jpg', 440), 'docs/igra/igra_DetentionCampsCyprus-3632_Abram-Kutner_Chaim-Arlozoroff_1947.jpg', 'רשימת קפריסין, 1947 — 452 Balem Cypora 1931 ו-467 Kutner Abram 1930, אונייה "Ch. Arlozorof"'),
     (F.thumb(ROOT, 'docs/ev_tzeelim_1952.jpg', 440), 'docs/igra/igra_1952-Voters-Tzelim_WestNegevLC_313_line8.jpg', 'פנקס הבוחרים של קיבוץ צאלים, 1952 — קוטנר אברהם 1930, קוטנר צפורה 1932'),
@@ -132,7 +134,7 @@ STORY = Story(
           place='קריית אונו', rank='מאומת', href='#s3', src=('דפי העד', '#src-2')),
         B('שנות ה-50–80', 'המזכיר הראשון של צאלים; תפקיד אחראי בכור הגרעיני בדימונה.',
           rank='ככל הנראה', href='#s4-3', src=('אתר הזיכרון של בית סלווינו', '#src-8')),
-        B('19.3.1986', 'נפטר, בן 57. נקבר בבית העלמין הישן של באר שבע; על המצבה המשותפת לו ולצפורה: '
+        B('18/19.3.1986', 'נפטר, בן 57 (ח\' באדר ב\' תשמ"ו). נקבר בבית העלמין הישן של באר שבע; על המצבה המשותפת לו ולצפורה: '
                        '"לזכר הוריהם ובני משפחתם שנספו בשואה".',
           place='באר שבע', rank='כמעט ודאי', href='#s5-3', src=('BillionGraves — המצבה', '#src-12')),
     ),
@@ -182,7 +184,7 @@ cfg = ProjectConfig(
     slug='avraham-kotner',
     main_html='אברהם-קוטנר.html',
     title='אברהם קוטנר',
-    subject='15.8.1928, אוזורקוב — 19.3.1986, באר שבע · גטו לודז\', אושוויץ, מאוטהאוזן · ילדי סלווינו · קפריסין · קיבוץ צאלים',
+    subject='15.8.1928, אוזורקוב — 3.1986, באר שבע · גטו לודז\', אושוויץ, מאוטהאוזן · ילדי סלווינו · קפריסין · קיבוץ צאלים',
     meta_description=('דף מחקר על אברהם ("אברמק") קוטנר, יליד אוזורקוב 1928 — בן ישראל וצביה לבית בנדוס; '
                       'גטו לודז\', אושוויץ, ואסיר 133332 במאוטהאוזן; ילדי סלווינו; רשימת עצורי קפריסין 1947; '
                       'קיבוץ צאלים 1952 עם אשתו צפורה לבית בלם.'),
