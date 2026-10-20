@@ -22,8 +22,8 @@
       {
         "label": "אוזורקוב · לובומל · צאלים",
         "slugs": [
-          "tzipora-kotner",
-          "avraham-kotner"
+          "tzipora-kutner",
+          "avraham-kutner"
         ]
       }
     ],
@@ -57,7 +57,7 @@
       {
         "y": "1928",
         "t": "<b>אברהם קוטנר</b> נולד באוזורקוב",
-        "s": "avraham-kotner"
+        "s": "avraham-kutner"
       },
       {
         "y": "1929",
@@ -67,7 +67,7 @@
       {
         "y": "1932",
         "t": "<b>צפורה בלם</b> נולדת בלובומל",
-        "s": "tzipora-kotner"
+        "s": "tzipora-kutner"
       },
       {
         "y": "1939",
@@ -77,7 +77,7 @@
       {
         "y": "1942",
         "t": "אמה של <b>צפורה</b> ואחיה הקטנים נרצחים במאצ'יוב (כמעט ודאי); אביה ואח אחד נספים אחר כך; היא שורדת ביערות ובמסתור",
-        "s": "tzipora-kotner"
+        "s": "tzipora-kutner"
       },
       {
         "y": "1944",
@@ -87,7 +87,7 @@
       {
         "y": "1945",
         "t": "<b>אברהם</b> — אסיר 133332 במאוטהאוזן",
-        "s": "avraham-kotner"
+        "s": "avraham-kutner"
       },
       {
         "y": "1946",
@@ -97,7 +97,7 @@
       {
         "y": "1947",
         "t": "<b>צפורה</b> ו(ככל הנראה) <b>אברהם</b> ברשימת יתומים מקפריסין לארץ",
-        "s": "tzipora-kotner"
+        "s": "tzipora-kutner"
       },
       {
         "y": "1949",
@@ -112,7 +112,7 @@
       {
         "y": "1952",
         "t": "<b>צפורה ואברהם</b> בקיבוץ צאלים",
-        "s": "avraham-kotner"
+        "s": "avraham-kutner"
       },
       {
         "y": "1956",
@@ -127,7 +127,7 @@
       {
         "y": "1986 · 2006",
         "t": "<b>אברהם</b> ו<b>צפורה קוטנר</b> נפטרים",
-        "s": "avraham-kotner"
+        "s": "avraham-kutner"
       },
       {
         "y": "2017 · 2021",
@@ -618,7 +618,7 @@
       "report_href": "mordechai-benharoush/מרדכי-בן-הרוש.html"
     },
     {
-      "slug": "tzipora-kotner",
+      "slug": "tzipora-kutner",
       "name": "צפורה קוטנר לבית בלם",
       "aka": "Cipora Balem",
       "life": "1932, לובומל — 1.2006, באר שבע",
@@ -626,9 +626,9 @@
       "state_label": "מחקר בתחילתו",
       "edition": "מהדורה 5 · ארבעה סבבי ביקורת חיצונית",
       "summary": "ילידת לובומל שבווהלין, בת מנדל וזלדה (סוניה) בלם. במאצ'יוב נרצחו אמה ואחיה הקטנים, ככל הנראה ב-1942; אביה ואח אחד נספו אחריו; היא שרדה ביערות ובמסתור אצל איכרים. עדותה ביד ושם מ-1990, שלושה-עשר דפי עד שמילאה בעצמה ב-1999, כרטיס שירות האיתור מבית הילדים בסלווינו, רשימת עצורי קפריסין 1947 ופנקס הבוחרים של קיבוץ צאלים 1952.",
-      "cover": "tzipora-kotner/docs/ev_arolsen_selvino.jpg",
+      "cover": "tzipora-kutner/docs/ev_arolsen_selvino.jpg",
       "cover_alt": "כרטיס שירות האיתור של צפורה בלם — 25.12.31; בית הילדים היהודי בסלווינו, 21.6.46",
-      "cover_href": "tzipora-kotner/docs/arolsen/arolsen_66485493_01_front.jpg",
+      "cover_href": "tzipora-kutner/docs/arolsen/arolsen_66485493_01_front.jpg",
       "stats": [
         {
           "n": "13",
@@ -650,20 +650,20 @@
       "links": [
         {
           "label": "לדף המחקר",
-          "href": "tzipora-kotner/צפורה-קוטנר.html",
+          "href": "tzipora-kutner/צפורה-קוטנר.html",
           "primary": true
         },
         {
           "label": "עץ המשפחה",
-          "href": "tzipora-kotner/צפורה-קוטנר.html#tree"
+          "href": "tzipora-kutner/צפורה-קוטנר.html#tree"
         },
         {
           "label": "גלריית הראיות",
-          "href": "tzipora-kotner/צפורה-קוטנר.html#gallery"
+          "href": "tzipora-kutner/צפורה-קוטנר.html#gallery"
         },
         {
           "label": "אינדקס המקורות",
-          "href": "tzipora-kotner/צפורה-קוטנר.html#index"
+          "href": "tzipora-kutner/צפורה-קוטנר.html#index"
         }
       ],
       "people": [
@@ -671,51 +671,51 @@
           "n": "צפורה קוטנר לבית בלם",
           "d": "1932 – 2006",
           "s": "נושאת המחקר; לובומל; ביערות ובמסתור; סלווינו; קפריסין; צאלים",
-          "h": "tzipora-kotner/צפורה-קוטנר.html#s3-1"
+          "h": "tzipora-kutner/צפורה-קוטנר.html#s3-1"
         },
         {
           "n": "מנדל בלם",
           "d": "– 1942?",
           "s": "אביה; יליד דוביינקה; חנווני בלובומל",
-          "h": "tzipora-kotner/צפורה-קוטנר.html#s3-1"
+          "h": "tzipora-kutner/צפורה-קוטנר.html#s3-1"
         },
         {
           "n": "זלדה (סוניה) בלם לבית פרימר",
           "d": "– 1942",
           "s": "אמה; ילידת לובומל; חנוונית",
-          "h": "tzipora-kotner/צפורה-קוטנר.html#s3-1"
+          "h": "tzipora-kutner/צפורה-קוטנר.html#s3-1"
         },
         {
           "n": "משה, רייזל, שמואל, אשר, ישראל וחיים בלם",
           "d": "1928–1941 – 1942?",
           "s": "אחיה; נרצחו עם אמם, כמעט בוודאות ב-1942",
-          "h": "tzipora-kotner/צפורה-קוטנר.html#s3-1"
+          "h": "tzipora-kutner/צפורה-קוטנר.html#s3-1"
         },
         {
           "n": "זכריה וחיה בלם",
           "d": "– 1942?",
           "s": "סבה וסבתה; דוביינקה; זכריה חייט",
-          "h": "tzipora-kotner/צפורה-קוטנר.html#s3-1"
+          "h": "tzipora-kutner/צפורה-קוטנר.html#s3-1"
         },
         {
           "n": "יעקב וחיה פרימר",
           "d": "– 1942?",
           "s": "סבה וסבתה; לובומל; יעקב סוחר",
-          "h": "tzipora-kotner/צפורה-קוטנר.html#s3-1"
+          "h": "tzipora-kutner/צפורה-קוטנר.html#s3-1"
         },
         {
           "n": "פרידה שלוקר לבית פרימר",
           "d": "~1913 – 1943",
           "s": "דודתה, אחות של זלדה; אם לארבעה",
-          "h": "tzipora-kotner/צפורה-קוטנר.html#s3-3"
+          "h": "tzipora-kutner/צפורה-קוטנר.html#s3-3"
         }
       ],
       "one_liner": "ניצולה מלובומל ששרדה ביערות ובמסתור, מילדי בית סלווינו; שלושה-עשר דפי עד בכתב ידה על הוריה, אחיה וסביה.",
-      "story_href": "tzipora-kotner/צפורה-קוטנר-הסיפור.html",
-      "report_href": "tzipora-kotner/צפורה-קוטנר.html"
+      "story_href": "tzipora-kutner/צפורה-קוטנר-הסיפור.html",
+      "report_href": "tzipora-kutner/צפורה-קוטנר.html"
     },
     {
-      "slug": "avraham-kotner",
+      "slug": "avraham-kutner",
       "name": "אברהם קוטנר",
       "aka": "\"אברמק\" · Abram Kutner",
       "life": "15.8.1928, אוזורקוב — 19.3.1986, באר שבע",
@@ -723,9 +723,9 @@
       "state_label": "מחקר בתחילתו",
       "edition": "מהדורה 4 · ארבעה סבבי ביקורת חיצונית",
       "summary": "יליד אוזורקוב, בן ישראל וצביה לבית בנדוס. גטו לודז' — בדירה אחת עם הוריו ואחותו שרה — אושוויץ, ואסיר 133332 במאוטהאוזן; אחותו שרה שרדה את בוכנוולד, הוריו ואחותו פייגה נספו. לפי אתר הזיכרון — מילדי סלווינו; ככל הנראה ברשימת יתומים מקפריסין, 1947; וקיבוץ צאלים 1952 עם אשתו צפורה.",
-      "cover": "avraham-kotner/docs/ev_mauthausen_nummernkarte.jpg",
+      "cover": "avraham-kutner/docs/ev_mauthausen_nummernkarte.jpg",
       "cover_alt": "כרטיס המספר של אברם קוטנר במאוטהאוזן — 133332, 23 בפברואר 1945, מאושוויץ",
-      "cover_href": "avraham-kotner/docs/arolsen/mauthausen-personal-file-133332/arolsen_1574343_01_front.jpg",
+      "cover_href": "avraham-kutner/docs/arolsen/mauthausen-personal-file-133332/arolsen_1574343_01_front.jpg",
       "stats": [
         {
           "n": "133332",
@@ -747,20 +747,20 @@
       "links": [
         {
           "label": "לדף המחקר",
-          "href": "avraham-kotner/אברהם-קוטנר.html",
+          "href": "avraham-kutner/אברהם-קוטנר.html",
           "primary": true
         },
         {
           "label": "עץ המשפחה",
-          "href": "avraham-kotner/אברהם-קוטנר.html#tree"
+          "href": "avraham-kutner/אברהם-קוטנר.html#tree"
         },
         {
           "label": "גלריית הראיות",
-          "href": "avraham-kotner/אברהם-קוטנר.html#gallery"
+          "href": "avraham-kutner/אברהם-קוטנר.html#gallery"
         },
         {
           "label": "אינדקס המקורות",
-          "href": "avraham-kotner/אברהם-קוטנר.html#index"
+          "href": "avraham-kutner/אברהם-קוטנר.html#index"
         }
       ],
       "people": [
@@ -768,48 +768,48 @@
           "n": "אברהם (\"אברמק\") קוטנר",
           "d": "1928 – 1986",
           "s": "נושא המחקר; לודז', אושוויץ, מאוטהאוזן 133332; סלווינו; צאלים",
-          "h": "avraham-kotner/אברהם-קוטנר.html#s4-2"
+          "h": "avraham-kutner/אברהם-קוטנר.html#s4-2"
         },
         {
           "n": "ישראל קוטנר",
           "d": "1892/1897",
           "s": "אביו; סוחר תבואה באוזורקוב; גטו לודז'; נספה באושוויץ",
-          "h": "avraham-kotner/אברהם-קוטנר.html#s3-1"
+          "h": "avraham-kutner/אברהם-קוטנר.html#s3-1"
         },
         {
           "n": "צביה (Cywia) קוטנר לבית בנדוס",
           "d": "1891/1895",
           "s": "אמו; גטו לודז'; נספתה באושוויץ",
-          "h": "avraham-kotner/אברהם-קוטנר.html#s3-2"
+          "h": "avraham-kutner/אברהם-קוטנר.html#s3-2"
         },
         {
           "n": "שרה (Sala) מלוטק לבית קוטנר",
           "d": "1922 – 2009",
           "s": "אחותו; גטו לודז', אושוויץ, ברגן-בלזן, בוכנוולד; שרדה",
-          "h": "avraham-kotner/אברהם-קוטנר.html#s3-3"
+          "h": "avraham-kutner/אברהם-קוטנר.html#s3-3"
         },
         {
           "n": "פייגה קוטנר",
           "d": "",
           "s": "אחותו הצעירה; נלקחה בת 9 מגטו לודז'",
-          "h": "avraham-kotner/אברהם-קוטנר.html#s3-1"
+          "h": "avraham-kutner/אברהם-קוטנר.html#s3-1"
         },
         {
           "n": "צבי (הרש) וחיה קוטנר; אברהם ושרה בנדוס",
           "d": "",
           "s": "סביו",
-          "h": "avraham-kotner/אברהם-קוטנר.html#s7"
+          "h": "avraham-kutner/אברהם-קוטנר.html#s7"
         },
         {
           "n": "יעקב בנדוס",
           "d": "1890",
           "s": "דודו — אחיה של צביה; נספה בחלמנו",
-          "h": "avraham-kotner/אברהם-קוטנר.html#s3-2"
+          "h": "avraham-kutner/אברהם-קוטנר.html#s3-2"
         }
       ],
       "one_liner": "נער מגטו לודז' ששרד את אושוויץ ומאוטהאוזן; לפי אתר בית סלווינו — מילדי הבית, ולימים מזכיר קיבוץ צאלים.",
-      "story_href": "avraham-kotner/אברהם-קוטנר-הסיפור.html",
-      "report_href": "avraham-kotner/אברהם-קוטנר.html"
+      "story_href": "avraham-kutner/אברהם-קוטנר-הסיפור.html",
+      "report_href": "avraham-kutner/אברהם-קוטנר.html"
     }
   ]
 }

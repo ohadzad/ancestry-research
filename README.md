@@ -16,8 +16,8 @@ rachel-zadok/            ← מחקר: רחל צדוק לבית סטרולובי
 avraham-zadok/           ← מחקר: אברהם צדוק (1925–2017)
 miriam-benharoush/       ← מחקר: מרים בן הרוש לבית דהן (מכנאס, נ׳ 1939) — בתהליך
 mordechai-benharoush/    ← דף נלווה: מרדכי בן הרוש (1931–2010) — בתהליך
-tzipora-kotner/          ← מחקר: צפורה קוטנר לבית בלם (לובומל 1931 – 2006) — בתהליך
-avraham-kotner/          ← מחקר: אברהם קוטנר (אוזורקוב 1928 – 1986) — בתהליך
+tzipora-kutner/          ← מחקר: צפורה קוטנר לבית בלם (לובומל 1932 – 2006) — בתהליך
+avraham-kutner/          ← מחקר: אברהם קוטנר (אוזורקוב 1928 – 1986) — בתהליך
 ```
 
 כל תיקיית מחקר עצמאית לחלוטין — הדוח, עצי המשפחה, אינדקס המקורות, סקריפטי הבנייה
@@ -49,8 +49,8 @@ $PY rachel-zadok/build.py          # כל מחקר — הסיפור, הדוח ה
 $PY avraham-zadok/build.py
 $PY miriam-benharoush/build.py
 $PY mordechai-benharoush/build.py
-$PY tzipora-kotner/build.py
-$PY avraham-kotner/build.py
+$PY tzipora-kutner/build.py
+$PY avraham-kutner/build.py
 ```
 
 ששת הדוחות נבנים מאותו מנוע, `common/genealogy_site/`, ולפי אותו שלד; ה-`build.py`

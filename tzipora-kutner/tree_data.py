@@ -1,4 +1,4 @@
-"""tzipora-kotner — the family-tree data; run `python3 tree_data.py` to regenerate the SVG in tree.html."""
+"""tzipora-kutner — the family-tree data; run `python3 tree_data.py` to regenerate the SVG in tree.html."""
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'common'))
 from treegen import Node, Tree, replace_svg

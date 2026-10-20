@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""avraham-kotner — the project's own data. The engine lives in ../common/genealogy_site."""
+"""avraham-kutner — the project's own data. The engine lives in ../common/genealogy_site."""
 import os
 import re
 import sys
@@ -184,7 +184,7 @@ STORY = Story(
 
 cfg = ProjectConfig(
     root=ROOT,
-    slug='avraham-kotner',
+    slug='avraham-kutner',
     main_html='אברהם-קוטנר.html',
     title='אברהם קוטנר',
     subject='15.8.1928, אוזורקוב — 3.1986, באר שבע · גטו לודז\', אושוויץ, מאוטהאוזן · ילדי סלווינו · קפריסין · קיבוץ צאלים',

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""tzipora-kotner — the project's own data. The engine lives in ../common/genealogy_site."""
+"""tzipora-kutner — the project's own data. The engine lives in ../common/genealogy_site."""
 import os
 import re
 import sys
@@ -25,7 +25,7 @@ from genealogy_site import figures as F                                         
 
 R = lambda *p: os.path.join(ROOT, *p)          # noqa: E731
 
-# the accent of this report: a dusk violet, beside the slate blue of avraham-kotner —
+# the accent of this report: a dusk violet, beside the slate blue of avraham-kutner —
 # a couple shares a temperature, as the other two couples' pages do
 PAL = Palette(
     accent='#5a4e7c', accent_soft='#7a6e9c', link='#4a3f6a',
@@ -179,7 +179,7 @@ STORY = Story(
 
 cfg = ProjectConfig(
     root=ROOT,
-    slug='tzipora-kotner',
+    slug='tzipora-kutner',
     main_html='צפורה-קוטנר.html',
     title='צפורה קוטנר לבית בלם',
     subject='1932, לובומל — 2006 · מאצ\'יוב · ביערות ובמסתור · ילדי סלווינו · קפריסין · קיבוץ צאלים',
