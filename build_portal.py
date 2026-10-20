@@ -73,9 +73,10 @@ a.tev::before{border-color:#7a4a2b}
 .ty{display:block; font-size:.95rem; color:#7a4a2b; line-height:1.3}
 .tt{display:block; font-size:.79rem; color:#6f675b; line-height:1.5; margin-top:2px}
 
-/* the family map: two couples, four faces, four links */
-.couples{display:flex; flex-wrap:wrap; gap:16px}
-.couple{flex:1 1 340px; background:#fff; border:1px solid #d8d0c2; border-radius:12px;
+/* the family map: one column per couple, so a third couple sits beside the
+   others instead of wrapping onto a row of its own with blown-up tiles */
+.couples{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
+.couple{background:#fff; border:1px solid #d8d0c2; border-radius:12px;
         padding:12px 14px 14px}
 .couple-label{display:block; font-size:.76rem; letter-spacing:.1em; color:#6f675b;
               margin-bottom:10px}
@@ -93,7 +94,8 @@ a.tev::before{border-color:#7a4a2b}
       border:1px solid #d8d0c2; border-radius:12px; padding:22px 26px;
       box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .card + .card{margin-top:18px}
-.cover img{width:100%; display:block; border:1px solid #d8d0c2; border-radius:6px; background:#f7f3ec}
+.cover img{width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:center top;
+           display:block; border:1px solid #d8d0c2; border-radius:6px; background:#f7f3ec}
 .cover figcaption{font-size:.72rem; color:#6f675b; line-height:1.5; margin-top:7px}
 .badge{display:inline-block; font-size:.72rem; letter-spacing:.09em; border-radius:999px;
        padding:3px 11px; border:1px solid #b9a98c; color:#7a6a4c; background:#fbf6ea;
@@ -134,14 +136,13 @@ a.tev::before{border-color:#7a4a2b}
         font-size:.93rem; color:#4a4238; max-width:78ch}
 .method ul{margin:10px 0 0; padding-inline-start:20px}
 .method li{margin:5px 0}
-footer{margin-top:60px; padding-top:22px; border-top:1px solid #e3dbcd;
-       font-size:.83rem; color:#6f675b}
+footer{max-width:1000px; margin:60px auto 0; padding:22px 20px 40px; border-top:1px solid #e3dbcd;
+       font-size:.83rem; color:#6f675b; line-height:1.7}
 @media (max-width:640px){
   .card{grid-template-columns:1fr; gap:18px}
   /* a 132px frame inside a 350px card left the cover a strip in a white field */
   .cover{width:100%}
   h1{font-size:1.85rem}
-  .couple{flex-basis:100%}
   .tev{flex-basis:calc(50% - 0px); min-width:0}
 }
 """
