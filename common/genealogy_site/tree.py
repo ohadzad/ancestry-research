@@ -3,6 +3,8 @@
 import os
 import re
 
+from . import analytics
+
 _SVG = re.compile(r'(<svg.*?</svg>)', re.S)
 _LEGEND = re.compile(r'(<div class="legend">.*?</div>)', re.S)
 _FOOT = re.compile(r'<div class="foot">(.*?)</div>', re.S)
@@ -110,7 +112,7 @@ def standalone(cfg, warn=None):
             tag = tag[:-1] + ' tabindex="0" role="group" aria-label="עץ המשפחה">'
         return _VIEW_BAR + tag
 
-    html = raw.replace('</head>', f'<style>{_VIEW_CSS}</style></head>', 1)
+    html = raw.replace('</head>', f'<style>{_VIEW_CSS}</style>{analytics.head_tag()}</head>', 1)
     html = _WRAP.sub(wrap, html, count=1)
     html = html.replace('</body>', f'<script>{_VIEW_JS}</script></body>', 1)
     return html, href[:-5] + '-view.html'

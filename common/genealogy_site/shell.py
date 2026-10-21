@@ -5,7 +5,7 @@ import json
 import re
 import urllib.parse
 
-from . import mdpipe, theme
+from . import analytics, mdpipe, theme
 
 # Six destinations at most, in one row. The chapter strip that used to sit
 # under them cost a quarter of a phone screen and spoke in the language of the
@@ -230,7 +230,7 @@ def story_page(cfg, story, updated, report_href, sections, present):
 <meta name="description" content="{_h.escape(cfg.meta_description)}">
 <meta name="color-scheme" content="light">
 <style>{theme.css(cfg.palette)}</style>
-</head>
+{analytics.head_tag()}</head>
 <body class="story">
 <a class="skip" href="#lede">דילוג לתוכן</a>
 <a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
@@ -524,7 +524,7 @@ def page(cfg, edition, stamp, body_sections, chapters, present, extra_rows=(),
 <meta name="description" content="{_h.escape(cfg.meta_description)}">
 <meta name="color-scheme" content="light">
 <style>{theme.css(cfg.palette)}</style>
-</head>
+{analytics.head_tag()}</head>
 <body>
 <a class="skip" href="#report">דילוג לתוכן</a>
 <a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>

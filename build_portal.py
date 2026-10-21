@@ -280,13 +280,19 @@ FILTER_JS = """
 """
 
 
+def _ga_tag():
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'common'))
+    from genealogy_site import analytics
+    return analytics.head_tag()
+
+
 def page(title, description, body, extra_script=''):
     script = ('<script>%s</script>' % extra_script) if extra_script else ''
     return ('<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n'
             '<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
             '<title>' + e(title) + '</title>\n'
             '<meta name="description" content="' + e(description[:160]) + '">\n'
-            '<style>' + CSS + '</style>\n</head>\n<body>\n' + '\n'.join(body) +
+            '<style>' + CSS + '</style>\n' + _ga_tag() + '</head>\n<body>\n' + '\n'.join(body) +
             '\n' + script + '\n</body>\n</html>\n')
 
 
