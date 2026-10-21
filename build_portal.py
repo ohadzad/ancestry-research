@@ -105,6 +105,7 @@ a.tev::before{border-color:#7a4a2b}
 .life{margin:0 0 4px; color:#5a5142; font-size:.95rem}
 .edition{margin:0 0 12px; color:#6f675b; font-size:.82rem}
 .summary{margin:0 0 14px; color:#3c352c}
+.summary a{text-decoration:underline; text-underline-offset:2px}
 .counts{margin:0 0 16px; font-size:.82rem; color:#6f675b}
 .counts b{font-weight:normal; color:#7a4a2b}
 .links{display:flex; flex-wrap:wrap; gap:9px; margin:0}
@@ -151,8 +152,8 @@ footer{max-width:1000px; margin:60px auto 0; padding:22px 20px 40px; border-top:
 def who_tile(r):
     img = ''
     if r.get('cover'):
-        img = ('<img src="%s" alt="" loading="lazy"%s>'
-               % (e(r['cover']), dims(r['cover'])))
+        img = ('<img src="%s" alt="%s" loading="lazy"%s>'
+               % (e(r['cover']), e(r.get('cover_alt', '')), dims(r['cover'])))
     return ('<a class="who" href="%s">%s<span class="wn">%s</span>'
             '<span class="wd">%s</span><span class="wgo">%s ←</span></a>'
             % (e(front(r)), img, e(r['name']), e(r.get('life', '')),
@@ -183,8 +184,8 @@ def family_timeline():
         href = front(BY_SLUG[it['s']]) if it.get('s') in BY_SLUG else ''
         inner = ('<span class="ty">%s</span><span class="tt">%s</span>'
                  % (e(it['y']), it['t']))
-        out.append('<a class="tev" href="%s">%s</a>' % (e(href), inner) if href
-                   else '<div class="tev">%s</div>' % inner)
+        out.append('<a class="tev" role="listitem" href="%s">%s</a>' % (e(href), inner) if href
+                   else '<div class="tev" role="listitem">%s</div>' % inner)
     return ('<div class="ftl" role="list" aria-label="ציר הזמן של המשפחה">%s</div>'
             % ''.join(out))
 
@@ -280,18 +281,40 @@ FILTER_JS = """
 """
 
 
+sys.path.insert(0, os.path.join(ROOT, 'common'))
+from genealogy_site import analytics, seo
+
+
 def _ga_tag():
-    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'common'))
-    from genealogy_site import analytics
     return analytics.head_tag()
 
 
-def page(title, description, body, extra_script=''):
+def _seo_head(rel, title, description, kind):
+    """Canonical, previews and JSON-LD for the portal's own two pages."""
+    base, page_url = seo.base_url(), seo.url(rel)
+    if not base:
+        return ''
+    desc = seo.plain(description, 160)
+    if rel == 'index.html':
+        ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': site['title'],
+              'url': base, 'inLanguage': 'he', 'description': desc}
+    else:
+        ld = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': title,
+              'url': page_url, 'inLanguage': 'he', 'description': desc,
+              'isPartOf': {'@type': 'WebSite', 'name': site['title'], 'url': base},
+              'about': [p for p in (seo.person(r) for r in researches) if p]}
+    crumbs = seo.breadcrumbs((site['title'], base), (title, page_url)) if rel != 'index.html' else {}
+    return seo.head(page_url, title, desc, site.get('og_image', ''),
+                    site.get('og_image_alt', site['title']), kind, (ld, crumbs))
+
+
+def page(title, description, body, extra_script='', rel='index.html'):
     script = ('<script>%s</script>' % extra_script) if extra_script else ''
     return ('<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n'
             '<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
             '<title>' + e(title) + '</title>\n'
-            '<meta name="description" content="' + e(description[:160]) + '">\n'
+            '<meta name="description" content="' + e(seo.plain(description, 160)) + '">\n'
+            + _seo_head(rel, title, description, 'website') +
             '<style>' + CSS + '</style>\n' + _ga_tag() + '</head>\n<body>\n' + '\n'.join(body) +
             '\n' + script + '\n</body>\n</html>\n')
 
@@ -355,7 +378,9 @@ pbody.append('</div></main>')
 pbody.append('<footer>ארכיון מחקר משפחתי · <a href="index.html">חזרה לארכיון</a></footer>')
 
 pout = page('אנשים בארכיון — ' + site['title'],
-            'אינדקס האנשים במחקרי המשפחה', pbody, FILTER_JS)
+            'כל בני המשפחה שנדונים במחקרי הארכיון — ' + site.get('surnames', '') +
+            ' — עם שנים, כתיבים חלופיים וקישור אל הפרק שבו כל אחד נדון.',
+            pbody, FILTER_JS, rel='people.html')
 open('people.html', 'w', encoding='utf-8').write(pout)
 print('person index written: people.html, %d KB' % (len(pout) // 1024))
 
@@ -377,3 +402,14 @@ if bad:
         print('  -', m)
     sys.exit(1)
 print('link check: every relative target in both pages exists')
+
+# ---- sitemap: every page that is its own canonical address ----
+pages = ['index.html', 'people.html']
+for r in researches:
+    d = r['slug']
+    if os.path.isdir(d):
+        pages += sorted(os.path.join(d, f) for f in os.listdir(d) if f.endswith('.html'))
+xml, n_urls = seo.sitemap(pages)
+if n_urls:
+    open('sitemap.xml', 'w', encoding='utf-8').write(xml)
+    print('sitemap written: sitemap.xml, %d addresses' % n_urls)

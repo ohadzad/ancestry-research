@@ -4,7 +4,7 @@ import datetime
 import os
 import re
 
-from . import bidi, figures, mdpipe, qa, shell, site, tree
+from . import bidi, figures, mdpipe, qa, seo, shell, site, tree
 
 
 def _stamp(tz='Asia/Jerusalem'):
@@ -52,6 +52,14 @@ def _section(sid, title, body, rule=True):
     hr = '<hr>' if rule else ''
     head = f'<h2>{title}</h2>' if title else ''
     return f'{hr}<section id="{sid}">{head}{body}</section>'
+
+
+def _with_head(cfg, html, which, filename, updated, lead):
+    """Search title, description, canonical, previews and JSON-LD for one page."""
+    block, title, desc = seo.project_head(cfg, which, filename, updated, lead)
+    if not block:
+        return html
+    return seo.inject(seo.set_description(seo.set_title(html, title), desc), block)
 
 
 def _story(cfg, tree_html, updated, warn):
@@ -175,7 +183,12 @@ def build(cfg, verbose=True):
     # the project's standalone tree page is its own file; what the report links
     # to is a generated copy of it with the same scroll-and-zoom frame
     view_html, view_name = tree.standalone(cfg, warn)
+    lead = cfg.story.portrait if cfg.story else ''
     if view_html:
+        tree_head, tree_title, tree_desc = seo.project_head(cfg, 'tree', view_name,
+                                                            lead_image=lead)
+        if tree_head:
+            view_html = seo.inject(seo.set_description(view_html, tree_desc), tree_head)
         open(cfg.p(view_name), 'w', encoding='utf-8').write(view_html)
     tree_html = tree.embed(cfg, svg, legend, foot, page_href=view_name or None)
     # the story page gets the diagram and its colour key, without the footnotes.
@@ -221,12 +234,18 @@ def build(cfg, verbose=True):
     body_html = mdpipe.rank_chips(body_html)
     body_html = mdpipe.wrap_tables(body_html)
     body_html = mdpipe.mark_external(body_html)
+    # the raw tree page is the project's source file; readers and crawlers are
+    # sent to the zoomable copy, which is the one that carries the page's head
+    if view_name and cfg.tree and cfg.tree.page_href:
+        body_html = body_html.replace(f'href="{cfg.tree.page_href}"', f'href="{view_name}"')
 
     out = shell.page(cfg, _updated_line(changelog_md, _stamp()), _stamp(),
                      body_html, chapters, present,
                      extra_rows=shell.page_rows(body_html),
                      story_href=cfg.story_name() if cfg.story else '')
     out = bidi.fix_document(out, cfg.extra_bidi_rules)
+    updated = _updated_line(changelog_md, _stamp())
+    out = _with_head(cfg, out, 'report', cfg.main_html, updated, lead)
 
     open(cfg.p(cfg.main_html), 'w', encoding='utf-8').write(out)
 
@@ -234,7 +253,8 @@ def build(cfg, verbose=True):
     story_out, story_name = '', ''
     if cfg.story:
         story_name = cfg.story_name()
-        story_out = _story(cfg, story_tree, _updated_line(changelog_md, _stamp()), warn)
+        story_out = _story(cfg, story_tree, updated, warn)
+        story_out = _with_head(cfg, story_out, 'story', story_name, updated, lead)
         open(cfg.p(story_name), 'w', encoding='utf-8').write(story_out)
 
     # the folder's front door opens the story when there is one, and the report
@@ -242,7 +262,8 @@ def build(cfg, verbose=True):
     # ever shared still resolves
     front = story_name or cfg.main_html
     open(cfg.p('index.html'), 'w', encoding='utf-8').write(
-        shell.index_stub(front, cfg.story_title or cfg.title))
+        shell.index_stub(front, cfg.story_title or cfg.title,
+                         canonical=seo.url(cfg.slug, front)))
 
     # ---- gates ------------------------------------------------------------
     problems = qa.run_all(out, cfg.root, cfg.privacy_text_patterns)

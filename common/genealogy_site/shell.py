@@ -5,7 +5,7 @@ import json
 import re
 import urllib.parse
 
-from . import analytics, mdpipe, theme
+from . import analytics, figures, mdpipe, theme
 
 # Six destinations at most, in one row. The chapter strip that used to sit
 # under them cost a quarter of a phone screen and spoke in the language of the
@@ -124,7 +124,7 @@ def story_hero(cfg, story, updated, report_href):
         cap = (f'<figcaption>{story.portrait_caption}</figcaption>'
                if story.portrait_caption else '')
         portrait = (f'<figure class="portrait"><img src="{story.portrait}" alt="{alt}" '
-                    f'decoding="async">{cap}</figure>')
+                    f'decoding="async"{figures.dims(cfg.root, story.portrait)}>{cap}</figure>')
     subject = cfg.story_subject or cfg.subject
     upd = f'<div class="meta">{updated}</div>' if updated else ''
     return (f'<header class="hero story-hero"><div class="hero-in">{crumb}'
@@ -188,7 +188,8 @@ def docs_block(cfg, story, root_thumb):
         chip = mdpipe.rank_chip(d.rank)
         more = _story_link(d.href, 'בדוח ←')
         pos = f' style="object-position:{d.focus}"' if d.focus != 'center top' else ''
-        pic = (f'<img src="{img}" alt="{alt}" loading="lazy" decoding="async"{pos}>'
+        pic = (f'<img src="{img}" alt="{alt}" loading="lazy" decoding="async"'
+               f'{figures.dims(cfg.root, img)}{pos}>'
                if img else '')
         # the whole card is the click target for the scan; the report link is
         # a second, explicit destination
@@ -541,10 +542,11 @@ def page(cfg, edition, stamp, body_sections, chapters, present, extra_rows=(),
 """
 
 
-def index_stub(main_html, title):
+def index_stub(main_html, title, canonical=''):
     q = urllib.parse.quote(main_html)
+    canon = f'<link rel="canonical" href="{_h.escape(canonical)}">\n' if canonical else ''
     return (f'<!DOCTYPE html>\n<html lang="he" dir="rtl">\n<head>\n<meta charset="UTF-8">\n'
-            f'<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+            f'<meta name="viewport" content="width=device-width, initial-scale=1">\n{canon}'
             f'<meta http-equiv="refresh" content="0; url={q}">\n<title>{_h.escape(title)}</title>\n'
             f'</head>\n<body style="font-family:Georgia,serif;background:#faf7f2;color:#2b2620;'
             f'text-align:center;padding-top:80px;">\n'

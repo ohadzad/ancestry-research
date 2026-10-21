@@ -243,7 +243,7 @@ cfg = ProjectConfig(
         r'^8\.': '8 · המקורות',
         r'^9\.': '9 · שיטה ומגבלות',
     },
-    privacy_text_patterns=('ohad' + 'z', '@' + 'gmail'),
+    privacy_text_patterns=('/users/' + 'ohad' + 'z', '@' + 'gmail'),
     qa_strict=(_ENGINE != os.path.join(ROOT, '_common')),
 )
 

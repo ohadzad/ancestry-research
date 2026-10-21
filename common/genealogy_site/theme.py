@@ -189,8 +189,8 @@ body.story main {{ padding-block-start:2rem; }}
   flex:0 0 auto; inline-size:9.5rem; margin:0; text-align:start;
 }}
 .story-hero .portrait img {{
-  inline-size:100%; max-block-size:13rem; object-fit:cover; object-position:center top;
-  border:1px solid rgba(255,255,255,.35); border-radius:var(--radius);
+  inline-size:100%; block-size:auto; max-block-size:13rem; object-fit:cover;
+  object-position:center top; border:1px solid rgba(255,255,255,.35); border-radius:var(--radius);
   box-shadow:0 3px 12px rgba(0,0,0,.28); background:#fff;
 }}
 .story-hero .portrait figcaption {{

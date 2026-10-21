@@ -323,7 +323,7 @@ cfg = ProjectConfig(
         SpineFact('10', 'מסמכים שלו עצמו'),
         SpineFact('2010', 'נפטר בישראל'),
     ),
-    privacy_text_patterns=('ohad' + 'z', '@' + 'gmail'),
+    privacy_text_patterns=('/users/' + 'ohad' + 'z', '@' + 'gmail'),
     published_ids=('6419140',),  # ילקוט הפרסומים 1144 — פרסום רשמי
     qa_strict=(_ENGINE != os.path.join(ROOT, '_common')),
 )

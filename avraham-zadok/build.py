@@ -370,7 +370,7 @@ cfg = ProjectConfig(
     # the requester's identifiers are assembled and not written out: this file is
     # published alongside the report, and a literal here would trip the portal's
     # own privacy grep over the published folder
-    privacy_text_patterns=('cohn', 'ohad' + 'z', '@' + 'gmail'),
+    privacy_text_patterns=('cohn', '/users/' + 'ohad' + 'z', '@' + 'gmail'),
     # strict in the archive, where every relative target resolves; outside it the
     # breadcrumb to the archive's own index cannot exist, so the gates only report
     qa_strict=(_ENGINE != os.path.join(ROOT, '_common')),

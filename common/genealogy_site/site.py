@@ -3,6 +3,7 @@
 import os
 import re
 import shutil
+import urllib.parse
 
 # never published: build scratch, editor droppings, the mirror itself
 SKIP = ('site', '__pycache__', '.DS_Store', 'Thumbs.db', 'thumbs.db', '*.pyc')
@@ -44,7 +45,9 @@ def sweep_thumbs(cfg, *html):
             sources.append(open(path, encoding='utf-8').read())
     keep = set()
     for text in sources:
-        keep |= set(re.findall(r'["\'][^"\']*docs/thumbs/([^"\']+)["\']', text))
+        # absolute preview URLs in the head are percent-encoded
+        keep |= {urllib.parse.unquote(n) for n in
+                 re.findall(r'["\'][^"\']*docs/thumbs/([^"\']+)["\']', text)}
     gone = []
     for name in sorted(os.listdir(d)):
         if name not in keep:

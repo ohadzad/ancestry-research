@@ -88,7 +88,8 @@ def duplicate_ids(html):
     return [f'מזהה כפול: {i}' for i in sorted(dup)]
 
 
-_OPAQUE = re.compile(r'<(svg|style|script|pre)\b.*?</\1>', re.S)
+# <title> is shown as plain text by the browser and cannot hold a <bdi>
+_OPAQUE = re.compile(r'<(svg|style|script|pre|title)\b.*?</\1>', re.S)
 _TAGS = re.compile(r'<[^>]+>')
 
 
