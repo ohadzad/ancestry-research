@@ -22,8 +22,14 @@ def thumb(root, path, width=340, quality=78):
     os.makedirs(out_dir, exist_ok=True)
     src_abs = os.path.join(root, path)
     base = os.path.splitext(os.path.basename(path))[0]
+    # hash the bytes, not the mtime: a fresh checkout or worktree resets every
+    # mtime and would otherwise rename (and re-commit) every thumbnail
     try:
-        sig = hashlib.md5(f'{path}:{os.path.getmtime(src_abs)}'.encode()).hexdigest()[:6]
+        h = hashlib.md5(f'{path}:'.encode())
+        with open(src_abs, 'rb') as f:
+            for chunk in iter(lambda: f.read(1 << 20), b''):
+                h.update(chunk)
+        sig = h.hexdigest()[:6]
     except OSError:
         sig = hashlib.md5(path.encode()).hexdigest()[:6]
     # quality is part of the identity, or a re-encode silently returns the
