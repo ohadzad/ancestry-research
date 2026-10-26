@@ -1,0 +1,75 @@
+{
+  "files": [
+    {
+      "file": "/Users/ohadz/git/ancestry-research/.claude/worktrees/add-tals-grandparents-159328/rachel-zadok/docs/jdc-names/jdc_143475_judith_herman_strulovits_vienna_card_00294/jdc_31157_176241-00294.jpg",
+      "bytes": 410617,
+      "via": "direct",
+      "source_url": "https://names-assets.archives.jdc.org/Documents/VMB_cardindex/31157_176241/31157_176241-00294.jpg"
+    }
+  ],
+  "downloaded_at": "2026-10-27T00:36:57+0200",
+  "person": {
+    "person_id": "35cf3ec5-9ead-4d29-a445-8a2f4e46f8fe",
+    "name": "Judith Strulovits",
+    "given_name": "Judith",
+    "surname": "Strulovits",
+    "maiden_name": "",
+    "father_name": "",
+    "mother_name": "",
+    "alternative_names": [],
+    "gender": "",
+    "birth_date": "",
+    "birth_year": null,
+    "birth_location": "",
+    "nationality": "",
+    "occupation": "",
+    "marital_status": "",
+    "related_items": [
+      {
+        "item_id": "143475",
+        "collection": "index_cards",
+        "found_in": "Jewish Displaced Persons and Refugee Cards, 1943-1959",
+        "jdc_emigration_office": "Austria, Vienna",
+        "emigration_location": "Kollerg. 17",
+        "destination": "",
+        "locations": [
+          "Kollerg. 17",
+          "Austria, Vienna"
+        ],
+        "ship_name": "",
+        "accompanied_by": [
+          "Israel Strulovits",
+          "Herman Strulovits"
+        ],
+        "primary_person": "Judith Strulovits",
+        "ancestry_url": "http://content.ancestry.com/iexec/?htx=View&r=an&dbid=1354&iid=31157_176241-00294",
+        "description_of_document": "This is a collection of registration cards of Jewish survivors who registered with the Emigration Department of JDC in Munich and Vienna after World War II for help in emigrating to countries other than Israel. The database includes individual cards from 1945-mid 1950s for 51,554 Displaced Persons in Munich and 25,374 Displaced Persons in Vienna.",
+        "scans": [
+          {
+            "filename": "VMB_cardindex/31157_176241/31157_176241-00294.jpg",
+            "description": "View Index Card",
+            "url": "https://names-assets.archives.jdc.org/Documents/VMB_cardindex/31157_176241/31157_176241-00294.jpg?sv=2022-11-02&ss=b&srt=o&sp=r&se=2026-10-27T22%3A36%3A55Z&spr=https&sig=55Z3Jeakeft4WhgSR%2B3jtOEoUAV03IWTyGbcbPDtXxc%3D"
+          }
+        ],
+        "searchable_text": "Jewish Displaced Persons and Refugee Cards, 1943-1959 Kollerg. 17 67695 http://content.ancestry.com/iexec/?htx=View&r=an&dbid=1354&iid=31157_176241-00294 [{\"name\": \"Israel Strulovits\"}, {\"name\": \"Herman Strulovits\"}] This is a collection of registration cards of Jewish survivors who registered with the Emigration Department of JDC in Munich and Vienna after World War II for help in emigrating to countries other than Israel. The database includes individual cards from 1945-mid 1950s for 51,554 Displaced Persons in Munich and 25,374 Displaced Persons in Vienna. Austria, Vienna"
+      }
+    ],
+    "citation": {
+      "person_id": "35cf3ec5-9ead-4d29-a445-8a2f4e46f8fe",
+      "person_url": "https://names.archives.jdc.org/#/person/35cf3ec5-9ead-4d29-a445-8a2f4e46f8fe",
+      "found_in": [
+        "Jewish Displaced Persons and Refugee Cards, 1943-1959"
+      ],
+      "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+    },
+    "matched_query": null
+  },
+  "citation": {
+    "person_id": "35cf3ec5-9ead-4d29-a445-8a2f4e46f8fe",
+    "person_url": "https://names.archives.jdc.org/#/person/35cf3ec5-9ead-4d29-a445-8a2f4e46f8fe",
+    "found_in": [
+      "Jewish Displaced Persons and Refugee Cards, 1943-1959"
+    ],
+    "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+  }
+}

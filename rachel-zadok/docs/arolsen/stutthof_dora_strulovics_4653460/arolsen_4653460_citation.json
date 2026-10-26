@@ -1,0 +1,136 @@
+{
+  "doc_id": 4653460,
+  "url": "https://collections.arolsen-archives.org/en/document/4653460",
+  "desc_id": 2535205,
+  "title": "Personal file of STRULOVICS, DORA, born on 25-Sep-1928, born in Zadnia",
+  "collection_path": [
+    "1 Incarceration Documents",
+    "1.1 Camps and Ghettos",
+    "1.1.41 Stutthof Concentration Camp",
+    "1.1.41.2 Individual Documents Stutthof",
+    "Personal Files - Stutthof Concentration Camp",
+    "Files with names from STRAUS",
+    "Personal file of STRULOVICS, DORA, born on 25-Sep-1928, born in Zadnia"
+  ],
+  "reference_code": "01014102 129.170",
+  "document_count": 3,
+  "header_items": {
+    "referenceCode": "01014102 129.170",
+    "documentNum": "3"
+  },
+  "persons": [
+    {
+      "doc_id": 4653460,
+      "last_name": "STRULOVICS",
+      "first_name": "DORA",
+      "maiden_name": "",
+      "place_of_birth": "Zadnia",
+      "dob": {
+        "raw": "09/25/1928",
+        "precision": "day",
+        "year": 1928,
+        "month": 9,
+        "day": 25,
+        "iso": "1928-09-25",
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "39295",
+      "desc_id": 2535205,
+      "signature": "1.1.41.2 - Files with names from STRAUS",
+      "father": "",
+      "mother": "",
+      "religion": "Jewish",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 4653460,
+        "url": "https://collections.arolsen-archives.org/en/document/4653460",
+        "signature": "1.1.41.2 - Files with names from STRAUS",
+        "desc_id": 2535205,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    }
+  ],
+  "pages": [],
+  "file_pages": [
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591013/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591013/001.jpg?width=700",
+      "doc_id": 4653461,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653461",
+      "scan_folder_id": "105591013",
+      "label": "DORA STRULOVICS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591013/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591013/002.jpg?width=700",
+      "doc_id": 4653461,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653461",
+      "scan_folder_id": "105591013",
+      "label": "DORA STRULOVICS"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591018/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591018/001.jpg?width=700",
+      "doc_id": 4653462,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653462",
+      "scan_folder_id": "105591018",
+      "label": "DORA STRULOVICS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591018/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591018/002.jpg?width=700",
+      "doc_id": 4653462,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653462",
+      "scan_folder_id": "105591018",
+      "label": "DORA STRULOVICS"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591008/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591008/001.jpg?width=700",
+      "doc_id": 4653463,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653463",
+      "scan_folder_id": "105591008",
+      "label": "DORA STRULOVICS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591008/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0024/105591008/002.jpg?width=700",
+      "doc_id": 4653463,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4653463",
+      "scan_folder_id": "105591008",
+      "label": "DORA STRULOVICS"
+    }
+  ],
+  "citation": {
+    "doc_id": 4653460,
+    "url": "https://collections.arolsen-archives.org/en/document/4653460",
+    "signature": "1.1.41.2 - Files with names from STRAUS",
+    "desc_id": 2535205,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+  },
+  "notes": [
+    "id 4653460 is a person-entry id; its scans are filed under sibling document ids [4653461, 4653462, 4653463]. See file_pages."
+  ]
+}

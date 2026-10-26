@@ -1,0 +1,97 @@
+{
+  "doc_id": 7244923,
+  "url": "https://collections.arolsen-archives.org/en/document/7244923",
+  "desc_id": 1808103,
+  "title": "Personal file of SZTRULOVICS, GYULA, born on 3-Mar-1931",
+  "collection_path": [
+    "1 Incarceration Documents",
+    "1.1 Camps and Ghettos",
+    "1.1.5 Buchenwald Concentration Camp",
+    "1.1.5.3 Individual Documents male Buchenwald",
+    "Individual Files (male) - Concentration Camp Buchenwald",
+    "Files with names from SYS and further sub-structure",
+    "Files with names from SZPIRO",
+    "Personal file of SZTRULOVICS, GYULA, born on 3-Mar-1931"
+  ],
+  "reference_code": "01010503 002.005.256",
+  "document_count": 1,
+  "header_items": {
+    "referenceCode": "01010503 002.005.256",
+    "documentNum": "1"
+  },
+  "persons": [
+    {
+      "doc_id": 7244923,
+      "last_name": "SZTRULOVICS",
+      "first_name": "GYULA",
+      "maiden_name": "",
+      "place_of_birth": "",
+      "dob": {
+        "raw": "03/03/1931",
+        "precision": "day",
+        "year": 1931,
+        "month": 3,
+        "day": 3,
+        "iso": "1931-03-03",
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "54982",
+      "desc_id": 1808103,
+      "signature": "1.1.5.3 - Files with names from SZPIRO",
+      "father": "",
+      "mother": "",
+      "religion": "",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 7244923,
+        "url": "https://collections.arolsen-archives.org/en/document/7244923",
+        "signature": "1.1.5.3 - Files with names from SZPIRO",
+        "desc_id": 1808103,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    }
+  ],
+  "pages": [],
+  "file_pages": [
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1067/52359830/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1067/52359830/001.jpg?width=700",
+      "doc_id": 7244924,
+      "document_url": "https://collections.arolsen-archives.org/en/document/7244924",
+      "scan_folder_id": "52359830",
+      "label": "GYULA SZTRULOVICS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1067/52359830/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1067/52359830/002.jpg?width=700",
+      "doc_id": 7244924,
+      "document_url": "https://collections.arolsen-archives.org/en/document/7244924",
+      "scan_folder_id": "52359830",
+      "label": "GYULA SZTRULOVICS"
+    }
+  ],
+  "citation": {
+    "doc_id": 7244923,
+    "url": "https://collections.arolsen-archives.org/en/document/7244923",
+    "signature": "1.1.5.3 - Files with names from SZPIRO",
+    "desc_id": 1808103,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+  },
+  "notes": [
+    "id 7244923 is a person-entry id; its scans are filed under sibling document ids [7244924]. See file_pages."
+  ]
+}

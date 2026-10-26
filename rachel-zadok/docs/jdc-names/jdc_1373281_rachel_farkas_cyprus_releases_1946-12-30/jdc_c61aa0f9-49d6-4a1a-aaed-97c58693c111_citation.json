@@ -1,0 +1,65 @@
+{
+  "files": [
+    {
+      "file": "/Users/ohadz/git/ancestry-research/.claude/worktrees/add-tals-grandparents-159328/rachel-zadok/docs/jdc-names/jdc_1373281_rachel_farkas_cyprus_releases_1946-12-30/jdc_Cyprus_Releases_084.pdf",
+      "bytes": 295343,
+      "via": "direct",
+      "source_url": "https://names-assets.archives.jdc.org/Documents/Names Databank/Cyprus Releases/Cyprus_Releases_084.pdf"
+    }
+  ],
+  "downloaded_at": "2026-10-27T00:44:44+0200",
+  "person": {
+    "person_id": "c61aa0f9-49d6-4a1a-aaed-97c58693c111",
+    "name": "Rachel Farkas",
+    "given_name": "Rachel",
+    "surname": "Farkas",
+    "maiden_name": "",
+    "father_name": "",
+    "mother_name": "",
+    "alternative_names": [],
+    "gender": "",
+    "birth_date": "",
+    "birth_year": null,
+    "birth_location": "",
+    "nationality": "",
+    "occupation": "",
+    "marital_status": "",
+    "related_items": [
+      {
+        "item_id": "1373281",
+        "collection": "list",
+        "found_in": "",
+        "jdc_emigration_office": "",
+        "emigration_location": "",
+        "destination": "",
+        "locations": [],
+        "ship_name": "",
+        "accompanied_by": [],
+        "primary_person": "",
+        "ancestry_url": "",
+        "description_of_document": "These lists document Jewish internees who were released from British camps on Cyprus under the monthly quota system for entry into Mandatory Palestine. Although covering the period December 1946 to May 1948, not every month is included. Information includes name, age or birthdate, camp number, and ship name, among other details.",
+        "scans": [
+          {
+            "filename": "Names Databank/Cyprus Releases/Cyprus_Releases_084.pdf",
+            "description": "View Document",
+            "url": "https://names-assets.archives.jdc.org/Documents/Names Databank/Cyprus Releases/Cyprus_Releases_084.pdf?sv=2022-11-02&ss=b&srt=o&sp=r&se=2026-10-27T22%3A44%3A41Z&spr=https&sig=Zti%2FxBehYVMQ7LFOFTGsQT%2BDbKtddFP7yxJ9q9QWKo0%3D"
+          }
+        ],
+        "searchable_text": "[] 1946-12-30 Digital files for this document were received from the Arolsen Archives. [{\"name\": \"Rachel Farkas\", \"person\": {\"key\": \"c61aa0f9-49d6-4a1a-aaed-97c58693c111\", \"collection\": \"persons\"}, \"region\": \"\", \"country\": \"\", \"City / Town\": \"\", \"destination\": {\"key\": \"T10057\", \"collection\": \"destination\"}, \"ssr_republic\": \"\", \"collective_farm\": \"\", \"Business / Group\": \"\", \"State / Province\": \"\", \"originating_city\": \"\", \"sponsor_relative\": \"\", \"transitional_city\": \"\", \"regional_information\": \"\", \"transitional_country\": {\"key\": \"T127726\", \"collection\": \"transitional_country\"}, \"tentative_destin"
+      }
+    ],
+    "citation": {
+      "person_id": "c61aa0f9-49d6-4a1a-aaed-97c58693c111",
+      "person_url": "https://names.archives.jdc.org/#/person/c61aa0f9-49d6-4a1a-aaed-97c58693c111",
+      "found_in": [],
+      "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+    },
+    "matched_query": null
+  },
+  "citation": {
+    "person_id": "c61aa0f9-49d6-4a1a-aaed-97c58693c111",
+    "person_url": "https://names.archives.jdc.org/#/person/c61aa0f9-49d6-4a1a-aaed-97c58693c111",
+    "found_in": [],
+    "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+  }
+}

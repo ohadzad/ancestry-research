@@ -1,0 +1,116 @@
+{
+  "doc_id": 4447923,
+  "url": "https://collections.arolsen-archives.org/en/document/4447923",
+  "desc_id": 2481344,
+  "title": "Personal file of DAVIDOVITS, FANI, born on 27-Oct-1921, born in Ökörmezö",
+  "collection_path": [
+    "1 Incarceration Documents",
+    "1.1 Camps and Ghettos",
+    "1.1.41 Stutthof Concentration Camp",
+    "1.1.41.2 Individual Documents Stutthof",
+    "Personal Files - Stutthof Concentration Camp",
+    "Files with names from CZYBULSKA",
+    "Personal file of DAVIDOVITS, FANI, born on 27-Oct-1921, born in Ökörmezö"
+  ],
+  "reference_code": "01014102 021.417",
+  "document_count": 2,
+  "header_items": {
+    "referenceCode": "01014102 021.417",
+    "documentNum": "2"
+  },
+  "persons": [
+    {
+      "doc_id": 4447923,
+      "last_name": "DAVIDOVITS",
+      "first_name": "FANI",
+      "maiden_name": "",
+      "place_of_birth": "Ökörmezö",
+      "dob": {
+        "raw": "10/27/1921",
+        "precision": "day",
+        "year": 1921,
+        "month": 10,
+        "day": 27,
+        "iso": "1921-10-27",
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "39110",
+      "desc_id": 2481344,
+      "signature": "1.1.41.2 - Files with names from CZYBULSKA",
+      "father": "",
+      "mother": "",
+      "religion": "Jewish",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 4447923,
+        "url": "https://collections.arolsen-archives.org/en/document/4447923",
+        "signature": "1.1.41.2 - Files with names from CZYBULSKA",
+        "desc_id": 2481344,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    }
+  ],
+  "pages": [],
+  "file_pages": [
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270396/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270396/001.jpg?width=700",
+      "doc_id": 4447924,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4447924",
+      "scan_folder_id": "56270396",
+      "label": "FANI DAVIDOVITS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270396/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270396/002.jpg?width=700",
+      "doc_id": 4447924,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4447924",
+      "scan_folder_id": "56270396",
+      "label": "FANI DAVIDOVITS"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270397/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270397/001.jpg?width=700",
+      "doc_id": 4447925,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4447925",
+      "scan_folder_id": "56270397",
+      "label": "FANI DAVIDOVITS"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270397/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01014102/0013/56270397/002.jpg?width=700",
+      "doc_id": 4447925,
+      "document_url": "https://collections.arolsen-archives.org/en/document/4447925",
+      "scan_folder_id": "56270397",
+      "label": "FANI DAVIDOVITS"
+    }
+  ],
+  "citation": {
+    "doc_id": 4447923,
+    "url": "https://collections.arolsen-archives.org/en/document/4447923",
+    "signature": "1.1.41.2 - Files with names from CZYBULSKA",
+    "desc_id": 2481344,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+  },
+  "notes": [
+    "id 4447923 is a person-entry id; its scans are filed under sibling document ids [4447924, 4447925]. See file_pages."
+  ]
+}
