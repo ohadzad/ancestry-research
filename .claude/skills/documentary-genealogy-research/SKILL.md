@@ -89,8 +89,26 @@ conventions to the report's language and keep them uniform.
     a ma'apilim list printed in March 1947 that confirmed a ship and a hometown for two
     subjects the archives had left at `ככל הנראה`. A press hit is graded like any record:
     the name alone is `טעון אימות` until age, place, parents or context tie it to the subject.
+    Read a list's columns from its own rows before using a number: in the 1940s ship lists
+    of "לקרוב ולרחוק" the figure after the name is the **age**, not the birth year — a
+    sub-agent once promoted a 32-year-old "Gedalyahu Farkas" to `כמעט ודאי` as a
+    15-year-old subject born in '32.
     Save the article (scan if reachable, else the OCR text marked as an exception), and
     record every empty query as a negative with its coverage (titles, years, spellings).
+14. **Every European-born person alive in 1939 gets a war-years chapter — and censuses go to
+    the start.** For each such person on the page (subject, spouse, parents), reconstruct
+    1938–1948: ghetto, deportation transport, camps and sub-camps with prisoner numbers,
+    forced-labor service (Hungarian *munkaszolgálat* companies), hiding, liberation and
+    survivor lists, DP camps, the route out (ship, Cyprus, Atlit). Sweep the camp and ghetto
+    sources in §3 (Arolsen, Auschwitz transports, Stutthof, DEGOB, EHRI, Yad Vashem, JDC,
+    ghetto inhabitant lists) and download every card front and back. A page where a survivor
+    goes from birth straight to a 1948 marriage certificate is unfinished: either the chapter
+    exists, or the report says, with coverage, what was searched and not found. Likewise, go
+    up through **every census and register that covers the family's places**: for the
+    Hungarian lands the 1828 *Conscriptio*, the 1848 Jewish census, the 1869 census, civil
+    registration from October 1895, and the 1921 sheets where Hungaricana's library holds
+    them; for other regions the equivalent stack (§3.1). State, per census, whether the
+    place is covered — "not in the 1869 census" is a finding only for a covered county.
 
 ---
 
@@ -120,6 +138,10 @@ INTAKE ─► RESEARCH (sources) ─► TESTIMONY MINING ─► BUILD (report+tr
   community columns. Delegate it to a mid-tier sub-agent per family with the name matrix and
   the corpus's known facts, and require the OCR saved to `docs/<archive>/` plus a negatives
   list. A project is not ready for audit until its press sweep is logged in the ledger.
+- **War years and censuses (mandatory).** Per directive 14: a camp/ghetto/labor-service sweep
+  for every European-born person alive in 1939, and a census-and-register sweep up to the
+  earliest series covering the family's places. Run them as parallel sub-agents in separate
+  lanes (camps, censuses, press) so they don't duplicate each other.
 - **Testimony mining.** Transcribe any video/audio, extract facts with timestamps (§4).
 - **Build.** Assemble the corpus via the shared build engine (§5).
 - **Audit.** Spawn a *fresh* subagent as an independent QA auditor (§6). Fix. Repeat.

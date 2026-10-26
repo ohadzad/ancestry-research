@@ -105,6 +105,12 @@ the findings header. The absence of a ledger and of local copies is itself the f
 >    under every spelling in the name matrix. Missing people, archives, spellings or decades
 >    are a medium finding; a press hit graded above `טעון אימות` on the name alone is a
 >    critical one.
+>
+> **7. War years and censuses.** For every European-born person alive in 1939, confirm the
+>    report covers 1938–1948 (ghetto, transport, camps with numbers, labor service, hiding,
+>    liberation, DP camp, route out) or states with coverage what was searched. Confirm the
+>    census stack for the family's places was checked to its earliest covered series, with
+>    coverage stated per census. A survivor with no war-years section is a medium finding.
 
 ## The outside-world audit — same agent shape, different question
 
