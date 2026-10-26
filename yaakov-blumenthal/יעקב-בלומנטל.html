@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>יעקב בלומנטל — הדוח המלא: מסמכים ומקורות</title>
+<meta name="description" content="דף מחקר על יעקב בלומנטל, חייל ב-1948 ואביו של שמשון אחימאיר — תעודת הנישואין עם מרים ליבוביץ, פתח תקווה 27.10.1948; הוריו משה בן ציון וחוה, ככל הנראה…">
+<meta name="color-scheme" content="light">
+<style>
+:root {
+  --ink:#1f2725; --muted:#56635f; --line:#d3dcd8;
+  --paper:#f6f8f7; --accent:#2e6a5f; --accent-soft:#4f8a7e;
+  --link:#245a50;
+  --hero-from:#17322d; --hero-to:#2e6a5f;
+  --col: 60rem;               /* the reading column */
+  --nav-h: 3.25rem;
+  --anchor-off: 6.5rem;
+  --radius: 6px;
+  --serif: 'David Libre','Frank Ruhl Libre','Times New Roman',Georgia,serif;
+  --sans: 'Assistant','Segoe UI',Arial,Helvetica,sans-serif;
+  --sbw: 0px;
+}
+*,*::before,*::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+body {
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:1.0625rem; line-height:1.75;
+  text-rendering:optimizeLegibility; -webkit-text-size-adjust:100%;
+  overflow-wrap:break-word; word-break:normal;
+}
+img, svg, video { max-width:100%; }
+
+/* ---------- hero ---------- */
+.hero {
+  background:linear-gradient(135deg,var(--hero-from),var(--hero-to));
+  color:#f6efe2; padding:2.5rem 1.25rem 2rem;
+}
+.hero-in { max-width:var(--col); margin-inline:auto; }
+.hero .crumb { font-family:var(--sans); font-size:.8rem; opacity:.8; margin-block-end:1rem; }
+.hero .crumb a { color:#f2e5c8; text-decoration:none; border-block-end:1px solid rgba(242,229,200,.4); }
+.hero h1 { font-size:clamp(1.6rem,3.4vw,2.4rem); line-height:1.25; margin:0 0 .5rem; font-weight:700; letter-spacing:-.01em; }
+.hero .subject { font-size:1.05rem; opacity:.94; margin:0 0 .35rem; }
+.hero .meta { font-family:var(--sans); font-size:.8rem; color:#e8dcc2; }
+
+.spine { display:flex; flex-wrap:wrap; gap:.5rem; margin-block-start:1.5rem; }
+.spine div {
+  background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16);
+  border-radius:var(--radius); padding:.5rem .8rem; min-width:7.5rem;
+}
+.spine b { display:block; font-size:1.3rem; line-height:1.2; font-family:var(--sans); font-weight:700; }
+.spine span { /* floor: no supporting text below 12.5px */ font-family:var(--sans); font-size:.78rem; color:#e8dcc2; }
+
+/* ---------- sticky navigation ---------- */
+.nav {
+  position:sticky; top:0; z-index:40; background:rgba(250,247,242,.97);
+  backdrop-filter:saturate(150%) blur(6px);
+  border-block-end:1px solid var(--line); font-family:var(--sans);
+}
+.nav-in { max-width:var(--col); margin-inline:auto; padding:0 1.25rem; }
+.nav-row { display:flex; align-items:center; gap:.4rem; height:var(--nav-h); }
+.nav-row:first-child { flex-wrap:wrap; height:auto; padding-block:.4rem; }
+.nav a {
+  flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.82rem;
+  padding:.3rem .6rem; border-radius:999px; white-space:nowrap;
+}
+.nav a:hover { background:rgba(0,0,0,.05); }
+.nav a.on { background:var(--accent); color:#fff; }
+.nav .lbl { flex:0 0 auto; font-size:.78rem; color:var(--muted); padding-inline-end:.2rem; }
+
+.qwrap { position:relative; flex:0 0 auto; margin-inline-start:auto; }
+#q {
+  font-family:var(--sans); font-size:.8rem;
+  padding:.32rem .7rem; border:1px solid var(--line); border-radius:999px;
+  background:#fff; color:var(--ink); min-width:9rem;
+}
+#q:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+/* out of flow: opening the list must not change the nav's height, or every
+   anchor below it would shift while the reader is looking at one */
+#qres {
+  position:absolute; inset-block-start:calc(100% + .4rem); inset-inline-end:0;
+  min-width:20rem; max-width:min(28rem, 92vw); max-height:60vh; overflow-y:auto;
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(0,0,0,.14); padding:.35rem .8rem .5rem;
+  font-family:var(--sans); font-size:.82rem; z-index:60;
+}
+#qres[hidden] { display:none; }
+#qres a {
+  display:block; white-space:normal; flex:initial; border-radius:0;
+  padding:.35rem 0; color:var(--ink); border-block-end:1px dotted var(--line);
+}
+#qres a:last-child { border-block-end:0; }
+#qres .k { color:var(--muted); font-size:.78rem; margin-inline-start:.4rem; }
+#qres .nores { margin:.3rem 0; color:var(--muted); }
+#qres .qcount {
+  margin:.1rem 0 .35rem; color:var(--muted); font-size:.78rem;
+  border-block-end:1px solid var(--line); padding-block-end:.3rem;
+}
+
+/* ---------- the reading column ---------- */
+main { max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 4rem; }
+section, .legacy-anchor { scroll-margin-top:var(--anchor-off); display:block; }
+.legacy-anchor { height:0; }
+h2, h3, h4 { scroll-margin-top:var(--anchor-off); }
+h2 {
+  font-size:1.45rem; line-height:1.3; margin:2.6rem 0 .9rem; color:var(--accent);
+  border-block-end:2px solid var(--line); padding-block-end:.35rem;
+}
+h3 { font-size:1.13rem; margin:1.8rem 0 .55rem; color:var(--accent); }
+h4 { font-size:1rem; margin:1.3rem 0 .4rem; color:var(--ink); }
+p { margin:0 0 1rem; }
+a { color:var(--link); text-decoration:none; border-block-end:1px solid rgba(0,0,0,.14); }
+/* a citation marker after a Latin run would otherwise be laid out on the far
+   side of it, before the very words it cites */
+a.cit { unicode-bidi:isolate; }
+.visually-hidden {
+  position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); clip-path:inset(50%); white-space:nowrap; border:0;
+}
+a:hover { border-block-end-color:var(--link); }
+a:focus-visible { outline:2px solid var(--link); outline-offset:2px; border-radius:2px; }
+ul, ol { margin:0 0 1rem; padding-inline-start:1.4rem; }
+li { margin-block-end:.4rem; }
+hr { border:0; border-block-start:1px solid var(--line); margin:2.5rem 0; }
+strong { font-weight:700; }
+blockquote {
+  margin:1.2rem 0; padding:.1rem 1rem; border-inline-start:3px solid var(--line);
+  color:var(--muted);
+}
+code {
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.9em;
+  background:rgba(0,0,0,.045); padding:.1em .35em; border-radius:3px;
+  direction:ltr; unicode-bidi:isolate;
+}
+
+/* ---------- callouts ---------- */
+.lede {
+  background:#fff; border:1px solid var(--line); border-inline-start:4px solid var(--accent);
+  border-radius:var(--radius); padding:1.1rem 1.2rem; margin:0 0 1.6rem;
+  font-size:1.08rem; line-height:1.72;
+}
+.note {
+  background:rgba(0,0,0,.025); border:1px solid var(--line); border-radius:var(--radius);
+  padding:.8rem 1rem; margin:1.2rem 0; font-size:.94rem; color:var(--muted);
+}
+
+/* ---------- the certainty ladder, spelled out ---------- */
+.ladder {
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.84rem;
+}
+.ladder > summary {
+  cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none;
+}
+.ladder > summary::-webkit-details-marker { display:none; }
+.ladder > summary::after { content:" ▾"; }
+.ladder[open] > summary::after { content:" ▴"; }
+.ladder > summary:hover { color:var(--ink); }
+.ladder-in { padding:.2rem .9rem .9rem; }
+.rungs { display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:.4rem .9rem; }
+.rung { display:flex; gap:.5rem; align-items:baseline; line-height:1.5; }
+.rung > span { color:var(--muted); }
+.terms {
+  margin-block-start:.8rem; padding-block-start:.7rem; border-block-start:1px dotted var(--line);
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(17rem,1fr)); gap:.4rem .9rem;
+}
+.term { line-height:1.5; }
+.term b { color:var(--ink); }
+.term span { color:var(--muted); }
+.term b::after { content:" — "; color:var(--muted); font-weight:400; }
+
+/* ---------- certainty chips ---------- */
+.rank {
+  display:inline-block; font-family:var(--sans); font-size:.78rem; font-style:normal; font-weight:600;
+  line-height:1.5; padding:.05rem .5rem; border-radius:999px; white-space:nowrap;
+  border:1px solid currentColor; vertical-align:.08em;
+}
+.rank.v1 { color:#2f6b41; background:rgba(47,107,65,.08); }   /* מאומת */
+.rank.v2 { color:#6b5324; background:rgba(107,83,36,.08); }   /* כמעט ודאי */
+.rank.v3 { color:#8a5a00; background:rgba(138,90,0,.08); }    /* ככל הנראה */
+.rank.v4 { color:#8a3d2e; background:rgba(138,61,46,.08); }   /* טעון אימות */
+.rank.v5 { color:#5a5a5a; background:rgba(90,90,90,.10); }   /* נשלל */
+.rank.v6 { color:#7a7a7a; background:rgba(122,122,122,.08); }   /* בוטל */
+
+/* ---------- the story page ---------- */
+/* A second page over the same research: the life in order, for a reader who
+   arrived without context. Everything auditable stays in the report. */
+body.story main { padding-block-start:2rem; }
+.story-hero .hero-cols { display:flex; gap:1.5rem; align-items:flex-start; }
+.story-hero .hero-text { flex:1 1 auto; min-width:0; }
+.story-hero .portrait {
+  flex:0 0 auto; inline-size:9.5rem; margin:0; text-align:start;
+}
+.story-hero .portrait img {
+  inline-size:100%; block-size:auto; max-block-size:13rem; object-fit:cover;
+  object-position:center top; border:1px solid rgba(255,255,255,.35); border-radius:var(--radius);
+  box-shadow:0 3px 12px rgba(0,0,0,.28); background:#fff;
+}
+.story-hero .portrait figcaption {
+  color:#e8dcc2; font-family:var(--sans); font-size:.76rem; line-height:1.5;
+  margin-block-start:.4rem; text-align:start;
+}
+.story-hero h1 { margin-block-end:.6rem; }
+.story-hero .subject { font-size:1.1rem; line-height:1.6; }
+
+.nav-report, .nav-story {
+  font-weight:600; color:var(--accent) !important; border:1px solid var(--accent);
+}
+.nav-report { margin-inline-start:auto; }
+.nav-story { margin-inline-end:.5rem; }
+.nav-report:hover, .nav-story:hover { background:var(--accent); color:#fff !important; }
+
+/* the edition log is the researcher's bookkeeping: collapsed by default, and
+   reachable for anyone who wants to see what changed */
+.changelog-wrap > summary {
+  cursor:pointer; list-style:none; font-family:var(--sans); font-size:.86rem;
+  color:var(--muted); padding:.5rem .9rem; border:1px solid var(--line);
+  border-radius:var(--radius); background:#fff; display:inline-block;
+}
+.changelog-wrap > summary::-webkit-details-marker { display:none; }
+.changelog-wrap > summary::after { content:" ▾"; }
+.changelog-wrap[open] > summary::after { content:" ▴"; }
+.changelog-wrap > summary:hover { color:var(--ink); }
+
+/* ---------- table of contents ---------- */
+.toc {
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  margin:0 0 1.6rem; font-family:var(--sans); font-size:.86rem;
+}
+.toc > summary { cursor:pointer; padding:.5rem .9rem; color:var(--muted); list-style:none; }
+.toc > summary::-webkit-details-marker { display:none; }
+.toc > summary::after { content:" ▾"; }
+.toc[open] > summary::after { content:" ▴"; }
+.toc > summary:hover { color:var(--ink); }
+.toc-list {
+  margin:0; padding:.1rem 2.4rem .9rem; columns:2; column-gap:1.6rem;
+}
+.toc-list li { margin-block-end:.3rem; break-inside:avoid; }
+.toc-list a { border:0; }
+
+/* three columns: certain · probable · open — the whole state of the research */
+.verdicts {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+  gap:.9rem; margin:1.8rem 0 2.4rem;
+}
+.verdict {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.9rem 1rem 1rem;
+}
+.verdict h3 {
+  margin:0 0 .6rem; font-size:1rem; color:var(--ink);
+  display:flex; align-items:center; gap:.5rem; flex-wrap:wrap;
+}
+.verdict ul { margin:0; padding-inline-start:1.1rem; font-size:.95rem; }
+.verdict li { margin-block-end:.5rem; line-height:1.6; }
+.verdict a, 
+.verdict a::after { content:" ←"; }
+
+/* the timeline: the date is the handle the eye scans down */
+.timeline { list-style:none; margin:1.2rem 0 2rem; padding:0; position:relative; }
+.timeline::before {
+  /* the rail runs through the dots, which sit in the gap between the date
+     column and the text — i.e. at the INLINE-START side in an RTL page */
+  content:""; position:absolute; inset-block:.6rem 1.4rem;
+  inset-inline-start:calc(5.325rem - 1px); inset-inline-end:auto;
+  inline-size:2px; background:var(--line);
+}
+li.tl {
+  display:flex; gap:1.1rem; margin:0 0 1.15rem; position:relative;
+  align-items:flex-start;
+}
+.tl-when {
+  flex:0 0 4.5rem; text-align:end; padding-block-start:.15rem;
+  font-family:var(--sans); position:relative;
+}
+.tl-when::after {
+  /* the node on the rail */
+  content:""; position:absolute; inset-block-start:.55rem; inset-inline-end:-1.1rem;
+  inline-size:.55rem; block-size:.55rem; border-radius:50%;
+  background:var(--paper); border:2px solid var(--accent-soft);
+}
+.tl-when b { display:block; font-size:.92rem; color:var(--accent); line-height:1.4; }
+.tl-place { display:block; font-size:.76rem; color:var(--muted); line-height:1.4; }
+.tl-what { flex:1 1 auto; min-width:0; padding-inline-start:.5rem; }
+.tl-what p { margin:0 0 .3rem; }
+.tl-foot {
+  display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;
+  font-family:var(--sans); font-size:.78rem;
+}
+.tl-more a { border:0; font-family:var(--sans); font-size:.78rem; }
+.rank-plain { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+
+/* key documents as cards: picture, date, what it proves, how sure */
+.doccards {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));
+  gap:1rem; margin:1.2rem 0 2rem;
+}
+.doccard {
+  margin:0; background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  overflow:hidden; display:flex; flex-direction:column; text-align:start;
+}
+.doccard .doc-img { display:block; border:0; line-height:0; background:#f3efe6; }
+.doccard img {
+  inline-size:100%; block-size:9.5rem; object-fit:cover; object-position:center top;
+  border:0; border-radius:0; box-shadow:none; display:block;
+}
+.doccard figcaption {
+  padding:.7rem .85rem .8rem; font-size:.88rem; color:var(--ink);
+  text-align:start; margin:0; display:flex; flex-direction:column; gap:.25rem;
+  flex:1 1 auto;
+}
+.doc-when { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.doccard b { font-size:.95rem; line-height:1.45; }
+.doc-proves { color:var(--muted); font-size:.86rem; line-height:1.55; flex:1 1 auto; }
+.doc-foot {
+  display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;
+  margin-block-start:.35rem; font-family:var(--sans); font-size:.78rem;
+}
+.doc-foot a { border:0; }
+
+/* "where this is written down" — on every beat and every card */
+.src { color:var(--muted); font-family:var(--sans); font-size:.78rem; }
+.src a { border:0; color:var(--link); }
+.srclist { margin:1.1rem 0 1.8rem; padding-inline-start:1.4rem; font-size:.95rem; }
+.srclist li { margin-block-end:.5rem; line-height:1.6; }
+.srclist a { border-block-end:1px solid rgba(0,0,0,.14); }
+.report-cta { margin:2rem 0 1rem; }
+.btn.big {
+  font-size:.95rem; padding:.6rem 1.4rem; background:var(--accent); color:#fff;
+  border-color:var(--accent);
+}
+.btn.big:hover { background:var(--hero-from); border-color:var(--hero-from); }
+
+/* ---------- tables ---------- */
+.tablewrap:focus-visible, .tree-embed:focus-visible { outline:2px solid var(--link); outline-offset:2px; }
+.tablewrap { overflow-x:auto; margin:1.2rem 0; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+table { border-collapse:collapse; width:100%; font-size:.93rem; }
+th, td { padding:.5rem .7rem; border-block-end:1px solid var(--line); text-align:start; vertical-align:top; }
+thead th { background:rgba(0,0,0,.035); font-family:var(--sans); font-size:.82rem; }
+tbody tr:last-child td { border-block-end:0; }
+
+/* ---------- figures ---------- */
+figure { margin:1.6rem auto; text-align:center; max-width:100%; }
+figure img {
+  max-width:100%; height:auto; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:0 2px 8px rgba(0,0,0,.07); background:#fff;
+}
+figcaption { font-size:.84rem; color:var(--muted); margin-block-start:.5rem; line-height:1.6; text-align:start; }
+figcaption .fignum { font-family:var(--sans); font-weight:700; color:var(--accent); }
+figcaption .figlinks { display:block; margin-block-start:.3rem; font-family:var(--sans); font-size:.78rem; }
+.imgcap { display:block; font-size:.84rem; color:var(--muted); margin-block-start:.4rem; }
+
+.ext { font-size:.78rem; color:var(--muted); padding-inline-start:.12em; }
+.doclink { display:inline-block; min-inline-size:1.5rem; min-block-size:1.5rem; padding:.15rem .2rem; }
+
+/* ---------- gallery ---------- */
+.gallery { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.2rem 0 2rem; }
+.gallery a {
+  flex:0 0 auto; width:11rem; border:0; text-align:center; color:var(--muted);
+  font-family:var(--sans); font-size:.78rem; line-height:1.4;
+}
+.gallery img { width:100%; height:8rem; object-fit:cover; border:1px solid var(--line); border-radius:var(--radius); background:#fff; }
+/* a crop far wider than the frame is shown whole rather than magnified */
+.gallery img.contain { object-fit:contain; padding:.3rem; }
+/* a line strip (wider than 6:1) is a hairline inside a square tile: it takes
+   the whole row and keeps its own proportions, so the writing can be read */
+.gallery a.wide { width:100%; }
+.gallery a.wide img { height:auto; max-block-size:11rem; object-fit:contain; }
+.gallery span { display:block; margin-block-start:.3rem; }
+
+/* ---------- family tree ---------- */
+.tree-embed {
+  overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius);
+  background:#fff; padding:.5rem;
+}
+/* zoom 1 == fit to width: the diagram is never wider than the frame unless the
+   reader asks for it, on a phone as on a desktop */
+.tree-embed svg {
+  width:calc(100% * var(--tree-zoom, 1));
+  min-width:min(100%, calc(75rem * var(--tree-zoom, 1)));
+  /* the global svg max-width would clamp the zoom away */
+  max-width:none;
+  height:auto; display:block; margin-inline:auto;
+}
+.tree-zoom {
+  display:flex; gap:.4rem; align-items:center; justify-content:flex-end;
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.5rem;
+}
+.tree-zoom button {
+  font:inherit; line-height:1; min-inline-size:2rem; min-block-size:2rem;
+  border:1px solid var(--line); border-radius:var(--radius); background:#fff;
+  color:var(--ink); cursor:pointer;
+}
+.tree-zoom button:hover { background:rgba(0,0,0,.04); }
+.tree-zoom button:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+.legend {
+  display:flex; gap:1.1rem; justify-content:center; flex-wrap:wrap;
+  padding:.7rem 0 .2rem; font-family:var(--sans); font-size:.8rem; color:var(--muted);
+}
+.legend > span { display:flex; align-items:center; gap:.35rem; }
+.dot { width:.7rem; height:.7rem; border-radius:50%; display:inline-block; flex:0 0 auto; }
+.tree-foot {
+  font-family:var(--sans); font-size:.78rem; color:var(--muted); text-align:center;
+  max-width:52rem; margin:.5rem auto 0; line-height:1.6;
+}
+.tree-hint { font-family:var(--sans); font-size:.78rem; color:var(--muted); margin-block-start:.4rem; }
+.btn {
+  display:inline-block; font-family:var(--sans); font-size:.82rem; border:1px solid var(--accent);
+  color:var(--accent); border-radius:999px; padding:.32rem .9rem; margin-block-start:.6rem;
+}
+.btn:hover { background:var(--accent); color:#fff; }
+
+/* ---------- person index ---------- */
+.people { display:grid; grid-template-columns:repeat(auto-fill,minmax(15rem,1fr)); gap:.6rem; margin:1.2rem 0; }
+.person {
+  background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  padding:.6rem .75rem; font-size:.9rem;
+}
+.person b { display:block; font-size:.97rem; }
+.person .d { font-family:var(--sans); font-size:.78rem; color:var(--muted); }
+.person .r { display:block; color:var(--muted); font-size:.84rem; margin-block-start:.15rem; }
+
+.skip {
+  position:absolute; inset-inline-start:-9999px; inset-block-start:0; z-index:99;
+  background:var(--paper); color:var(--link); padding:.6rem 1rem;
+  border:1px solid var(--accent); border-end-end-radius:var(--radius);
+  font-family:var(--sans); font-size:.85rem;
+}
+.skip:focus { inset-inline-start:0; }
+
+/* ---------- back to top ---------- */
+.top {
+  /* the inline-end edge: in RTL that is the ragged end of the lines, so the
+     button never covers the start of a sentence */
+  position:fixed; inset-block-end:1.1rem; inset-inline-end:1.1rem; z-index:50;
+  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid var(--line);
+  background:#fff; color:var(--accent); display:grid; place-items:center;
+  font-size:1.1rem; box-shadow:0 2px 8px rgba(0,0,0,.12); opacity:0; pointer-events:none;
+  transition:opacity .2s;
+}
+.top.show { opacity:1; pointer-events:auto; }
+
+footer {
+  max-width:var(--col); margin-inline:auto; padding:1.5rem 1.25rem 3rem;
+  border-block-start:1px solid var(--line); color:var(--muted);
+  font-family:var(--sans); font-size:.8rem;
+}
+
+/* ---------- mobile ---------- */
+.qtoggle {
+  display:none; font:inherit; font-size:.82rem; line-height:1; cursor:pointer;
+  padding:.35rem .7rem; min-block-size:1.9rem; margin-inline-start:auto;
+  border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ink);
+}
+.qtoggle:focus-visible { outline:2px solid var(--link); outline-offset:1px; }
+
+@media (max-width:40rem) {
+  :root { --anchor-off: 7rem; --tree-zoom: 1; }
+  body { font-size:1rem; overflow-wrap:anywhere; }
+  bdi { overflow-wrap:anywhere; }
+  .hero { padding:1.75rem 1rem 1.5rem; }
+  main { padding:1.25rem 1rem 3rem; }
+  .nav-in { padding:0 1rem; }
+  .nav-row { height:2.4rem; }
+  /* one scrolling row instead of three wrapped ones: the sticky bar cost a
+     quarter of the screen and no link is lost by scrolling it */
+  .nav-row:first-child {
+    flex-wrap:nowrap; height:2.4rem; padding-block:0;
+    overflow-x:auto; overflow-y:hidden; scrollbar-width:none;
+  }
+  .nav-row:first-child::-webkit-scrollbar { display:none; }
+  .qtoggle { display:block; flex:0 0 auto; position:sticky; inset-inline-end:0;
+             box-shadow:-6px 0 8px rgba(250,247,242,.97); }
+  .qwrap { display:none; }
+  /* while searching, the row IS the search: the links step aside for it, and
+     nothing clips the results panel */
+  .nav.qopen .nav-row:first-child { overflow:visible; }
+  .nav.qopen .nav-row:first-child > a,
+  .nav.qopen .nav-row:first-child > .lbl { display:none; }
+  .nav.qopen .qwrap { display:block; flex:1 1 auto; margin:0; min-width:0; }
+  #q { width:100%; min-width:0; }
+  #qres { min-width:0; max-width:none; inline-size:100%; max-height:50vh; }
+  main { padding-block-end:4.5rem; }   /* clearance for the floating button */
+  td, th { overflow-wrap:break-word; }
+  .tree-embed { max-block-size:70vh; overflow-y:auto; }
+  .spine { display:grid; grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr)); }
+  /* an odd last tile would otherwise sit alone at half width */
+  .spine div:last-child:nth-child(odd) { grid-column:1/-1; }
+  .spine div { min-width:0; padding:.45rem .6rem; }
+  .spine b { font-size:1.1rem; }
+  .gallery a { width:8.5rem; }
+  .gallery img { height:6rem; }
+  /* the story page on a phone: the portrait sits beside the title rather than
+     costing a screen of its own */
+  .story-hero .hero-cols { gap:1rem; }
+  .story-hero .portrait { inline-size:6.5rem; }
+  .story-hero .portrait figcaption { display:none; }
+  .story-hero .subject { font-size:.98rem; }
+  .timeline::before { inset-inline-start:calc(4.425rem - 1px); }
+  .tl-when { flex-basis:3.6rem; }
+  .tl-when b { font-size:.85rem; }
+  li.tl { gap:.9rem; }
+  .doccards { grid-template-columns:1fr 1fr; gap:.7rem; }
+  .doccard img { block-size:7rem; }
+  .doccard figcaption { padding:.55rem .6rem .65rem; font-size:.84rem; }
+  .verdicts { gap:.7rem; margin-block:1.2rem 1.8rem; }
+  .rungs, .terms { grid-template-columns:1fr; }
+  /* the link to the full report is the one thing that must never scroll out
+     of the phone's navigation row */
+  .nav-report {
+    position:sticky; inset-inline-end:0; background:var(--paper);
+    box-shadow:6px 0 8px rgba(250,247,242,.97);
+  }
+  /* the way back to the story must never scroll out of reach either */
+  .nav-story {
+    position:sticky; inset-inline-start:0; background:var(--paper);
+    box-shadow:-6px 0 8px rgba(250,247,242,.97); margin-inline-end:.3rem;
+  }
+  .toc-list { columns:1; padding-inline:1.6rem; }
+  .top { width:2.2rem; height:2.2rem; inset-block-end:.7rem; inset-inline-end:.7rem; font-size:.95rem; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  @page { size:A4; margin:16mm 14mm; }
+  @page landscape { size:A4 landscape; }
+  body { background:#fff; font-size:10.5pt; line-height:1.5; }
+  .nav, .top, #qres, .tree-hint, .btn, .hero .crumb, .prov, .tree-zoom, .skip { display:none !important; }
+  /* a collapsed block prints as its summary alone; the script opens every
+     <details> for the print run, and this is the belt to that pair of braces */
+  .ladder > summary { font-weight:700; color:#000; }
+  details:not([open]) > *:not(summary) { display:block !important; }
+  .story-hero .portrait img { border:1px solid #bbb; box-shadow:none; }
+  .story-hero .portrait figcaption { color:#444; }
+  .verdict, .doccard { border:1px solid #bbb; break-inside:avoid; }
+  li.tl { break-inside:avoid; }
+  .doccards { grid-template-columns:1fr 1fr; }
+  .report-cta { display:none !important; }
+  .hero { background:#fff !important; color:#000; padding:0 0 1rem; border-block-end:2px solid #000; }
+  .hero .meta, .spine span { color:#444; }
+  .spine div { border:1px solid #bbb; background:#fff; }
+  .spine b { color:#000; }
+  main, footer, .hero-in { max-width:none; }
+  h2 { break-after:avoid; }
+  figure, .tablewrap, .person { break-inside:avoid; }
+  figure img { max-height:150mm; box-shadow:none; }
+  #tree { break-before:page; page:landscape; }
+  #tree .tree-embed { overflow:visible; border:0; break-inside:avoid; }
+  /* the diagram is near-square: fitting the width alone spills it over two
+     pages, so the height of a landscape A4 is the binding constraint */
+  .tree-embed svg {
+    min-width:0; width:auto; height:auto; max-width:100%; max-height:118mm;
+    display:block; margin-inline:auto;
+  }
+  #tree h2 { break-after:avoid; }
+  .tree-foot, .legend { font-size:7pt; line-height:1.35; }
+  /* overflow-x has no meaning on paper: a scrolling table would simply lose
+     its last column */
+  .tablewrap { overflow:visible; }
+  .tablewrap table { table-layout:fixed; width:100%; }
+  .tablewrap td, .tablewrap th { overflow-wrap:anywhere; }
+  a { border-block-end:0; color:#000; }
+  /* the external address is what a paper reader cannot otherwise recover;
+     a relative path would only repeat the file name the link already shows */
+  #index a[href^="http"]::after, #report a[href^="http"]::after,
+  #changelog a[href^="http"]::after {
+    content:" ‹" attr(href) "›"; font-size:8pt; color:#555; word-break:break-all;
+  }
+}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XMQGB7M9VP"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XMQGB7M9VP');</script>
+<link rel="canonical" href="https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/%D7%99%D7%A2%D7%A7%D7%91-%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C.html">
+<link rel="icon" href="https://ohadzad.github.io/ancestry-research/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="מחקר שורשי המשפחה">
+<meta property="og:title" content="יעקב בלומנטל — הדוח המלא: מסמכים ומקורות">
+<meta property="og:description" content="דף מחקר על יעקב בלומנטל, חייל ב-1948 ואביו של שמשון אחימאיר — תעודת הנישואין עם מרים ליבוביץ, פתח תקווה 27.10.1948; הוריו משה בן ציון וחוה, ככל הנראה…">
+<meta property="og:url" content="https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/%D7%99%D7%A2%D7%A7%D7%91-%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C.html">
+<meta property="og:image" content="https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/docs/thumbs/ev_marriage_portrait_1200q80_ad2e22.jpg">
+<meta property="og:image:alt" content="תעודת הנישואין, פתח תקווה, 27.10.1948: יעקב בלומנטל, 30, חייל, אי שם; מרים ליבוביץ, 22, פועלת, חובבי ציון 12">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"יעקב בלומנטל — הדוח המלא: מסמכים ומקורות","description":"דף מחקר על יעקב בלומנטל, חייל ב-1948 ואביו של שמשון אחימאיר — תעודת הנישואין עם מרים ליבוביץ, פתח תקווה 27.10.1948; הוריו משה בן ציון וחוה, ככל הנראה…","inLanguage":"he","url":"https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/%D7%99%D7%A2%D7%A7%D7%91-%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C.html","mainEntityOfPage":"https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/%D7%99%D7%A2%D7%A7%D7%91-%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C.html","author":{"@type":"Organization","name":"מחקר שורשי המשפחה","url":"https://ohadzad.github.io/ancestry-research/"},"publisher":{"@type":"Organization","name":"מחקר שורשי המשפחה","url":"https://ohadzad.github.io/ancestry-research/"},"isPartOf":{"@type":"WebSite","name":"מחקר שורשי המשפחה","url":"https://ohadzad.github.io/ancestry-research/"},"about":{"@type":"Person","name":"יעקב בלומנטל","spouse":[{"@type":"Person","name":"מרים בלומנטל לבית ליבוביץ"}]},"image":"https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/docs/thumbs/ev_marriage_portrait_1200q80_ad2e22.jpg","dateModified":"2026-10-27"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"מחקר שורשי המשפחה","item":"https://ohadzad.github.io/ancestry-research/"},{"@type":"ListItem","position":2,"name":"יעקב בלומנטל","item":"https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/%D7%99%D7%A2%D7%A7%D7%91-%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C-%D7%94%D7%A1%D7%99%D7%A4%D7%95%D7%A8.html"},{"@type":"ListItem","position":3,"name":"הדוח המלא","item":"https://ohadzad.github.io/ancestry-research/yaakov-blumenthal/%D7%99%D7%A2%D7%A7%D7%91-%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C.html"}]}</script>
+</head>
+<body>
+<a class="skip" href="#report">דילוג לתוכן</a>
+<a class="top" href="#top" aria-label="חזרה לראש העמוד" tabindex="-1">↑</a>
+<span id="top"></span>
+<header class="hero"><div class="hero-in"><div class="crumb"><a href="../index.html">← ארכיון מחקר המשפחה</a></div><h1>יעקב בלומנטל</h1><p class="subject">כ-1918 · הונגריה — נוגראדברצל? · חייל ב-1948 · פתח תקווה · אבי מאיר (<bdi dir="ltr">1952–1974</bdi>) ושמשון אחימאיר</p><div class="meta">עודכן 27.10.2026 · מהדורה 3</div><div class="spine"><div><b>1948</b><span>תעודת הנישואין — המסמך הראשון</span></div><div><b>9</b><span>דפי עד על הוריו</span></div><div><b>10</b><span>ילדים בבית שממנו, ככל הנראה, בא</span></div><div><b>1974</b><span>מות בנו מאיר</span></div></div></div></header>
+<nav class="nav" aria-label="ניווט ראשי"><div class="nav-in"><div class="nav-row"><a class="nav-story" href="יעקב-בלומנטל-הסיפור.html">הסיפור →</a><a href="#report">הדוח</a><a href="#tree">עץ המשפחה</a><a href="#gallery">מסמכי מפתח</a><a href="#people">אינדקס אנשים</a><a href="#index">אינדקס מקורות</a><button type="button" class="qtoggle" aria-expanded="false" aria-controls="q">חיפוש</button><div class="qwrap"><input id="q" type="search" placeholder="חיפוש בפרקים, אנשים ומקורות…" aria-label="חיפוש בפרקים, באנשים ובמקורות" autocomplete="off" aria-controls="qres" hidden><div id="qres" role="region" aria-label="תוצאות החיפוש" aria-live="polite" hidden></div></div></div></div></nav>
+<main>
+<section id="report"><details class="ladder"><summary>סולם הוודאות ומונחי המחקר — מה המילים האלה אומרות</summary><div class="ladder-in"><div class="rungs"><div class="rung"><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span><span>נקרא במסמך בן התקופה, והקריאה ודאית.</span></div><div class="rung"><span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span><span>כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.</span></div><div class="rung"><span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span><span>הראיה תומכת, אך חסר פרט מזהה שיכריע.</span></div><div class="rung"><span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span><span>נמסר או שוער, וטרם נבדק מול מסמך.</span></div><div class="rung"><span class="rank v5" title="נשלל — נבדק ונמצא שאינו מתאים.">נשלל</span><span>נבדק ונמצא שאינו מתאים.</span></div></div><div class="terms"><div class="term"><b>דף עד</b><span>טופס של יד ושם שבו קרוב או מכר רושם נספה: שם, הורים, לידה, מגורים, ומה ידוע על מותו. עדות — לא רשומה בת-זמנה.</span></div><div class="term"><b>יזכור</b><span>אתר ההנצחה של משרד הביטחון לחללי מערכות ישראל, ובהם חיילים שנפטרו בשירות.</span></div><div class="term"><b>IGRA</b><span>העמותה הישראלית לשורשים משפחתיים — מאגר מאונדקס של רשימות עולים, פנקסי בוחרים, נישואין ורשומות רשמיות.</span></div></div></div></details><details class="toc"><summary>תוכן העניינים — תשעה פרקים</summary><ol class="toc-list"><li><a href="#s1-תמצית">1. תמצית</a></li><li><a href="#s2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</a></li><li><a href="#s3-תעודת-הנישואין-1948">3. תעודת הנישואין, 1948</a></li><li><a href="#s4-נוגראדברצל-משפחת-בלומנטל">4. נוגראדברצל — משפחת בלומנטל</a></li><li><a href="#s5-פתח-תקווה-המשפחה">5. פתח תקווה — המשפחה</a></li><li><a href="#s6-השם-אחימאיר">6. השם אחימאיר</a></li><li><a href="#s7-עץ-המשפחה">7. עץ המשפחה</a></li><li><a href="#s8-פעולות-פתוחות">8. פעולות פתוחות</a></li><li><a href="#s9-שיטה-ומגבלות">9. שיטה ומגבלות</a></li></ol></details><div class="lede"><p><strong>יעקב בלומנטל</strong> נשא את <strong>מרים ליבוביץ</strong> ב-<strong>27 באוקטובר 1948</strong> ברבנות פתח תקווה, בעיצומה של מלחמת העצמאות. בתעודת הנישואין הוא "חייל" בן 30, מקום מגוריו "אי שם...", ושמות הוריו — <strong>משה בן ציון</strong> ו<strong>חוה</strong> בלומנטל — מסומנים "מת", "מתה".<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> בנם <strong>מאיר</strong> נולד בפתח תקווה ב-1952; כדורגלן של הפועל פתח תקווה וחייל בחיל האוויר, הוא צנח ומת באימון ב-21 בנובמבר 1974, בן 22, ו"השאיר אחריו הורים, שני אחים ואחות".<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a><a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> על שמו — "אחי-מאיר", אחיו של מאיר — נקראו אחיו <strong>אחימאיר</strong>; אם גם יעקב ומרים שינו את שמם — לא נמצא מסמך.<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a></p>
+<p>מאין בא יעקב? לפי המשפחה — מהונגריה; וככל הנראה מ<strong>נוגראדברצל</strong> (Nógrádbercel): הוריו הם, כנראה, <strong>משה בן ציון ("בנו") בלומנטל</strong> ו<strong>חוה (אידה) לבית דויטש</strong> — "<bdi dir="ltr">Blumenthal Benő és neje Deutsch Ida</bdi>" ("בנו בלומנטל ואשתו אידה דויטש"), בעלי אחוזה בנוגראדברצל בעיתון הרשמי ההונגרי של 1926<a href="#src-14" class="cit" title="אל ערך המקור">[14]</a> — הורים לעשרה, שנלקחו במאי 1944. דפי עד עליהם מילאו ארבעה מילדיהם, שחיו בפתח תקווה;<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a><a href="#src-3" class="cit" title="אל ערך המקור">[3]</a> ועץ משפחה ב-MyHeritage שמנהל קרוב, "מ. בלומנטל", רושם את יעקב כבנם.<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a> מסמך שנוקב בשמו — אין; הזיהוי — <span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span> (<a href="#s4-4">4.4</a>).</p>
+<p>כל מסמך שנקרא מופיע פעמיים — קישור אל הרשומה בארכיון וקישור אל עותק שמור; גם ממצא שלילי נרשם (<a href="#s9-4">9.4</a>).</p></div>
+<p><strong>מאיפה להתחיל</strong></p>
+<ul>
+<li><a href="#s3">תעודת הנישואין, 1948</a> — המסמך שעליו נשען הכול.</li>
+<li><a href="#s4">נוגראדברצל — משפחת בלומנטל</a> — דפי העד, ומה הם מוכיחים ומה לא.</li>
+<li><a href="#s5">מאיר, <bdi dir="ltr">1952–1974</bdi></a> — הבן שעל שמו נקראו אחיו.</li>
+<li><a href="#s6">השם אחימאיר</a> — מה ידוע ומה לא.</li>
+<li><a href="#s8">הפעולות הפתוחות</a> — מה עוד חסר, ואת מי לשאול.</li>
+</ul>
+<hr />
+<span id="1-תמצית" class="legacy-anchor"></span><span id="s1" class="legacy-anchor"></span><h2 id="s1-תמצית">1. תמצית</h2>
+<p><strong>המסמך הראשון:</strong> תעודת נישואין מס' H 99915 של רבנות פתח תקווה, מחוז תל אביב, 27.10.1948 — כ"ד בתשרי תש"ט. החתן: "יעקב בלומנטל", 30, "חייל", העדה "ישראלית", מקום המגורים "אי שם...", אביו "משה בן ציון בלומנטל" — "מת", אמו "חוה" — "מתה". הכלה: "מרים ליבוביץ", 22, "פועלת", פתח תקווה, רחוב חובבי ציון 12, בת "משה הלוי ליבוביץ" ו"פרימט" — שניהם מתים. העדים: זישא שלנגר וצבי יהושע גורדון, פקיד.<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> — <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span>.</p>
+<p><strong>הילדים:</strong> כרטיס ההתאמה של MyHeritage לשמשון מונה את הוריו, "יעקב בלומנטל ומרים ליבוביץ'", ואת אחיו, "משה, נאוה ומאיר" — ככל הנראה מתוך רשומה ב-Geni.<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> מאיר — <strong>מאיר בלומנטל, "בן מרים ויעקב"</strong>, נולד ב-11.4.1952 בפתח תקווה ומת בשירות צבא הקבע ב-21.11.1974; "השאיר אחריו הורים, שני אחים ואחות".<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a> — הדף <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span>; שזהו בנם של יעקב ומרים שלנו — <span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span>: שמות ההורים, העיר, שנת הלידה בין 1948 ל-1954, ומספר האחים — כולם מתיישבים (<a href="#s5-1">5.1</a>). מכאן גם: <strong>יעקב ומרים היו בחיים בנובמבר 1974</strong>; ומודעת אבל מאותם ימים פונה ישירות ל"יעקב בלומנטל" (<a href="#s5-2">5.2</a>). וב-28.9.1975 "העניק <strong>אביו של מאיר בלומנטל ז"ל</strong>" את הגביע על שם בנו, במגרש — כלומר, יעקב היה בחיים גם בספטמבר 1975 (<a href="#s5-1">5.1</a>).<a href="#src-15" class="cit" title="אל ערך המקור">[15]</a></p>
+<p><strong>המוצא:</strong> לפי המשפחה — <strong>הונגריה</strong>, בלי עיר.<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a> משה בן ציון ("בנו") בלומנטל ואשתו חוה (אידה) לבית דויטש — "<bdi dir="ltr">Blumenthal Benő és neje Deutsch Ida, nógrádberceli lakosok</bdi>" ("בנו בלומנטל ואשתו אידה דויטש, תושבי נוגראדברצל") בעיתון הרשמי ההונגרי, 1926<a href="#src-14" class="cit" title="אל ערך המקור">[14]</a> — נספו, לפי רוב הדפים, ב-1944. עליהם תשעה דפי עד — מבניהם יצחק (1956), יהודה (1956) ומיכאל (1995, באמצעות בתו), מבתם רבקה גומבו, ומנכדתם חוה שרה דויטש-כהן;<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a><a href="#src-3" class="cit" title="אל ערך המקור">[3]</a> בארבעה מהדפים — "10" ילדים. יצחק ובני משפחה נוספים — בפתח תקווה.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> <strong>שיעקב הוא אחד מעשרת הילדים — ככל הנראה, ובחוזקה</strong>: הזוג "משה בן ציון וחוה בלומנטל" נמצא במאגר השמות של יד ושם רק בנוגראדברצל (במגבלות החיפוש — <a href="#s4-4">4.4</a>); המשפחה מוסרת שיעקב בא מהונגריה; אחיו לכאורה חיו בפתח תקווה, שם נישא (וגם הכלה גרה שם); ועץ משפחה שמנהל קרוב מונה אותו כבנם — עץ שמקורותיו לא ידועים, ושייתכן שנבנה מאותה התאמת שמות לתעודת הנישואין.<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a> מסמך שמונה את יעקב בין הילדים — אין.</p>
+<p><strong>מה לא נמצא:</strong> מתי עלה יעקב ארצה ובאיזו דרך; מה עשה עד 1948; מתי ואיפה נפטר — אחרי ספטמבר 1975. כל אלה — <a href="#s8">פרק 8</a>.</p>
+<span id="2-מה-ידוע-מהמשפחה" class="legacy-anchor"></span><span id="s2" class="legacy-anchor"></span><h2 id="s2-מה-ידוע-מהמשפחה">2. מה ידוע מהמשפחה</h2>
+<p>נקודת המוצא היא עץ המשפחה ב-MyHeritage ("Achimeir Family Tree") — לא רשומה, אלא זיכרון משפחתי שנרשם.<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> בעץ עצמו אין לשמשון הורים; בכרטיס התאמה ("Record Match") מ-26.10.2026 מסכם האתר: "הורים: <strong>יעקב בלומנטל ומרים ליבוביץ'</strong>", "אחים/אחיות: <strong>משה, נאוה ומאיר</strong>" — ומתאים את שמשון לפרופיל ב-Geni בשם "<strong>שמשון אחי-מאיר</strong>", שבו גם "מאיר בלומנטל"; שאר הפרטים מוצפנים בתצוגה החינמית. מקור השמות, ככל הנראה — הרשומה ב-Geni.</p>
+<p>ומפי המשפחה (אוהד צדוק, 26.10.2026):<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a> "השם משפחה שלהם הוא בלומנטל, אחימאיר זה על שם האח מאיר שנפטר בגיל צעיר"; ובהודעה נוספת: "<strong>שני ההורים מהונגריה</strong>, אני לא בטוח מאיזו עיר, נוכל לשאול את שמשון מחר". — <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span> כעדות המשפחה; העיר — עוד לא נמסרה.</p>
+<p>צאצאיו: <strong>שמשון אחימאיר</strong> (נ' 26.1.1954), נשוי מ-7.9.1981 ל<strong>אילנה לבית קוטנר</strong> — בתם של אברהם וצפורה קוטנר (<a href="../index.html#research-avraham-kutner">המחקר על אברהם</a>, <a href="../index.html#research-tzipora-kutner">המחקר על צפורה</a>). ילדיהם: <strong>טל</strong> (14.3.1987, שיקגו), נשואה מ-11.6.2017 ל<strong>אוהד צדוק</strong>; <strong>איל</strong> (23.7.1989, שיקגו); ו<strong>שירי</strong> (4.1.1998).<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> בנותיהם של טל ואוהד, <strong>יסמין</strong> ו<strong>יערה</strong> — במחקרים על משפחת קוטנר. — מן העץ המשפחתי; <span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span> מול רשומה.</p>
+<p>ומעץ משפחה ב-MyHeritage שמנהל קרוב, "מ. בלומנטל מישראל" — עץ שכולל גם את "יוסף יונגר" ו"פסיה יונגר", "אבא של כלתה" ו"אמא של כלתה" של מרים, ולכן, ככל הנראה, נבנה בידי אחד מצאצאי יעקב ומרים — כפי שהגיע למשפחה כ"התאמה חכמה" (26.10.2026):<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a> "<strong>מרים מגדה בלומנטל (לבית ליבוביץ)</strong>", ילידת 1925, הונגריה, נפטרה ב-2003; בעלה יעקב בלומנטל; ילדיה — מאיר ושלושה נוספים (פרטיים). חמיה — משה בן ציון בלומנטל; חמותה — חוה (לבית Deutsch); "סבתא של בעלה" — "Regina Rebekka Blumenthál" (אם האב), ו"סבא של בעלה" — "Juda Julius Deutsch" (אבי האם); וסבי-הסבים — "Izsak (יצחק) \"Ignacz\" Blumenthál" ו-"Hani / Johanna"; "מאיר הלוי סגל ווזנר (Wosner, Halevi)" ו"ציפורה פייגלא"; "Ignaz Naten Deutsch" ו-"Sara Rosalia Deutsch (לבית Brandt)". עץ משתמשים שמקורותיו לא ידועים — <strong>כיוון, לא רשומה</strong>; מתיישב עם דפי העד, אבל אינו עדות בלתי תלויה בהם.</p>
+<span id="3-תעודת-הנישואין-1948" class="legacy-anchor"></span><span id="s3" class="legacy-anchor"></span><h2 id="s3-תעודת-הנישואין-1948">3. תעודת הנישואין, 1948</h2>
+<span id="3-1-התעודה" class="legacy-anchor"></span><h3 id="s3-1-התעודה"><span id="s3-1" class="legacy-anchor"></span>3.1 התעודה</h3>
+<figure><a href="docs/igra/marriage_cert_H99915_petah_tikva_1948-10-27.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_marriage_header_1400q82_e1cf37.jpg" alt="כותרת התעודה: תעודת נישואין מס' H 99915, מחוז תל אביב, פתח תקווה, 27.10.48, כ&quot;ד תשרי תש&quot;ט, משרד הרבנות" loading="lazy" decoding="async" width="1400" height="149"></a><figcaption><span class="fignum">איור 1</span> — כותרת התעודה: תעודת נישואין מס' H 99915, מחוז תל אביב, פתח תקווה, 27.10.48, כ&quot;ד תשרי תש&quot;ט, משרד הרבנות</figcaption></figure>
+<figure><a href="docs/igra/marriage_cert_H99915_petah_tikva_1948-10-27.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_marriage_husband_1400q82_802233.jpg" alt="שורת החתן: יעקב בלומנטל, 30, חייל, ישראלית, אי שם..., משה בן ציון בלומנטל — מת; חוה — מתה; העדים זישא שלנגר וצבי יהושע גורדון" loading="lazy" decoding="async" width="1400" height="201"></a><figcaption><span class="fignum">איור 2</span> — תעודת נישואין H 99915, רבנות פתח תקווה, 27.10.1948. המקור: <a href="#src-1">ערך 1</a>.</figcaption></figure>
+<div class="tablewrap"><table><caption class="visually-hidden">3.1 התעודה</caption>
+<thead>
+<tr>
+<th scope="col">שדה</th>
+<th scope="col">קריאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>מקום ותאריך</td>
+<td>פתח תקווה, "משרד הרבנות"; 27.10.1948 — כ"ד תשרי תש"ט</td>
+<td>מאומת</td>
+</tr>
+<tr>
+<td>שם החתן</td>
+<td>יעקב בלומנטל</td>
+<td>מאומת</td>
+</tr>
+<tr>
+<td>גיל</td>
+<td>30 — כלומר נולד ב-1917 או ב-1918</td>
+<td>מאומת כרישום</td>
+</tr>
+<tr>
+<td>משלח יד</td>
+<td>"חייל"</td>
+<td>מאומת</td>
+</tr>
+<tr>
+<td>מקום מגורים</td>
+<td>"אי שם..."</td>
+<td>מאומת</td>
+</tr>
+<tr>
+<td>אביו</td>
+<td>"משה בן ציון בלומנטל" — "מת"</td>
+<td>מאומת</td>
+</tr>
+<tr>
+<td>אמו</td>
+<td>"חוה" — "מתה"</td>
+<td>מאומת</td>
+</tr>
+<tr>
+<td>העדים</td>
+<td>זישא שלנגר; צבי יהושע גורדון, "פקיד"</td>
+<td>מאומת</td>
+</tr>
+</tbody>
+</table></div>
+<span id="3-2-מה-התעודה-אומרת-על-יעקב" class="legacy-anchor"></span><h3 id="s3-2-מה-התעודה-אומרת-על-יעקב"><span id="s3-2" class="legacy-anchor"></span>3.2 מה התעודה אומרת על יעקב</h3>
+<p>שבאוקטובר 1948 היה <strong>חייל</strong>; שבמקום הכתובת נכתב "אי שם..." — בעוד שכתובת הכלה מפורטת; ושהוריו <strong>כבר אינם בחיים</strong>, כמו הוריה של הכלה. ההסבר ל"אי שם" — שירות צבאי שאין לנקוב במקומו — הוא פרשנות, לא ממצא. מאיזו יחידה, ומתי גויס — לא ידוע; תיק השירות בארכיון צה"ל — <a href="#s8">פרק 8</a>.</p>
+<p>על הכלה, מרים ליבוביץ — <a href="../index.html#research-miriam-blumenthal">המחקר עליה</a>.</p>
+<span id="4-נוגראדברצל-משפחת-בלומנטל" class="legacy-anchor"></span><span id="s4" class="legacy-anchor"></span><h2 id="s4-נוגראדברצל-משפחת-בלומנטל">4. נוגראדברצל — משפחת בלומנטל</h2>
+<span id="4-1-משה-בן-ציון-בנו-בלומנטל" class="legacy-anchor"></span><h3 id="s4-1-משה-בן-ציון-בנו-בלומנטל"><span id="s4-1" class="legacy-anchor"></span>4.1 משה בן ציון ("בנו") בלומנטל</h3>
+<p>ארבעה דפי עד ביד ושם על <strong>משה בן ציון בלומנטל</strong> מנוגראדברצל (Nógrádbercel), כפר במחוז נוגראד שבהונגריה:<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a></p>
+<div class="tablewrap"><table><caption class="visually-hidden">4.1 משה בן ציון (&quot;בנו&quot;) בלומנטל</caption>
+<thead>
+<tr>
+<th scope="col">דף</th>
+<th scope="col">ממלא</th>
+<th scope="col">קרבה</th>
+<th scope="col">תאריך</th>
+<th scope="col">לידה</th>
+<th scope="col">הוריו</th>
+<th scope="col">מקצוע</th>
+<th scope="col">במלחמה ומותו</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1349233</td>
+<td>יצחק בלומנטל, פתח תקווה, שיכון עממי כפר אברהם 14</td>
+<td>בן</td>
+<td>4.6.1956</td>
+<td>1892, נוגראדברצל</td>
+<td>מאיר (Mór) ורבקה (Rebeka)</td>
+<td>"מורה" (Tanító)</td>
+<td>"אי שם בגרמניה" (Valahol Németország)</td>
+</tr>
+<tr>
+<td>310307</td>
+<td>יהודה בלומנטל, פתח תקווה</td>
+<td>בן</td>
+<td>17.12.1956</td>
+<td>1892, נוגראדברצל</td>
+<td>מאיר וחוה</td>
+<td>"איכר"</td>
+<td>"גיארמת (גטו)"; אושוויץ, 1944</td>
+</tr>
+<tr>
+<td>1804444</td>
+<td>מיכאל בלומנטל, שיכון בילינסון, פתח תקווה — באמצעות בתו</td>
+<td>בן ("נכדה" — הממלאת)</td>
+<td>17.2.1995</td>
+<td>1888, ברצל</td>
+<td>מאיר ורבקה לבית ווזנר</td>
+<td>"בעל אחוזה"</td>
+<td>"הונגריה (ברצל) עד שלקחו ב-1944 מאי"; "אושוויץ, לא חזר"</td>
+</tr>
+<tr>
+<td>3609155</td>
+<td>חוה שרה דויטש-כהן, נתניה — "סבי, אב אמי"</td>
+<td>נכדה</td>
+<td>אב תשנ"ג (1993)</td>
+<td>בן 51</td>
+<td>מור ורגינה לבית ווזנר</td>
+<td>(בשדה — "עקרת בית")</td>
+<td>אושוויץ, 1944</td>
+</tr>
+</tbody>
+</table></div>
+<figure><a href="docs/yadvashem-pot/1349233_1.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_pot_benzion_yitzhak_1070q82_edcd12.jpg" alt="דף העד של משה בן ציון בלומנטל, מאת בנו יצחק, 1956: BLUMENTHÁL, BENŐ, אב MÓR, אם REBEKA, 1892, NÓGRÁDBERCEL, TANÍTÓ, VALAHOL NÉMETORSZÁGBA, נשוי, 10 ילדים, DEUTSCH IDA" loading="lazy" decoding="async" width="1070" height="610"></a><figcaption><span class="fignum">איור 3</span> — דף עד 1349233, מאת יצחק בלומנטל, בנו, פתח תקווה, 4.6.1956: «משה בן ציון / BENŐ · מאיר / MÓR · רבקה / REBEKA · 1892 · נוגראדברצל · מורה / TANÍTÓ · אי שם בגרמניה / VALAHOL NÉMETORSZÁGBA · נשוי / מספר הילדים: 10 · DEUTSCH IDA». המקור: <a href="#src-2">ערך 2</a>.</figcaption></figure>
+<p>הדפים חלוקים בשנת הלידה (1888 או 1892; "בן 51"), במקצוע (מורה, בעל אחוזה, איכר), בשם אמו (רבקה / רגינה / חוה) — ובמקום מותו: "אי שם בגרמניה" לפי יצחק (1956), אושוויץ לפי שלושת האחרים. הם מוצגים כאן כולם, בלי להכריע. מה שמשותף לכולם: <strong>משה בן ציון בלומנטל, נוגראדברצל, נשוי לחוה (אידה) לבית דויטש, נספה בשואה</strong> (1944 — בשלושה מן הדפים) — <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span> כעדות ילדיו ונכדתו. לפי שני דפים של יהודה, הוריו היו בזמן המלחמה ב"גיארמת (גטו)" — ככל הנראה באלאשאג'רמאט שבמחוז נוגראד.<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a><a href="#src-3" class="cit" title="אל ערך המקור">[3]</a></p>
+<span id="4-2-חוה-אידה-בלומנטל-לבית-דויטש" class="legacy-anchor"></span><h3 id="s4-2-חוה-אידה-בלומנטל-לבית-דויטש"><span id="s4-2" class="legacy-anchor"></span>4.2 חוה (אידה) בלומנטל לבית דויטש</h3>
+<p>חמישה דפי עד, באשכול אחד ביד ושם:<a href="#src-3" class="cit" title="אל ערך המקור">[3]</a></p>
+<div class="tablewrap"><table><caption class="visually-hidden">4.2 חוה (אידה) בלומנטל לבית דויטש</caption>
+<thead>
+<tr>
+<th scope="col">דף</th>
+<th scope="col">ממלא/ת</th>
+<th scope="col">קרבה</th>
+<th scope="col">לידה</th>
+<th scope="col">הוריה</th>
+<th scope="col">מותה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1351282</td>
+<td>רבקה גומבו, פתח תקווה</td>
+<td>בת</td>
+<td>1888, בורגנלנד, אוסטריה</td>
+<td>יהודה ואסתר</td>
+<td>אושוויץ</td>
+</tr>
+<tr>
+<td>1815364</td>
+<td>מיכאל בלומנטל, פתח תקווה (1995)</td>
+<td>בן</td>
+<td>1885, פראואנקירכן, אוסטריה</td>
+<td>יהודה דויטש ואסתר</td>
+<td>"נלקחה ב-1944 למשרפות אושוויץ", מאי 1944</td>
+</tr>
+<tr>
+<td>418389</td>
+<td>יהודה בלומנטל (1956)</td>
+<td>בן</td>
+<td>1888, בורגנלנד, אוסטריה</td>
+<td>יהודה ורגינה</td>
+<td>"גיארמת (גטו)"; אושוויץ, 1944</td>
+</tr>
+<tr>
+<td>421417</td>
+<td>יצחק בלומנטל (1956)</td>
+<td>בן</td>
+<td>1890, Boldogasszony</td>
+<td>יהודה (Gyula) ואסתר (Eszter)</td>
+<td>אושוויץ</td>
+</tr>
+<tr>
+<td>3605706</td>
+<td>חוה שרה דויטש-כהן, נכדה</td>
+<td>נכדה</td>
+<td>בת 52; Boldogasszony (פראואנקירכן), בורגנלנד</td>
+<td>גיולה ואנה</td>
+<td>אושוויץ, 1944</td>
+</tr>
+</tbody>
+</table></div>
+<figure><a href="docs/yadvashem-pot/1351282_1.jpg" target="_blank" rel="noopener"><img src="docs/ev_pot_chava_rivka.jpg" alt="דף העד של אידה בלומנטל, מאת בתה רבקה גומבו: אידה, אב יהודה, אם אסתר, 1888, בורגנלנד אוסטריה, נוגראד ברצל הונגריה, עקרת בית, אושוויץ, נשואה, 10, דויטש אידה, בעלה בלומנטל משה בן ציון" loading="lazy" decoding="async" width="1070" height="580"></a><figcaption><span class="fignum">איור 4</span> — דף עד 1351282, מאת רבקה גומבו, בתה, פתח תקווה: «בלומנטל / Blumental · אידה / Ida · אב: יהודה · אם: אסתר · 1888 · בורגנלנד, אוסטריה · נוגראד ברצל, הונגריה · עקרת בית · אושוויץ · נשואה, 10 · דויטש אידה · בעלה: בלומנטל משה בן ציון». המקור: <a href="#src-3">ערך 3</a>.</figcaption></figure>
+<p>שנת הלידה — 1885, 1888, 1890, או "בת 52" במותה; שם אמה — אסתר (שלושה דפים), רגינה, אנה; שם אביה — יהודה, או גיולה (Gyula). מקום הולדתה — פראואנקירכן (Boldogasszony) שבבורגנלנד. בארבעה דפים (של יצחק על אביו, של רבקה, של יצחק עליה ושל הנכדה) — <strong>עשרה ילדים</strong>. — <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span> כעדות ילדיה ונכדתה.</p>
+<span id="4-3-הילדים-שמילאו-את-הדפים-ופתח-תקווה" class="legacy-anchor"></span><h3 id="s4-3-הילדים-שמילאו-את-הדפים-ופתח-תקווה"><span id="s4-3" class="legacy-anchor"></span>4.3 הילדים שמילאו את הדפים — ופתח תקווה</h3>
+<p>מבין עשרת הילדים, ארבעה ידועים בשמם מתוך הדפים: <strong>יצחק</strong>, <strong>מיכאל</strong>, <strong>יהודה</strong> ו<strong>רבקה</strong> (גומבו); וחמישית — אמה של הנכדה חוה שרה דויטש-כהן ("סבי — אב אמי"), שאינה בשמה. העץ של "מ. בלומנטל" מונה עוד את <strong>מאיר</strong>, <strong>ייטל (יהודית) לאה</strong> ו<strong>פירושקה-פירי (פייגה הינדל)</strong>, ולצדה <strong>יעקב כהן</strong>; ובין הגיסות — <strong>סימה לבית שרייבר</strong>: לפי פנקס 1961, אשת יצחק הייתה סימה — ככל הנראה היא.<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a><a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> אחרי המלחמה — ב<strong>פתח תקווה</strong>:</p>
+<ul>
+<li><strong>יצחק בלומנטל</strong>, יליד 1915, בן משה — בפנקס הבוחרים לכנסת, 1949, פתח תקווה, עין גנים 49;<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> ובפנקס 1961 — "כ[פר] אברהם, ש[יכון] עממי 14", אותה כתובת שבדף העד שמילא ב-1956, ולצדו <strong>סימה</strong>.<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> סימה — ילידת 1923 בפנקס 1961, אבל ב-1949, באותה כתובת בעין גנים 49, "סימה, בת אברהם, 1915" — אותה אישה, ככל הנראה, בשנות לידה שונות.</li>
+<li><strong>יהודה</strong> — חתם על דפיו "פ"ת", 1956.<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a></li>
+<li><strong>רבקה גומבו</strong> — חתמה על דף העד של אמה "פ"ת"; התאריך — "24.7.5?", ככל הנראה 1957.<a href="#src-3" class="cit" title="אל ערך המקור">[3]</a></li>
+<li><strong>מיכאל</strong> — "שיכון בילינסון", פתח תקווה, 1995.<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a></li>
+<li>בעותק השני של פנקס 1949, באותו עמוד — "בלומנטאל הינדה, [בת] יהודה, 1920, עין גנים 49", ו"בלומנטאל תמר, [בת] חיים, 1923, עין גנים 2".<a href="#src-4" class="cit" title="אל ערך המקור">[4]</a> בעץ של "מ. בלומנטל" — שתי גיסות בשם הינדה ("הינדא לבית ברגמן", "הינדה אהובה לבית בלונדר");<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a> הינדה מעין גנים 49 — ככל הנראה אשת אחד האחים; <span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span>.</li>
+<li>דף העד שמילאה הנכדה חוה שרה דויטש-כהן רושם את שם משפחתה הקודם — "כהן"; ובעץ של "מ. בלומנטל" — "פירושקה-פירי (פייגה הינדל) כהן (Kohn)" ובעלה "יעקב Kohn-כהן":<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a> ייתכן שפירושקה היא אמה של הנכדה — <span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span>.</li>
+</ul>
+<span id="4-4-האם-יעקב-הוא-בנם-הדירוג" class="legacy-anchor"></span><h3 id="s4-4-האם-יעקב-הוא-בנם-הדירוג"><span id="s4-4" class="legacy-anchor"></span>4.4 האם יעקב הוא בנם? — הדירוג</h3>
+<div class="tablewrap"><table><caption class="visually-hidden">4.4 האם יעקב הוא בנם? — הדירוג</caption>
+<thead>
+<tr>
+<th scope="col">נימוק</th>
+<th scope="col">בעד</th>
+<th scope="col">נגד / חסר</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>שמות ההורים</td>
+<td>"משה בן ציון" ו"חוה" — זהים לתעודת הנישואין. במאגר השמות של יד ושם (26.10.2026; "בלומנטל" + "בן ציון", Blumental / Blumentahl + Ben Zion, Blumenthal + Bencion) — חמש רשומות, ארבע מהן הוא; החמישית, "Mosze Ben Cwi" מנאגיוואראד, נשוי לאחרת</td>
+<td>המאגר מכיל רק נספי שואה: זוג באותם שמות שמת במקום אחר או לפני המלחמה — לא היה מופיע בו; לא נבדקו הכתיבים Benő, Benzion, בלומנטאל</td>
+</tr>
+<tr>
+<td>ארץ המוצא</td>
+<td>לפי המשפחה, יעקב ומרים — "מהונגריה";<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a> נוגראדברצל — בהונגריה</td>
+<td>העיר לא נמסרה</td>
+</tr>
+<tr>
+<td>שם אביה של חוה</td>
+<td>דפי העד: "יהודה", "יהודה (Gyula)"; העץ של הענף האחר: "Juda Julius Deutsch"<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a></td>
+<td>—</td>
+</tr>
+<tr>
+<td>שני ההורים מתים ב-1948</td>
+<td>מתיישב: נספו ב-1944</td>
+<td>—</td>
+</tr>
+<tr>
+<td>המקום</td>
+<td>ארבעה ילדים בפתח תקווה; יעקב נישא בפתח תקווה ובנו נולד בה</td>
+<td>חלש: הכלה גרה בפתח תקווה, והחתונה הייתה, מן הסתם, בעירה</td>
+</tr>
+<tr>
+<td>שמות הנכדים</td>
+<td><strong>מאיר</strong> — כשם אביו של משה בן ציון (Mór), כלומר כשם סבו של יעקב, אם הוא בנו; <strong>משה</strong> — כשם משה בן ציון (וגם כשם אביה של מרים)</td>
+<td>ספקולציה: שמות נפוצים</td>
+</tr>
+<tr>
+<td>מספר הילדים</td>
+<td>"10" — יש מקום לילדים שאינם בשם בדפים</td>
+<td>—</td>
+</tr>
+<tr>
+<td>עץ משפחה של קרוב</td>
+<td>MyHeritage, "התאמה חכמה" מעץ "מ. בלומנטל מישראל": "מרים מגדה בלומנטל (לבית ליבוביץ)", 1925, הונגריה; בעלה יעקב בלומנטל; חמיה "משה בן ציון בלומנטל", חמותה "חוה (לבית Deutsch)"; גיסיה — מיכאל, יהודה, מאיר, רבקה גומבו, ייטל (יהודית) לאה, פירושקה (פייגה הינדל) כהן; ובין הגיסות — סימה לבית שרייבר<a href="#src-13" class="cit" title="אל ערך המקור">[13]</a></td>
+<td>עץ משתמשים, כנראה של צאצא של יעקב ומרים; מקורותיו לא ידועים — ייתכן שההורים צורפו בו לפי אותה התאמת שמות; אינו עדות בלתי תלויה</td>
+</tr>
+<tr>
+<td>העיתונות ההונגרית</td>
+<td>"<bdi dir="ltr">Blumenthal Benő és neje Deutsch Ida, nógrádberceli lakosok</bdi>" — 1926:<a href="#src-14" class="cit" title="אל ערך המקור">[14]</a> בני הזוג מדפי העד, באותו כפר, עשרים שנה קודם</td>
+<td>אינה מזכירה ילדים</td>
+</tr>
+<tr>
+<td>מסמך ארכיוני שמונה את יעקב בין הילדים</td>
+<td>—</td>
+<td><strong>אין</strong>: אף דף עד אינו של יעקב או נוקב בו; לא נמצאה רשומת לידה</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>הדירוג: ככל הנראה — בחוזקה.</strong> שמות ההורים זהים; האחים בפתח תקווה; המשפחה מוסרת "הונגריה"; ועץ המשפחה של קרוב מונה את יעקב כבנם. אבל אין מסמך שמונה את יעקב בין הילדים, ועדות המשפחה אינה נוקבת בעיר — ולכן, לפי הסולם (<a href="#s9-2">9.2</a>), לא יותר מ"ככל הנראה". כדי לעלות — מסמך: רשומת לידה בנוגראדברצל (<bdi dir="ltr">1917/18</bdi>), תיק עלייה, תיק שירות; או עדות ישירה של שמשון, משה או נאוה (<a href="#s8">פרק 8</a>).</p>
+<span id="4-5-ברצל-בני-בלומנטל-נוספים" class="legacy-anchor"></span><h3 id="s4-5-ברצל-בני-בלומנטל-נוספים"><span id="s4-5" class="legacy-anchor"></span>4.5 ברצל — בני בלומנטל נוספים</h3>
+<p>לפי רשימות מועמדי העלייה מהונגריה ב-1947 (הארכיון הציוני, S6/36831) ביקשו לעלות מברצל שישה בני בלומנטל: דוד (1907, איכר), סומה (1894, איכר), ינו (1914, טוחן), יוז'ף (1915, סוחר), מיקלוש (1920, איכר) ואיגנץ (1926) — אף אחד מהם אינו יעקב, ובאינדקס אין שמות הורים.<a href="#src-5" class="cit" title="אל ערך המקור">[5]</a> וב-JewishGen (26.10.2026, בחשבון מחובר) — 150 התאמות פונטיות ל"בלומנטל" + "ברצל"; אבל החיפוש הפונטי מערב שני כפרים: נוגראדברצל וטיסהברצל (Tiszabercel). רק מקצת השורות קשורות במפורש לנוגראד ("b. Berczel, Nograd"). ב-1868 נשא יעקב בלומנטל, "Groom resided in Berzel [Bercel?]" ("החתן גר בברזל [ברצל?]"), את לני <strong>וושנר</strong> (Wuszner) — שם קרוב לשם המשפחה של אמו של משה בן ציון ("ווזנר"); <span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span>.<a href="#src-12" class="cit" title="אל ערך המקור">[12]</a> ועיתון בודפשטי פרסם ב-2.3.1947 את "רשימת שמותיהם של שלוש מאות יהודים מהונגריה שעוכבו בקפריסין" — ובה שישה בני בלומנטל "מברצל": שמואל, יצחק ("Jichak"), יוז'ף, גבריאלה, גיולה ומרדכי.<a href="#src-14" class="cit" title="אל ערך המקור">[14]</a> יעקב — אינו ברשימה. כלומר: בברצל — כמה בני בלומנטל; השם לבדו אינו מזהה משפחה.</p>
+<span id="4-6-בנו-בלומנטל-בעיתונות-ההונגרית-1921-1931" class="legacy-anchor"></span><h3 id="s4-6-בנו-בלומנטל-בעיתונות-ההונגרית-1921-1931"><span id="s4-6" class="legacy-anchor"></span>4.6 בנו בלומנטל בעיתונות ההונגרית, <bdi dir="ltr">1921–1931</bdi></h3>
+<p>בארכיון העיתונות ההונגרי (Arcanum) — <strong>בנו (Benő) בלומנטל מנוגראדברצל</strong> בשנות העשרים, כחקלאי ובעל אחוזה, ובצרותיו:<a href="#src-14" class="cit" title="אל ערך המקור">[14]</a></p>
+<ul>
+<li><strong>1921:</strong> "<bdi dir="ltr">Blumenthal Benő nagyberceli birtokos úr</bdi>" ("מר בנו בלומנטל, בעל אחוזה בנאג'ברצל"), במכתב שפרסם שבועון החקלאים ב-1925: החיטה המושבחת "נזרעה אחרונה, הבשילה ראשונה", ונתנה "9 קווינטל לחולד הונגרי, לעומת 7 קווינטל בזן הישן".</li>
+<li><strong>1922:</strong> "<bdi dir="ltr">Blumenthal Benő gazdasága, Nógrádbercel</bdi>" ("משקו של בנו בלומנטל, נוגראדברצל") — מקטע חיפוש.</li>
+<li><strong>1925:</strong> ברשימת בעלי האחוזות והחוכרים של 100 חולד ומעלה — "Blumenthal Benő" — מקטע חיפוש.</li>
+<li><strong>1926:</strong> בעיתון הרשמי — שתי הוראות מכירה פומבית נגד "<strong><bdi dir="ltr">Blumenthal Benő és neje Deutsch Ida, nógrádberceli lakosok</bdi></strong>" ("בנו בלומנטל ואשתו אידה דויטש, תושבי נוגראדברצל"): על כרמים, על שתי "אחוזות אצולה" (nemesi birtok), ועל "בית, חצר וגן" בנוגראדברצל.</li>
+<li><strong>1930:</strong> "חוכר קרקעות נידון לשלושה חודשי מאסר": בנו בלומנטל חכר ב-1924 "למחצה", עם ינו הופמן, "אחוזה גדולה במחוז נוגראד"; הופמן תבע אותו על "18 מיליון כתר" שלא נתן עליהם דין וחשבון, ובית הדין בבאלאשאג'רמאט גזר עליו, בעבירת מעילה, שלושה חודשי מאסר — ערכאת הערעור אישרה.</li>
+<li><strong>1931:</strong> הוצאה לפועל של מוסד האשראי הקרקעי נגד "Blumenthal Benő berceli lakos", על "שדה ומרעה" הרשומים על שמו — מקטע חיפוש.</li>
+</ul>
+<p><strong>מה זה מוכיח:</strong> שבנו בלומנטל ואשתו <strong>אידה דויטש</strong> — בני הזוג מדפי העד — חיו בנוגראדברצל בשנות העשרים, כבעלי אחוזה וחוכרי קרקע — <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span> (העיתון הרשמי, 1926). הוא מתיישב עם "בעל אחוזה" שבדף העד של מיכאל ועם "איכר" שבדף של יהודה. שיעקב הוא בנם — לא נאמר כאן.</p>
+<span id="5-פתח-תקווה-המשפחה" class="legacy-anchor"></span><span id="s5" class="legacy-anchor"></span><h2 id="s5-פתח-תקווה-המשפחה">5. פתח תקווה — המשפחה</h2>
+<span id="5-1-מאיר-בלומנטל-1952-1974" class="legacy-anchor"></span><h3 id="s5-1-מאיר-בלומנטל-1952-1974"><span id="s5-1" class="legacy-anchor"></span>5.1 מאיר בלומנטל, <bdi dir="ltr">1952–1974</bdi></h3>
+<figure><a href="https://www.izkor.gov.il/%D7%9E%D7%90%D7%99%D7%A8%20%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C/en_03274e4633b3f8082d741b4b72ac7028" target="_blank" rel="noopener"><img src="docs/izkor/izkor_96850_meir_portrait.jpg" alt="מאיר בלומנטל — מתוך אתר יזכור" loading="lazy" decoding="async" width="150" height="190"></a><figcaption><span class="fignum">איור 5</span> — מאיר בלומנטל — מתוך דף ההנצחה באתר יזכור של משרד הביטחון. המקור: <a href="#src-6">ערך 6</a>.</figcaption></figure>
+<p>לפי דף ההנצחה באתר יזכור:<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a> מאיר בלומנטל, חיל האוויר, "בן יעקב ומרים", נולד ב-ט"ז בניסן תשי"ב (<strong>11.4.1952</strong>) בפתח תקווה; למד בבית הספר היסודי "השומר" בבני ברק, בבית הספר המקצועי "מקס פיין" בתל אביב וב"עמל" בפתח תקווה; שיחק בקבוצת הנערים של הפועל פתח תקווה, בנבחרת גוש דן — ונבחר לקפטן בנסיעתה לחוץ לארץ — ובקבוצת הנוער בליגה הלאומית. גויס בנובמבר 1970 לחיל האוויר, נהג רכב כבד, ונשאר בצבא הקבע בדרגת <strong>סמל</strong>; השתתף במלחמת יום הכיפורים בסיני וברמת הגולן. נפטר בשירותו ב-ז' בכסלו תשל"ה, <strong>21.11.1974</strong>, ונקבר בבית העלמין הצבאי בקריית שאול (גוש 1, חלקה 9, שורה 5, קבר 19); "השאיר אחריו הורים, שני אחים ואחות"; "אחרי מותו הועלה לדרגת סמ"ר" — <strong>סמל ראשון</strong>. אחותו כתבה: "הספורט היווה את כל חייו... הוא התחיל את חייו במגרש הספורט, עסק בו רוב חייו ואף סיים בו את חייו".</p>
+<p>"מעריב" למחרת:<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> "כדורגלן הפועל פתח תקוה ונבחרת הנוער בעבר, מאיר בלומנטל, צנח אתמול על פני הדשא בעת אימון קבוצתו — ומת. היה בן 22 וחצי. השאיר הורים, שני אחים ואחות... הועבר לבית החולים 'בילינסון' — שם נקבע מותו"; "בלומי — כפי שכונה — היה בחור צנוע וביישן"; ו"דבר": "לקה בהתקף לב". לפי "מעריב", שיחק בנבחרת הנוער כשזכתה בגביע אסיה בבנגקוק.</p>
+<h4 id="מאיר-בעיתונות-הספורט-1971-1980">מאיר בעיתונות הספורט, <bdi dir="ltr">1971–1980</bdi></h4>
+<p>בעיתונות העברית (JPress) — עוד כשלושים ידיעות על מאיר, מימי הנוער ועד הגביע על שמו:<a href="#src-15" class="cit" title="אל ערך המקור">[15]</a></p>
+<ul>
+<li><strong>1971:</strong> "הצעירים ששולבו בשורותיהם, כמו מאיר בלומנטל ובוז'יקובסקי, הפגינו ניצוצות של כשרון" — האזכור המוקדם ביותר בקבוצה הבוגרת ("מעריב", 5.10.1971).</li>
+<li><strong>1972 — גביע אסיה לנוער, בנגקוק:</strong> בטקס הפתיחה — "את הדגל נשא מאיר בלומנטל" ("מעריב", 16.4.1972); ובגמר, שבו ניצחה ישראל את דרום קוריאה 0:1, אמר המאמן: "הכנסתי למשחק את בלומנטל והוא שיחק כאילו השתתף בכל משחקי הטורניר" ("דבר", 7.5.1972).</li>
+<li><strong><bdi dir="ltr">1972–1974</bdi> — בצבא ובליגה:</strong> בקבוצת פיקוד המרכז בגביע הרמטכ"ל, ואף כבש בו שער; בהפועל פתח תקווה — מגן, ופנדלים: בגביע המדינה (ינואר 1973) וב"דרבי" שנגמר 0:5 (דצמבר 1973); ובאפריל 1974 — נעדר מהאימון "(בשירות)".</li>
+<li><strong>22.11.1974:</strong> "על המשמר": "בן ה-22, חייל בצבא קבע, הגיע לאימון והחל ריצה יחד עם חבריו... צנח לפתע, ובטרם חשו אליו נפטר. נראה כי לקה בשבץ-לב". "דבר", 24.11.1974: "קהל אלפים ליווה ביום ששי את הכדורגלן מאיר בלומנטל למנוחת עולמים. מסע ההלוויה יצא מפ"ת לבית העלמין בקרית שאול"; הספיד מזכיר הפועל פתח תקווה, אורי קרני. ושר החינוך, אהרן ידלין, שלח למשפחה מברק תנחומים.</li>
+<li><strong>26.11.1974:</strong> "ביקרה משלחת של שחקני הפועל פ"ת אצל משפחתו של מאיר בלומנטל ז"ל".</li>
+<li><strong>הגביע על שמו:</strong> בדצמבר 1974 — משחק הפועל פתח תקווה נגד אוגסבורג "על גביע לזכרו של שחקן הפועל פ"ת מאיר בלומנטל ז"ל"; ב-28.9.1975 — "בתום המשחק העניק <strong>אביו של מאיר בלומנטל ז"ל</strong> ל'קפטן' מכבי תל-אביב, צבי רוזן, גביע"; ב-1976 — גביע הילדים "לזכרו של מאיר בלומנטל"; וב-23.3.1980 — "העניקו <strong>בני משפחתו</strong> של מאיר בלומנטל ז"ל את הגביע הענק".</li>
+</ul>
+<p>את הידיעות האלה מזהים שמו המלא, הקבוצה, נבחרת הנוער ונסיבות מותו — <span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span> (כטקסט; תמונות העמודים חסומות). "אביו של מאיר" ב-1975 אינו נקרא בשמו — אבל, לפי דף ההנצחה, אביו של מאיר הוא יעקב.</p>
+<p><strong>הזיהוי:</strong> שמות ההורים (יעקב ומרים), העיר (פתח תקווה), שנת הלידה (1952 — בין הנישואין ב-1948 ללידת שמשון ב-1954), ומספר האחים (שני אחים ואחות — שמשון, משה ונאוה) — כולם מתיישבים עם כרטיס ההתאמה ועם עדות המשפחה. — <span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span>. המצבה עצמה לא נראתה.</p>
+<span id="5-2-מודעות-האבל-1974-1977" class="legacy-anchor"></span><h3 id="s5-2-מודעות-האבל-1974-1977"><span id="s5-2" class="legacy-anchor"></span>5.2 מודעות האבל, <bdi dir="ltr">1974–1977</bdi></h3>
+<p>ב"מעריב", 24.11.1974, בטור מודעות התנחומים — שלוש מודעות על מאיר:<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a></p>
+<ul>
+<li>"<strong>יעקב בלומנטל</strong> ... היקרים, אתכם באסונכם הכבד בהלקח מכם ... יקירכם, מאיר" — בחתימת "משפחות בייזר-גרובר". מודעה הפונה אל יעקב בשמו: באותם ימים — <strong>בלומנטל</strong>, ובחיים.</li>
+<li>"למשפחת בלומנטל ... במות עליכם בנכם היקר, האהוב על כולנו, מאיר בלומנטל ז"ל — <strong>דיירי הבית, רחוב יהוד 2, פתח תקוה</strong>".</li>
+<li>"לסג"מ בלומנטל ... אחיך ... משתתפים בצערך — מפקד החיל ופקודיו". השם הפרטי של סגן-המשנה, בפענוח המכונה של העיתון — "שומעון": אולי <strong>שמשון</strong>, אולי שמעון. תמונת העמוד חסומה (Cloudflare) — <span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span>.</li>
+</ul>
+<p>ושלוש מודעות אזכרה, חתומות "<strong>המשפחה</strong>":<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a></p>
+<ul>
+<li><strong>7.11.1975:</strong> "במלאת שנה לפטירתו של בננו ואחינו היקר מאיר בלומנטל ז"ל ... אזכרה ... בחלקה הצבאית בבית העלמין בקרית שאול. אוטובוס יצא מביתנו ברח' <strong>רוטשילד 160א'</strong>, פתח תקוה".</li>
+<li><strong>26.11.1976</strong> ו-<strong>15.11.1977:</strong> אזכרות ל"מאיר בלומנטל ז"ל", בקריית שאול.</li>
+</ul>
+<span id="5-3-שמשון" class="legacy-anchor"></span><h3 id="s5-3-שמשון"><span id="s5-3" class="legacy-anchor"></span>5.3 שמשון</h3>
+<p><strong>שמשון</strong>, נ' 26.1.1954 — מן העץ המשפחתי.<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> אם "סג"מ בלומנטל" מנובמבר 1974 הוא שמשון, היה אז קצין בן 20; חילו — "מפקד החיל" — אינו נקוב. — <span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span>.</p>
+<span id="6-השם-אחימאיר" class="legacy-anchor"></span><span id="s6" class="legacy-anchor"></span><h2 id="s6-השם-אחימאיר">6. השם אחימאיר</h2>
+<p><strong>אחי-מאיר</strong> — "אחיו של מאיר". לפי המשפחה: "השם משפחה שלהם הוא בלומנטל, אחימאיר זה על שם האח מאיר".<a href="#src-11" class="cit" title="אל ערך המקור">[11]</a> כלומר — השם הוא של האחים; שמשון רשום בעץ המשפחתי בשם אחימאיר, ובפרופיל ב-Geni — "שמשון אחי-מאיר".<a href="#src-8" class="cit" title="אל ערך המקור">[8]</a> <strong>אם גם יעקב ומרים שינו את שמם — לא נמצא מסמך</strong>: מודעות האזכרה <bdi dir="ltr">1975–1977</bdi> חתומות "המשפחה", ושמו של מאיר בהן הוא, מטבע הדברים, שמו בחייו — כך שהן אינן מלמדות דבר על מועד השינוי. <strong>מתי הוחלף השם — לא ידוע</strong>. ההודעה ב"ילקוט הפרסומים" — לא נמצאה (<a href="#s9-4">N-6</a>).</p>
+<p>שם זהה נשאו עשרות שנים קודם לכן <strong>אבא אחימאיר</strong> (גייסינוביץ') ומשפחתו, ובהם בנו, העיתונאי <strong>יעקב אחימאיר</strong>, יליד 1938; הם <strong>אינם</strong> המשפחה הזאת (<a href="#s9-4">N-5</a>).</p>
+<span id="7-עץ-המשפחה" class="legacy-anchor"></span><span id="s7" class="legacy-anchor"></span><h2 id="s7-עץ-המשפחה">7. עץ המשפחה</h2>
+<p>שלושה דורות לפני שמשון, כפי שהם עולים מהמסמכים. קו ההורות בין משה בן ציון וחוה ליעקב — <span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span>; ארבעת הילדים בשמם — מדפי העד; הנכדים — מכרטיס ההתאמה ומאתר יזכור. ראו את <a href="#tree">העץ</a>.</p>
+<span id="8-פעולות-פתוחות" class="legacy-anchor"></span><span id="s8" class="legacy-anchor"></span><h2 id="s8-פעולות-פתוחות">8. פעולות פתוחות</h2>
+<div class="tablewrap"><table><caption class="visually-hidden">8. פעולות פתוחות</caption>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">פעולה</th>
+<th scope="col">למה</th>
+<th scope="col">איפה</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>לשאול את שמשון, משה ונאוה</strong>: האם אביהם בא מנוגראדברצל, והאם יצחק, מיכאל, יהודה ורבקה גומבו הם אחיו? מתי עלה? מתי נפטרו יעקב ומרים — אחרי ספטמבר 1975 — ואיפה נקברו? מי שינה את השם, ומתי?</td>
+<td>ההכרעה בזיהוי (<a href="#s4-4">4.4</a>); תאריכי הפטירה; השם</td>
+<td>המשפחה</td>
+</tr>
+<tr>
+<td>2</td>
+<td>תיק השירות של יעקב בלומנטל בצה"ל, 1948</td>
+<td>יחידה, תאריך גיוס, ארץ לידה</td>
+<td>ארכיון צה"ל ומערכת הביטחון</td>
+</tr>
+<tr>
+<td>3</td>
+<td>תיק עולה / תעודת זהות של יעקב בלומנטל</td>
+<td>תאריך ומקום לידה, תאריך עלייה</td>
+<td>ארכיון המדינה (משרד הפנים)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>רשומת לידה, נוגראדברצל <bdi dir="ltr">1917–1918</bdi></td>
+<td>"Blumenthal Jakab", אב Benő / Mózes</td>
+<td>FamilySearch (רישום אזרחי הונגרי 1895–) — דורש חשבון</td>
+</tr>
+<tr>
+<td>5</td>
+<td>פטירה וקבורה תחת <strong>בלומנטל</strong>, אחרי 1974</td>
+<td>הפטירה — לא נמצאה בשום שם</td>
+<td>בתי העלמין בפתח תקווה (סגולה, ירקון); BillionGraves</td>
+</tr>
+<tr>
+<td>6a</td>
+<td>מנהל העץ "מ. בלומנטל" ב-MyHeritage</td>
+<td>מאין לקח את הורי יעקב — זיכרון משפחתי או התאמת שמות</td>
+<td>פנייה דרך MyHeritage, או דרך המשפחה</td>
+</tr>
+<tr>
+<td>6</td>
+<td>משפחות <strong>בייזר-גרובר</strong> (המודעה מ-1974), ו"Yacob Grouber" (6642) הרשום בנוטרים ב-1944 לצד "Yacov Blumenthal" (6694)</td>
+<td>קרובים? חברים? — ואולי קשר בין יעקב שלנו לנוטר 6694</td>
+<td>ארכיון ההגנה; המשפחה</td>
+</tr>
+<tr>
+<td>7</td>
+<td>המצבה בקריית שאול (גוש 1, חלקה 9, שורה 5, קבר 19)</td>
+<td>השם על המצבה ושמות ההורים</td>
+<td>צילום במקום / BillionGraves</td>
+</tr>
+<tr>
+<td>8</td>
+<td>צאצאי יצחק, מיכאל, יהודה ורבקה גומבו</td>
+<td>בני דודים של שמשון — האם יעקב מוכר להם כאח</td>
+<td>המשפחה</td>
+</tr>
+<tr>
+<td>9</td>
+<td>"בלומנטל יעקב" בקבוצת הנוער של שריד, 1941</td>
+<td>האם הוא יעקב שלנו (<a href="#s9-4">N-4</a>)</td>
+<td>יד יערי (הקיבוץ הארצי)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>עמוד "מעריב" 24.11.1974, עמ' 10</td>
+<td>השם "שומעון" — שמשון?</td>
+<td>הספרייה הלאומית — בדפדפן</td>
+</tr>
+</tbody>
+</table></div>
+<span id="9-שיטה-ומגבלות" class="legacy-anchor"></span><span id="s9" class="legacy-anchor"></span><h2 id="s9-שיטה-ומגבלות">9. שיטה ומגבלות</h2>
+<span id="9-1-בסיס-הראיות" class="legacy-anchor"></span><h3 id="s9-1-בסיס-הראיות"><span id="s9-1" class="legacy-anchor"></span>9.1 בסיס הראיות</h3>
+<p>מסמך ראשוני אחד על יעקב עצמו — תעודת הנישואין;<a href="#src-1" class="cit" title="אל ערך המקור">[1]</a> ומודעת אבל אחת, מ-1974, הפונה אליו בשמו.<a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> על הוריו ומשפחתם — תשעה דפי עד, עדויות מאוחרות של ילדיהם ונכדתם;<a href="#src-2" class="cit" title="אל ערך המקור">[2]</a><a href="#src-3" class="cit" title="אל ערך המקור">[3]</a> על הבן מאיר — דף ההנצחה הממלכתי ועיתונות בת-זמנה.<a href="#src-6" class="cit" title="אל ערך המקור">[6]</a><a href="#src-7" class="cit" title="אל ערך המקור">[7]</a> לא נמצאו: רשומת עלייה, תעודת לידה, תיק צבאי, רשומת פטירה או קבורה של יעקב.</p>
+<span id="9-2-סולם-הוודאות" class="legacy-anchor"></span><h3 id="s9-2-סולם-הוודאות"><span id="s9-2" class="legacy-anchor"></span>9.2 סולם הוודאות</h3>
+<p><span class="rank v1" title="מאומת — נקרא במסמך בן התקופה, והקריאה ודאית.">מאומת</span> — המסמך אומר זאת במפורש; <span class="rank v2" title="כמעט ודאי — כמה ראיות בלתי תלויות מתכנסות, ואין ראיה נגדית.">כמעט ודאי</span> — כמה מסמכים מתיישבים ואין סתירה; <span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span> — ההתאמה טובה אבל חסר מסמך מקשר; <span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span> — רמז בלבד; <span class="rank v5" title="נשלל — נבדק ונמצא שאינו מתאים.">נשלל</span> — נבדק ואינו הוא. מסמך מדורג לחוד, וזיהוי האדם שבו — לחוד.</p>
+<span id="9-3-מוסכמות-הכתיב" class="legacy-anchor"></span><h3 id="s9-3-מוסכמות-הכתיב"><span id="s9-3" class="legacy-anchor"></span>9.3 מוסכמות הכתיב</h3>
+<p>בלומנטל · Blumenthal · Blumental · Blumentahl · Bliumental · בלומנטאל. אחימאיר · אחי-מאיר · Achimeir · Ahimeir. נוגראדברצל · Nógrádbercel · Nograd Bercel · ברצל. משה בן ציון · Benő · Mosh Ben Zion. חוה · אידה · Ida · Chawa. ווזנר · Wozner · Vozner. גיארמת · Balassagyarmat · Gyarmat.</p>
+<span id="9-4-ממצאים-שליליים" class="legacy-anchor"></span><h3 id="s9-4-ממצאים-שליליים"><span id="s9-4" class="legacy-anchor"></span>9.4 ממצאים שליליים</h3>
+<div class="tablewrap"><table><caption class="visually-hidden">9.4 ממצאים שליליים</caption>
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">שאלה</th>
+<th scope="col">מקור וכיסוי</th>
+<th scope="col">תוצאה</th>
+<th scope="col">דירוג</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>N-1</td>
+<td>דף עד שמילא יעקב על הוריו</td>
+<td>יד ושם, ממלא Blumenthal / Blumental / בלומנטל + Yaakov / Yakov / Jakob / יעקב, וממלא אחימאיר / Achimeir / Ahimeir — 26.10.2026</td>
+<td>אין; תשעת הדפים על משה בן ציון וחוה — מיצחק, מיכאל, יהודה, רבקה ונכדה</td>
+<td><span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span> — לא מילא</td>
+</tr>
+<tr>
+<td>N-2</td>
+<td>יעקב בלומנטל בעלייה מהונגריה</td>
+<td>IGRA, Blumenthal + Hungary — 38 שורות, כולן נקראו</td>
+<td>אין יעקב / Jakab; שישה מברצל, אף אחד אינו יעקב</td>
+<td><span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span> — האינדקס חלקי</td>
+</tr>
+<tr>
+<td>N-3</td>
+<td>יעקב בלומנטל בנוטרים, <bdi dir="ltr">1936–1944</bdi></td>
+<td>IGRA, 19 שורות; לפחות חמישה אנשים לפי מספר אישי (<bdi dir="ltr">A1998, R400, 4390, 7858, 6694</bdi>)</td>
+<td>בדפים אין שנת לידה, מקום או אב — רק תאריכי גיוס; לא ניתן לזהות. ב-1944 רשום לצד 6694 "Yacob Grouber" (6642) — וב-1974 מנחמות "משפחות בייזר-גרובר" את יעקב</td>
+<td><span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span></td>
+</tr>
+<tr>
+<td>N-4</td>
+<td>שריד, 1941</td>
+<td>מפקד הקיבוץ הארצי, שריד, שורה 11 — "בלומנטל יעקב" בקבוצת נוער</td>
+<td>שנת הלידה בעמודה מסומנת בגרשיים; לא ברור</td>
+<td><span class="rank v4" title="טעון אימות — נמסר או שוער, וטרם נבדק מול מסמך.">טעון אימות</span></td>
+</tr>
+<tr>
+<td>N-5</td>
+<td>"יעקב אחימאיר" בארכיונים ובעיתונות</td>
+<td>IGRA, ארכיון המדינה, JPress, Geni</td>
+<td>כולם של משפחת אבא אחימאיר (ובהם בנו העיתונאי, יליד 1938)</td>
+<td><span class="rank v5" title="נשלל — נבדק ונמצא שאינו מתאים.">נשלל</span></td>
+</tr>
+<tr>
+<td>N-6</td>
+<td>ההודעה על שינוי השם</td>
+<td>IGRA, "Name Changes after 1948" — 39 שורות "Blumenthal", ו"אחימאיר" / "אחי מאיר"</td>
+<td>אין; המאגר מסתיים בערך ב-<bdi dir="ltr">1977–1979</bdi></td>
+<td>אינו שלילה — מחוץ לכיסוי</td>
+</tr>
+<tr>
+<td>N-7</td>
+<td>יעקב ומרים בפנקסי הבוחרים</td>
+<td>IGRA, 1949 — פתח תקווה ואחרים; 1961 — שש שורות "בלומנטל" בכל המאגר (פתח תקווה, כפר המכבי)</td>
+<td>יעקב אינו בפנקס 1949 של פתח תקווה; 1961 — לא נמצאו; מאגר 1961 מכסה רק חלק מהיישובים</td>
+<td>אינו שלילה</td>
+</tr>
+<tr>
+<td>N-8</td>
+<td>פטירה וקבורה של יעקב ומרים</td>
+<td>JPress, מודעות: "יעקב בלומנטל" מדצמבר 1974 — אפס; "מרים בלומנטל" — אחת, של אחרת (אלמנת מאיר בלומנטל, ירושלים, 1977); "מרים אחימאיר", "יעקב אחימאיר" + פטירה — אפס; JOWBR: Achimeir / Ahimeir — אפס</td>
+<td>לא נמצאו</td>
+<td>אינו שלילה — JOWBR ובתי העלמין בפתח תקווה לא נבדקו בשם בלומנטל</td>
+</tr>
+<tr>
+<td>N-9</td>
+<td>הפרופיל ב-Geni</td>
+<td>חיפוש פומבי: "אחי-מאיר" — 0; "Achimeir" — 6, כולם משפחת אבא אחימאיר; "Meir Blumenthal" — 5, אף אחד אינו מאיר שלנו</td>
+<td>הפרופילים, ככל הנראה, פרטיים</td>
+<td>—</td>
+</tr>
+<tr>
+<td>N-10</td>
+<td>יעקב בלומנטל, 1949, בדפנה ובקריית טבעון; 1936 תל אביב; 1942 נהלל</td>
+<td>IGRA</td>
+<td>ילידי 1908, 1914, ואחרים</td>
+<td><span class="rank v5" title="נשלל — נבדק ונמצא שאינו מתאים.">נשלל</span> — הגיל</td>
+</tr>
+<tr>
+<td>N-11</td>
+<td>יעקב בלומנטל בהונגריה, ב-JewishGen</td>
+<td>"בלומנטל" + "ברצל", כל המאגרים — 150 התאמות ב-18 מאגרים; נקראו מאגרי הלידות, הנישואין, הפטירות ושלושה מאגרי ניצולים (26.10.2026)</td>
+<td>אין יעקב יליד <bdi dir="ltr">1917/18</bdi>; אין ילדי משה בן ציון וחוה; החיפוש הפונטי מערב גם את טיסהברצל</td>
+<td>אינו שלילה — כיסוי הלידות בעיקר במאה ה-19</td>
+</tr>
+<tr>
+<td>N-12</td>
+<td>יעקב בלומנטל בעיתונות ההונגרית</td>
+<td>Arcanum: "Blumenthal Jakab" <bdi dir="ltr">1930–1949</bdi> — 5; "Blumenthal" + "Nógrádbercel" <bdi dir="ltr">1935–1949</bdi> — 3; "Blumenthal" + "Bercel" <bdi dir="ltr">1900–1947</bdi> — 52 (נקראו המקטעים)</td>
+<td>אין יעקב מברצל</td>
+<td>אינו שלילה — ייתכן שנרשם בשם אחר (Jenő, Jakab, Jakob)</td>
+</tr>
+<tr>
+<td>N-13</td>
+<td>מודעת אבל משפחתית על מאיר, ושינוי השם, בעיתונות</td>
+<td>JPress: "בלומנטל" במודעות <bdi dir="ltr">21–25.11.1974</bdi>; "שמשון אחימאיר", "שמשון בלומנטל", "אחימאיר" + "שינוי שם", "מרים ליבוביץ" + "בלומנטל", "יעקב בלומנטל" 1948 ו-<bdi dir="ltr">1974–2005</bdi>, "רבקה גומבו" — 27.10.2026</td>
+<td>אין מודעה של המשפחה עצמה; אין הודעה על שינוי השם; "שמשון בלומנטל" מהוד השרון (1973) ו"יעקב בלומנטל" מיהוד (1980) — אחרים</td>
+<td>אינו שלילה — כיסוי JPress אחרי 1990 דליל</td>
+</tr>
+</tbody>
+</table></div>
+<span id="9-5-חסמים" class="legacy-anchor"></span><h3 id="s9-5-חסמים"><span id="s9-5" class="legacy-anchor"></span>9.5 חסמים</h3>
+<p>הספרייה הלאומית (JPress) — תמונות העמודים חסומות באתגר Cloudflare ("verify you are human"); לא נעקף. הטקסט נקרא מן הפענוח האוטומטי בלבד. Arcanum — תמונות העמודים חסומות ברשת ההפצה (403); נשמר הפענוח האוטומטי. JewishGen — נקרא בדפדפן, בחשבון מחובר, 26.10.2026 (<a href="#s4-5">4.5</a>); מאגרי הלידות ההונגריים שם מכסים בעיקר את המאה ה-19 — לידת יעקב (<bdi dir="ltr">1917/18</bdi>) אינה בהם. FamilySearch — אין אסימון גישה. ארכיון צה"ל — אין מאגר מקוון שמי.</p>
+<span id="9-6-מה-הדף-אינו-עושה" class="legacy-anchor"></span><h3 id="s9-6-מה-הדף-אינו-עושה"><span id="s9-6" class="legacy-anchor"></span>9.6 מה הדף אינו עושה</h3>
+<p>אינו קובע שיעקב נולד בנוגראדברצל — רק שזה הכיוון הסביר ביותר, ומה חסר כדי להוכיח. אינו קובע שיעקב שינה את שמו לאחימאיר. אינו מסתמך על עץ MyHeritage כראיה — רק כנקודת מוצא. לבקשת המשפחה, הדף כולל גם את בני המשפחה החיים.</p></section><hr><section id="tree"><h2>עץ המשפחה</h2><div class="tree-embed" role="group" aria-label="עץ המשפחה" tabindex="0"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1236 630" width="1236" height="630" font-family="'David Libre','Frank Ruhl Libre',Georgia,serif">
+ <title>עץ המשפחה — מאיר ורבקה בלומנטל; משה בן ציון וחוה (אידה) בלומנטל מנוגראדברצל וילדיהם יצחק, מיכאל, יהודה ורבקה גומבו, ויעקב — ככל הנראה; יעקב ומרים לבית ליבוביץ וילדיהם מאיר, שמשון, משה ונאוה; אשת שמשון, אילנה</title>
+ <g fill="none" stroke="#c9d3cf" stroke-width="1.5">
+  <path d="M853 70 V110 M853 110 H853"/>
+  <path d="M853 110 V132"/>
+  <path d="M777 192 V232 M397 232 H1157"/>
+  <path d="M1157 232 V254"/>
+  <path d="M1005 232 V254"/>
+  <path d="M853 232 V254"/>
+  <path d="M701 232 V254"/>
+  <path d="M549 232 V254"/>
+  <path d="M397 232 V254"/>
+  <path d="M321 314 V354 M93 354 H549"/>
+  <path d="M549 354 V376"/>
+  <path d="M397 354 V376"/>
+  <path d="M245 354 V376"/>
+  <path d="M93 354 V376"/>
+  <path d="M846 40 H860" stroke-dasharray="4 3" stroke="#8fa39c"/>
+  <path d="M770 162 H784" stroke-dasharray="4 3" stroke="#8fa39c"/>
+  <path d="M314 284 H328" stroke-dasharray="4 3" stroke="#8fa39c"/>
+  <path d="M397 436 V490 H397 V498" stroke-dasharray="2 3" stroke="#8fa39c"/>
+ </g>
+ <g fill="#ffffff" stroke="#c9d3cf" stroke-width="1.2">
+  <rect x="860" y="10" width="138" height="60" rx="4"/>
+  <rect x="708" y="10" width="138" height="60" rx="4"/>
+  <rect x="784" y="132" width="138" height="60" rx="4"/>
+  <rect x="632" y="132" width="138" height="60" rx="4"/>
+  <rect x="1088" y="254" width="138" height="60" rx="4"/>
+  <rect x="936" y="254" width="138" height="60" rx="4"/>
+  <rect x="784" y="254" width="138" height="60" rx="4"/>
+  <rect x="632" y="254" width="138" height="60" rx="4"/>
+  <rect x="480" y="254" width="138" height="60" rx="4" stroke-dasharray="5 3"/>
+  <rect x="328" y="254" width="138" height="60" rx="4" stroke="#2e6a5f" stroke-width="2" stroke-dasharray="5 3"/>
+  <rect x="176" y="254" width="138" height="60" rx="4"/>
+  <rect x="480" y="376" width="138" height="60" rx="4"/>
+  <rect x="328" y="376" width="138" height="60" rx="4"/>
+  <rect x="176" y="376" width="138" height="60" rx="4" stroke-dasharray="5 3"/>
+  <rect x="24" y="376" width="138" height="60" rx="4" stroke-dasharray="5 3"/>
+  <rect x="328" y="498" width="138" height="60" rx="4" stroke-dasharray="5 3"/>
+ </g>
+ <g fill="#1f2725" font-size="15" text-anchor="middle">
+  <text x="929" y="32" textLength="130" lengthAdjust="spacingAndGlyphs">מאיר (Mór) בלומנטל</text>
+  <text x="777" y="32">רבקה בלומנטל</text>
+  <text x="853" y="154" textLength="130" lengthAdjust="spacingAndGlyphs">משה בן ציון ("בנו")</text>
+  <text x="701" y="154">חוה (אידה)</text>
+  <text x="1157" y="276">יצחק</text>
+  <text x="1005" y="276">מיכאל</text>
+  <text x="853" y="276">יהודה</text>
+  <text x="701" y="276">רבקה גומבו</text>
+  <text x="549" y="276" textLength="130" lengthAdjust="spacingAndGlyphs">מאיר, ייטל לאה, פירושקה</text>
+  <text x="397" y="276">יעקב</text>
+  <text x="245" y="276">מרים ליבוביץ</text>
+  <text x="549" y="398">מאיר</text>
+  <text x="397" y="398">שמשון אחימאיר</text>
+  <text x="245" y="398">משה</text>
+  <text x="93" y="398">נאוה</text>
+  <text x="397" y="520">אילנה (קוטנר)</text>
+ </g>
+ <g fill="#56635f" font-size="10.5" text-anchor="middle">
+  <text x="929" y="48">נוגראדברצל</text>
+  <text x="929" y="61">דפי העד</text>
+  <text x="777" y="48">(רגינה) לבית ווזנר</text>
+  <text x="777" y="61">דפי העד</text>
+  <text x="853" y="170" textLength="130" lengthAdjust="spacingAndGlyphs">1888/1892 – 1944 · נוגראדברצל</text>
+  <text x="853" y="183">מורה / בעל אחוזה</text>
+  <text x="701" y="170">לבית דויטש · בורגנלנד</text>
+  <text x="701" y="183">אושוויץ, 1944</text>
+  <text x="1157" y="292">1915 · פתח תקווה</text>
+  <text x="1157" y="305">דפי עד, 1956</text>
+  <text x="1005" y="292">פתח תקווה</text>
+  <text x="1005" y="305">דפי עד, 1995</text>
+  <text x="853" y="292">דפי עד</text>
+  <text x="701" y="292">פתח תקווה</text>
+  <text x="701" y="305">דף עד, 1957?</text>
+  <text x="549" y="292">ועוד — "10" בדפי העד</text>
+  <text x="549" y="305">מן העץ של "מ. בלומנטל"</text>
+  <text x="397" y="292" textLength="130" lengthAdjust="spacingAndGlyphs">כ-1918 · הונגריה · חייל, 1948</text>
+  <text x="397" y="305">ילדיו — אחימאיר</text>
+  <text x="245" y="292">1925 · הונגריה</text>
+  <text x="245" y="305">בת משה הלוי ופרימט</text>
+  <text x="549" y="414">11.4.1952 – 21.11.1974</text>
+  <text x="549" y="427">חיל האוויר · הפועל פ"ת</text>
+  <text x="397" y="414">26.1.1954</text>
+  <text x="397" y="427">נשוי לאילנה קוטנר</text>
+  <text x="245" y="414">כרטיס ההתאמה</text>
+  <text x="93" y="414">כרטיס ההתאמה</text>
+  <text x="397" y="536">21.10.1957, צאלים</text>
+  <text x="397" y="549">טל · איל · שירי</text>
+ </g>
+</svg></div><div class="tree-zoom"><span id="tree-zoom-label">הגדלה</span><button type="button" data-tree-zoom="-1" aria-label="הקטנה">−</button><output id="tree-zoom-val" aria-labelledby="tree-zoom-label">×1</output><button type="button" data-tree-zoom="1" aria-label="הגדלה">+</button><button type="button" data-tree-zoom="fit">התאמה לרוחב</button></div><div class="legend"><span><i class="sw focus"></i> נושא הדף</span><span><i class="sw"></i> בן משפחה</span><span><i class="sw marr"></i> נישואין (לצד) · קו מנוקד — בן או בת זוג (מתחת)</span><span>מסגרת מקווקווה — ללא מסמך ישיר: הקשר להורים, או מעצי המשפחה בלבד</span></div><p class="tree-foot">הסדר מימין לשמאל. משה בן ציון, חוה וארבעת הילדים בשמם — מדפי העד ביד ושם; "10 ילדים" — לפי ארבעה דפים. שיעקב הוא אחד מהם — ככל הנראה: כך בעץ המשפחה שמנהל קרוב ("מ. בלומנטל"), שמקורותיו לא ידועים; מסמך ישיר — אין. ילדי יעקב ומרים — מכרטיס ההתאמה ב-MyHeritage ומאתר יזכור; סדר הלידה של משה ונאוה — לא ידוע. מאיר, ייטל (יהודית) לאה ופירושקה — מן העץ של "מ. בלומנטל".</p><p class="tree-hint">גלילה אופקית בתוך המסגרת מציגה את העץ במלואו, וכפתורי ההגדלה שמעליה מגדילים את הכתב; בהדפסה הוא מקבל עמוד לרוחב משלו.</p><a class="btn" href="tree-view.html" target="_blank" rel="noopener">פתיחת העץ בעמוד נפרד ↗</a></section><hr><section id="gallery"><h2>מסמכי מפתח</h2><p class="note">המסמכים שעליהם נשען עיקר הדוח, בסדר שבו הם נדונים בו. לחיצה פותחת את הסריקה המלאה.</p><div class="gallery"><a class="wide" href="docs/igra/marriage_cert_H99915_petah_tikva_1948-10-27.jpg" target="_blank" rel="noopener"><img class="contain" src="docs/thumbs/ev_marriage_husband_440_802233.jpg" alt="תעודת הנישואין, פתח תקווה, 27.10.1948 — &quot;יעקב בלומנטל, 30, חייל ... אי שם... משה בן ציון בלומנטל — מת; חוה — מתה&quot;" loading="lazy" decoding="async" width="440" height="63"><span>תעודת הנישואין, פתח תקווה, 27.10.1948 — "יעקב בלומנטל, 30, חייל ... אי שם... משה בן ציון בלומנטל — מת; חוה — מתה"</span></a><a href="docs/yadvashem-pot/1349233_1.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_pot_benzion_yitzhak_440_edcd12.jpg" alt="דף העד של משה בן ציון (&quot;בנו&quot;) בלומנטל, מאת בנו יצחק, 1956 — נוגראדברצל, מורה, &quot;10&quot; ילדים, אשתו אידה לבית דויטש" loading="lazy" decoding="async" width="440" height="250"><span>דף העד של משה בן ציון ("בנו") בלומנטל, מאת בנו יצחק, 1956 — נוגראדברצל, מורה, "10" ילדים, אשתו אידה לבית דויטש</span></a><a href="docs/yadvashem-pot/1351282_1.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_pot_chava_rivka_440_773ae6.jpg" alt="דף העד של אידה (חוה) בלומנטל, מאת בתה רבקה גומבו — בורגנלנד, נוגראדברצל, אושוויץ; בעלה משה בן ציון" loading="lazy" decoding="async" width="440" height="238"><span>דף העד של אידה (חוה) בלומנטל, מאת בתה רבקה גומבו — בורגנלנד, נוגראדברצל, אושוויץ; בעלה משה בן ציון</span></a><a href="docs/yadvashem-pot/1804444_1.jpg" target="_blank" rel="noopener"><img src="docs/thumbs/ev_pot_benzion_michael_440_590d4b.jpg" alt="דף העד של משה בן ציון, מאת בנו מיכאל, פתח תקווה, 1995 — &quot;הונגריה (ברצל) עד שלקחו ב-1944 מאי&quot;" loading="lazy" decoding="async" width="440" height="396"><span>דף העד של משה בן ציון, מאת בנו מיכאל, פתח תקווה, 1995 — "הונגריה (ברצל) עד שלקחו ב-1944 מאי"</span></a><a href="docs/izkor/izkor_96850_meir_blumenthal.txt" target="_blank" rel="noopener"><img src="docs/thumbs/izkor_96850_meir_portrait_300_2d9545.jpg" alt="מאיר בלומנטל, 1952–1974 — &quot;בן מרים ויעקב&quot;; מתוך דף ההנצחה באתר יזכור" loading="lazy" decoding="async" width="150" height="190"><span>מאיר בלומנטל, <bdi dir="ltr">1952–1974</bdi> — "בן מרים ויעקב"; מתוך דף ההנצחה באתר יזכור</span></a></div></section><hr><section id="people"><h2>אינדקס האנשים</h2><p class="note">בני המשפחה המרכזיים בדוח, עם קישור אל הפרק שבו כל אחד נדון; העץ מציג את כולם. שדה החיפוש שבראש העמוד מחפש גם בכתיבים החלופיים של השמות.</p><div class="people"><div class="person"><b><a href="#s3-1">יעקב בלומנטל</a></b><span class="d">כ-1918 – אחרי 9.1975</span><span class="r">נושא הדף; לפי המשפחה — מהונגריה; חייל ב-1948; נשא את מרים ליבוביץ בפתח תקווה, 27.10.1948; אבי מאיר, שמשון, משה ונאוה (ילדיו — אחימאיר)</span><span hidden><bdi dir="ltr">Yaakov Jakob Jakab Yakov Blumenthal Blumental Achimeir Ahimeir</bdi> אחי-מאיר אחימאיר</span></div><div class="person"><b><a href="#s3-2">מרים בלומנטל לבית ליבוביץ</a></b><span class="d"><bdi dir="ltr">1925 – 2003?</bdi></span><span class="r">אשתו — נושאת המחקר האחר בארכיון הזה; בת משה הלוי ופרימט ליבוביץ; שנת הפטירה — לפי עץ משפחה בלבד</span><span hidden><bdi dir="ltr">Miriam Leibovitz Leibowitz Lejbowicz Blumenthal Achimeir</bdi></span></div><div class="person"><b><a href="#s4-1">משה בן ציון בלומנטל</a></b><span class="d">מת לפני 1948</span><span class="r">שם אביו בתעודת הנישואין; ככל הנראה הוא משה בן ציון (&quot;בנו&quot;) בלומנטל מנוגראדברצל (1888/1892 – 1944), בן מאיר (Mór) ורבקה — מורה / בעל אחוזה</span><span hidden><bdi dir="ltr">Moshe Ben Zion Bencion Beno Benő Blumenthal Nogradbercel Bercel</bdi> ברצל</span></div><div class="person"><b><a href="#s4-2">חוה בלומנטל</a></b><span class="d">מתה לפני 1948</span><span class="r">שם אמו בתעודת הנישואין; ככל הנראה היא חוה (אידה) לבית דויטש מנוגראדברצל, ילידת פראואנקירכן שבבורגנלנד (<bdi dir="ltr">1885–1892</bdi> – 1944), אם לעשרה</span><span hidden><bdi dir="ltr">Chava Chawa Hava Ida Jda Deutsch Doich</bdi> דויטש <bdi dir="ltr">Burgenland Frauenkirchen Boldogasszony</bdi></span></div><div class="person"><b><a href="#s4-1">מאיר (Mór) ורבקה (רגינה) בלומנטל לבית ווזנר</a></b><span class="d"><bdi dir="ltr">—</bdi></span><span class="r">הוריו של משה בן ציון מנוגראדברצל, לפי דפי העד</span><span hidden><bdi dir="ltr">Meir Mor Mór Rivka Rebeka Regina Wozner Vozner Wuszner</bdi></span></div><div class="person"><b><a href="#s4-3">יצחק, מיכאל, יהודה ורבקה גומבו</a></b><span class="d">יצחק 1915</span><span class="r">ילדי משה בן ציון וחוה מנוגראדברצל שמילאו את דפי העד; כולם בפתח תקווה — ככל הנראה אחיו ואחותו של יעקב</span><span hidden><bdi dir="ltr">Yitzhak Izsak Mikhael Michael Yehuda Rivka Gombo Gombos</bdi> גומבו סימה Sima</span></div><div class="person"><b><a href="#s5-1">מאיר בלומנטל</a></b><span class="d"><bdi dir="ltr">11.4.1952 – 21.11.1974</bdi></span><span class="r">בנו (כמעט ודאי); חייל בחיל האוויר, סמל ראשון לאחר מותו; כדורגלן הפועל פתח תקווה; על שמו — &quot;אחימאיר&quot;</span><span hidden>Meir Blumenthal Blumi בלומי Hapoel Petah Tikva</span></div><div class="person"><b><a href="#s5-3">שמשון אחימאיר</a></b><span class="d"><bdi dir="ltr">26.1.1954</bdi></span><span class="r">בנו; נשוי לאילנה לבית קוטנר — ילדיהם טל, איל ושירי</span><span hidden>Shimshon Achimeir Blumenthal</span></div><div class="person"><b><a href="#s2">משה ונאוה</a></b><span class="d"><bdi dir="ltr">—</bdi></span><span class="r">ילדיו, לפי כרטיס ההתאמה ב-MyHeritage</span><span hidden>Moshe Nava</span></div></div></section><hr><section id="index"><h2>אינדקס המקורות</h2><h3>רשימת מקורות</h3>
+<p>לכל ערך: מהות המקור ומעמדו, ההפניה החיצונית למסמך המקורי, העותק המקומי השמור בתיקיית המחקר, ומה בדיוק הוא מוכיח. "עותק מקומי" פירושו עותק של <strong>המסמך עצמו</strong>. כל המקורות נצפו ב-26 באוקטובר 2026. שמונה ערכים חריגים מכלל העותק המקומי — ערך 5 (רשומות אינדקס בלי תמונה, שמורות כתמליל שדות), ערך 7 (עמודי העיתון חסומים; נשמר הפענוח האוטומטי), ערך 8 (עץ משפחה מקוון, שמור כתמליל), ערך 11 (עדות משפחתית בכתב), ערך 12 (תוצאות חיפוש, שמורות כתמליל), ערך 13 (עמוד בחשבון פרטי, שמור כ-PDF), ערך 14 (עמודי עיתונות שסריקתם חסומה; נשמר הפענוח) וערך 15 (עמודי עיתונות חסומים; נשמר הפענוח) — מסומנים במקומם.</p>
+<h3 id="מקורות-ראשוניים">מקורות ראשוניים</h3>
+<span id="1-ארכיון-המדינה-באמצעות-IGRA-תעודת-נישואין-מס'-H-99915-רבנות" class="legacy-anchor"></span><h4 id="s1-ארכיון-המדינה-באמצעות-IGRA-תעודת-נישואין-מס'-H-99915-רבנות"><span id="src-1" class="legacy-anchor"></span>1. ארכיון המדינה, באמצעות IGRA — תעודת נישואין מס' H 99915, רבנות פתח תקווה, 27.10.1948: יעקב בלומנטל ומרים ליבוביץ <em>(מאומת)</em></h4>
+<ul>
+<li><strong>מהות:</strong> העתק תעודת נישואין של הרבנות, מחוז תל אביב, שהוגש לשלטונות ("<bdi dir="ltr">To be prepared in quadruplicate</bdi>" — "יש להכין בארבעה עותקים"); מודפס במכונת כתיבה עברית, עם חותמת וחתימה.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xNzkxNy1NYXJyaWFnZXMtMTAzNQ==" target="_blank" rel="noopener">IGRA — החתן, רשומה 1035<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xNzkxNy1NYXJyaWFnZXMtMTAzNg==" target="_blank" rel="noopener">הכלה, רשומה 1036<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://igra-images.genealogy.org.il/17917_Marriages/1791700812.jpg" target="_blank" rel="noopener">הסריקה ב-IGRA<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/igra/marriage_cert_H99915_petah_tikva_1948-10-27.jpg" target="_blank" rel="noopener">התעודה</a> · חיתוכים: <a href="docs/ev_marriage_header.jpg" target="_blank" rel="noopener">הכותרת</a>, <a href="docs/ev_marriage_husband.jpg" target="_blank" rel="noopener">שורת החתן</a>, <a href="docs/ev_marriage_wife.jpg" target="_blank" rel="noopener">שורת הכלה</a></li>
+<li><strong>מה הוא מוכיח:</strong> יעקב בלומנטל, 30, חייל, "אי שם", בן משה בן ציון וחוה — שניהם מתים — נשא את מרים ליבוביץ, 22, בפתח תקווה ב-27.10.1948 — מאומת (<a href="#s3-1">3.1</a>).</li>
+</ul>
+<span id="2-יד-ושם-ארבעה-דפי-עד-על-משה-בן-ציון-בנו-בלומנטל-נוגראדברצל-" class="legacy-anchor"></span><h4 id="s2-יד-ושם-ארבעה-דפי-עד-על-משה-בן-ציון-בנו-בלומנטל-נוגראדברצל-"><span id="src-2" class="legacy-anchor"></span>2. יד ושם — ארבעה דפי עד על משה בן ציון ("בנו") בלומנטל, נוגראדברצל <em>(מאומת — כעדות)</em></h4>
+<ul>
+<li><strong>מהות:</strong> דפי עד בכתב יד: 1349233 — מאת יצחק בלומנטל, בנו, פתח תקווה, 4.6.1956; 310307 — מאת יהודה בלומנטל, בנו, פתח תקווה, 17.12.1956; 1804444 — מאת מיכאל בלומנטל, בנו, פתח תקווה, 17.2.1995, באמצעות בתו; 3609155 — מאת חוה שרה דויטש-כהן, נכדתו, נתניה, אב תשנ"ג (1993).</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://collections.yadvashem.org/he/names/1349233" target="_blank" rel="noopener">1349233<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/1804444" target="_blank" rel="noopener">1804444<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/310307" target="_blank" rel="noopener">310307<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/3609155" target="_blank" rel="noopener">3609155<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/yadvashem-pot/1349233_1.jpg" target="_blank" rel="noopener">1349233</a> · <a href="docs/yadvashem-pot/1804444_1.jpg" target="_blank" rel="noopener">1804444</a> · <a href="docs/yadvashem-pot/310307_1.jpg" target="_blank" rel="noopener">310307</a> · <a href="docs/yadvashem-pot/3609155_1.jpg" target="_blank" rel="noopener">3609155</a> · חיתוכים: <a href="docs/ev_pot_benzion_yitzhak.jpg" target="_blank" rel="noopener">פרטי הנספה, 1956</a>, <a href="docs/ev_pot_benzion_yitzhak_submitter.jpg" target="_blank" rel="noopener">הצהרת יצחק</a>, <a href="docs/ev_pot_benzion_michael.jpg" target="_blank" rel="noopener">דף מיכאל, 1995</a></li>
+<li><strong>מה הוא מוכיח:</strong> משה בן ציון בלומנטל, 1888 או 1892, נוגראדברצל, בן מאיר (Mór) ורבקה (רגינה) לבית ווזנר, מורה / בעל אחוזה / איכר, נשוי לחוה (אידה) לבית דויטש, "10" ילדים; בזמן המלחמה — "גיארמת (גטו)"; נלקח במאי 1944; מותו — אושוויץ, או, לפי יצחק (1956), "אי שם בגרמניה" — מאומת כעדות ילדיו ונכדתו (<a href="#s4-1">4.1</a>). שהוא אביו של יעקב — כמעט ודאי (<a href="#s4-4">4.4</a>).</li>
+</ul>
+<span id="3-יד-ושם-חמישה-דפי-עד-על-חוה-אידה-בלומנטל-לבית-דויטש-באשכול-" class="legacy-anchor"></span><h4 id="s3-יד-ושם-חמישה-דפי-עד-על-חוה-אידה-בלומנטל-לבית-דויטש-באשכול-"><span id="src-3" class="legacy-anchor"></span>3. יד ושם — חמישה דפי עד על חוה (אידה) בלומנטל לבית דויטש, באשכול 14389303 <em>(מאומת — כעדות)</em></h4>
+<ul>
+<li><strong>מהות:</strong> 1351282 — מאת רבקה גומבו, בתה, פתח תקווה (1957, ככל הנראה); 1815364 — מאת מיכאל; 418389 — מאת יהודה; 421417 — מאת יצחק; 3605706 — מאת חוה שרה דויטש-כהן, נכדתה.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://collections.yadvashem.org/he/names/14389303" target="_blank" rel="noopener">האשכול<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/1351282" target="_blank" rel="noopener">1351282<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/1815364" target="_blank" rel="noopener">1815364<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/418389" target="_blank" rel="noopener">418389<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/421417" target="_blank" rel="noopener">421417<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://collections.yadvashem.org/he/names/3605706" target="_blank" rel="noopener">3605706<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/yadvashem-pot/1351282_1.jpg" target="_blank" rel="noopener">1351282</a> · <a href="docs/yadvashem-pot/1815364_1.jpg" target="_blank" rel="noopener">1815364</a> · <a href="docs/yadvashem-pot/418389_1.jpg" target="_blank" rel="noopener">418389</a> · <a href="docs/yadvashem-pot/421417_1.jpg" target="_blank" rel="noopener">421417</a> · <a href="docs/yadvashem-pot/3605706_1.jpg" target="_blank" rel="noopener">3605706</a> · חיתוכים: <a href="docs/ev_pot_chava_rivka.jpg" target="_blank" rel="noopener">פרטי הנספה</a>, <a href="docs/ev_pot_chava_rivka_submitter.jpg" target="_blank" rel="noopener">הצהרת רבקה גומבו</a></li>
+<li><strong>מה הוא מוכיח:</strong> חוה (אידה) לבית דויטש, ילידת פראואנקירכן (Boldogasszony) שבבורגנלנד — 1885, 1888, 1890 או כ-1892 ("בת 52"); בת יהודה (Gyula) ואסתר — או רגינה, או אנה; אשת משה בן ציון, אם לעשרה, עקרת בית בנוגראדברצל, נרצחה באושוויץ ב-1944 — מאומת כעדות ילדיה ונכדתה (<a href="#s4-2">4.2</a>). שהיא אמו של יעקב — כמעט ודאי (<a href="#s4-4">4.4</a>).</li>
+</ul>
+<span id="4-ארכיון-המדינה-באמצעות-IGRA-פנקסי-הבוחרים-לכנסת-פתח-תקווה-1" class="legacy-anchor"></span><h4 id="s4-ארכיון-המדינה-באמצעות-IGRA-פנקסי-הבוחרים-לכנסת-פתח-תקווה-1"><span id="src-4" class="legacy-anchor"></span>4. ארכיון המדינה, באמצעות IGRA — פנקסי הבוחרים לכנסת, פתח תקווה, 1949 ו-1961: יצחק וסימה בלומנטל <em>(מאומת)</em></h4>
+<ul>
+<li><strong>מהות:</strong> רשימת בעלי זכות בחירה תש"ט (גל-<bdi dir="ltr">4596/3</bdi>, ושוב מ-<bdi dir="ltr">4872/1</bdi>), מסמך 147, שורה 12 — "יצחק בלומנטאל", 1915; פנקס הבוחרים לכנסת 1961 (001o01y), שורות <bdi dir="ltr">34–35</bdi> — יצחק (1915) וסימה (1923), "כ' אברהם ש' עממי 14".</li>
+<li><strong>הערה:</strong> הסימולים "גל-<bdi dir="ltr">4596/3</bdi>" ו"מ-<bdi dir="ltr">4872/1</bdi>" — כפי שהם באינדקס IGRA.</li>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ5LU5hdGlvbmFsLUVsZWN0aW9ucy0xMzM4MTM=" target="_blank" rel="noopener">133813<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ5LU5hdGlvbmFsLUVsZWN0aW9ucy0xMzUyNDQ=" target="_blank" rel="noopener">135244<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTYxLVZvdGVyc0xpc3RzS25lc3NldC04NzI4" target="_blank" rel="noopener">1961, יצחק<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTYxLVZvdGVyc0xpc3RzS25lc3NldC04NzI5" target="_blank" rel="noopener">1961, סימה<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/igra/voters_1949_petah_tikva_PT2_264_blumenthal_ein_ganim.jpg" target="_blank" rel="noopener">1949, עמוד עין גנים</a> · <a href="docs/igra/voters_1949_petah_tikva_PT3_p10_blumenthal.jpg" target="_blank" rel="noopener">1949, עותק שני</a> · <a href="docs/igra/voters_1961_petah_tikva1_084_yitzhak_sima.jpg" target="_blank" rel="noopener">1961</a></li>
+<li><strong>מה הוא מוכיח:</strong> יצחק בלומנטל, יליד 1915, בפתח תקווה מ-1949 לפחות; ב-1961 — באותה כתובת שבדף העד שמילא ב-1956 — מאומת. שזה יצחק בן משה בן ציון — כמעט ודאי (הכתובת) (<a href="#s4-3">4.3</a>).</li>
+</ul>
+<span id="5-הארכיון-הציוני-המרכזי-באמצעות-IGRA-רשימות-מועמדי-עלייה-ועל" class="legacy-anchor"></span><h4 id="s5-הארכיון-הציוני-המרכזי-באמצעות-IGRA-רשימות-מועמדי-עלייה-ועל"><span id="src-5" class="legacy-anchor"></span>5. הארכיון הציוני המרכזי, באמצעות IGRA — רשימות מועמדי עלייה ועליית הנוער מהונגריה, 1947 (S6/36831): שורות בלומנטל מברצל <em>(אינדקס — לא נקרא בסריקה)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> קישורי IGRA לכל אחת משש השורות — בתמליל</li>
+<li><strong>עותק מקומי:</strong> <a href="docs/igra/aliyah_candidates_hungary_1947_bercel_blumenthal.md" target="_blank" rel="noopener">תמליל השדות</a> — <strong>חריג:</strong> לרשומות אין תמונה ב-IGRA.</li>
+<li><strong>מה הוא מוכיח:</strong> בברצל היו כמה בני בלומנטל שביקשו לעלות ב-1947 — אף אחד מהם אינו יעקב; השם לבדו אינו מזהה משפחה (<a href="#s4-5">4.5</a>).</li>
+</ul>
+<span id="6-משרד-הביטחון-אתר-יזכור-דף-ההנצחה-של-סמל-ראשון-מאיר-בלומנטל" class="legacy-anchor"></span><h4 id="s6-משרד-הביטחון-אתר-יזכור-דף-ההנצחה-של-סמל-ראשון-מאיר-בלומנטל"><span id="src-6" class="legacy-anchor"></span>6. משרד הביטחון, אתר יזכור — דף ההנצחה של סמל ראשון מאיר בלומנטל (96850) <em>(מאומת)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://www.izkor.gov.il/%D7%9E%D7%90%D7%99%D7%A8%20%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C/en_03274e4633b3f8082d741b4b72ac7028" target="_blank" rel="noopener">מאיר בלומנטל ביזכור<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/izkor/izkor_96850_meir_blumenthal.txt" target="_blank" rel="noopener">נוסח הדף</a> · <a href="docs/izkor/izkor_96850_meir_portrait.jpg" target="_blank" rel="noopener">התצלום</a> · <a href="docs/izkor/izkor_96850_meir_grave_plot_map.jpg" target="_blank" rel="noopener">מפת החלקה</a></li>
+<li><strong>מה הוא מוכיח:</strong> מאיר בלומנטל, בן יעקב ומרים, נולד 11.4.1952 בפתח תקווה, חייל בחיל האוויר, נפטר 21.11.1974, קבור בקריית שאול; "שני אחים ואחות" — מאומת. שזהו בנם של יעקב ומרים שלנו — כמעט ודאי (<a href="#s5-1">5.1</a>).</li>
+</ul>
+<span id="7-הספרייה-הלאומית-עיתונות-יהודית-היסטורית-JPress-מעריב-ו-דבר" class="legacy-anchor"></span><h4 id="s7-הספרייה-הלאומית-עיתונות-יהודית-היסטורית-JPress-מעריב-ו-דבר"><span id="src-7" class="legacy-anchor"></span>7. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — "מעריב" ו"דבר", <bdi dir="ltr">1974–1977</bdi>: על מותו של מאיר בלומנטל, ומודעות האבל והאזכרה <em>(מאומת — כטקסט; התמונות לא נראו)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19741122-01.2.82" target="_blank" rel="noopener">"מעריב", 22.11.1974<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=dav19741122-01.2.162" target="_blank" rel="noopener">"דבר", 22.11.1974<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19741124-01.2.86.4" target="_blank" rel="noopener">מודעות, "מעריב" 24.11.1974<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19751107-01.2.78.1" target="_blank" rel="noopener">אזכרה, 7.11.1975<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19761126-01.2.67.2" target="_blank" rel="noopener">26.11.1976<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19771115-01.2.122.1" target="_blank" rel="noopener">15.11.1977<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/jpress/jpress_ocr_mar19741122_death_report.md" target="_blank" rel="noopener">הידיעה על מותו</a> · <a href="docs/jpress/jpress_ocr_mar19741124_condolence_ad.md" target="_blank" rel="noopener">מודעות האבל</a> · <a href="docs/jpress/jpress_ocr_mar19751107_first_yahrzeit_ad.md" target="_blank" rel="noopener">האזכרה הראשונה</a> · <a href="docs/jpress/jpress_ocr_mar19761126_and_mar19771115_yahrzeit_ads.md" target="_blank" rel="noopener"><bdi dir="ltr">1976–1977</bdi></a> — <strong>חריג:</strong> תמונות העמודים חסומות באתגר Cloudflare; נשמר הפענוח האוטומטי (OCR) — בידיעה על מותו, בקיצור.</li>
+<li><strong>מה הוא מוכיח:</strong> מאיר צנח ומת באימון של הפועל פתח תקווה; מודעת תנחומים מ-24.11.1974 פונה אל "יעקב בלומנטל"; המשפחה — ברחוב יהוד 2 (1974) וברחוב רוטשילד 160א' (1975), פתח תקווה; מודעות האזכרה חתומות "המשפחה" (<a href="#s5-1">5.1</a>, <a href="#s5-2">5.2</a>, <a href="#s6">פרק 6</a>).</li>
+</ul>
+<h3 id="מקורות-משפחתיים-ומשניים">מקורות משפחתיים ומשניים</h3>
+<span id="8-MyHeritage-עץ-המשפחה-Achimeir-Family-Tree-וכרטיס-ההתאמה-לש" class="legacy-anchor"></span><h4 id="s8-MyHeritage-עץ-המשפחה-Achimeir-Family-Tree-וכרטיס-ההתאמה-לש"><span id="src-8" class="legacy-anchor"></span>8. MyHeritage — עץ המשפחה "Achimeir Family Tree", וכרטיס ההתאמה לשמשון אחימאיר <em>(עץ משתמשים — כיוון, לא רשומה)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://www.myheritage.co.il/family-trees/achimeir/OYYV6X5EIHXN3MKJW7NPOO2CA5VXXOY" target="_blank" rel="noopener">העץ ב-MyHeritage<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/myheritage/record_match_shimshon_2026-10-26.md" target="_blank" rel="noopener">תמליל כרטיס ההתאמה וחלונית העובדות</a> — <strong>חריג:</strong> עץ מקוון פרטי; נשמר כתמליל.</li>
+<li><strong>מה הוא מוכיח:</strong> שכרטיס ההתאמה של האתר — ככל הנראה מתוך רשומה ב-Geni — מונה את יעקב בלומנטל ומרים ליבוביץ כהוריו של שמשון, ואת משה, נאוה ומאיר כאחיו; ומחלונית העובדות של שמשון — תאריכי נישואיו ולידות ילדיו. זיכרון משפחתי בלבד (<a href="#s2">פרק 2</a>).</li>
+</ul>
+<span id="9-ארכיון-יד-יערי-באמצעות-IGRA-מפקד-הקיבוץ-הארצי-שריד-1941-בל" class="legacy-anchor"></span><h4 id="s9-ארכיון-יד-יערי-באמצעות-IGRA-מפקד-הקיבוץ-הארצי-שריד-1941-בל"><span id="src-9" class="legacy-anchor"></span>9. ארכיון יד יערי, באמצעות IGRA — מפקד הקיבוץ הארצי, שריד, 1941: "בלומנטל יעקב" <em>(טעון אימות)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQwLUtpYnV0ekFyemlNaWZrYWQtMjc3OA==" target="_blank" rel="noopener"><bdi dir="ltr">IGRA-1940-KibutzArziMifkad-2778</bdi><span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/igra/census_kibbutz_arzi_sarid_1941_blumenthal_yaakov_line11.jpg" target="_blank" rel="noopener">הדף</a></li>
+<li><strong>מה הוא מוכיח:</strong> יעקב בלומנטל בקבוצת נוער בשריד, 1941 — שנת לידתו אינה קריאה; שזה יעקב שלנו — טעון אימות (<a href="#s9-4">N-4</a>).</li>
+</ul>
+<span id="10-ארכיון-המדינה-באמצעות-IGRA-רשומות-הנוטרים-1936-1944-יעקב-" class="legacy-anchor"></span><h4 id="s10-ארכיון-המדינה-באמצעות-IGRA-רשומות-הנוטרים-1936-1944-יעקב-"><span id="src-10" class="legacy-anchor"></span>10. ארכיון המדינה, באמצעות IGRA — רשומות הנוטרים, <bdi dir="ltr">1936–1944</bdi>: "יעקב בלומנטל" <em>(טעון אימות)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> IGRA, מאגר הנוטרים, 19 שורות "יעקב בלומנטל", למשל: <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1Ob3RyaW1NYW5wb3dlci02MjA0" target="_blank" rel="noopener">טול כרם 1936<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1Ob3RyaW0tRS0zMTky" target="_blank" rel="noopener">שריד 1939<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://genealogy.org.il/AID/index.php?recordID=SUdSQS1Ob3RyaW1NYW5wb3dlci02MzIy" target="_blank" rel="noopener">נצרת 1942<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/igra/notrim_tulkarm_1936_A1998.jpg" target="_blank" rel="noopener">טול כרם 1936, A1998</a> · <a href="docs/igra/notrim_sarid_1939_no7858.jpg" target="_blank" rel="noopener">שריד 1939, 7858</a> · <a href="docs/igra/notrim_nazareth_1942_no6694.jpg" target="_blank" rel="noopener">נצרת 1942, 6694</a> · <a href="docs/igra/notrim_resignation_1944_no6694.jpg" target="_blank" rel="noopener">התפטרות 1944, 6694</a></li>
+<li><strong>מה הוא מוכיח:</strong> כמה "יעקב בלומנטל" שירתו בנוטרים — בלי שנת לידה או אב; אף אחד אינו מזוהה כיעקב שלנו (<a href="#s9-4">N-3</a>).</li>
+</ul>
+<span id="11-מפי-המשפחה-אוהד-צדוק-26-10-2026-עדות-משפחתית" class="legacy-anchor"></span><h4 id="s11-מפי-המשפחה-אוהד-צדוק-26-10-2026-עדות-משפחתית"><span id="src-11" class="legacy-anchor"></span>11. מפי המשפחה — אוהד צדוק, 26.10.2026 <em>(עדות משפחתית)</em></h4>
+<ul>
+<li><strong>עותק מקומי:</strong> <a href="docs/family/ohad_zadok_2026-10-26.md" target="_blank" rel="noopener">הנוסח</a> — <strong>חריג:</strong> עדות בכתב, אין מסמך חיצוני.</li>
+<li><strong>מה הוא מוכיח:</strong> שם המשפחה המקורי — בלומנטל; "אחימאיר" — על שם האח מאיר; ו"שני ההורים מהונגריה", בלי עיר (<a href="#s2">פרק 2</a>, <a href="#s6">פרק 6</a>).</li>
+</ul>
+<span id="12-JewishGen-חיפוש-בלומנטל-ברצל-בכל-המאגרים-26-10-2026-אינדק" class="legacy-anchor"></span><h4 id="s12-JewishGen-חיפוש-בלומנטל-ברצל-בכל-המאגרים-26-10-2026-אינדק"><span id="src-12" class="legacy-anchor"></span>12. JewishGen — חיפוש "בלומנטל" + "ברצל" בכל המאגרים, 26.10.2026 <em>(אינדקס — נקרא בחשבון מחובר)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://www.jewishgen.org/databases/all/" target="_blank" rel="noopener">JewishGen — חיפוש גלובלי<span class="ext" aria-hidden="true">↗</span></a> (Surname "Blumenthal", Town "Bercel", פונטי)</li>
+<li><strong>עותק מקומי:</strong> <a href="docs/jewishgen/blumenthal_bercel_2026-10-26.md" target="_blank" rel="noopener">תמליל השורות</a> — <strong>חריג:</strong> תוצאות חיפוש שאין להן כתובת קבועה; נשמרו כתמליל — מאגרי הלידות, הנישואין, הפטירות ושלושה מאגרי ניצולים (לא כל 150 השורות).</li>
+<li><strong>מה הוא מוכיח:</strong> בני בלומנטל רבים ב"ברצל" — אבל החיפוש הפונטי מערב את נוגראדברצל ואת טיסהברצל; אין בהם יעקב או ילדי משה בן ציון; ב-1868 — חתן בלומנטל "Berzel [Bercel?]" עם כלה ממשפחת וושנר (Wuszner) — טעון אימות (<a href="#s4-5">4.5</a>).</li>
+</ul>
+<span id="13-MyHeritage-התאמה-חכמה-מעץ-המשפחה-שמנהל-קרוב-מ-בלומנטל-מיש" class="legacy-anchor"></span><h4 id="s13-MyHeritage-התאמה-חכמה-מעץ-המשפחה-שמנהל-קרוב-מ-בלומנטל-מיש"><span id="src-13" class="legacy-anchor"></span>13. MyHeritage — "התאמה חכמה" מעץ המשפחה שמנהל קרוב ("מ. בלומנטל מישראל"): מרים מגדה בלומנטל לבית ליבוביץ, ומשפחת בעלה <em>(עץ משתמשים — כיוון, לא רשומה)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> עמוד ההתאמה בחשבון המשפחה ב-MyHeritage (אינו פומבי)</li>
+<li><strong>עותק מקומי:</strong> <a href="docs/myheritage/smart_match_miriam_magda_blumenthal_2026-10-26.pdf" target="_blank" rel="noopener">העמוד, כפי שנשמר בידי המשפחה (PDF)</a> · <a href="docs/myheritage/smart_match_miriam_magda_blumenthal_2026-10-26.md" target="_blank" rel="noopener">תמליל</a> — <strong>חריג:</strong> עמוד בחשבון פרטי; נשמר כ-PDF וכתמליל.</li>
+<li><strong>מה הוא מוכיח:</strong> שבעץ שמנהל קרוב — ככל הנראה מצאצאי יעקב ומרים (העץ כולל את הורי כלתה של מרים) — יעקב בלומנטל, בעלה של "מרים מגדה" לבית ליבוביץ (1925, הונגריה – 2003), רשום כבן משה בן ציון בלומנטל וחוה לבית דויטש, עם גיסיו וגיסותיו של מרים. מקורות העץ — לא ידועים; אינו עדות בלתי תלויה בדפי העד (<a href="#s4-4">4.4</a>).</li>
+</ul>
+<span id="14-Arcanum-ADT-העיתונות-ההונגרית-1921-1947-בנו-בלומנטל-ואשתו" class="legacy-anchor"></span><h4 id="s14-Arcanum-ADT-העיתונות-ההונגרית-1921-1947-בנו-בלומנטל-ואשתו"><span id="src-14" class="legacy-anchor"></span>14. Arcanum (ADT) — העיתונות ההונגרית, <bdi dir="ltr">1921–1947</bdi>: בנו בלומנטל ואשתו אידה דויטש מנוגראדברצל; רשימת עצורי קפריסין מהונגריה, 1947 <em>(מאומת — כטקסט; הסריקות לא נשמרו)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://adt.arcanum.com/en/view/BudapestiKozlony_1926_08_ertesito/?pg=110" target="_blank" rel="noopener">Budapesti Közlöny, 15.8.1926, עמ' 110<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://adt.arcanum.com/en/view/8OraiUjsag_1930_03/?pg=135" target="_blank" rel="noopener"><bdi dir="ltr">8 Órai</bdi> Ujság, 14.3.1930<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://adt.arcanum.com/en/view/Koztelek_1925_2/?pg=13" target="_blank" rel="noopener">Köztelek, 5.7.1925<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://adt.arcanum.com/en/view/Vilag_1947_03/?pg=7" target="_blank" rel="noopener">Világ, 2.3.1947<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/arcanum/arcanum_blumenthal_beno_bercel_2026-10-27.md" target="_blank" rel="noopener">תמליל ותרגום</a> — <strong>חריג:</strong> קישורי הסריקה המלאה של Arcanum החזירו 403 (לא נעקף); נשמר הפענוח האוטומטי ומקטעי החיפוש.</li>
+<li><strong>מה הוא מוכיח:</strong> "<bdi dir="ltr">Blumenthal Benő és neje Deutsch Ida, nógrádberceli lakosok</bdi>" — בני הזוג מדפי העד, בעלי אחוזה וחוכרים בנוגראדברצל בשנות העשרים (מאומת); נידון ב-1930 על מעילה בשותפות חכירה; ב-1947 — שישה בני בלומנטל "מברצל" בעצורי קפריסין, בהם "Jichak" (יצחק) (<a href="#s4-5">4.5</a>, <a href="#s4-6">4.6</a>).</li>
+</ul>
+<span id="15-הספרייה-הלאומית-עיתונות-יהודית-היסטורית-JPress-מעריב-דבר-" class="legacy-anchor"></span><h4 id="s15-הספרייה-הלאומית-עיתונות-יהודית-היסטורית-JPress-מעריב-דבר-"><span id="src-15" class="legacy-anchor"></span>15. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — "מעריב", "דבר", "על המשמר", <bdi dir="ltr">1971–1980</bdi>: מאיר בלומנטל בעיתונות הספורט, מותו, הלווייתו והגביע על שמו <em>(מאומת — כטקסט; התמונות לא נראו)</em></h4>
+<ul>
+<li><strong>מקור חיצוני:</strong> <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19711005-01.2.76" target="_blank" rel="noopener">מעריב, 5.10.1971<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19720416-01.2.150" target="_blank" rel="noopener">מעריב, 16.4.1972<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=dav19720507-01.2.163" target="_blank" rel="noopener">דבר, 7.5.1972<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=ahr19741122-01.2.130" target="_blank" rel="noopener">על המשמר, 22.11.1974<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=dav19741124-01.2.73" target="_blank" rel="noopener">דבר, 24.11.1974<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19741126-01.2.87" target="_blank" rel="noopener">מעריב, 26.11.1974<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19741226-01.2.91" target="_blank" rel="noopener">מעריב, 26.12.1974<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19750928-01.2.201" target="_blank" rel="noopener">מעריב, 28.9.1975<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=dav19761107-01.2.132" target="_blank" rel="noopener">דבר, 7.11.1976<span class="ext" aria-hidden="true">↗</span></a> · <a href="https://www.nli.org.il/he/newspapers/?a=d&amp;d=mar19800323-01.2.219" target="_blank" rel="noopener">מעריב, 23.3.1980<span class="ext" aria-hidden="true">↗</span></a></li>
+<li><strong>עותק מקומי:</strong> <a href="docs/jpress/jpress_ocr_mar19711005-01.2.76_friendly_maccabi_jaffa.md" target="_blank" rel="noopener">1971</a> · <a href="docs/jpress/jpress_ocr_mar19720416-01.2.150_bangkok_flag_bearer.md" target="_blank" rel="noopener">נושא הדגל</a> · <a href="docs/jpress/jpress_ocr_dav19720507-01.2.163_schweitzer_interview_final.md" target="_blank" rel="noopener">הגמר</a> · <a href="docs/jpress/jpress_ocr_ahr19741122-01.2.130_death_report.md" target="_blank" rel="noopener">הידיעה על מותו</a> · <a href="docs/jpress/jpress_ocr_dav19741124-01.2.73_funeral_report.md" target="_blank" rel="noopener">ההלוויה</a> · <a href="docs/jpress/jpress_ocr_mar19741126-01.2.87_team_visits_family.md" target="_blank" rel="noopener">הביקור אצל המשפחה</a> · <a href="docs/jpress/jpress_ocr_mar19741226-01.2.91_augsburg_blumenthal_cup.md" target="_blank" rel="noopener">אוגסבורג</a> · <a href="docs/jpress/jpress_ocr_mar19750928-01.2.201_first_memorial_cup_father_presents.md" target="_blank" rel="noopener">האב מעניק את הגביע</a> · <a href="docs/jpress/jpress_ocr_dav19761107-01.2.132_youth_cup_in_his_memory.md" target="_blank" rel="noopener">1976</a> · <a href="docs/jpress/jpress_ocr_mar19800323-01.2.219_memorial_cup_hapoel_pt_wins.md" target="_blank" rel="noopener">1980</a> · <a href="docs/jpress/jpress_ocr_EXCLUDED_namesakes.md" target="_blank" rel="noopener">בני השם שנשללו</a> — <strong>חריג:</strong> תמונות העמודים חסומות באתגר Cloudflare; נשמר הפענוח האוטומטי (OCR), חלקו בקטעים.</li>
+<li><strong>מה הוא מוכיח:</strong> קריירת הכדורגל של מאיר (<bdi dir="ltr">1971–1974</bdi>), נסיבות מותו והלווייתו; ושב-28.9.1975 העניק "אביו של מאיר בלומנטל" גביע לזכרו — אביו היה בחיים (<a href="#s5-1">5.1</a>).</li>
+</ul></section><hr><section id="changelog"><h2>יומן המהדורות</h2><details class="changelog-wrap"><summary>כל המהדורות (3) — מה השתנה בכל אחת</summary>
+<h3 id="מהדורה-1-26-10-2026">מהדורה 1 · 26.10.2026</h3>
+<ul>
+<li>דף ראשון. נקודת המוצא: הודעת המשפחה — שם המשפחה המקורי בלומנטל, ו"אחימאיר" על שם האח מאיר — וכרטיס ההתאמה ב-MyHeritage (הורים: יעקב בלומנטל ומרים ליבוביץ'; אחים: משה, נאוה ומאיר).</li>
+<li>נמצאה ונקראה בסריקה <strong>תעודת הנישואין</strong> H 99915, רבנות פתח תקווה, 27.10.1948: יעקב בלומנטל, 30, חייל, "אי שם", בן משה בן ציון וחוה — שניהם מתים.</li>
+<li><strong>מאיר בלומנטל</strong> (<bdi dir="ltr">1952–1974</bdi>): דף ההנצחה באתר יזכור, הידיעות ב"מעריב" וב"דבר" על מותו באימון של הפועל פתח תקווה, ומודעות האבל והאזכרה <bdi dir="ltr">1974–1977</bdi> — הכתובות ברחוב יהוד 2 וברחוב רוטשילד 160א', ו"בלומנטל" עד נובמבר 1977.</li>
+<li><strong>נוגראדברצל:</strong> תשעה דפי עד על משה בן ציון ("בנו") בלומנטל ועל חוה (אידה) לבית דויטש — מבניהם יצחק, מיכאל ויהודה, מבתם רבקה גומבו ומנכדה; "10 ילדים"; האחים בפתח תקווה. הקשר ליעקב — <span class="rank v3" title="ככל הנראה — הראיה תומכת, אך חסר פרט מזהה שיכריע.">ככל הנראה</span>: אף מסמך אינו מונה אותו בין הילדים.</li>
+<li>נסרקו: IGRA (נישואין, בוחרים 1949 ו-1961, עלייה מהונגריה 1947, נוטרים, מפקד הקיבוץ הארצי, שינויי שם), יד ושם (שמות וממלאים), ארולסן, ג'וינט, JPress, ארכיון המדינה, Pinpoint, Geni. ממצאים שליליים — 9.4.</li>
+<li>חסמים: עמודי <bdi dir="ltr">JPress (Cloudflare), JewishGen</bdi> (התחברות), FamilySearch (אסימון).</li>
+</ul>
+<h3 id="מהדורה-2-26-10-2026">מהדורה 2 · 26.10.2026</h3>
+<ul>
+<li>תיקונים בעקבות סבב ביקורת חיצונית ראשון. <strong>השם:</strong> אין מסמך שיעקב ומרים נשאו את השם אחימאיר — הדף נקרא עכשיו "יעקב בלומנטל" (התיקייה: yaakov-blumenthal); "אחימאיר" — שם האחים, לפי המשפחה. <strong>מועד השינוי:</strong> מודעות האזכרה <bdi dir="ltr">1975–1977</bdi> חתומות "המשפחה", לא "בלומנטל" — המסקנה "אחרי נובמבר 1977" בוטלה; המועד — לא ידוע.</li>
+<li><strong>מאיר</strong> כבנם — "כמעט ודאי" גם בעמוד הסיפור (היה "מאומת"). <strong>מות ההורים</strong> — "ככל הנראה", ובצד הגרסה של יצחק (1956): "אי שם בגרמניה". <strong>מאיר (Mór)</strong> — אביו של משה בן ציון, לא סבו (תוקן בתמצית).</li>
+<li>טבלאות דפי העד הושלמו מן הסריקות (מקומות לידה, שמות הורים, "גיארמת (גטו)", תאריכים); הציטוט מדף מיכאל תוקן ל"עד שלקחו ב-1944 מאי", והדף — "באמצעות בתו".</li>
+<li>נוסף: מודעת התנחומים מ-24.11.1974 אל "יעקב בלומנטל" (בחתימת "משפחות בייזר-גרובר") — יעקב ומרים בחיים בנובמבר 1974; והקשר האפשרי לנוטר "Yacob Grouber". פטירה — חיפוש גם בשם בלומנטל (JPress — אין).</li>
+<li><strong>מפי המשפחה:</strong> "שני ההורים מהונגריה" — מתיישב עם נוגראדברצל; הזיהוי נשאר "ככל הנראה" עד שמשון יאמר את העיר.</li>
+<li><strong>JewishGen</strong> נקרא (בחשבון מחובר): 150 התאמות ל"בלומנטל" + "ברצל" — אין יעקב; ב-1868 — נישואי בלומנטל מברצל עם וושנר (Wuszner), שם המשפחה של אמו של משה בן ציון (ערך 12).</li>
+<li>הוסרו קביעות רקע שלא נשענו על מקור (מרחק מבודפשט, גבולות בורגנלנד, "עיר המחוז", הצבעת חיילים).</li>
+<li><strong>התאמה חכמה ב-MyHeritage</strong> (מעץ של ענף אחר, "מ. בלומנטל מישראל", ששלחה המשפחה): "מרים מגדה בלומנטל (לבית ליבוביץ)", 1925, הונגריה – 2003, אשת יעקב בלומנטל; חמיה — משה בן ציון, חמותה — חוה (לבית Deutsch); גיסיה — מיכאל, יהודה, מאיר, רבקה גומבו, לאה (יהודית), פירושקה (פייגה הינדל) כהן, וסימה לבית שרייבר; וסבי-הסבים, Blumenthál, Wosner ו-Deutsch (ערך 13). עם המסמכים ועדות המשפחה — הזיהוי של הורי יעקב עלה ל<strong>כמעט ודאי</strong>.</li>
+</ul>
+<h3 id="מהדורה-3-27-10-2026">מהדורה 3 · 27.10.2026</h3>
+<ul>
+<li>תיקונים בעקבות סבב ביקורת חיצונית שני. <strong>העץ ב-MyHeritage</strong> ("מ. בלומנטל") כולל את הורי כלתה של מרים — כלומר, ככל הנראה, עץ של צאצא של יעקב ומרים, ולא "ענף אחר"; מקורותיו לא ידועים, ואין הוא עדות בלתי תלויה בדפי העד. לכן הזיהוי של משה בן ציון וחוה כהוריו של יעקב חזר ל<strong>"ככל הנראה"</strong> — בדוח, בעמוד הסיפור, בעץ ובמפתח האנשים. במהדורה 2 נכתב בטעות "כמעט ודאי".</li>
+<li>תוקנו: הציטוט מדף מיכאל בעמוד הסיפור ("עד שלקחו ב-1944 מאי"); פרטי ההתאמה החכמה (Izsak "Ignacz"; "ייטל (יהודית) לאה"; רגינה — אם האב, יהודה יוליוס דויטש — אבי האם); "נספה בשואה" — 1944 בשלושה דפים; "10 ילדים" — לפי ארבעה דפים; הוסר "על שם אחיו מאיר" שיוחס לאבא אחימאיר בלי מקור; ב-JewishGen — החיפוש הפונטי מערב גם את טיסהברצל, והקשר לוושנר — טעון אימות; סדר השורות בממצאים השליליים.</li>
+<li>נוסף מפנקס 1949 (העותק השני): <strong>הינדה בלומנטל</strong> בת יהודה, 1920, עין גנים 49 — לצד יצחק וסימה; ו<strong>תמר בלומנטל</strong> בת חיים, 1923, עין גנים 2. ובדף העד של הנכדה — שם המשפחה הקודם "כהן".</li>
+<li><strong>העיתונות ההונגרית</strong> (Arcanum, ערך 14, פרק 4.6): "<bdi dir="ltr">Blumenthal Benő és neje Deutsch Ida, nógrádberceli lakosok</bdi>" — מכירות פומביות ב-1926; חכירת אחוזה ב-1924 ומשפט מעילה ב-1930; מכתב על חיטה מ-1921; וב-1947 — שישה בני בלומנטל מברצל בעצורי קפריסין, בהם "Jichak". הסריקות חסומות (403) — נשמר הפענוח.</li>
+<li><strong>עיתונות הספורט</strong> (JPress, ערך 15): מאיר נשא את דגל ישראל בטקס הפתיחה של גביע אסיה לנוער בבנגקוק, 1972, ושיחק בגמר; הידיעות על מותו והלווייתו בקריית שאול; והגביע על שמו — ב-28.9.1975 הגיש אותו <strong>אביו של מאיר</strong>: יעקב היה בחיים גם בספטמבר 1975. נוספה שורה N-13 לממצאים השליליים.</li>
+</ul></details></section>
+</main>
+<footer>מסמך זיכרון משפחתי · כל קביעה שבו נשענת על מסמך: קישור חיצוני אל המקור וקישור פנימי אל עותק שמור. מה שלא אומת — מסומן ככזה.</footer>
+<script>
+(function(){
+  var IDX = [{"t": "1. תמצית", "h": "#s1-תמצית", "k": "פרק"}, {"t": "2. מה ידוע מהמשפחה", "h": "#s2-מה-ידוע-מהמשפחה", "k": "פרק"}, {"t": "3. תעודת הנישואין, 1948", "h": "#s3-תעודת-הנישואין-1948", "k": "פרק"}, {"t": "4. נוגראדברצל — משפחת בלומנטל", "h": "#s4-נוגראדברצל-משפחת-בלומנטל", "k": "פרק"}, {"t": "5. פתח תקווה — המשפחה", "h": "#s5-פתח-תקווה-המשפחה", "k": "פרק"}, {"t": "6. השם אחימאיר", "h": "#s6-השם-אחימאיר", "k": "פרק"}, {"t": "7. עץ המשפחה", "h": "#s7-עץ-המשפחה", "k": "פרק"}, {"t": "8. פעולות פתוחות", "h": "#s8-פעולות-פתוחות", "k": "פרק"}, {"t": "9. שיטה ומגבלות", "h": "#s9-שיטה-ומגבלות", "k": "פרק"}, {"t": "יעקב בלומנטל — נושא הדף; לפי המשפחה — מהונגריה; חייל ב-1948; נשא את מרים ליבוביץ בפתח תקווה, 27.10.1948; אבי מאיר, שמשון, משה ונאוה (ילדיו — אחימאיר)", "h": "#s3-1", "k": "אדם", "x": "Yaakov Jakob Jakab Yakov Blumenthal Blumental Achimeir Ahimeir אחי-מאיר אחימאיר כ-1918 – אחרי 9.1975"}, {"t": "מרים בלומנטל לבית ליבוביץ — אשתו — נושאת המחקר האחר בארכיון הזה; בת משה הלוי ופרימט ליבוביץ; שנת הפטירה — לפי עץ משפחה בלבד", "h": "#s3-2", "k": "אדם", "x": "Miriam Leibovitz Leibowitz Lejbowicz Blumenthal Achimeir 1925 – 2003?"}, {"t": "משה בן ציון בלומנטל — שם אביו בתעודת הנישואין; ככל הנראה הוא משה בן ציון (\"בנו\") בלומנטל מנוגראדברצל (1888/1892 – 1944), בן מאיר (Mór) ורבקה — מורה / בעל אחוזה", "h": "#s4-1", "k": "אדם", "x": "Moshe Ben Zion Bencion Beno Benő Blumenthal Nogradbercel Bercel ברצל מת לפני 1948"}, {"t": "חוה בלומנטל — שם אמו בתעודת הנישואין; ככל הנראה היא חוה (אידה) לבית דויטש מנוגראדברצל, ילידת פראואנקירכן שבבורגנלנד (1885–1892 – 1944), אם לעשרה", "h": "#s4-2", "k": "אדם", "x": "Chava Chawa Hava Ida Jda Deutsch Doich דויטש Burgenland Frauenkirchen Boldogasszony מתה לפני 1948"}, {"t": "מאיר (Mór) ורבקה (רגינה) בלומנטל לבית ווזנר — הוריו של משה בן ציון מנוגראדברצל, לפי דפי העד", "h": "#s4-1", "k": "אדם", "x": "Meir Mor Mór Rivka Rebeka Regina Wozner Vozner Wuszner —"}, {"t": "יצחק, מיכאל, יהודה ורבקה גומבו — ילדי משה בן ציון וחוה מנוגראדברצל שמילאו את דפי העד; כולם בפתח תקווה — ככל הנראה אחיו ואחותו של יעקב", "h": "#s4-3", "k": "אדם", "x": "Yitzhak Izsak Mikhael Michael Yehuda Rivka Gombo Gombos גומבו סימה Sima יצחק 1915"}, {"t": "מאיר בלומנטל — בנו (כמעט ודאי); חייל בחיל האוויר, סמל ראשון לאחר מותו; כדורגלן הפועל פתח תקווה; על שמו — \"אחימאיר\"", "h": "#s5-1", "k": "אדם", "x": "Meir Blumenthal Blumi בלומי Hapoel Petah Tikva 11.4.1952 – 21.11.1974"}, {"t": "שמשון אחימאיר — בנו; נשוי לאילנה לבית קוטנר — ילדיהם טל, איל ושירי", "h": "#s5-3", "k": "אדם", "x": "Shimshon Achimeir Blumenthal 26.1.1954"}, {"t": "משה ונאוה — ילדיו, לפי כרטיס ההתאמה ב-MyHeritage", "h": "#s2", "k": "אדם", "x": "Moshe Nava —"}, {"t": "נוגראדברצל", "h": "#s4-1", "k": "מקום", "x": "Nogradbercel Nógrádbercel Bercel ברצל נוגראד Nograd"}, {"t": "בורגנלנד", "h": "#s4-2", "k": "מקום", "x": "Burgenland Frauenkirchen Boldogasszony"}, {"t": "פתח תקווה", "h": "#s5-2", "k": "מקום", "x": "Petah Tikva Petach Tikva פתח תקוה עין גנים כפר אברהם יהוד רוטשילד"}, {"t": "קריית שאול", "h": "#s5-1", "k": "מקום", "x": "Kiryat Shaul בית העלמין הצבאי"}, {"t": "ממצאים שליליים", "h": "#s9-4", "k": "נושא", "x": "ממצא שלילי נשלל"}, {"t": "3.1 התעודה", "h": "#s3-1-התעודה", "k": "תת־פרק"}, {"t": "3.2 מה התעודה אומרת על יעקב", "h": "#s3-2-מה-התעודה-אומרת-על-יעקב", "k": "תת־פרק"}, {"t": "4.1 משה בן ציון (\"בנו\") בלומנטל", "h": "#s4-1-משה-בן-ציון-בנו-בלומנטל", "k": "תת־פרק"}, {"t": "4.2 חוה (אידה) בלומנטל לבית דויטש", "h": "#s4-2-חוה-אידה-בלומנטל-לבית-דויטש", "k": "תת־פרק"}, {"t": "4.3 הילדים שמילאו את הדפים — ופתח תקווה", "h": "#s4-3-הילדים-שמילאו-את-הדפים-ופתח-תקווה", "k": "תת־פרק"}, {"t": "4.4 האם יעקב הוא בנם? — הדירוג", "h": "#s4-4-האם-יעקב-הוא-בנם-הדירוג", "k": "תת־פרק"}, {"t": "4.5 ברצל — בני בלומנטל נוספים", "h": "#s4-5-ברצל-בני-בלומנטל-נוספים", "k": "תת־פרק"}, {"t": "4.6 בנו בלומנטל בעיתונות ההונגרית, 1921–1931", "h": "#s4-6-בנו-בלומנטל-בעיתונות-ההונגרית-1921-1931", "k": "תת־פרק"}, {"t": "5.1 מאיר בלומנטל, 1952–1974", "h": "#s5-1-מאיר-בלומנטל-1952-1974", "k": "תת־פרק"}, {"t": "5.2 מודעות האבל, 1974–1977", "h": "#s5-2-מודעות-האבל-1974-1977", "k": "תת־פרק"}, {"t": "5.3 שמשון", "h": "#s5-3-שמשון", "k": "תת־פרק"}, {"t": "9.1 בסיס הראיות", "h": "#s9-1-בסיס-הראיות", "k": "תת־פרק"}, {"t": "9.2 סולם הוודאות", "h": "#s9-2-סולם-הוודאות", "k": "תת־פרק"}, {"t": "9.3 מוסכמות הכתיב", "h": "#s9-3-מוסכמות-הכתיב", "k": "תת־פרק"}, {"t": "9.4 ממצאים שליליים", "h": "#s9-4-ממצאים-שליליים", "k": "תת־פרק"}, {"t": "9.5 חסמים", "h": "#s9-5-חסמים", "k": "תת־פרק"}, {"t": "9.6 מה הדף אינו עושה", "h": "#s9-6-מה-הדף-אינו-עושה", "k": "תת־פרק"}, {"t": "מקורות ראשוניים", "h": "#מקורות-ראשוניים", "k": "מקור"}, {"t": "1. ארכיון המדינה, באמצעות IGRA — תעודת נישואין מס' H 99915, רבנות פתח תקווה, 27.10.1948: יעקב בלומנטל ומרים ליבוביץ (מאומת)", "h": "#s1-ארכיון-המדינה-באמצעות-IGRA-תעודת-נישואין-מס'-H-99915-רבנות", "k": "מקור"}, {"t": "2. יד ושם — ארבעה דפי עד על משה בן ציון (\"בנו\") בלומנטל, נוגראדברצל (מאומת — כעדות)", "h": "#s2-יד-ושם-ארבעה-דפי-עד-על-משה-בן-ציון-בנו-בלומנטל-נוגראדברצל-", "k": "מקור"}, {"t": "3. יד ושם — חמישה דפי עד על חוה (אידה) בלומנטל לבית דויטש, באשכול 14389303 (מאומת — כעדות)", "h": "#s3-יד-ושם-חמישה-דפי-עד-על-חוה-אידה-בלומנטל-לבית-דויטש-באשכול-", "k": "מקור"}, {"t": "4. ארכיון המדינה, באמצעות IGRA — פנקסי הבוחרים לכנסת, פתח תקווה, 1949 ו-1961: יצחק וסימה בלומנטל (מאומת)", "h": "#s4-ארכיון-המדינה-באמצעות-IGRA-פנקסי-הבוחרים-לכנסת-פתח-תקווה-1", "k": "מקור"}, {"t": "5. הארכיון הציוני המרכזי, באמצעות IGRA — רשימות מועמדי עלייה ועליית הנוער מהונגריה, 1947 (S6/36831): שורות בלומנטל מברצל (אינדקס — לא נקרא בסריקה)", "h": "#s5-הארכיון-הציוני-המרכזי-באמצעות-IGRA-רשימות-מועמדי-עלייה-ועל", "k": "מקור"}, {"t": "6. משרד הביטחון, אתר יזכור — דף ההנצחה של סמל ראשון מאיר בלומנטל (96850) (מאומת)", "h": "#s6-משרד-הביטחון-אתר-יזכור-דף-ההנצחה-של-סמל-ראשון-מאיר-בלומנטל", "k": "מקור"}, {"t": "7. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — \"מעריב\" ו\"דבר\", 1974–1977: על מותו של מאיר בלומנטל, ומודעות האבל והאזכרה (מאומת — כטקסט; התמונות לא נראו)", "h": "#s7-הספרייה-הלאומית-עיתונות-יהודית-היסטורית-JPress-מעריב-ו-דבר", "k": "מקור"}, {"t": "מקורות משפחתיים ומשניים", "h": "#מקורות-משפחתיים-ומשניים", "k": "מקור"}, {"t": "8. MyHeritage — עץ המשפחה \"Achimeir Family Tree\", וכרטיס ההתאמה לשמשון אחימאיר (עץ משתמשים — כיוון, לא רשומה)", "h": "#s8-MyHeritage-עץ-המשפחה-Achimeir-Family-Tree-וכרטיס-ההתאמה-לש", "k": "מקור"}, {"t": "9. ארכיון יד יערי, באמצעות IGRA — מפקד הקיבוץ הארצי, שריד, 1941: \"בלומנטל יעקב\" (טעון אימות)", "h": "#s9-ארכיון-יד-יערי-באמצעות-IGRA-מפקד-הקיבוץ-הארצי-שריד-1941-בל", "k": "מקור"}, {"t": "10. ארכיון המדינה, באמצעות IGRA — רשומות הנוטרים, 1936–1944: \"יעקב בלומנטל\" (טעון אימות)", "h": "#s10-ארכיון-המדינה-באמצעות-IGRA-רשומות-הנוטרים-1936-1944-יעקב-", "k": "מקור"}, {"t": "11. מפי המשפחה — אוהד צדוק, 26.10.2026 (עדות משפחתית)", "h": "#s11-מפי-המשפחה-אוהד-צדוק-26-10-2026-עדות-משפחתית", "k": "מקור"}, {"t": "12. JewishGen — חיפוש \"בלומנטל\" + \"ברצל\" בכל המאגרים, 26.10.2026 (אינדקס — נקרא בחשבון מחובר)", "h": "#s12-JewishGen-חיפוש-בלומנטל-ברצל-בכל-המאגרים-26-10-2026-אינדק", "k": "מקור"}, {"t": "13. MyHeritage — \"התאמה חכמה\" מעץ המשפחה שמנהל קרוב (\"מ. בלומנטל מישראל\"): מרים מגדה בלומנטל לבית ליבוביץ, ומשפחת בעלה (עץ משתמשים — כיוון, לא רשומה)", "h": "#s13-MyHeritage-התאמה-חכמה-מעץ-המשפחה-שמנהל-קרוב-מ-בלומנטל-מיש", "k": "מקור"}, {"t": "14. Arcanum (ADT) — העיתונות ההונגרית, 1921–1947: בנו בלומנטל ואשתו אידה דויטש מנוגראדברצל; רשימת עצורי קפריסין מהונגריה, 1947 (מאומת — כטקסט; הסריקות לא נשמרו)", "h": "#s14-Arcanum-ADT-העיתונות-ההונגרית-1921-1947-בנו-בלומנטל-ואשתו", "k": "מקור"}, {"t": "15. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — \"מעריב\", \"דבר\", \"על המשמר\", 1971–1980: מאיר בלומנטל בעיתונות הספורט, מותו, הלווייתו והגביע על שמו (מאומת — כטקסט; התמונות לא נראו)", "h": "#s15-הספרייה-הלאומית-עיתונות-יהודית-היסטורית-JPress-מעריב-דבר-", "k": "מקור"}, {"t": "מהדורה 1 · 26.10.2026", "h": "#מהדורה-1-26-10-2026", "k": "מהדורה"}, {"t": "מהדורה 2 · 26.10.2026", "h": "#מהדורה-2-26-10-2026", "k": "מהדורה"}, {"t": "מהדורה 3 · 27.10.2026", "h": "#מהדורה-3-27-10-2026", "k": "מהדורה"}];
+  var q = document.getElementById('q'), res = document.getElementById('qres');
+  function norm(s){ return (s||'').replace(/["'ְ-ׇ]/g,'').toLowerCase(); }
+  function clear(){ res.textContent=''; res.hidden=true; }
+  function run(){
+    var v = norm(q.value.trim());
+    res.textContent = '';
+    if (v.length < 2){ clear(); return; }
+    var out = [], i, it, hay;
+    for (i=0;i<IDX.length && out.length<12;i++){
+      it = IDX[i]; hay = norm(it.t + ' ' + (it.x||''));
+      if (hay.indexOf(v) !== -1) out.push(it);
+    }
+    if (out.length){
+      var head = document.createElement('p'); head.className='qcount';
+      head.textContent = out.length === 1 ? 'תוצאה אחת'
+                       : (out.length === 12 ? '12 התוצאות הראשונות' : out.length + ' תוצאות');
+      res.appendChild(head);
+      out.forEach(function(o){
+        var a = document.createElement('a'); a.href = o.h; a.textContent = o.t;
+        var k = document.createElement('span'); k.className='k'; k.textContent=o.k;
+        // a space, or the accessible name reads "…ירושליםאדם"
+        a.appendChild(document.createTextNode(' '));
+        a.appendChild(k); res.appendChild(a);
+      });
+    } else {
+      var p = document.createElement('p'); p.className='nores';
+      p.textContent='לא נמצאו תוצאות בפרקים, באנשים ובמקורות. לחיפוש בגוף הטקסט: Ctrl+F';
+      res.appendChild(p);
+    }
+    res.hidden = false;
+  }
+  function jump(h){
+    // re-applying the hash after the list closes keeps the heading where the
+    // browser put it, whatever else moved
+    location.hash=''; location.hash=h;
+  }
+  if (q){
+    q.hidden = false; clear();
+    q.addEventListener('input', run);
+    q.addEventListener('keydown', function(e){
+      if (e.key==='Escape'){ q.value=''; clear(); return; }
+      if (e.key==='ArrowDown'){ var a=res.querySelector('a'); if(a){ e.preventDefault(); a.focus(); } }
+      if (e.key==='Enter'){ var f=res.querySelector('a'); if(f){ e.preventDefault(); f.click(); } }
+    });
+    res.addEventListener('keydown', function(e){
+      var as = [].slice.call(res.querySelectorAll('a')), i = as.indexOf(document.activeElement);
+      if (e.key==='ArrowDown' && i > -1 && as[i+1]){ e.preventDefault(); as[i+1].focus(); }
+      if (e.key==='ArrowUp'){ e.preventDefault(); (i > 0 ? as[i-1] : q).focus(); }
+      if (e.key==='Escape'){ q.value=''; clear(); q.focus(); }
+    });
+    res.addEventListener('click', function(e){
+      var a = e.target.closest ? e.target.closest('a') : null;
+      var h = a ? a.getAttribute('href') : '';
+      setTimeout(function(){ clear(); q.value=''; offset(); if (h) jump(h); }, 60);
+    });
+  }
+  var nav = document.querySelector('.nav');
+  // the phone nav is one scrolling row; the search field opens from a button
+  var qt = document.querySelector('.qtoggle');
+  if (qt){
+    qt.hidden = false;
+    qt.addEventListener('click', function(){
+      var on = !nav.classList.contains('qopen');
+      nav.classList.toggle('qopen', on);
+      qt.setAttribute('aria-expanded', on ? 'true' : 'false');
+      if (on && q) q.focus(); else { if (q) q.value=''; if (res) clear(); }
+      offset();
+    });
+  }
+  function offset(){
+    if (!nav) return;
+    var h = Math.ceil(nav.getBoundingClientRect().height) + 14;
+    document.documentElement.style.setProperty('--anchor-off', h + 'px');
+  }
+  offset(); addEventListener('resize', offset);
+  var top = document.querySelector('.top');
+  function topvis(){ var on = scrollY > 900;
+    top.classList.toggle('show', on); top.setAttribute('tabindex', on ? '0' : '-1'); }
+  if (top){ top.setAttribute('tabindex','-1'); addEventListener('scroll', topvis, {passive:true}); }
+  // a lazy image that never entered the viewport prints as an empty frame,
+  // and a fetch started inside beforeprint is not awaited — so the whole set
+  // is promoted once the page has settled, and again as a backstop
+  // A lazy image that never entered the viewport prints as an empty frame. But
+  // promoting all of them on load would download the whole gallery for a reader
+  // who never scrolls. So: promote once the reader has actually started reading,
+  // and again at print time as a backstop.
+  function eager(){
+    [].forEach.call(document.querySelectorAll('img[loading="lazy"]'),
+                    function(i){ i.loading='eager'; });
+  }
+  // a collapsed <details> prints as its summary alone; everything is opened for
+  // the print run and put back afterwards
+  var reopen = [];
+  addEventListener('beforeprint', function(){
+    reopen = [].filter.call(document.querySelectorAll('details'), function(d){ return !d.open; });
+    reopen.forEach(function(d){ d.open = true; });
+  });
+  addEventListener('afterprint', function(){
+    reopen.forEach(function(d){ d.open = false; }); reopen = [];
+  });
+  var promoted = false;
+  function promoteOnce(){
+    if (promoted) return;
+    promoted = true;
+    var idle = window.requestIdleCallback || function(f){ setTimeout(f, 600); };
+    idle(eager);
+  }
+  addEventListener('scroll', promoteOnce, {passive:true, once:true});
+  addEventListener('beforeprint', eager);
+  // only a table that actually overflows is a scroll region worth a tab stop
+  function scrollables(){
+    [].forEach.call(document.querySelectorAll('.tablewrap'), function(w){
+      var over = w.scrollWidth - w.clientWidth > 1;
+      var cap = w.querySelector('caption');
+      var name = 'טבלה' + (cap && cap.textContent ? ' — ' + cap.textContent : '');
+      if (over){ w.tabIndex = 0; w.setAttribute('role','region');
+                 w.setAttribute('aria-label', name + ' — ניתנת לגלילה אופקית'); }
+      else { w.removeAttribute('tabindex'); w.removeAttribute('role');
+             w.removeAttribute('aria-label'); }
+    });
+  }
+  scrollables(); addEventListener('resize', scrollables);
+  // the tree is laid out at fixed coordinates; zooming the frame is how a reader
+  // gets its labels to a readable size without the boxes colliding
+  // zoom 1 is "fit to width": the diagram is laid out at the frame's own width,
+  // so the reader always has a state where the whole shape is on the screen,
+  // and every step above it is stated relative to that (×1.5, ×2)
+  var zoom = 1; // start at fit-to-width everywhere; readers zoom in with +
+  var zval = document.getElementById('tree-zoom-val');
+  function zshow(){
+    document.documentElement.style.setProperty('--tree-zoom', zoom);
+    if (zval) zval.textContent = '\u00d7' + (Math.round(zoom * 100) / 100);
+  }
+  [].forEach.call(document.querySelectorAll('[data-tree-zoom]'), function(btn){
+    btn.addEventListener('click', function(){
+      var v = btn.getAttribute('data-tree-zoom');
+      if (v === 'fit') zoom = 1;
+      else zoom = Math.min(3, Math.max(1,
+             Math.round((zoom + parseInt(v, 10) * 0.25) * 100) / 100));
+      zshow();
+    });
+  });
+  if (zval) zshow();
+  var links = [].slice.call(document.querySelectorAll('.nav-row a[href^="#"]'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var i = targets.indexOf(e.target);
+        if (i < 0) return;
+        links.forEach(function(a){ a.classList.remove('on'); });
+        links[i].classList.add('on');
+      });
+    }, {rootMargin:'-20% 0px -70% 0px'});
+    targets.forEach(function(t){ if (t) io.observe(t); });
+  }
+})();
+</script>
+</body>
+</html>

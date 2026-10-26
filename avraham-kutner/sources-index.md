@@ -107,3 +107,9 @@
 - **מקור חיצוני:** [מסמך 106704541](https://collections.arolsen-archives.org/en/document/106704541)
 - **עותק מקומי:** [עמוד 1](docs/arolsen/ITS-tracing-request-A26.156-Abraham-Israel-Kutner/arolsen_106704542_01_front.jpg) · [עמוד 2](docs/arolsen/ITS-tracing-request-A26.156-Abraham-Israel-Kutner/arolsen_106704543_01_front.jpg) · [עמוד 3](docs/arolsen/ITS-tracing-request-A26.156-Abraham-Israel-Kutner/arolsen_106704544_01_front.jpg)
 - **מה הוא מוכיח:** מכתב הג'וינט במינכן, 29.1.1948: «KUTNER Abraham and Israel, Lynn, Mass.» — הסוכנות בניו יורק לא הצליחה לאתרם עבור Isaac Roszelbach ממחנה העקורים באולם. המבוקשים הם תושבי לין שבמסצ'וסטס — ככל הנראה קרובים שהיגרו לאמריקה של אדם אחר, לא אברהם ואביו; מי הוא Roszelbach — לא ידוע. ככל הנראה נשלל.
+
+### <span id="src-19" class="legacy-anchor"></span>19. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — "לקרוב ולרחוק", 24.3.1947: רשימת מעפילי "חיים ארלוזורוב" שגורשו לקפריסין; ו"דבר", 21.10.1953 *(מאומת — כטקסט; התמונות לא נראו)*
+- **מקור חיצוני:** ["לקרוב ולרחוק", 24.3.1947, עמוד הרשימה השני](https://www.nli.org.il/he/newspapers/?a=d&d=lakkarov19470324-01.2.4) · [העמוד הראשון](https://www.nli.org.il/he/newspapers/?a=d&d=lakkarov19470324-01.2.2) · ["דבר", 21.10.1953](https://www.nli.org.il/he/newspapers/?a=d&d=dav19531021-01.2.56.1)
+- **עותק מקומי:** [הרשימה, עמ' 2](docs/jpress/jpress_ocr_lakkarov19470324-01.2.4_arlosoroff-ship-list-p2.md) · [בחירות ההנהלה, 1953](docs/jpress/jpress_ocr_dav19531021-01.2.56.1_kvutza-board-election.md) · [יוסף קוטנר באוזורקוב, 1937](docs/jpress/jpress_ocr_najerfolksblatlodz19370827-01.2.79_ozorkow-kutner-yosef.md) — **חריג:** תמונות העמודים חסומות; נשמר הפענוח האוטומטי (OCR).
+- **מה הוא מוכיח:** "קוטנר אברהם, 16, אוזורקוב" — בין מעפילי "חיים ארלוזורוב" שגורשו לקפריסין, מרץ 1947 — **כמעט ודאי** שהוא ([5.1](#s5-1)). "אברהם קוטנר" בהנהלת קבוצה ב-1953 — **טעון אימות** ([פרק 8](#s8)). "יוסף קוטנר" באוזורקוב, 1937 (עיתון ביידיש מלודז') — קרוב אפשרי בלבד.
+

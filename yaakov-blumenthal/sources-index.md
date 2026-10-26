@@ -1,0 +1,86 @@
+# רשימת מקורות
+
+לכל ערך: מהות המקור ומעמדו, ההפניה החיצונית למסמך המקורי, העותק המקומי השמור בתיקיית המחקר, ומה בדיוק הוא מוכיח. "עותק מקומי" פירושו עותק של **המסמך עצמו**. כל המקורות נצפו ב-26 באוקטובר 2026. שמונה ערכים חריגים מכלל העותק המקומי — ערך 5 (רשומות אינדקס בלי תמונה, שמורות כתמליל שדות), ערך 7 (עמודי העיתון חסומים; נשמר הפענוח האוטומטי), ערך 8 (עץ משפחה מקוון, שמור כתמליל), ערך 11 (עדות משפחתית בכתב), ערך 12 (תוצאות חיפוש, שמורות כתמליל), ערך 13 (עמוד בחשבון פרטי, שמור כ-PDF), ערך 14 (עמודי עיתונות שסריקתם חסומה; נשמר הפענוח) וערך 15 (עמודי עיתונות חסומים; נשמר הפענוח) — מסומנים במקומם.
+
+## מקורות ראשוניים
+
+### <span id="src-1" class="legacy-anchor"></span>1. ארכיון המדינה, באמצעות IGRA — תעודת נישואין מס' H 99915, רבנות פתח תקווה, 27.10.1948: יעקב בלומנטל ומרים ליבוביץ *(מאומת)*
+- **מהות:** העתק תעודת נישואין של הרבנות, מחוז תל אביב, שהוגש לשלטונות ("To be prepared in quadruplicate" — "יש להכין בארבעה עותקים"); מודפס במכונת כתיבה עברית, עם חותמת וחתימה.
+- **מקור חיצוני:** [IGRA — החתן, רשומה 1035](https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xNzkxNy1NYXJyaWFnZXMtMTAzNQ==) · [הכלה, רשומה 1036](https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xNzkxNy1NYXJyaWFnZXMtMTAzNg==) · [הסריקה ב-IGRA](https://igra-images.genealogy.org.il/17917_Marriages/1791700812.jpg)
+- **עותק מקומי:** [התעודה](docs/igra/marriage_cert_H99915_petah_tikva_1948-10-27.jpg) · חיתוכים: [הכותרת](docs/ev_marriage_header.jpg), [שורת החתן](docs/ev_marriage_husband.jpg), [שורת הכלה](docs/ev_marriage_wife.jpg)
+- **מה הוא מוכיח:** יעקב בלומנטל, 30, חייל, "אי שם", בן משה בן ציון וחוה — שניהם מתים — נשא את מרים ליבוביץ, 22, בפתח תקווה ב-27.10.1948 — מאומת ([3.1](#s3-1)).
+
+### <span id="src-2" class="legacy-anchor"></span>2. יד ושם — ארבעה דפי עד על משה בן ציון ("בנו") בלומנטל, נוגראדברצל *(מאומת — כעדות)*
+- **מהות:** דפי עד בכתב יד: 1349233 — מאת יצחק בלומנטל, בנו, פתח תקווה, 4.6.1956; 310307 — מאת יהודה בלומנטל, בנו, פתח תקווה, 17.12.1956; 1804444 — מאת מיכאל בלומנטל, בנו, פתח תקווה, 17.2.1995, באמצעות בתו; 3609155 — מאת חוה שרה דויטש-כהן, נכדתו, נתניה, אב תשנ"ג (1993).
+- **מקור חיצוני:** [1349233](https://collections.yadvashem.org/he/names/1349233) · [1804444](https://collections.yadvashem.org/he/names/1804444) · [310307](https://collections.yadvashem.org/he/names/310307) · [3609155](https://collections.yadvashem.org/he/names/3609155)
+- **עותק מקומי:** [1349233](docs/yadvashem-pot/1349233_1.jpg) · [1804444](docs/yadvashem-pot/1804444_1.jpg) · [310307](docs/yadvashem-pot/310307_1.jpg) · [3609155](docs/yadvashem-pot/3609155_1.jpg) · חיתוכים: [פרטי הנספה, 1956](docs/ev_pot_benzion_yitzhak.jpg), [הצהרת יצחק](docs/ev_pot_benzion_yitzhak_submitter.jpg), [דף מיכאל, 1995](docs/ev_pot_benzion_michael.jpg)
+- **מה הוא מוכיח:** משה בן ציון בלומנטל, 1888 או 1892, נוגראדברצל, בן מאיר (Mór) ורבקה (רגינה) לבית ווזנר, מורה / בעל אחוזה / איכר, נשוי לחוה (אידה) לבית דויטש, "10" ילדים; בזמן המלחמה — "גיארמת (גטו)"; נלקח במאי 1944; מותו — אושוויץ, או, לפי יצחק (1956), "אי שם בגרמניה" — מאומת כעדות ילדיו ונכדתו ([4.1](#s4-1)). שהוא אביו של יעקב — כמעט ודאי ([4.4](#s4-4)).
+
+### <span id="src-3" class="legacy-anchor"></span>3. יד ושם — חמישה דפי עד על חוה (אידה) בלומנטל לבית דויטש, באשכול 14389303 *(מאומת — כעדות)*
+- **מהות:** 1351282 — מאת רבקה גומבו, בתה, פתח תקווה (1957, ככל הנראה); 1815364 — מאת מיכאל; 418389 — מאת יהודה; 421417 — מאת יצחק; 3605706 — מאת חוה שרה דויטש-כהן, נכדתה.
+- **מקור חיצוני:** [האשכול](https://collections.yadvashem.org/he/names/14389303) · [1351282](https://collections.yadvashem.org/he/names/1351282) · [1815364](https://collections.yadvashem.org/he/names/1815364) · [418389](https://collections.yadvashem.org/he/names/418389) · [421417](https://collections.yadvashem.org/he/names/421417) · [3605706](https://collections.yadvashem.org/he/names/3605706)
+- **עותק מקומי:** [1351282](docs/yadvashem-pot/1351282_1.jpg) · [1815364](docs/yadvashem-pot/1815364_1.jpg) · [418389](docs/yadvashem-pot/418389_1.jpg) · [421417](docs/yadvashem-pot/421417_1.jpg) · [3605706](docs/yadvashem-pot/3605706_1.jpg) · חיתוכים: [פרטי הנספה](docs/ev_pot_chava_rivka.jpg), [הצהרת רבקה גומבו](docs/ev_pot_chava_rivka_submitter.jpg)
+- **מה הוא מוכיח:** חוה (אידה) לבית דויטש, ילידת פראואנקירכן (Boldogasszony) שבבורגנלנד — 1885, 1888, 1890 או כ-1892 ("בת 52"); בת יהודה (Gyula) ואסתר — או רגינה, או אנה; אשת משה בן ציון, אם לעשרה, עקרת בית בנוגראדברצל, נרצחה באושוויץ ב-1944 — מאומת כעדות ילדיה ונכדתה ([4.2](#s4-2)). שהיא אמו של יעקב — כמעט ודאי ([4.4](#s4-4)).
+
+### <span id="src-4" class="legacy-anchor"></span>4. ארכיון המדינה, באמצעות IGRA — פנקסי הבוחרים לכנסת, פתח תקווה, 1949 ו-1961: יצחק וסימה בלומנטל *(מאומת)*
+- **מהות:** רשימת בעלי זכות בחירה תש"ט (גל-4596/3, ושוב מ-4872/1), מסמך 147, שורה 12 — "יצחק בלומנטאל", 1915; פנקס הבוחרים לכנסת 1961 (001o01y), שורות 34–35 — יצחק (1915) וסימה (1923), "כ' אברהם ש' עממי 14".
+- **הערה:** הסימולים "גל-4596/3" ו"מ-4872/1" — כפי שהם באינדקס IGRA.
+- **מקור חיצוני:** [133813](https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ5LU5hdGlvbmFsLUVsZWN0aW9ucy0xMzM4MTM=) · [135244](https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQ5LU5hdGlvbmFsLUVsZWN0aW9ucy0xMzUyNDQ=) · [1961, יצחק](https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTYxLVZvdGVyc0xpc3RzS25lc3NldC04NzI4) · [1961, סימה](https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTYxLVZvdGVyc0xpc3RzS25lc3NldC04NzI5)
+- **עותק מקומי:** [1949, עמוד עין גנים](docs/igra/voters_1949_petah_tikva_PT2_264_blumenthal_ein_ganim.jpg) · [1949, עותק שני](docs/igra/voters_1949_petah_tikva_PT3_p10_blumenthal.jpg) · [1961](docs/igra/voters_1961_petah_tikva1_084_yitzhak_sima.jpg)
+- **מה הוא מוכיח:** יצחק בלומנטל, יליד 1915, בפתח תקווה מ-1949 לפחות; ב-1961 — באותה כתובת שבדף העד שמילא ב-1956 — מאומת. שזה יצחק בן משה בן ציון — כמעט ודאי (הכתובת) ([4.3](#s4-3)).
+
+### <span id="src-5" class="legacy-anchor"></span>5. הארכיון הציוני המרכזי, באמצעות IGRA — רשימות מועמדי עלייה ועליית הנוער מהונגריה, 1947 (S6/36831): שורות בלומנטל מברצל *(אינדקס — לא נקרא בסריקה)*
+- **מקור חיצוני:** קישורי IGRA לכל אחת משש השורות — בתמליל
+- **עותק מקומי:** [תמליל השדות](docs/igra/aliyah_candidates_hungary_1947_bercel_blumenthal.md) — **חריג:** לרשומות אין תמונה ב-IGRA.
+- **מה הוא מוכיח:** בברצל היו כמה בני בלומנטל שביקשו לעלות ב-1947 — אף אחד מהם אינו יעקב; השם לבדו אינו מזהה משפחה ([4.5](#s4-5)).
+
+### <span id="src-6" class="legacy-anchor"></span>6. משרד הביטחון, אתר יזכור — דף ההנצחה של סמל ראשון מאיר בלומנטל (96850) *(מאומת)*
+- **מקור חיצוני:** [מאיר בלומנטל ביזכור](https://www.izkor.gov.il/%D7%9E%D7%90%D7%99%D7%A8%20%D7%91%D7%9C%D7%95%D7%9E%D7%A0%D7%98%D7%9C/en_03274e4633b3f8082d741b4b72ac7028)
+- **עותק מקומי:** [נוסח הדף](docs/izkor/izkor_96850_meir_blumenthal.txt) · [התצלום](docs/izkor/izkor_96850_meir_portrait.jpg) · [מפת החלקה](docs/izkor/izkor_96850_meir_grave_plot_map.jpg)
+- **מה הוא מוכיח:** מאיר בלומנטל, בן יעקב ומרים, נולד 11.4.1952 בפתח תקווה, חייל בחיל האוויר, נפטר 21.11.1974, קבור בקריית שאול; "שני אחים ואחות" — מאומת. שזהו בנם של יעקב ומרים שלנו — כמעט ודאי ([5.1](#s5-1)).
+
+### <span id="src-7" class="legacy-anchor"></span>7. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — "מעריב" ו"דבר", 1974–1977: על מותו של מאיר בלומנטל, ומודעות האבל והאזכרה *(מאומת — כטקסט; התמונות לא נראו)*
+- **מקור חיצוני:** ["מעריב", 22.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=mar19741122-01.2.82) · ["דבר", 22.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=dav19741122-01.2.162) · [מודעות, "מעריב" 24.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=mar19741124-01.2.86.4) · [אזכרה, 7.11.1975](https://www.nli.org.il/he/newspapers/?a=d&d=mar19751107-01.2.78.1) · [26.11.1976](https://www.nli.org.il/he/newspapers/?a=d&d=mar19761126-01.2.67.2) · [15.11.1977](https://www.nli.org.il/he/newspapers/?a=d&d=mar19771115-01.2.122.1)
+- **עותק מקומי:** [הידיעה על מותו](docs/jpress/jpress_ocr_mar19741122_death_report.md) · [מודעות האבל](docs/jpress/jpress_ocr_mar19741124_condolence_ad.md) · [האזכרה הראשונה](docs/jpress/jpress_ocr_mar19751107_first_yahrzeit_ad.md) · [1976–1977](docs/jpress/jpress_ocr_mar19761126_and_mar19771115_yahrzeit_ads.md) — **חריג:** תמונות העמודים חסומות באתגר Cloudflare; נשמר הפענוח האוטומטי (OCR) — בידיעה על מותו, בקיצור.
+- **מה הוא מוכיח:** מאיר צנח ומת באימון של הפועל פתח תקווה; מודעת תנחומים מ-24.11.1974 פונה אל "יעקב בלומנטל"; המשפחה — ברחוב יהוד 2 (1974) וברחוב רוטשילד 160א' (1975), פתח תקווה; מודעות האזכרה חתומות "המשפחה" ([5.1](#s5-1), [5.2](#s5-2), [פרק 6](#s6)).
+
+## מקורות משפחתיים ומשניים
+
+### <span id="src-8" class="legacy-anchor"></span>8. MyHeritage — עץ המשפחה "Achimeir Family Tree", וכרטיס ההתאמה לשמשון אחימאיר *(עץ משתמשים — כיוון, לא רשומה)*
+- **מקור חיצוני:** [העץ ב-MyHeritage](https://www.myheritage.co.il/family-trees/achimeir/OYYV6X5EIHXN3MKJW7NPOO2CA5VXXOY)
+- **עותק מקומי:** [תמליל כרטיס ההתאמה וחלונית העובדות](docs/myheritage/record_match_shimshon_2026-10-26.md) — **חריג:** עץ מקוון פרטי; נשמר כתמליל.
+- **מה הוא מוכיח:** שכרטיס ההתאמה של האתר — ככל הנראה מתוך רשומה ב-Geni — מונה את יעקב בלומנטל ומרים ליבוביץ כהוריו של שמשון, ואת משה, נאוה ומאיר כאחיו; ומחלונית העובדות של שמשון — תאריכי נישואיו ולידות ילדיו. זיכרון משפחתי בלבד ([פרק 2](#s2)).
+
+### <span id="src-9" class="legacy-anchor"></span>9. ארכיון יד יערי, באמצעות IGRA — מפקד הקיבוץ הארצי, שריד, 1941: "בלומנטל יעקב" *(טעון אימות)*
+- **מקור חיצוני:** [IGRA-1940-KibutzArziMifkad-2778](https://genealogy.org.il/AID/index.php?recordID=SUdSQS0xOTQwLUtpYnV0ekFyemlNaWZrYWQtMjc3OA==)
+- **עותק מקומי:** [הדף](docs/igra/census_kibbutz_arzi_sarid_1941_blumenthal_yaakov_line11.jpg)
+- **מה הוא מוכיח:** יעקב בלומנטל בקבוצת נוער בשריד, 1941 — שנת לידתו אינה קריאה; שזה יעקב שלנו — טעון אימות ([N-4](#s9-4)).
+
+### <span id="src-10" class="legacy-anchor"></span>10. ארכיון המדינה, באמצעות IGRA — רשומות הנוטרים, 1936–1944: "יעקב בלומנטל" *(טעון אימות)*
+- **מקור חיצוני:** IGRA, מאגר הנוטרים, 19 שורות "יעקב בלומנטל", למשל: [טול כרם 1936](https://genealogy.org.il/AID/index.php?recordID=SUdSQS1Ob3RyaW1NYW5wb3dlci02MjA0) · [שריד 1939](https://genealogy.org.il/AID/index.php?recordID=SUdSQS1Ob3RyaW0tRS0zMTky) · [נצרת 1942](https://genealogy.org.il/AID/index.php?recordID=SUdSQS1Ob3RyaW1NYW5wb3dlci02MzIy)
+- **עותק מקומי:** [טול כרם 1936, A1998](docs/igra/notrim_tulkarm_1936_A1998.jpg) · [שריד 1939, 7858](docs/igra/notrim_sarid_1939_no7858.jpg) · [נצרת 1942, 6694](docs/igra/notrim_nazareth_1942_no6694.jpg) · [התפטרות 1944, 6694](docs/igra/notrim_resignation_1944_no6694.jpg)
+- **מה הוא מוכיח:** כמה "יעקב בלומנטל" שירתו בנוטרים — בלי שנת לידה או אב; אף אחד אינו מזוהה כיעקב שלנו ([N-3](#s9-4)).
+
+### <span id="src-11" class="legacy-anchor"></span>11. מפי המשפחה — אוהד צדוק, 26.10.2026 *(עדות משפחתית)*
+- **עותק מקומי:** [הנוסח](docs/family/ohad_zadok_2026-10-26.md) — **חריג:** עדות בכתב, אין מסמך חיצוני.
+- **מה הוא מוכיח:** שם המשפחה המקורי — בלומנטל; "אחימאיר" — על שם האח מאיר; ו"שני ההורים מהונגריה", בלי עיר ([פרק 2](#s2), [פרק 6](#s6)).
+
+### <span id="src-12" class="legacy-anchor"></span>12. JewishGen — חיפוש "בלומנטל" + "ברצל" בכל המאגרים, 26.10.2026 *(אינדקס — נקרא בחשבון מחובר)*
+- **מקור חיצוני:** [JewishGen — חיפוש גלובלי](https://www.jewishgen.org/databases/all/) (Surname "Blumenthal", Town "Bercel", פונטי)
+- **עותק מקומי:** [תמליל השורות](docs/jewishgen/blumenthal_bercel_2026-10-26.md) — **חריג:** תוצאות חיפוש שאין להן כתובת קבועה; נשמרו כתמליל — מאגרי הלידות, הנישואין, הפטירות ושלושה מאגרי ניצולים (לא כל 150 השורות).
+- **מה הוא מוכיח:** בני בלומנטל רבים ב"ברצל" — אבל החיפוש הפונטי מערב את נוגראדברצל ואת טיסהברצל; אין בהם יעקב או ילדי משה בן ציון; ב-1868 — חתן בלומנטל "Berzel [Bercel?]" עם כלה ממשפחת וושנר (Wuszner) — טעון אימות ([4.5](#s4-5)).
+
+### <span id="src-13" class="legacy-anchor"></span>13. MyHeritage — "התאמה חכמה" מעץ המשפחה שמנהל קרוב ("מ. בלומנטל מישראל"): מרים מגדה בלומנטל לבית ליבוביץ, ומשפחת בעלה *(עץ משתמשים — כיוון, לא רשומה)*
+- **מקור חיצוני:** עמוד ההתאמה בחשבון המשפחה ב-MyHeritage (אינו פומבי)
+- **עותק מקומי:** [העמוד, כפי שנשמר בידי המשפחה (PDF)](docs/myheritage/smart_match_miriam_magda_blumenthal_2026-10-26.pdf) · [תמליל](docs/myheritage/smart_match_miriam_magda_blumenthal_2026-10-26.md) — **חריג:** עמוד בחשבון פרטי; נשמר כ-PDF וכתמליל.
+- **מה הוא מוכיח:** שבעץ שמנהל קרוב — ככל הנראה מצאצאי יעקב ומרים (העץ כולל את הורי כלתה של מרים) — יעקב בלומנטל, בעלה של "מרים מגדה" לבית ליבוביץ (1925, הונגריה – 2003), רשום כבן משה בן ציון בלומנטל וחוה לבית דויטש, עם גיסיו וגיסותיו של מרים. מקורות העץ — לא ידועים; אינו עדות בלתי תלויה בדפי העד ([4.4](#s4-4)).
+
+### <span id="src-14" class="legacy-anchor"></span>14. Arcanum (ADT) — העיתונות ההונגרית, 1921–1947: בנו בלומנטל ואשתו אידה דויטש מנוגראדברצל; רשימת עצורי קפריסין מהונגריה, 1947 *(מאומת — כטקסט; הסריקות לא נשמרו)*
+- **מקור חיצוני:** [Budapesti Közlöny, 15.8.1926, עמ' 110](https://adt.arcanum.com/en/view/BudapestiKozlony_1926_08_ertesito/?pg=110) · [8 Órai Ujság, 14.3.1930](https://adt.arcanum.com/en/view/8OraiUjsag_1930_03/?pg=135) · [Köztelek, 5.7.1925](https://adt.arcanum.com/en/view/Koztelek_1925_2/?pg=13) · [Világ, 2.3.1947](https://adt.arcanum.com/en/view/Vilag_1947_03/?pg=7)
+- **עותק מקומי:** [תמליל ותרגום](docs/arcanum/arcanum_blumenthal_beno_bercel_2026-10-27.md) — **חריג:** קישורי הסריקה המלאה של Arcanum החזירו 403 (לא נעקף); נשמר הפענוח האוטומטי ומקטעי החיפוש.
+- **מה הוא מוכיח:** "Blumenthal Benő és neje Deutsch Ida, nógrádberceli lakosok" — בני הזוג מדפי העד, בעלי אחוזה וחוכרים בנוגראדברצל בשנות העשרים (מאומת); נידון ב-1930 על מעילה בשותפות חכירה; ב-1947 — שישה בני בלומנטל "מברצל" בעצורי קפריסין, בהם "Jichak" (יצחק) ([4.5](#s4-5), [4.6](#s4-6)).
+
+### <span id="src-15" class="legacy-anchor"></span>15. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — "מעריב", "דבר", "על המשמר", 1971–1980: מאיר בלומנטל בעיתונות הספורט, מותו, הלווייתו והגביע על שמו *(מאומת — כטקסט; התמונות לא נראו)*
+- **מקור חיצוני:** [מעריב, 5.10.1971](https://www.nli.org.il/he/newspapers/?a=d&d=mar19711005-01.2.76) · [מעריב, 16.4.1972](https://www.nli.org.il/he/newspapers/?a=d&d=mar19720416-01.2.150) · [דבר, 7.5.1972](https://www.nli.org.il/he/newspapers/?a=d&d=dav19720507-01.2.163) · [על המשמר, 22.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=ahr19741122-01.2.130) · [דבר, 24.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=dav19741124-01.2.73) · [מעריב, 26.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=mar19741126-01.2.87) · [מעריב, 26.12.1974](https://www.nli.org.il/he/newspapers/?a=d&d=mar19741226-01.2.91) · [מעריב, 28.9.1975](https://www.nli.org.il/he/newspapers/?a=d&d=mar19750928-01.2.201) · [דבר, 7.11.1976](https://www.nli.org.il/he/newspapers/?a=d&d=dav19761107-01.2.132) · [מעריב, 23.3.1980](https://www.nli.org.il/he/newspapers/?a=d&d=mar19800323-01.2.219)
+- **עותק מקומי:** [1971](docs/jpress/jpress_ocr_mar19711005-01.2.76_friendly_maccabi_jaffa.md) · [נושא הדגל](docs/jpress/jpress_ocr_mar19720416-01.2.150_bangkok_flag_bearer.md) · [הגמר](docs/jpress/jpress_ocr_dav19720507-01.2.163_schweitzer_interview_final.md) · [הידיעה על מותו](docs/jpress/jpress_ocr_ahr19741122-01.2.130_death_report.md) · [ההלוויה](docs/jpress/jpress_ocr_dav19741124-01.2.73_funeral_report.md) · [הביקור אצל המשפחה](docs/jpress/jpress_ocr_mar19741126-01.2.87_team_visits_family.md) · [אוגסבורג](docs/jpress/jpress_ocr_mar19741226-01.2.91_augsburg_blumenthal_cup.md) · [האב מעניק את הגביע](docs/jpress/jpress_ocr_mar19750928-01.2.201_first_memorial_cup_father_presents.md) · [1976](docs/jpress/jpress_ocr_dav19761107-01.2.132_youth_cup_in_his_memory.md) · [1980](docs/jpress/jpress_ocr_mar19800323-01.2.219_memorial_cup_hapoel_pt_wins.md) · [בני השם שנשללו](docs/jpress/jpress_ocr_EXCLUDED_namesakes.md) — **חריג:** תמונות העמודים חסומות באתגר Cloudflare; נשמר הפענוח האוטומטי (OCR), חלקו בקטעים.
+- **מה הוא מוכיח:** קריירת הכדורגל של מאיר (1971–1974), נסיבות מותו והלווייתו; ושב-28.9.1975 העניק "אביו של מאיר בלומנטל" גביע לזכרו — אביו היה בחיים ([5.1](#s5-1)).
