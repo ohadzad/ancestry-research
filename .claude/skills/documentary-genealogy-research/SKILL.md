@@ -89,10 +89,14 @@ conventions to the report's language and keep them uniform.
     a ma'apilim list printed in March 1947 that confirmed a ship and a hometown for two
     subjects the archives had left at `ככל הנראה`. A press hit is graded like any record:
     the name alone is `טעון אימות` until age, place, parents or context tie it to the subject.
-    Read a list's columns from its own rows before using a number: in the 1940s ship lists
-    of "לקרוב ולרחוק" the figure after the name is the **age**, not the birth year — a
-    sub-agent once promoted a 32-year-old "Gedalyahu Farkas" to `כמעט ודאי` as a
-    15-year-old subject born in '32.
+    Read each list's own header before using a number, then test the header against the
+    rows — never decide a column by analogy with another list. "לקרוב ולרחוק" printed ship
+    lists a month apart under "שם הפליט, גילו" (age) and "שנת ההולדת (שתי הספרות האחרונות
+    בלבד)" (birth year), and the second header was wrong for one of its two ships, as ten
+    "נולד ב-" entries elsewhere in the same issue proved. The lead agent once demoted a
+    correct find, reading "גדליהו, 32" as an age by analogy with the other list; the header,
+    the zero-padded "00"–"05" rows, and the ages of the same ship's passengers printed a week
+    earlier settled it as a birth year. Look in neighbouring issues for exactly such checks.
     Save the article (scan if reachable, else the OCR text marked as an exception), and
     record every empty query as a negative with its coverage (titles, years, spellings).
 14. **Every European-born person alive in 1939 gets a war-years chapter — and censuses go to
