@@ -22,7 +22,7 @@
 
 ### <span id="src-4" class="legacy-anchor"></span>4. הספרייה הלאומית, עיתונות יהודית היסטורית (JPress) — "מעריב" ו"דבר", 1974–1977 *(מאומת — כטקסט; התמונות לא נראו)*
 - **מקור חיצוני:** ["מעריב", 22.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=mar19741122-01.2.82) · ["דבר", 22.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=dav19741122-01.2.162) · [מודעות, 24.11.1974](https://www.nli.org.il/he/newspapers/?a=d&d=mar19741124-01.2.86.4) · [אזכרה, 7.11.1975](https://www.nli.org.il/he/newspapers/?a=d&d=mar19751107-01.2.78.1) · [26.11.1976](https://www.nli.org.il/he/newspapers/?a=d&d=mar19761126-01.2.67.2) · [15.11.1977](https://www.nli.org.il/he/newspapers/?a=d&d=mar19771115-01.2.122.1)
-- **עותק מקומי:** [הידיעה על מותו](docs/jpress/jpress_ocr_mar19741122_death_report.md) · [מודעות האבל](docs/jpress/jpress_ocr_mar19741124_condolence_ad.md) · [האזכרה הראשונה](docs/jpress/jpress_ocr_mar19751107_first_yahrzeit_ad.md) · [1976–1977](docs/jpress/jpress_ocr_mar19761126_and_mar19771115_yahrzeit_ads.md) — **חריג:** תמונות העמודים חסומות באתגר Cloudflare; נשמר הפענוח האוטומטי.
+- **עותק מקומי:** [הידיעה על מותו](docs/jpress/jpress_ocr_mar19741122_death_report.md) · [מודעות האבל](docs/jpress/jpress_ocr_mar19741124_condolence_ad.md) · [האזכרה הראשונה](docs/jpress/jpress_ocr_mar19751107_first_yahrzeit_ad.md) · [1976–1977](docs/jpress/jpress_ocr_mar19761126_and_mar19771115_yahrzeit_ads.md) — **חריג:** תמונות העמודים נעולות באתר הספרייה הלאומית (זכויות יוצרים); נשמר הפענוח האוטומטי.
 - **מה הוא מוכיח:** מודעת תנחומים מ-24.11.1974 אל "יעקב בלומנטל"; המשפחה ברחוב יהוד 2 (1974) וברחוב רוטשילד 160א' (1975), פתח תקווה; מודעות האזכרה חתומות "המשפחה" ([5.2](#s5-2), [פרק 6](#s6)).
 
 ## מקורות משפחתיים
@@ -45,3 +45,19 @@
 - **מקור חיצוני:** [משה ליבוביץ, 800983](https://collections.yadvashem.org/he/names/800983) · [פרימה ליבוביץ, 569649](https://collections.yadvashem.org/he/names/569649)
 - **עותק מקומי:** [800983](docs/candidates/800983_1.jpg) · [569649](docs/candidates/yv_pot_569649_frima_lebowits_balassagyarmat.jpg)
 - **מה הוא מוכיח:** זוג בשם משה ופרימט ליבוביץ בבאלאשאג'רמאט שבהונגריה, הורים לשבעה, נספו — מאומת כעדות. שהם הוריה של מרים — טעון אימות ([4.1](#s4-1)).
+
+### <span id="src-9" class="legacy-anchor"></span>9. ארכיון ארולסן — תיק האסירה של מגדה ליבוביץ (Lebovits / Lebovics), ילידת 20.1.1922 בבאלאשאג'רמאט: אושוויץ, רוונסבריק (53608), בוכנוולד — אלטנבורג (29024), 1944 *(המסמך — מאומת; שזו מרים — טעון אימות)*
+- **מקור חיצוני:** [התיק, 7638674](https://collections.arolsen-archives.org/en/document/7638674) · [כרטיס האסירה של בוכנוולד, 7638678](https://collections.arolsen-archives.org/en/document/7638678) · [כרטיס האסירה של רוונסבריק, 7638679](https://collections.arolsen-archives.org/en/document/7638679)
+- **עותק מקומי:** [כל שמונת המסמכים, 16 סריקות](docs/arolsen/lebovits_magda_1922_file/arolsen_7638675_01_front.jpg) — ובהם [הכרטיס האישי עם חתימתה](docs/arolsen/lebovits_magda_1922_file/arolsen_7638676_01_front.jpg) ו[כרטיס בוכנוולד](docs/arolsen/lebovits_magda_1922_file/arolsen_7638678_01_front.jpg) · [תיאור ודירוג](docs/arolsen/arolsen_CANDIDATE_magda_lebovits_b1922_balassagyarmat_buchenwald.md)
+- **מה הוא מוכיח:** שמגדה ליבוביץ מבאלאשאג'רמאט, בת מור ופאני לבית וג, נשלחה ב-10.6.1944 מניריֶשפוסטה לאושוויץ, הועברה לרוונסבריק ולבוכנוולד, ועבדה במפעל באלטנבורג. שזו מרים — **טעון אימות** ([4.2](#s4-2)).
+
+### <span id="src-10" class="legacy-anchor"></span>10. DEGOB — פרוטוקולים 3549 ו-3550, בודפשט 1945–1946: נשים מבאלאשאג'רמאט, והגטו *(מאומת — כעדות)*
+- **מקור חיצוני:** [פרוטוקול 3549](https://degob.hu/index.php?showjk=3549) · [פרוטוקול 3550](https://degob.hu/index.php?showjk=3550)
+- **עותק מקומי:** [3549](docs/degob/degob_3549_balassagyarmat_women_auschwitz_ravensbruck.md) · [3550](docs/degob/degob_3550_balassagyarmat_ghetto_community_leader_testimony.md) — **חריג:** תמליל של הטקסט שבאתר, עם התרגום.
+- **מה הוא מוכיח:** את דרכן של נשות באלאשאג'רמאט ב-1944 — הגטו, ניריֶשפוסטה, הרכבת של 10 ביוני, אושוויץ, וב-13 באוגוסט — רוונסבריק; אותה דרך שבכרטיסי מגדה ליבוביץ ([4.2](#s4-2)). על מרים עצמה — לא.
+
+### <span id="src-11" class="legacy-anchor"></span>11. MACSE ו-RadixIndex — מפתחות הרישום האזרחי: Lebovics / Lebovits בבאלאשאג'רמאט *(מפתח — טעון אימות)*
+- **מקור חיצוני:** [MACSE — המפתח](https://macse.hu/db/dbf.php) · [RadixIndex — Lebovits](https://www.radixindex.com/en/surnames/surname/lebovits)
+- **עותק מקומי:** [שורות MACSE](docs/macse/macse_lebovits_balassagyarmat_index_rows.md) · [RadixIndex](docs/macse/radixindex_NEGATIVE_lebovits_balassagyarmat.md) — **חריג:** מספרי שורות במפתח, שמורים כתמליל; הרשומות עצמן — לחברים בלבד.
+- **מה הוא מוכיח:** שברישום האזרחי של באלאשאג'רמאט יש לידות בשם Lebovics (6) ו-Lebovits (1) — המקום לחפש בו את לידתה של מגדה, 1922, או של מרים, 1925 ([פרק 8](#s8)).
+

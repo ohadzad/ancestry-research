@@ -1,0 +1,2 @@
+# Hungaricana — Lebovits (negative / coverage limit), 2026-10-27
+Portal = Budapest City Archives series only (see yaakov-blumenthal/docs/hungaricana/hungaricana_COVERAGE_LIMIT_budapest_only_and_hits.md). Lebovits/Lebowits/Leibovits/Leibovics/Lebovics/Leibowitz in LAKASIV (Budapest 1944 star-house forms): 1 hit (Porubszky Sándor dr., Major u. 5, XI. ker.), irrelevant. No Balassagyarmat series exist in this portal -> Moshe/Frimet Lebovits of Balassagyarmat cannot be checked here. Grade: **אינו שלילה** — coverage gap.

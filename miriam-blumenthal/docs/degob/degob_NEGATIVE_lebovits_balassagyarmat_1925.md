@@ -1,0 +1,2 @@
+# DEGOB — Miriam Lebovits (negative), 2026-10-27
+Canary green. Extended search residence=Balassagyarmat, sex=female, birth year 1925 -> 1 protocol (#3549: seven Balassagyarmat women; initials B. M., K. L., K. I., W. L., H. V., H. K., W. E. — none L). Full-text "Lebovits" -> 3 protocols, none Balassagyarmat. Grade: **ככל הנראה** — Miriam did not testify to DEGOB under a Balassagyarmat entry (or testified under initials not starting L). Protocol #3549 saved as context at yaakov-blumenthal/docs/degob/degob_3549_balassagyarmat_women_auschwitz_ravensbruck.md.

@@ -1,0 +1,2 @@
+# RadixIndex — Lebovits (negative for Nógrád), 2026-10-27
+https://www.radixindex.com/en/surnames/surname/lebovits : variants Lébovits/Lebovits; places in databases 1,2,3,4,5,8 are Subcarpathia/Szatmár/Transylvania/Budapest/Cegléd/Kecskemét/Vác/Gyöngyöspata etc. — **no Balassagyarmat, no Nógrád**. (Spelling "Lebovics" not swept in Radix.) Grade: **ככל הנראה** (no Radix index row for the candidate family; the free index is 19th c./WW1-oriented).

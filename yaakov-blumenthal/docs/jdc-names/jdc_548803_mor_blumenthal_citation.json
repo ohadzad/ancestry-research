@@ -1,0 +1,73 @@
+{
+  "files": [
+    {
+      "file": "/private/tmp/claude-501/-Users-ohadz-git-ancestry-research--claude-worktrees-add-tals-grandparents-159328/9cdae3e1-8363-46cc-acd0-259d9862b74e/scratchpad/jdc_mor/jdc_IS_AR_HU_00001_00884.pdf",
+      "bytes": 91104,
+      "via": "direct",
+      "source_url": "https://names-assets.archives.jdc.org/Documents/Names Databank/Hungarian Index Cards/Reel 1/IS_AR_HU_00001_00884.pdf"
+    }
+  ],
+  "downloaded_at": "2026-10-27T00:39:06+0200",
+  "person": {
+    "person_id": "0e292056-b4f3-4cf9-8c21-a13f1a54d418",
+    "name": "Mor Blumenthal",
+    "given_name": "Mor",
+    "surname": "Blumenthal",
+    "maiden_name": "",
+    "father_name": "",
+    "mother_name": "",
+    "alternative_names": [],
+    "gender": "",
+    "birth_date": "",
+    "birth_year": null,
+    "birth_location": "Bercel, Hungary",
+    "nationality": "",
+    "occupation": "",
+    "marital_status": "",
+    "related_items": [
+      {
+        "item_id": "548803",
+        "collection": "index_cards",
+        "found_in": "Vienna Office",
+        "jdc_emigration_office": "Austria, Vienna",
+        "emigration_location": "Hungary",
+        "destination": "",
+        "locations": [
+          "Hungary",
+          "Austria, Vienna",
+          "Bercel, Hungary"
+        ],
+        "ship_name": "",
+        "accompanied_by": [],
+        "primary_person": "Mor Blumenthal",
+        "ancestry_url": "",
+        "description_of_document": "With the outbreak of the Hungarian Revolution in 1956, more than 18,000 Jews fled to Austria. JDC helped emigrants waiting for resettlement, housing some 11,000 refugees in hotels, private dwellings and camps. JDC also supported two kosher kitchens in Vienna and furnished medical and religious supplies. While some stayed in Europe, refugees emigrated to the U.S., Canada, Australia, New Zealand, Israel and Latin America.",
+        "scans": [
+          {
+            "filename": "Names Databank/Hungarian Index Cards/Reel 1/IS_AR_HU_00001_00884.pdf",
+            "description": "View Index Card",
+            "url": "https://names-assets.archives.jdc.org/Documents/Names Databank/Hungarian Index Cards/Reel 1/IS_AR_HU_00001_00884.pdf?sv=2022-11-02&ss=b&srt=o&sp=r&se=2026-10-27T22%3A39%3A04Z&spr=https&sig=355%2BJ7GQJKqdNWqDubZT226IBpz5l4z9bnFb9BnocWI%3D"
+          }
+        ],
+        "searchable_text": "Vienna Office Hungary [] With the outbreak of the Hungarian Revolution in 1956, more than 18,000 Jews fled to Austria. JDC helped emigrants waiting for resettlement, housing some 11,000 refugees in hotels, private dwellings and camps. JDC also supported two kosher kitchens in Vienna and furnished medical and religious supplies. While some stayed in Europe, refugees emigrated to the U.S., Canada, Australia, New Zealand, Israel and Latin America. Austria, Vienna"
+      }
+    ],
+    "citation": {
+      "person_id": "0e292056-b4f3-4cf9-8c21-a13f1a54d418",
+      "person_url": "https://names.archives.jdc.org/#/person/0e292056-b4f3-4cf9-8c21-a13f1a54d418",
+      "found_in": [
+        "Vienna Office"
+      ],
+      "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+    },
+    "matched_query": null
+  },
+  "citation": {
+    "person_id": "0e292056-b4f3-4cf9-8c21-a13f1a54d418",
+    "person_url": "https://names.archives.jdc.org/#/person/0e292056-b4f3-4cf9-8c21-a13f1a54d418",
+    "found_in": [
+      "Vienna Office"
+    ],
+    "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+  }
+}

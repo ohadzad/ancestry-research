@@ -1,0 +1,13 @@
+# EHRI Portal — archival pointers for Balassagyarmat / Nógrád (descriptions, not scans), 2026-10-27
+
+Canary green. Searches: "Balassagyarmat" (19 hits), "Nógrádbercel" (0), "Bercel" (0).
+EHRI ehri-testimony: "Balassagyarmat" 0; "Blumenthal" 2 (Riga ghetto, Ostrowiec — irrelevant); subset of ~160 items, empty = no evidence either way.
+
+## Useful fonds (leads for where the Benő Blumenthal file, property file and 1930 case would be)
+1. **hu-006079** — Magyar Nemzeti Levéltár Nógrád Megyei Levéltára Balassagyarmati Fióklevéltár (repository). https://portal.ehri-project.eu/institutions/hu-006079 — child **hu-006079-v_83 "Records of the Mayor of Balassagyarmat" (1922-1950)** (trade licences, citizenship, disenfranchisement of Jews, ...). https://portal.ehri-project.eu/units/hu-006079-v_83
+2. **hu-002761-xxiv_10 — Records of the Balassagyarmat Representative of the Government Commissary for Abandoned Property** (1945-48): "the overwhelming majority of the material deals with the property of deported Jews or former labour servicemen ... petitions ... by returning survivors; ... restitution cases". Relevant for: Benő's leased/owned land and house in Nógrádbercel after deportation; claims by a returning son (Yaakov was a "soldier" in Israel by 1948, so likely not). ARK https://n2t.net/ark:41045/p0dg1ksw6ttg8m ; holder hu-002761 (Nógrád County Archives, Salgótarján).
+3. **us-005578-irn74195 — USHMM RG-68.109M "Selected records of the Holocaust in Nógrád County"** (Yad Vashem microfilm JM 28578-28584): includes royal courts of Balassagyarmat (1939-1944), public prosecutor of Balassagyarmat (4 records 1944), mayor's office of Balassagyarmat 1939-1944, abandoned-property commission Balassagyarmat. Digitised -> possibly the court/appeal record of the **1930 Blumenthal Benő embezzlement case** is NOT in this (1939-44 only). https://portal.ehri-project.eu/units/us-005578-irn74195
+4. **hu-002737-hu_hja_xx-a-1-d — "Vidéki közösségek információs kartonjai"** (Hungarian Jewish Archives, Jewish Council information cards on countryside communities 1944): the card for Nógrádbercel/Balassagyarmat district would give the Jewish population and deportation date. https://portal.ehri-project.eu/units/hu-002737-hu_hja_xx-a-1-d
+5. **ehri_ghettos-148 "Balassagyarmat Ghetto"** (concept; Yad Vashem ghettos encyclopedia cid=149; Wikidata Q30006333). https://portal.ehri-project.eu/keywords/ehri_ghettos-148
+6. USHMM oral histories mentioning Balassagyarmat (irrelevant by name): Margit Hársfalvi, Erzsébet Kun, Ilona Szász, Aladár Naszály, Sándor Bacsúr, Zoltán Réti, Elemér Pálinkás, István Márton (RG-50.670), Mordechai Weiss (RG-50.120.0168, Hebrew), Lilly Aron Weiss memoir.
+Grade: **טעון אימות** (pointers only; nothing names the Blumenthals).

@@ -1,0 +1,1 @@
+Internet Archive sweeps (Balassagyarmat texts, yizkor collection): negative; see yaakov-blumenthal/docs/internetarchive/internetarchive_NEGATIVE_balassagyarmat_nogradbercel.md. No Lebovits-specific archive.org query returned relevant material.

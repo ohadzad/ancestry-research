@@ -1,0 +1,1 @@
+EHRI Portal pointers for the Balassagyarmat ghetto, Nógrád County Archives (hu-006079), abandoned-property commission (hu-002761-xxiv_10), Jewish Council countryside cards (hu-002737-hu_hja_xx-a-1-d): see yaakov-blumenthal/docs/ehri/ehri_archival_pointers_balassagyarmat_nograd.md. No item names Lebovits/Leibovits. Grade: **טעון אימות**.
