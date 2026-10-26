@@ -1,0 +1,79 @@
+{
+ "doc_id": 130115952,
+ "url": "https://collections.arolsen-archives.org/en/document/130115952",
+ "desc_id": 2163102,
+ "title": "Documents with names from KURNOSIENKO, Nikolaj",
+ "collection_path": [
+  "1 Incarceration Documents",
+  "1.1 Camps and Ghettos",
+  "1.1.26 Mauthausen Concentration Camp",
+  "1.1.26.8 Häftlings-Personal-Karten Mauthausen",
+  "Häftlingspersonalkarten (erhalten von YAD VASHEM)",
+  "Documents with names from KURNOSIENKO, Nikolaj"
+ ],
+ "reference_code": "01012608055",
+ "document_count": 500,
+ "pages": [
+  {
+   "page_no": 1,
+   "side": "front",
+   "image_url": "https://collections-server.arolsen-archives.org/V/Ous_partitions/33/01012608/aa/ao/fh/001.jpg",
+   "thumbnail_url": "https://collections-server.arolsen-archives.org/V/Ous_partitions/33/01012608/aa/ao/fh/001.jpg?width=700",
+   "doc_id": 130115952,
+   "document_url": "https://collections.arolsen-archives.org/en/document/130115952",
+   "scan_folder_id": null,
+   "label": "Abram KUTNER"
+  }
+ ],
+ "citation": {
+  "doc_id": 130115952,
+  "url": "https://collections.arolsen-archives.org/en/document/130115952",
+  "signature": "1.1.26.8 - Häftlingspersonalkarten (erhalten von YAD VASHEM)",
+  "desc_id": 2163102,
+  "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+ },
+ "notes": [],
+ "persons": [
+  {
+   "doc_id": 130115952,
+   "last_name": "KUTNER",
+   "first_name": "Abram",
+   "maiden_name": "",
+   "place_of_birth": "",
+   "dob": {
+    "raw": "08/15/1928",
+    "precision": "day",
+    "year": 1928,
+    "month": 8,
+    "day": 15,
+    "iso": "1928-08-15",
+    "ambiguous": false
+   },
+   "more_dob": false,
+   "prisoner_number": "133332",
+   "desc_id": 2163102,
+   "signature": "1.1.26.8 - Häftlingspersonalkarten (erhalten von YAD VASHEM)",
+   "father": "",
+   "mother": "",
+   "religion": "",
+   "nationality": "",
+   "occupation": "",
+   "place_of_incarceration": "",
+   "date_of_decease": "",
+   "last_residence": "",
+   "last_residence_country": "",
+   "last_residence_district": "",
+   "last_residence_province": "",
+   "last_residence_town": "",
+   "citation": {
+    "doc_id": 130115952,
+    "url": "https://collections.arolsen-archives.org/en/document/130115952",
+    "signature": "1.1.26.8 - Häftlingspersonalkarten (erhalten von YAD VASHEM)",
+    "desc_id": 2163102,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+   },
+   "matched_query": null
+  }
+ ],
+ "file_pages_note": "trimmed: original listed 500 sibling pages of the archival unit (Documents with names from KURNOSIENKO, Nikolaj)"
+}

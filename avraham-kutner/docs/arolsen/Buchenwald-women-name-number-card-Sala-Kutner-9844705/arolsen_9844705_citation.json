@@ -1,0 +1,82 @@
+{
+ "doc_id": 9844705,
+ "url": "https://collections.arolsen-archives.org/en/document/9844705",
+ "desc_id": 1108801,
+ "title": "Cards with numbers from 40589",
+ "collection_path": [
+  "1 Incarceration Documents",
+  "1.1 Camps and Ghettos",
+  "1.1.5 Buchenwald Concentration Camp",
+  "1.1.5.8 Name-Number cards Buchenwald (Woman)",
+  "Cards with numbers from 40589"
+ ],
+ "reference_code": "01010508 069",
+ "document_count": 500,
+ "header_items": {
+  "referenceCode": "01010508 069",
+  "documentNum": "500"
+ },
+ "pages": [
+  {
+   "page_no": 1,
+   "side": "front",
+   "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010508/0035/132437470/001.jpg",
+   "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010508/0035/132437470/001.jpg?width=700",
+   "doc_id": 9844705,
+   "document_url": "https://collections.arolsen-archives.org/en/document/9844705",
+   "scan_folder_id": "132437470",
+   "label": "Sala KUTNER"
+  }
+ ],
+ "citation": {
+  "doc_id": 9844705,
+  "url": "https://collections.arolsen-archives.org/en/document/9844705",
+  "signature": "1.1.5.8 - 1.1.5.8 Name-Number cards Buchenwald (Woman)",
+  "desc_id": 1108801,
+  "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+ },
+ "notes": [],
+ "persons": [
+  {
+   "doc_id": 9844705,
+   "last_name": "KUTNER",
+   "first_name": "Sala",
+   "maiden_name": "",
+   "place_of_birth": "",
+   "dob": {
+    "raw": "",
+    "precision": "unknown",
+    "year": null,
+    "month": null,
+    "day": null,
+    "iso": null,
+    "ambiguous": false
+   },
+   "more_dob": false,
+   "prisoner_number": "40821",
+   "desc_id": 1108801,
+   "signature": "1.1.5.8 - Name-Number cards Buchenwald (Woman)",
+   "father": "",
+   "mother": "",
+   "religion": "",
+   "nationality": "",
+   "occupation": "",
+   "place_of_incarceration": "Buchenwald",
+   "date_of_decease": "",
+   "last_residence": "",
+   "last_residence_country": "",
+   "last_residence_district": "",
+   "last_residence_province": "",
+   "last_residence_town": "",
+   "citation": {
+    "doc_id": 9844705,
+    "url": "https://collections.arolsen-archives.org/en/document/9844705",
+    "signature": "1.1.5.8 - Name-Number cards Buchenwald (Woman)",
+    "desc_id": 1108801,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+   },
+   "matched_query": null
+  }
+ ],
+ "file_pages_note": "trimmed: original listed 500 sibling pages of archival unit"
+}

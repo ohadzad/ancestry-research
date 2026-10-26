@@ -1,0 +1,5 @@
+# JDC DP index cards — Pesach (b. 23.2.1901) and Marja (b. 5.12.1906) Kuttner, both born Ozorkow, Feldafing DP camp, destination Israel
+
+- **Source:** JDC Names, "Jewish Displaced Persons and Refugee Cards, 1943-1959" (Munich office): persons c657cfac-c334-4e7c-acc4-58edce02698a (Pesach) and bdc57774-ec94-492a-af52-54edd6fe5b92 (Marja); items 112980 / 112979; "Dpc Feldafing, Villa Weibel", emigration destination Israel; each "accompanied by" the other. Scans: jdc_31157_176231-00548.jpg, jdc_31157_176219-01142.jpg (this folder).
+- Same persons: Arolsen KÜST file 79371030 (Pesach b. 23.2.1901 Ozorkow, stateless; Marja b. 12.5.1906 Ozorkow) and JewishGen Sharit haPlatah (Kutner Pejsach, Ozorkow, 1901, Feldafing), Lodz Ghetto List has other Ozorków Kutners.
+- **Grade: טעון אימות — kinship unknown.** Ozorków-born survivors with the same surname, emigrating to Israel; Pesach is 9-ish years older than Israel Kutner (b. 1892/1897). Possible uncle/cousin; nothing in the card links them. Not for the report without a witness.

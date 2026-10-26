@@ -1,0 +1,83 @@
+{
+ "doc_id": 10690326,
+ "url": "https://collections.arolsen-archives.org/en/document/10690326",
+ "desc_id": 2114474,
+ "title": "Documents with names from KUSINSKI, Jan",
+ "collection_path": [
+  "1 Incarceration Documents",
+  "1.1 Camps and Ghettos",
+  "1.1.6 Dachau Concentration Camp",
+  "1.1.6.7 Office Cards Dachau",
+  "Office Cards Dachau A-Z",
+  "Documents with names from KUSINSKI, Jan"
+ ],
+ "reference_code": "01010607 172",
+ "document_count": 500,
+ "header_items": {
+  "referenceCode": "01010607 172",
+  "documentNum": "500"
+ },
+ "pages": [
+  {
+   "page_no": 1,
+   "side": "front",
+   "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010607/0068/98102822/001.jpg",
+   "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010607/0068/98102822/001.jpg?width=700",
+   "doc_id": 10690326,
+   "document_url": "https://collections.arolsen-archives.org/en/document/10690326",
+   "scan_folder_id": "98102822",
+   "label": "Izrael KUTNER"
+  }
+ ],
+ "citation": {
+  "doc_id": 10690326,
+  "url": "https://collections.arolsen-archives.org/en/document/10690326",
+  "signature": "1.1.6.7 - Office Cards Dachau A-Z",
+  "desc_id": 2114474,
+  "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+ },
+ "notes": [],
+ "persons": [
+  {
+   "doc_id": 10690326,
+   "last_name": "KUTNER",
+   "first_name": "Izrael",
+   "maiden_name": "",
+   "place_of_birth": "",
+   "dob": {
+    "raw": "11/13/1897",
+    "precision": "day",
+    "year": 1897,
+    "month": 11,
+    "day": 13,
+    "iso": "1897-11-13",
+    "ambiguous": false
+   },
+   "more_dob": false,
+   "prisoner_number": "96029",
+   "desc_id": 2114474,
+   "signature": "1.1.6.7 - Office Cards Dachau A-Z",
+   "father": "",
+   "mother": "",
+   "religion": "",
+   "nationality": "Polish",
+   "occupation": "",
+   "place_of_incarceration": "",
+   "date_of_decease": "",
+   "last_residence": "",
+   "last_residence_country": "",
+   "last_residence_district": "",
+   "last_residence_province": "",
+   "last_residence_town": "",
+   "citation": {
+    "doc_id": 10690326,
+    "url": "https://collections.arolsen-archives.org/en/document/10690326",
+    "signature": "1.1.6.7 - Office Cards Dachau A-Z",
+    "desc_id": 2114474,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+   },
+   "matched_query": null
+  }
+ ],
+ "file_pages_note": "trimmed: original listed 500 sibling pages of archival unit"
+}

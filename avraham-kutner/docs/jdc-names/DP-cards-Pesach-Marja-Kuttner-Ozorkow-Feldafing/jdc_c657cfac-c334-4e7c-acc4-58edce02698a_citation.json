@@ -1,0 +1,87 @@
+{
+  "files": [
+    {
+      "file": "/Users/ohadz/git/ancestry-research/.claude/worktrees/add-tals-grandparents-159328/avraham-kutner/docs/jdc-names/DP-cards-Pesach-Marja-Kuttner-Ozorkow-Feldafing/jdc_31157_176231-00548.jpg",
+      "bytes": 576116,
+      "via": "direct",
+      "source_url": "https://names-assets.archives.jdc.org/Documents/VMB_cardindex/31157_176231/31157_176231-00548.jpg"
+    },
+    {
+      "file": "/Users/ohadz/git/ancestry-research/.claude/worktrees/add-tals-grandparents-159328/avraham-kutner/docs/jdc-names/DP-cards-Pesach-Marja-Kuttner-Ozorkow-Feldafing/jdc_31157_176219-01142.jpg",
+      "bytes": 517711,
+      "via": "direct",
+      "source_url": "https://names-assets.archives.jdc.org/Documents/VMB_cardindex/31157_176219/31157_176219-01142.jpg"
+    }
+  ],
+  "downloaded_at": "2026-10-27T00:43:54+0200",
+  "person": {
+    "person_id": "c657cfac-c334-4e7c-acc4-58edce02698a",
+    "name": "Pesach Kuttner",
+    "given_name": "Pesach",
+    "surname": "Kuttner",
+    "maiden_name": "",
+    "father_name": "",
+    "mother_name": "",
+    "alternative_names": [],
+    "gender": "",
+    "birth_date": "2/23/1901",
+    "birth_year": 1901,
+    "birth_location": "Ozorkow, Poland",
+    "nationality": "",
+    "occupation": "",
+    "marital_status": "",
+    "related_items": [
+      {
+        "item_id": "112980",
+        "collection": "index_cards",
+        "found_in": "Jewish Displaced Persons and Refugee Cards, 1943-1959",
+        "jdc_emigration_office": "Germany, Munich",
+        "emigration_location": "Dpc Feldafing. Villa Weibel.",
+        "destination": "Israel",
+        "locations": [
+          "Dpc Feldafing. Villa Weibel.",
+          "Germany, Munich",
+          "Israel",
+          "Ozorkow, Poland"
+        ],
+        "ship_name": "",
+        "accompanied_by": [
+          "Marja Kuttner"
+        ],
+        "primary_person": "Pesach Kuttner",
+        "ancestry_url": "http://content.ancestry.com/iexec/?htx=View&r=an&dbid=1354&iid=31157_176231-00548",
+        "description_of_document": "This is a collection of registration cards of Jewish survivors who registered with the Emigration Department of JDC in Munich and Vienna after World War II for help in emigrating to countries other than Israel. The database includes individual cards from 1945-mid 1950s for 51,554 Displaced Persons in Munich and 25,374 Displaced Persons in Vienna.",
+        "scans": [
+          {
+            "filename": "VMB_cardindex/31157_176231/31157_176231-00548.jpg",
+            "description": "View Index Card",
+            "url": "https://names-assets.archives.jdc.org/Documents/VMB_cardindex/31157_176231/31157_176231-00548.jpg?sv=2022-11-02&ss=b&srt=o&sp=r&se=2026-10-27T22%3A43%3A49Z&spr=https&sig=pRSofPmZkeXiUqqR%2BTVly5rvE2hl3Dxl41ABSdUNqcM%3D"
+          },
+          {
+            "filename": "VMB_cardindex/31157_176219/31157_176219-01142.jpg",
+            "description": "View Index Card",
+            "url": "https://names-assets.archives.jdc.org/Documents/VMB_cardindex/31157_176219/31157_176219-01142.jpg?sv=2022-11-02&ss=b&srt=o&sp=r&se=2026-10-27T22%3A43%3A49Z&spr=https&sig=pRSofPmZkeXiUqqR%2BTVly5rvE2hl3Dxl41ABSdUNqcM%3D"
+          }
+        ],
+        "searchable_text": "Jewish Displaced Persons and Refugee Cards, 1943-1959 Dpc Feldafing. Villa Weibel. 52370 http://content.ancestry.com/iexec/?htx=View&r=an&dbid=1354&iid=31157_176231-00548 [{\"name\": \"Marja Kuttner\"}] This is a collection of registration cards of Jewish survivors who registered with the Emigration Department of JDC in Munich and Vienna after World War II for help in emigrating to countries other than Israel. The database includes individual cards from 1945-mid 1950s for 51,554 Displaced Persons in Munich and 25,374 Displaced Persons in Vienna. Germany, Munich Israel"
+      }
+    ],
+    "citation": {
+      "person_id": "c657cfac-c334-4e7c-acc4-58edce02698a",
+      "person_url": "https://names.archives.jdc.org/#/person/c657cfac-c334-4e7c-acc4-58edce02698a",
+      "found_in": [
+        "Jewish Displaced Persons and Refugee Cards, 1943-1959"
+      ],
+      "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+    },
+    "matched_query": null
+  },
+  "citation": {
+    "person_id": "c657cfac-c334-4e7c-acc4-58edce02698a",
+    "person_url": "https://names.archives.jdc.org/#/person/c657cfac-c334-4e7c-acc4-58edce02698a",
+    "found_in": [
+      "Jewish Displaced Persons and Refugee Cards, 1943-1959"
+    ],
+    "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "files": [
+    {
+      "file": "/Users/ohadz/git/ancestry-research/.claude/worktrees/add-tals-grandparents-159328/avraham-kutner/docs/jdc-names/Italian-aid-1946-Abram-Kutner-f4184e23/jdc_AR45-54_00074_00506.pdf",
+      "bytes": 362587,
+      "via": "direct",
+      "source_url": "https://names-assets.archives.jdc.org/Documents/Names Databank/Postwar Italian Aid/AR45-54_00074_00506.pdf"
+    }
+  ],
+  "downloaded_at": "2026-10-27T00:43:48+0200",
+  "person": {
+    "person_id": "f4184e23-f1be-4c36-8a82-757c56c237cd",
+    "name": "Abram Kutner",
+    "given_name": "Abram",
+    "surname": "Kutner",
+    "maiden_name": "",
+    "father_name": "",
+    "mother_name": "",
+    "alternative_names": [],
+    "gender": "",
+    "birth_date": "",
+    "birth_year": null,
+    "birth_location": "",
+    "nationality": "",
+    "occupation": "",
+    "marital_status": "",
+    "related_items": [
+      {
+        "item_id": "365919",
+        "collection": "list",
+        "found_in": "",
+        "jdc_emigration_office": "",
+        "emigration_location": "",
+        "destination": "",
+        "locations": [],
+        "ship_name": "",
+        "accompanied_by": [],
+        "primary_person": "",
+        "ancestry_url": "",
+        "description_of_document": "This 1946 list details JDC’s monthly financial support of individuals in the Naples, Florence, Torino, Genova, Modena and Pisa Jewish communities.",
+        "scans": [
+          {
+            "filename": "Names Databank/Postwar Italian Aid/AR45-54_00074_00506.pdf",
+            "description": "View Document",
+            "url": "https://names-assets.archives.jdc.org/Documents/Names Databank/Postwar Italian Aid/AR45-54_00074_00506.pdf?sv=2022-11-02&ss=b&srt=o&sp=r&se=2026-10-27T22%3A43%3A46Z&spr=https&sig=DRAefjDg57HWqV5c63hQpTY9w79iAfBgrB94M2Xqg60%3D"
+          }
+        ],
+        "searchable_text": "[] 1946-01-01 1946-12-31 [{\"name\": \"Abram Kutner\", \"person\": {\"key\": \"f4184e23-f1be-4c36-8a82-757c56c237cd\", \"collection\": \"persons\"}, \"region\": \"\", \"country\": {\"key\": \"T1944\", \"collection\": \"country\"}, \"City / Town\": \"\", \"destination\": \"\", \"ssr_republic\": \"\", \"collective_farm\": \"\", \"Business / Group\": \"\", \"State / Province\": \"\", \"originating_city\": \"\", \"sponsor_relative\": \"\", \"transitional_city\": \"\", \"regional_information\": \"\", \"transitional_country\": \"\", \"tentative_destination\": \"\"}] [] 1945-1954 This 1946 list details JDC’s monthly financial support of individuals in the Naples, Florence, T"
+      }
+    ],
+    "citation": {
+      "person_id": "f4184e23-f1be-4c36-8a82-757c56c237cd",
+      "person_url": "https://names.archives.jdc.org/#/person/f4184e23-f1be-4c36-8a82-757c56c237cd",
+      "found_in": [],
+      "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+    },
+    "matched_query": null
+  },
+  "citation": {
+    "person_id": "f4184e23-f1be-4c36-8a82-757c56c237cd",
+    "person_url": "https://names.archives.jdc.org/#/person/f4184e23-f1be-4c36-8a82-757c56c237cd",
+    "found_in": [],
+    "attribution": "JDC Archives Names Database (https://names.archives.jdc.org)"
+  }
+}

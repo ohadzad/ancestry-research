@@ -1,0 +1,84 @@
+{
+ "doc_id": 130432198,
+ "url": "https://collections.arolsen-archives.org/en/document/130432198",
+ "desc_id": 532953,
+ "title": "Entry register, prisoner numbers 084700 - 100199",
+ "collection_path": [
+  "1 Incarceration Documents",
+  "1.1 Camps and Ghettos",
+  "1.1.6 Dachau Concentration Camp",
+  "1.1.6.1 List Material Dachau",
+  "Entry registers of Concentration Camp Dachau",
+  "Entry register, prisoner numbers 084700 - 100199"
+ ],
+ "reference_code": "805460016",
+ "document_count": 252,
+ "header_items": {
+  "referenceCode": "805460016",
+  "crateDate": "1944-07-29 - 1944-09-04",
+  "documentNum": "252"
+ },
+ "pages": [
+  {
+   "page_no": 1,
+   "side": "front",
+   "image_url": "https://collections-server.arolsen-archives.org/V/Ous_partitions/33/01010602/aa/ak/su/001.jpg",
+   "thumbnail_url": "https://collections-server.arolsen-archives.org/V/Ous_partitions/33/01010602/aa/ak/su/001.jpg?width=700",
+   "doc_id": 130432198,
+   "document_url": "https://collections.arolsen-archives.org/en/document/130432198",
+   "scan_folder_id": null,
+   "label": ""
+  }
+ ],
+ "citation": {
+  "doc_id": 130432198,
+  "url": "https://collections.arolsen-archives.org/en/document/130432198",
+  "signature": "1.1.6.1 - Entry registers of Concentration Camp Dachau",
+  "desc_id": 532953,
+  "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+ },
+ "notes": [],
+ "file_pages_note": "trimmed: original listed 0 sibling pages of archival unit",
+ "persons": [
+  {
+   "doc_id": 130432198,
+   "last_name": "KUTNER",
+   "first_name": "IZRAEL",
+   "maiden_name": "",
+   "place_of_birth": "Litzmannstadt",
+   "dob": {
+    "raw": "11/13/1897",
+    "precision": "day",
+    "year": 1897,
+    "month": 11,
+    "day": 13,
+    "iso": "1897-11-13",
+    "ambiguous": false
+   },
+   "more_dob": false,
+   "prisoner_number": "96029",
+   "desc_id": 532953,
+   "signature": "1.1.6.1 - Entry registers of Concentration Camp Dachau",
+   "father": "",
+   "mother": "",
+   "religion": "",
+   "nationality": "POLISH",
+   "occupation": "",
+   "place_of_incarceration": "",
+   "date_of_decease": "",
+   "last_residence": "",
+   "last_residence_country": "",
+   "last_residence_district": "",
+   "last_residence_province": "",
+   "last_residence_town": "",
+   "citation": {
+    "doc_id": 130432198,
+    "url": "https://collections.arolsen-archives.org/en/document/130432198",
+    "signature": "1.1.6.1 - Entry registers of Concentration Camp Dachau",
+    "desc_id": 532953,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+   },
+   "matched_query": null
+  }
+ ]
+}

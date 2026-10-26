@@ -1,0 +1,6 @@
+# JDC Names — "Abram Kutner" in the 1946 list of JDC monthly support, Italian Jewish communities
+
+- **Source:** JDC Archives Names Database, collection "list" — "This 1946 list details JDC's monthly financial support of individuals in the Naples, Florence, Torino, Genova, Modena and Pisa Jewish communities." Person page: https://names.archives.jdc.org/#/person/f4184e23-f1be-4c36-8a82-757c56c237cd ; item id 365919; file Names Databank/Postwar Italian Aid/AR45-54_00074_00506.pdf (saved: jdc_AR45-54_00074_00506.pdf + PNG render of the page).
+- **Verbatim (page "4", typed list, numbered):** "630 KUTNER SARA / 631 " ABRAM" (ditto mark) then 632 KRAICNAN SONJA. A second page of the same list (AR45-54_00074_00504.pdf, page "2") has "186 KUTNER SARA" (different Sara; person 70b48ec2).
+- No birth year, no town. List is not alphabetical: entries come in family groups (e.g. 633-635 Rubin/Rubinek), so Sara and Abram are listed as one unit (mother+son, couple, or siblings).
+- **Grade: טעון אימות (weak lead).** Could be sister Sara/Sala (b.1922) with brother Abram reunited in Italy 1946, or an unrelated Sara+Abram. Supports only "a Kutner Abram in the JDC-supported Jewish population of Italy in 1946". Strengthened by the WJC list (Abram, Ozorkow 1930, Italy 1946) but does not link Sara to Sala.

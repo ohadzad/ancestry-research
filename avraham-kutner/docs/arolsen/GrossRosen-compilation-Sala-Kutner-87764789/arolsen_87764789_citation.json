@@ -1,0 +1,93 @@
+{
+ "doc_id": 87764789,
+ "url": "https://collections.arolsen-archives.org/en/document/87764789",
+ "desc_id": 228079,
+ "title": "Concentration camp Groß-Rosen and commands",
+ "collection_path": [
+  "1 Incarceration Documents",
+  "1.1 Camps and Ghettos",
+  "1.1.0 General Information",
+  "1.1.0.7 Compilation of Information Regarding Various Detention Sites and Camps",
+  "Concentration camp Groß-Rosen and commands"
+ ],
+ "reference_code": "1107011",
+ "document_count": 350,
+ "header_items": {
+  "referenceCode": "1107011",
+  "crateDate": "1944 - 1972",
+  "documentNum": "350"
+ },
+ "pages": [
+  {
+   "page_no": 1,
+   "side": "front",
+   "image_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/01010007/aa/ab/ly/001.jpg",
+   "thumbnail_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/01010007/aa/ab/ly/001.jpg?width=700",
+   "doc_id": 87764789,
+   "document_url": "https://collections.arolsen-archives.org/en/document/87764789",
+   "scan_folder_id": null,
+   "label": ""
+  },
+  {
+   "page_no": 2,
+   "side": "back",
+   "image_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/01010007/aa/ab/ly/002.jpg",
+   "thumbnail_url": "https://collections-server.arolsen-archives.org/H/ITS_import_june_2011/21/01010007/aa/ab/ly/002.jpg?width=700",
+   "doc_id": 87764789,
+   "document_url": "https://collections.arolsen-archives.org/en/document/87764789",
+   "scan_folder_id": null,
+   "label": ""
+  }
+ ],
+ "citation": {
+  "doc_id": 87764789,
+  "url": "https://collections.arolsen-archives.org/en/document/87764789",
+  "signature": "1.1.0.7 - 1.1.0.7 Compilation of Information Regarding Various Detention Sites and Camps",
+  "desc_id": 228079,
+  "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+ },
+ "notes": [],
+ "persons": [
+  {
+   "doc_id": 87764789,
+   "last_name": "KUTNER",
+   "first_name": "SALA",
+   "maiden_name": "",
+   "place_of_birth": "",
+   "dob": {
+    "raw": "",
+    "precision": "unknown",
+    "year": null,
+    "month": null,
+    "day": null,
+    "iso": null,
+    "ambiguous": false
+   },
+   "more_dob": false,
+   "prisoner_number": "",
+   "desc_id": 228079,
+   "signature": "1.1.0.7 - Compilation of Information Regarding Various Detention Sites and Camps",
+   "father": "",
+   "mother": "",
+   "religion": "",
+   "nationality": "",
+   "occupation": "",
+   "place_of_incarceration": "",
+   "date_of_decease": "",
+   "last_residence": "",
+   "last_residence_country": "",
+   "last_residence_district": "",
+   "last_residence_province": "",
+   "last_residence_town": "",
+   "citation": {
+    "doc_id": 87764789,
+    "url": "https://collections.arolsen-archives.org/en/document/87764789",
+    "signature": "1.1.0.7 - Compilation of Information Regarding Various Detention Sites and Camps",
+    "desc_id": 228079,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+   },
+   "matched_query": null
+  }
+ ],
+ "file_pages_note": "trimmed: original listed 689 sibling pages of archival unit"
+}
