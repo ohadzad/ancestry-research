@@ -7,3 +7,7 @@
 - Same page-59 neighbours (other Kutner entries on that page): Chaja 1900 (Icchak/Priwe), Ester Kalisz 1920 (Jakob/Henia), Klara Tluste 1900, Mozes Tluste 1892, Perl Krakow 1927 — unrelated.
 - **Grade:** record = מאומת; identification as Avraham = **כמעט ודאי** (Ozorkow, 1930 = the birth year of the Selvino list and the Cyprus list, parents' names Israel & Cywja exactly as in the Pages of Testimony 329533/379532). Fills the report's stated gap "no contemporaneous document for 1945-1947" (report 1, 4.3): a 1946 list of Jewish refugees in Italy.
 - **Gap:** original page (WJC records, American Jewish Archives, Cincinnati?) not seen; the JewishGen row has no image link. Not found in Arolsen name index.
+
+---
+
+**עדכון 27.10.2026 (ביקורת).** הכותרת "NEW (not in report/sources-index)" כבר אינה נכונה: מאז מהדורה 6 השורה בדוח (4.3) ובאינדקס המקורות (ערך 21). והדירוג בדוח: הרשומה — שורת אינדקס, הדף לא נראה — ולכן הזיהוי **ככל הנראה** (כלל הבית), לא "כמעט ודאי" ולא "מאומת". את הקשר "D51.9 = Jewish refugees in Italy, list no. 2, 1946" מתעד עותק של מפתח הסדרות: [jewishgen_JG0131_WJC_set-index_2026-10-27.md](jewishgen_JG0131_WJC_set-index_2026-10-27.md) — לסדרה D51.9 אין במפתח תת-סדרות, ו"c" שבשורה בא מן הרשומה עצמה.

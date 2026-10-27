@@ -26,3 +26,12 @@ Retrieved 2026-10-27 (arolsen_search "Farkas Gedalia" / "Fazekas Rachel"; arolse
 2. **Gedaliyahu's "Cyprus ship" identification.** The report (ch. ז') identifies him as "פארקאש גדליהו, 32, בודאפסט" on the list of the 806 deportees of "HaMa'apil HaAlmoni" (captured 17.2.1947 and deported to Cyprus) and calls the identification כמעט ודאי. But Farkas Gedalia b. 3.3.1931 (Wolowoje) is in Leipheim in April 1947, i.e. after that capture. Either he was not on that ship (the Cyprus entry may be another boy — note there is a "Fazekas Gedalia, b. 4.8.1930, Budapest" in the same Leipheim block, adjacent in the lists, a likelier "Budapest" candidate), or the Leipheim list still carried him after he left. His Atlit record (doc 28052) can still be real for a later ship (summer 1947-48).
 3. The family-memory of "Cyprus" may therefore attach to Gedaliyahu's later Aliyah Bet voyage, not to February 1947.
 Grades: presence of both siblings in Leipheim in 1947 — מאומת (two independent Arolsen sources, plus the existing CNI card); the implied aliyah year and the Cyprus identification — טעון אימות.
+
+---
+
+**עדכון 27.10.2026 (ביקורת; מהדורה 51).**
+- המשפט בראש הקובץ, "None of these document ids is cited in the report", כבר אינו נכון: מאז מהדורה 50 הדוח מצטט את 67016573, 67013473, 82007108 ו-82006997 (פרקים ד' ו-ז').
+- הדירוג בדוח היום: שגדליהו הוא "פארקאש גדליהו" שבאוניית "המעפיל האלמוני" — **אפשר ש… (טעון אימות)**; עזיבתה של רחל במאי 1946 — **ככל הנראה** (עדותה, והתאריך "13.V.1946" בכרטיס, בלי הסבר); ששני האחים היו בליפהיים ב-1947 — פתוח.
+- תיקון לסעיף 1 שלמעלה: בתמליל העדות רחל **כן** נוקבת בשנה — "ארבעים ושש במאי" [02:30:25].
+- ליד שורה 198 ברשימה המודפסת (82007108) — סימן אדום של ארכיון ITS; הבלוק והחדר (24-6..) — רק ברשימה בכתב יד (82006997).
+- **קריאה חוזרת של עמודת הבלוק-חדר ברשימה בכתב יד (82006997), 27.10.2026**, לפי הקווים המסורגים (הדף נטוי מעט): שורה 196 (Farago) — "3"; 197 (Farkas Dawid, ČSR) — "9"; **198 (Farkas Gedalia, Wolowoje) — "24-6.."**; 199 (Fazekas Gedalia, Budapest) — "24-6.."; 200 (Fazekas Rachel) — "24-60"; 201 (Felberbaum Jenti, Hust) — "2?-3?", **לא** "24-60" כפי שנכתב למעלה (תוקן). כלומר: שני ה-Gedalia ורחל — בבלוק 24, בחדרים "6.." — כמו שבדוח.

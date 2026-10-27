@@ -1,4 +1,4 @@
-# Yad Vashem — new records found 2026-10-27 (not in report.md / sources-index.md / docs/yadvashem-pot)
+# Yad Vashem — new records found 2026-10-27 (מאז מהדורה 8 — בדוח, פרקים 3.3 ו-6; ערכים 18–19)
 
 Tool: yadvashem MCP (yv_search_names, yv_get_name, yv_search_testimonies, yv_get_testimony). Health canary green (yv_health ok=true).
 Collection of all records below: "Yad Vashem - Survivors Registration Forms" (T1425304) or "Pages of Testimony" (T1196978) or Testimonies O.3.

@@ -16,3 +16,7 @@
 Benő (b. 1888/1892, aged 52-56) and Ida (b. 1885-1890, aged 54-59) from Nógrádbercel (Balassagyarmat district) were, per the Yad Vashem pages of their children, in the "גיארמת (גטו)" and deported to Auschwitz in 1944. The ghetto/transport chronology that fits is the Balassagyarmat one: ghetto 10 May 1944 -> Nyírjes-puszta tobacco barns ~4 June -> entrained 10 June -> arrival Birkenau 14 June (DEGOB 3549 and 3550, see docs/degob/). The 14-06-1944 arrival matches transport **308** (1867 persons) as the best-fit train for a family entrained 10 June; transport 309 (arrival 12 June) is the other candidate. Which of the two carried them cannot be decided from any record found.
 
 Grade: **ככל הנראה** (that the parents travelled on one of the two Balassagyarmat transports of 12/14 June 1944) — chronology only; no name-level record.
+
+---
+
+**עדכון 27.10.2026 (ביקורת).** הדוח (4.7) אינו מזהה את רכבת ההורים עם טרנספורט 308 (14.6, 1,867 איש). התאריכים 12.6 ו-14.6 ברשימת גאשקו הם מועדי המעבר בקאשה, לא מועדי ההגעה; הרכבת שתיארו העדים — כ-2,800 איש, יצאה ב-10.6 והגיעה ב-14.6 — מתאימה לזו של 2,810 (12.6 בקאשה). ועל "מחוז באלאשאג'רמאט": ברשומות הפטירה ב-JewishGen ברצל רשומה במחוז (járás) **סיראק**; שההורים היו בגטו גיארמת — לפי דפי העד של בנם יהודה.

@@ -6,7 +6,7 @@ Why examined: first name Magda (the family tree calls Miriam "Magda"), birthplac
 - Also appears as "LEBOVICS MAGDA 01/20/1922" in Ravensbrück/Kristal files (doc 3781873, 129641888 b. 21.1.1922, 129641870, 7638188, 7638338).
 - **Comparison:** parents Mór + Fanni née Végh (shoemaker) — Miriam's parents per the marriage certificate: **Moshe HaLevi + Frimet** (and 1925/26, age 22 in Oct 1948). Birth year differs by 3 years too.
 Grade: **נשלל** (parents' names differ; shoemaker Mór/Fanni of Tököli u. 103). Not Miriam. Kept only as an exclusion with the scan: arolsen_7638675_EXCLUDED_lebovits_magda_1922_buchenwald_folder.jpg, arolsen_7638676_EXCLUDED_lebovits_magda_1922_personal_card.jpg (this folder).
-Documents the Nyírjespuszta -> Buchenwald-Altenburg (HASAG) route of one Balassagyarmat Lebovits woman: 10.6.1944 deported "in KL Nyírjes", 5.9.1944 to Altenburg, 6.9.44 Ravensbrück.
+Documents the Nyírjespuszta -> Buchenwald-Altenburg route of one Balassagyarmat Lebovits woman: 10.6.1944 deported "in KL Nyírjes", 5.9.1944 to Altenburg, 6.9.44 Ravensbrück.
 
 ## Re-grading (27.10.2026, lead researcher) — the exclusion above is withdrawn
 - "Mór" is the standard Hungarian civil form of **Moshe** — so the father's name **matches** the marriage certificate (משה הלוי ליבוביץ). The exclusion's premise ("parents' names differ") is wrong for the father.
@@ -18,3 +18,10 @@ Documents the Nyírjespuszta -> Buchenwald-Altenburg (HASAG) route of one Balass
 - Route on the cards: Balassagyarmat, Tököly u. 103 → "KL Nyírjes" 10.6.1944 → Auschwitz → Ravensbrück 16.8.1944 (no. 53608) → Buchenwald, HASAG Altenburg, 22.9.1944 (no. 29024).
 - T/D 367444 (a post-war tracing case) is not in the online collection — formal request to Arolsen needed.
 
+---
+
+**עדכון 27.10.2026 (ביקורת).**
+- **הקבצים:** הסריקות שהוזכרו למעלה כ-"arolsen_7638675_EXCLUDED_…jpg" ו-"arolsen_7638676_EXCLUDED_…jpg" אינן קיימות בשם הזה: כל שמונת המסמכים, 16 סריקות, שמורים בתיקייה [lebovits_magda_1922_file](lebovits_magda_1922_file/arolsen_7638675_01_front.jpg) — למשל [הכרטיס האישי, 7638676](lebovits_magda_1922_file/arolsen_7638676_01_front.jpg) ו[כרטיס בוכנוולד, 7638678](lebovits_magda_1922_file/arolsen_7638678_01_front.jpg).
+- **הדירוג הנוכחי בדוח (מהדורה 6):** שמגדה היא בתם של משה ופרומה לבית וג — **כמעט ודאי**; שמרים היא מגדה — **אפשר ש… (טעון אימות)**. במהדורה 5 הועלה ל"ככל הנראה", והביקורת הורידה אותו בחזרה: השם "מגדה" — מעץ משתמשים בלבד, ושנת הלידה סותרת.
+- **"HASAG":** אינו כתוב באף כרטיס — בכרטיס האישי "KL Bu. Arb. Ko. Altenburg" ובכרטיס העבודה "Kdo Alt."; נמחק מהדוח.
+- **הכתיב בכרטיסים:** "Tökölyg. 103" (הכרטיס הירוק), "Tököli u 103" (הכרטיס האישי); "Fanni L., geb. Vegh" / "Fani geb Vegh". ההעברה לאלטנבורג — "Überstellt am 5.9.1944", ובהערות "6.9.44 KL Ravensbrück"; בכרטיס בוכנוולד — 22.9.44.

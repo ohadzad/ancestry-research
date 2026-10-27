@@ -70,3 +70,7 @@
 ## צילומי מסך
 - `img/jewishgen_HB_0824911_ida_deutsch_born_1887_boldogasszony.jpg` — Hungarian Births, שאילתה Blumenschein + Deutsch (6 רשומות): Ida 06-Nov-1887 (216/53-26), Adolf 11-Dec-1888, Ilka 11-Nov-1890, Josef 30-May-1892 — כולם Julius // BLUMENSCHEIN Netti, Boldogasszony, Nezsider, Moson, LDS#700859.
 - `img/jewishgen_C1848N_boldogaszony_moson_household38_deutsch_nathan.jpg` — 1848 Hungarian Census: Boldogaszony, Moson, Household 38 — Deutsch Nathan 36, Rosalia 30 (wife), Juliana 2 (daughter), Fany 60 (mother), Pebi 25 (sister); film 719825.
+
+---
+
+**עדכון 27.10.2026 (ביקורת).** הדירוג "מאומת" בקובץ הזה (וגם "המסמך המכריע", במקום שנכתב) נוגע להתאמת שדות האינדקס זה לזה ולדפי העד. שורת אינדקס שהפנקס שלה לא נראה מוגבלת ל"ככל הנראה" (כלל הבית) — וכך היא מדורגת בדוח (פרק 4.8, ערך 20). ציטוטי השמות — בכתיב האינדקס ("Benö", "Dezsö").

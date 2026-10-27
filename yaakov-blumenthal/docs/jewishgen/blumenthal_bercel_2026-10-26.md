@@ -24,3 +24,7 @@ WIDERKEHR, Jacob / Janus, 25.2.1874, Gyöngyös — "Sandak: David BLUMENTHAL fr
 - KMSZ (Military Forced Laborer) List: "JAKUBOVICS, Dezső", 7.3.1907 Bercel — אמו "BLAUMENTHÁL, Záli".
 
 **מסקנה:** אין במאגרים האלה רשומה של יעקב או של ילדי משה בן ציון וחוה. בברצל — משפחת בלומנטל רחבה, ובהן Wuszner (1868) — שם המשפחה של אמו של משה בן ציון, לפי דפי העד ("ווזנר").
+
+---
+
+**תיקון 27.10.2026.** ה"מסקנה" שלמעלה שגויה בחלקה: מאגר הפטירות ההונגרי מכיל שני ילדים של בנו ואידה שמתו בינקותם — "BLUMENTHAL, Szerén", 12.5.1918, ו"BLUMENTHAL, Dezsö", 14.7.1928 (`HD_0206801`, `HD_0206833`); ראו [הקובץ מ-27.10](../census/jewishgen_nogradbercel_blumenthal_wosner_deaths_1828_2026-10-27.md), ודוח 4.8 ו-N-11. והשורות "BLUMENTHAL, Miklós", ברצל, 1920 / 27.11.1920 — אולי מיקלוש בנם (בספר ארכיון מחוז נוגראד: 1926) — טעון אימות.

@@ -3,3 +3,7 @@
 Grade: **ככל הנראה** — no Arolsen record of Miriam Lebovits b. 1925 of Hungary. (Arolsen search returned only the first 1000 of 6042 rows for bare "Lebovits"; pairs with first names are complete.)
 
 Parents' names (candidate Moshe + Frima/Frimet Lebowits of Balassagyarmat): `arolsen_search("Lebowits Frima")` -> 5 rows (Lebowicz Frymet [no data, 6.3.3.1], Leibowicz Frima [no data, phonetical index], Fruma 1947 x3) — no Hungarian/Balassagyarmat marker. Grade: **ככל הנראה** negative.
+
+---
+
+**עדכון 27.10.2026 (ביקורת).** "LEBOVICZ Magda b. 14 Aug 1925 Beregsas" (68005934) אינה "שורת מפתח בלי פרטים": זה כרטיס עקורים עם סריקה ([הסריקה](arolsen_68005934_EXCLUDED_lebovicz_magda_1925_beregszasz_italy.jpg)) — "LEBOVICZ MAGDA · CSR · 14.8.1925 (25) F. · (BORN AT BEREGSAS CSR) · DAUG. CHANA RIWKA 14.3.48 · 29.12.45 T33 CINECITTA · 5.1.46 HASCHARAH IV GROTTAFERRATA – ROMA · 9.7.46 GROTTAFERRATA VIII · 26.2.49 Jews Going to Palestine" (בתה חנה רבקה נולדה ב-14.3.1948; באיטליה מדצמבר 1945; ב-26.2.1949 — "יהודים היוצאים לפלשתינה"). מרים נישאה בפתח תקווה ב-27.10.1948 — **נשללה**.

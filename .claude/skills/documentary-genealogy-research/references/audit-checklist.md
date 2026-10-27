@@ -167,6 +167,23 @@ museum entry never mentions the transport at all — and promoted a transit camp
   - A negative finding whose stated coverage omits a register the report itself cites
     elsewhere ("not in any marriage register" resting on two delos while chapter 3 quotes a
     wedding from a third).
+  - **A book's note applied to the wrong generation.** "The registers have gaps" was cited to
+    keep an unregistered-child option open; the note concerned the grandparents' children, and
+    the same book called the next child "their fourth". Read the sentence you cite, in place.
+  - **A cross-reference read as an argument.** A book's bare "vö. III.1.3.5" (compare) was
+    written up as "the book identifies Yitzhak with Ignác" — while two voter rolls gave Yitzhak
+    the birth year of a different brother.
+  - **A missing Page of Testimony read as survival.** "He filed no page on her — as for a
+    survivor" fell to a brother who also had no page and had perished in a labour battalion.
+  - **A family-tree name doing the identifying.** Parents can be matched by a primary document,
+    but if the only thing that picks out *which* child is a name from a user-made tree, the
+    child's identification stays one rung below the parents' — at most `אפשר ש…`.
+  - **A list that "includes people who had already left"** asserted from the subject's own
+    testimony and an unexplained date on a duplicate card. Hedge it, and keep the plain reading
+    (both siblings were still there) open.
+  - **A year derived, then cited back as a record.** "Aged 24 in 1955" was computed from 1931,
+    then the 1955 list was cited as a source for 1932. Check that every year you cite is
+    written in the document.
 
 ---
 

@@ -9,3 +9,7 @@ Tool: `auschwitz_search_people_variants` / `auschwitz_search_people` (exact subs
 
 Grade for id 34610 as Benő: **נשלל** as an identification (unsupported: first name differs; no place; no event). Listed only because 1892 coincides.
 Overall: no Auschwitz-registered record for Benő/Ida/Yaakov Blumenthal — consistent with unregistered gassing on the ramp (see transports 308/309).
+
+---
+
+**עדכון 27.10.2026 (ביקורת).** השורה 34610, "Blumenthal Jenö", 17.7.1892, אינה "נשללה" בדוח: היא נשארת פתוחה — **טעון אימות**. התאריך רחוק שלושה ימים בלבד מתאריך לידתו של בנו ברישום האזרחי (20.7.1892, `SM_0012723`), והשם נבדל באות אחת (Jenö / Benő): אולי שיבוש של אותו אדם. ראו דוח 4.7, N-15, N-16 ופעולה 12. (החיפוש המדויק "Blumenthal Jenő", ב-ő, החזיר 0; השורה נמצאה בסריקת "Blumenthal".)
