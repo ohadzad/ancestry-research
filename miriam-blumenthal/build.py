@@ -56,6 +56,8 @@ PEOPLE = (
       'Abraham Avraham Feige Tobe Feiga Toibe Tova Hoch Lebovits Lebovics Alsoapsa Alsó-Apsa Maramaros Máramaros'),
     P('זאב, יצחק ופרידה', '1889? · 1894 · ?', 'אחיו ואחותו של משה: זאב (וולף) ואשתו אסתר ופרידה דוידוביץ — אלשואפשה, נרצחו באושוויץ, 1944; יצחק — מגדיאל, 1957', '#s4-5',
       'Zeev Volf Wolf Ester Frida Davidovits Dawidowitz Yitzhak Iczik Jakob Magdiel Alsoapsa'),
+    P('ברטה ליבוביץ', 'כ-1920 – 21.12.1929', 'אחותה (כמעט ודאי); מתה בבאלאשאג\'רמאט, בת 9 — פנקס הפטירות, 1929', '#s4-6',
+      'Berta Lebovics Lebovits Balassagyarmat 1929 Maria Valeria hospital'),
     P('מרטון ("מנו") ליבוביץ', '6.8.1921', 'אחיה (כמעט ודאי); שוליית חייט; ברשימות נספי פלוגות העבודה — "נעדר", "מת במונקאץ\', 1944" — אבל שרד: ב-1945 "בלש פוליטי", נשפט בבאלאשאג\'רמאט על סחיטה, ובפברואר 1946 — מבוקש', '#s4-1',
       'Marton Márton Mano Manó Lebovics Lebovits Bor Munkacs labour battalion Bűnügyi Körözések Lapja'),
     P('יעקב בלומנטל', 'כ-1918 – אחרי 11.1974', 'בעלה — נושא המחקר האחר בארכיון הזה', '#s3-1', 'Yaakov Blumenthal Achimeir'),
@@ -240,6 +242,7 @@ STORY = Story(
         ('Arcanum — כרוז המשטרה ההונגרית, 1946; Magyar Közlöny, 1947', '#src-21'),
         ('JewishGen — מרשם הלידות של מרמרוש, אלשואפשה, 1887–1894', '#src-22'),
         ('IGRA — יצחק ליבוביץ, בן אברהם וטובה, 1950', '#src-23'),
+        ('FamilySearch — פנקסי באלאשאג\'רמאט: ברטה, 1929; לידות 1914–1916', '#src-24'),
     ),
 )
 
