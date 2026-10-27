@@ -50,7 +50,7 @@
 
 - **Izrael GANSL (Gansel/Ganzel) ∞ Hermina BLUMENTHAL**, ברצל: HD_0196121 "GANSEL, Matild | Izrael // BLUMENTHAL Hermine | 36-40 // 17-Dec-1891 // 3"; HD_0206872 "GANSL, Ignác | Izrael // BLUMENTHAL Hermin | 1943-55 // 01-Jan-1943 // 50"; HD_0206889/0206890 Izrael (80) ו-Hermina (82) — Auschwitz, 13-Jun-1944 (נרשמו 1948). **Hungarian Marriages `0093018`:** "GANZEL, Mózes // KRITZLER, Pepi | Izrael / Hermina (BLUMENTHAL) // Lipót / Betti (KRAUSZ) | 24 // 25 | 27-Jun-1911 // Bonyhád // Bonyhád / Völgység / Tolna | Groom merchant, b. April 6, 1887, from Berczel…" (LDS#5036682 // 1911-11 // 123). Hermina (נ' ≈1862) — אולי אחות של Mór (נ' ≈1853). **טעון אימות.**
 - **JAKUBOVITS Bernát ∞ Száli BLUMENTHAL** (HD_0206887/0206888, Auschwitz 13-Jun-1944; בת Dávid // Feldman Betti); **Simon BLUMENTHAL** (65, ∞ Malvin LÖWY, HD_0206841), **Dávid BLUMENTHAL** (70/84, ∞ Mária GRÜNBAUM / Julianna LENGYEL) — ענפים אחרים של בלומנטל בברצל; אין קשר מוכח לענף של Mór.
-- **BLUMENTHAL, Zsanka**, אלמנה, 80, ילידת ברצל, נפטרה 9-Jan-1894 (HD_0196263, 48-07; LDS-642840) — אולי אמו של József (נ' ≈1814). **טעון אימות.**
+- **BLUMENTHAL, Zsanka**, אלמנה, 80, ילידת ברצל, נפטרה 9-Jan-1894 (HD_0196263, 48-07; LDS-642840) — אולי אמו של József (נ' ≈1814). **טעון אימות.** *(תיקון, 27.10.2026: אינה יכולה להיות אמו — József מת ב-13.12.1892 בן 62, נ' ≈1830; ראו [יומן החיפוש](yaakov_ancestors_sweep_2026-10-27.md), A7.)*
 - **BÜCHLER, Fáni** (68, ילידת ברצל לבית BLUMENTAL, ∞ Antal BÜCHLER) נפטרה 30-Jan-1892 (HD_0196136).
 - בשורות שנמצאו (59) **אין** רשומה של בנו או של אידה עצמם (נפטרו, לפי דפי העד, ב-1944 — לא בברצל), ולא של ילדים בוגרים (יצחק, יעקב, מיכאל, יהודה, מאיר, רבקה, פירושקה, לאה).
 
