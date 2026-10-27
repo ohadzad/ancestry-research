@@ -14,7 +14,7 @@ Reading:
 - "לייבוביץ אסתר 28 משה פרימאם ה" — Esther Leibovitz, 28, parents Moshe and "Frimam", Hungary.
 - "ליבוביץ דויד 20 משה בארסה ר" — David Leibovitz, 20, parents Moshe and "Barsa", Romania: another family, next in the alphabet.
 
-## What it shows
+## What it shows (as written in edition 7; superseded in part by the addendum below)
 - Text: מאומת (as OCR). "פרימאם" is OCR; the certificates of both sisters print the mother as "פרימט".
 - Two daughters of Moshe and Frimet(?) Leibovitz from Hungary reached Atlit in the summer of 1946, on one of the two ships named in the title; the list does not say which.
 - Esther, 28 in August 1946 (born about 1918), against 32 on her marriage certificate of October 1948 (born 1915/16): ages on these lists are often approximate. That this Esther is the Esther of certificate H 99913 and of the Pages of Testimony: ככל הנראה (same given name, same parents' names, Hungary).
