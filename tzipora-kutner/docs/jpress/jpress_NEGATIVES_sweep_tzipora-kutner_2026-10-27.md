@@ -46,7 +46,7 @@
 ### B-2. `"צפורה בלם"` — 3 hits
 | Section id | Date, title | Reading (OCR, quotation ≤15 words) | Grade |
 |---|---|---|---|
-| **hzh19520318-01.2.49** | HaTsofeh 18.3.1952, "פרסום הרושמים לנישואין" | block "במשרד הרבנות בבאר שבע": "אברהם קיטנר . צאלים. רוק … צפורה בלם צאלים רוקה" | **NEW, near-certain**: see C-1 |
+| **hzh19520318-01.2.49** | HaTsofeh 18.3.1952, "פרסום הרשומים לנישואין" | block "במשרד הרבנות בבאר שבע": "אברהם קיטנר . צאלים. רוק … צפורה בלם צאלים רוקה" | **NEW, near-certain**: see C-1 |
 | haretz19370331-01.2.98 | Haaretz 31.3.1937, Tel Aviv local news | "צפורה בלם בת 6 שנים" scalded by a pot of soup in Kerem HaTeimanim; taken to Hadassah | namesake: a girl in Tel Aviv in 1937; ours lived in Luboml |
 | dav19370401-01.2.51 | Davar 1.4.1937, Tel Aviv | the same accident ("צפורה בלם", Kerem HaTeimanim, boiling oil in the OCR) | namesake (same girl) |
 
