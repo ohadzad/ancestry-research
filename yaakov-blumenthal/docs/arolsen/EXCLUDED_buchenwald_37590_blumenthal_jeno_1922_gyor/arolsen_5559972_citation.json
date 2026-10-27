@@ -1,0 +1,237 @@
+{
+  "doc_id": 5559972,
+  "url": "https://collections.arolsen-archives.org/en/document/5559972",
+  "desc_id": 1568206,
+  "title": "Personal file of BLUMENTHAL, JENÖ, born on 25-May-1922",
+  "collection_path": [
+    "1 Incarceration Documents",
+    "1.1 Camps and Ghettos",
+    "1.1.5 Buchenwald Concentration Camp",
+    "1.1.5.3 Individual Documents male Buchenwald",
+    "Individual Files (male) - Concentration Camp Buchenwald",
+    "Files with names from A to SYS and further sub-structure",
+    "Files with names from BLOCHA",
+    "Personal file of BLUMENTHAL, JENÖ, born on 25-May-1922"
+  ],
+  "reference_code": "01010503 001.042.416",
+  "document_count": 8,
+  "header_items": {
+    "referenceCode": "01010503 001.042.416",
+    "documentNum": "8"
+  },
+  "persons": [
+    {
+      "doc_id": 5559972,
+      "last_name": "BLUMENTHAL",
+      "first_name": "JENÖ",
+      "maiden_name": "",
+      "place_of_birth": "",
+      "dob": {
+        "raw": "05/25/1922",
+        "precision": "day",
+        "year": 1922,
+        "month": 5,
+        "day": 25,
+        "iso": "1922-05-25",
+        "ambiguous": false
+      },
+      "more_dob": false,
+      "prisoner_number": "35590",
+      "desc_id": 1568206,
+      "signature": "1.1.5.3 - Files with names from BLOCHA",
+      "father": "",
+      "mother": "",
+      "religion": "",
+      "nationality": "",
+      "occupation": "",
+      "place_of_incarceration": "",
+      "date_of_decease": "",
+      "last_residence": "",
+      "last_residence_country": "",
+      "last_residence_district": "",
+      "last_residence_province": "",
+      "last_residence_town": "",
+      "citation": {
+        "doc_id": 5559972,
+        "url": "https://collections.arolsen-archives.org/en/document/5559972",
+        "signature": "1.1.5.3 - Files with names from BLOCHA",
+        "desc_id": 1568206,
+        "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+      },
+      "matched_query": null
+    }
+  ],
+  "pages": [],
+  "file_pages": [
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014524/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014524/001.jpg?width=700",
+      "doc_id": 5559973,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559973",
+      "scan_folder_id": "52014524",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014524/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014524/002.jpg?width=700",
+      "doc_id": 5559973,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559973",
+      "scan_folder_id": "52014524",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014525/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014525/001.jpg?width=700",
+      "doc_id": 5559974,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559974",
+      "scan_folder_id": "52014525",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014525/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014525/002.jpg?width=700",
+      "doc_id": 5559974,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559974",
+      "scan_folder_id": "52014525",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014526/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014526/001.jpg?width=700",
+      "doc_id": 5559975,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559975",
+      "scan_folder_id": "52014526",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014526/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014526/002.jpg?width=700",
+      "doc_id": 5559975,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559975",
+      "scan_folder_id": "52014526",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014527/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014527/001.jpg?width=700",
+      "doc_id": 5559976,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559976",
+      "scan_folder_id": "52014527",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014527/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014527/002.jpg?width=700",
+      "doc_id": 5559976,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559976",
+      "scan_folder_id": "52014527",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014528/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014528/001.jpg?width=700",
+      "doc_id": 5559977,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559977",
+      "scan_folder_id": "52014528",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014528/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014528/002.jpg?width=700",
+      "doc_id": 5559977,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559977",
+      "scan_folder_id": "52014528",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014529/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014529/001.jpg?width=700",
+      "doc_id": 5559978,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559978",
+      "scan_folder_id": "52014529",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014529/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014529/002.jpg?width=700",
+      "doc_id": 5559978,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559978",
+      "scan_folder_id": "52014529",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014530/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014530/001.jpg?width=700",
+      "doc_id": 5559979,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559979",
+      "scan_folder_id": "52014530",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014530/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014530/002.jpg?width=700",
+      "doc_id": 5559979,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559979",
+      "scan_folder_id": "52014530",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 1,
+      "side": "front",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014531/001.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014531/001.jpg?width=700",
+      "doc_id": 5559980,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559980",
+      "scan_folder_id": "52014531",
+      "label": "JENÖ BLUMENTHAL"
+    },
+    {
+      "page_no": 2,
+      "side": "back",
+      "image_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014531/002.jpg",
+      "thumbnail_url": "https://collections-server.arolsen-archives.org/G/SIMS/01010503/1510/52014531/002.jpg?width=700",
+      "doc_id": 5559980,
+      "document_url": "https://collections.arolsen-archives.org/en/document/5559980",
+      "scan_folder_id": "52014531",
+      "label": "JENÖ BLUMENTHAL"
+    }
+  ],
+  "citation": {
+    "doc_id": 5559972,
+    "url": "https://collections.arolsen-archives.org/en/document/5559972",
+    "signature": "1.1.5.3 - Files with names from BLOCHA",
+    "desc_id": 1568206,
+    "attribution": "Arolsen Archives, International Center on Nazi Persecution, Online Archive"
+  },
+  "notes": [
+    "id 5559972 is a person-entry id; its scans are filed under sibling document ids [5559973, 5559974, 5559975, 5559976, 5559977, 5559978, 5559979, 5559980]. See file_pages."
+  ]
+}
