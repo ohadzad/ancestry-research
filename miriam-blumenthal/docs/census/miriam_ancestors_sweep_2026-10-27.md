@@ -100,7 +100,7 @@ Excluded: Eszter Lebovits née Veig / Veigh, b. 1891 Alsóapsa (YV 1828708, subm
 
 ## (c) Blockers
 
-1. **FamilySearch** - no token. It is the only route to the **images** of the Alsóapsa/Szigeti civil register (Baia Mare archive, Register Book 281, rows 56-10, 64-23, 75-14, 128-21; the 1910s marriage and birth books of Alsóapsa) and of the Máramaros/Zakarpattia civil registers. All F2 grades stay "likely" until those images are read.
+1. **FamilySearch** - no token. [Correction, 27.10.2026: Book 281 is NOT on FamilySearch - see familysearch_book281_check_2026-10-27.md.] It was assumed to be the only route to the **images** of the Alsóapsa/Szigeti civil register (Baia Mare archive, Register Book 281, rows 56-10, 64-23, 75-14, 128-21; the 1910s marriage and birth books of Alsóapsa) and of the Máramaros/Zakarpattia civil registers. All F2 grades stay "likely" until those images are read.
 2. **JewishGen MCP detail pages** - `jewishgen_search_filtered` on a result URL returned "Scanned 0 rows" and `jewishgen_open` returned "0 matching record" although the overview shows hits (known quirk). Treated as a blocker, not a negative. Worked around by running the same search in the logged-in Chrome (Global Search form, then "List n records"). The `jgdetail_2.php` URLs from the MCP also return 0 in the browser.
 3. **IGRA full record and scan** of 16726 - details only for IGRA members; the image URL answered HTTP 403 and was not pursued (no bypass). Only the list line (Hebrew + English) was captured. Magdiel as address on that row is therefore not verified.
 4. **RadixIndex** Verlustliste "Lebovics - Alsoapsa" (WW1 casualty list) and RadixRef Balassagyarmat rows - "record retrieval for subscribers".
