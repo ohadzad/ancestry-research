@@ -1,7 +1,12 @@
 # Lakarov VeLarahok (לקרוב ולרחוק) 1946-05-19 — "הוצאה מיוחדת": the list of the ma'apilim of "Max Nordau", letters ה–ש — id lakkarov19460519-01.2.3
 URL: https://www.nli.org.il/he/newspapers/?a=d&d=lakkarov19460519-01.2.3
 Issue: https://www.nli.org.il/he/newspapers/lakkarov/1946/05/19/01/
-Read 2026-10-27 through jpress_get_article (3,543 words). Page images are locked on the NLI site (copyright); only the OCR text was read. OCR as returned (noisy); the relevant lines only. Page 1 of the list, with the ship's details, is section lakkarov19460519-01.2.2 (summarised in the sweep log, B-4).
+Read 2026-10-27 through jpress_get_article (3,543 words). Page images are locked on the NLI site (copyright); only the OCR text was read. OCR as returned (noisy); the relevant lines only.
+
+## Page 1 of the list — lakkarov19460519-01.2.2
+URL: https://www.nli.org.il/he/newspapers/?a=d&d=lakkarov19460519-01.2.2
+Title (OCR): `המעפילים באביה "מאקס נורדוי" (סמירנה)` ("The ma'apilim on the ship 'Max Nordau' (Smyrna)").
+Summary of the opening paragraph (OCR, noisy): on Tuesday, 14 May, the ship "Max Nordau" (Smyrna) entered Haifa port with 1,754 ma'apilim from several countries, who had gathered in Romania and sailed from there; it left Constanța on 7 May, was spotted from the air on 13 May and escorted to Haifa. A short quotation: `שהכיאה 1754 מעפילים` ("which brought 1,754 ma'apilim").
 
 ## The entry
 OCR: `לאבל טובה •״ 1923 לייבו מרים 1925 לייבו לבגד, 1930 לאזאר יואל 1919`
